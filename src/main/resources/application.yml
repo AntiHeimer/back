@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/antiheimer
+    url: jdbc:mysql://mysql-container:3306/antiheimer
     username: root
     password: qwer1234
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,6 +12,7 @@ spring:
       hibernate:
         #show_sql: true
         format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
 
 logging:
   level:
@@ -20,7 +21,7 @@ logging:
     #org.hibernate.orm.jdbc.bind: trace
 
 auth:
-  key: "bVAtkPtiVGpWuO3dWEnvr51cEb6r7oF8"
+  key: ""
 
 server:
   port: 8080

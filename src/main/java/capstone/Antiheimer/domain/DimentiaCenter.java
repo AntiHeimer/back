@@ -13,7 +13,7 @@ import lombok.Setter;
 public class DimentiaCenter {
 
     @Id
-    @Column(name = "centerId")
+    @Column(name = "center_id")
     private String uuid;
 
     @NotNull

@@ -13,12 +13,12 @@ import java.time.LocalDate;
 public class Diagnosis {
 
     @Id
-    @Column(name = "userId")
+    @Column(name = "diagnosis_id")
     private String uuid;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @NotNull

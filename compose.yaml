@@ -1,13 +1,27 @@
-#services:
-#  mysql:
-#    image: mysql:latest
-#    environment:
-#      - MYSQL_DATABASE=antiheimer
-#      - MYSQL_ROOT_PASSWORD=qwer1234
-#      - 'MYSQL_USER=myuser'
-#    command: # 명령어 실행
-#      - --character-set-server=utf8mb4
-#      - --collation-server=utf8mb4_unicode_ci
-#
-#    ports:
-#      - 3306
+services:
+  mysql:
+    image: mysql:8.2.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: qwer1234
+      MYSQL_DATABASE: antiheimer
+    ports:
+      - "3307:3306"
+    networks:
+      - my-network
+
+  springboot-app:
+    image: spring-boot-app
+    container_name: springboot-container
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/antiheimer
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: qwer1234
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
