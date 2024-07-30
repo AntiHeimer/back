@@ -7,6 +7,8 @@ services:
       MYSQL_DATABASE: antiheimer
     ports:
       - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
       - my-network
 
@@ -19,6 +21,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/antiheimer
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: qwer1234
+    volumes:
+      - ./target:/app
     networks:
       - my-network
 
