@@ -10,10 +10,10 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class UserDate {
+public class UserData {
 
     @Id
-    @Column(name = "date_id")
+    @Column(name = "data_id")
     private String uuid;
 
     @NotNull
