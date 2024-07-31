@@ -30,4 +30,11 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Diagnosis> diagnoses = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Location> locations = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Result> results = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<UserData> userDatas = new ArrayList<>();
+
 }
