@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -43,6 +44,11 @@ public class UserRepository {
         return em.find(User.class, uuid);
     }
 
+    public List<User> findById(String id) {
 
+        return em.createQuery("select u from User u where u.id = :id", User.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 
 }
