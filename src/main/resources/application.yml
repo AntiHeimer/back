@@ -32,3 +32,6 @@ springdoc:
 server:
   port: 8081
   address: 0.0.0.0
+
+auth:
+  key: "아직몰라"
