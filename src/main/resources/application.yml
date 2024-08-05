@@ -29,6 +29,12 @@ springdoc:
   default-produces-media-type: application/json # 기본 produce media type
   model-and-view-allowed: true # ModelAndView 허용
 
+jwt:
+  access-token-expiration: 360000 # 1시간
+  refresh-token-expirationL: 86400000 # 1일
+  secret: 3e5e34caed03f76c6510fe14b89a1e56bb239acb9085351baa21a068f10f9236
+
+
 server:
   port: 8081
   address: 0.0.0.0

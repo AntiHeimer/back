@@ -51,12 +51,12 @@ public class UserService {
 
     private void duplicateUser(SignupUserReqDto userDto) {
 
-        if(!userRepository.findById(userDto.getId()).isEmpty()) {
+        if (!userRepository.findById(userDto.getId()).isEmpty()) {
             log.warn("이미 존재하는 아이디입니다.");
             throw new DuplicateIdException();
         }
         List<User> findUsersId = userRepository.findById(userDto.getId());
-        if(!findUsersId.isEmpty()) {
+        if (!findUsersId.isEmpty()) {
             log.warn("이미 존재하는 회원입니다.");
             throw new DuplicateIdException();
         }

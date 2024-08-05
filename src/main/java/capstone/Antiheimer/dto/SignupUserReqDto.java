@@ -10,5 +10,4 @@ public class SignupUserReqDto {
     private String id;
     private String pw;
     private String name;
-
 }

@@ -7,8 +7,6 @@ import lombok.ToString;
 
 @Getter
 @NoArgsConstructor
-@ToString
-@Builder
 public class NormalResDto {
 
     private String statusCode;
