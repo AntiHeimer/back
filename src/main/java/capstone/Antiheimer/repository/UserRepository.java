@@ -1,7 +1,7 @@
 package capstone.Antiheimer.repository;
 
 import capstone.Antiheimer.domain.User;
-import capstone.Antiheimer.dto.SignupUserReqDto;
+import capstone.Antiheimer.dto.SignupReqDto;
 import capstone.Antiheimer.service.BcryptService;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class UserRepository {
 
     private final EntityManager em;
 
-    public void save(SignupUserReqDto userDto) {
+    public void save(SignupReqDto userDto) {
 
         User user = new User();
         BcryptService bcryptService = new BcryptService();

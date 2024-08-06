@@ -1,7 +1,7 @@
 package capstone.Antiheimer.service;
 
 import capstone.Antiheimer.domain.User;
-import capstone.Antiheimer.dto.SignupUserReqDto;
+import capstone.Antiheimer.dto.SignupReqDto;
 import capstone.Antiheimer.exception.*;
 import capstone.Antiheimer.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +18,13 @@ import static org.springframework.util.StringUtils.containsWhitespace;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
-public class UserService {
+public class SignUpService {
 
     private final UserRepository userRepository;
     private final AesService aesService;
 
     @Transactional
-    public void signup(SignupUserReqDto userDto) {
+    public void signup(SignupReqDto userDto) {
 
         validateUser(userDto); // 형식 확인
         duplicateUser(userDto); // 중복 확인
@@ -33,7 +33,7 @@ public class UserService {
         log.info("회원가입 성공");
     }
 
-    private void validateUser(SignupUserReqDto userDto) {
+    private void validateUser(SignupReqDto userDto) {
 
         if (userDto.getId().length() <8 || !userDto.getId().matches("^[a-zA-Z0-9]+$")) {
             log.warn("유효하지 않은 아이디입니다.");
@@ -49,7 +49,7 @@ public class UserService {
         }
     }
 
-    private void duplicateUser(SignupUserReqDto userDto) {
+    private void duplicateUser(SignupReqDto userDto) {
 
         if (!userRepository.findById(userDto.getId()).isEmpty()) {
             log.warn("이미 존재하는 아이디입니다.");
@@ -62,7 +62,7 @@ public class UserService {
         }
     }
 
-    private void nullUser(SignupUserReqDto userDto){
+    private void nullUser(SignupReqDto userDto){
 
         if (userDto.getId().isEmpty()) {
             log.warn("아이디가 비어있습니다.");
