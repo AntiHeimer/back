@@ -2,7 +2,6 @@ package capstone.Antiheimer.Jwt;
 
 import capstone.Antiheimer.dto.LoginReqDto;
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Component
-public class JwtUtil {
+public class JwtTokenUtil {
 
     @Value("${jwt.secret")
     private String secretKey;
@@ -34,18 +33,24 @@ public class JwtUtil {
 
 
     // application.yml에서 secret 값 가져와서 key에 저장
-    public JwtUtil() {
+    public JwtTokenUtil() {
         String encodedKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
         key = Keys.hmacShaKeyFor(encodedKey.getBytes());
     }
 
     // Member 정보를 가지고 AccessToken, RefreshToken을 생성하는 메서드
-    public JwtToken generateToken(LoginReqDto loginDto) {
+    public JwtToken generateToken(LoginReqDto request) {
+
+        String authorities = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
 
         Claims claims = Jwts.claims();
+        claims.put("iss", "")
         claims.put("id", loginDto.getId());
+        claims.put("pw", loginDto.getPw());
 
         // Access Token 생성
         String accessToken = Jwts.builder()
@@ -68,21 +73,24 @@ public class JwtUtil {
     }
 
     // Jwt 토큰을 복호화하여 토큰에 들어있는 정보를 꺼내는 메서드
-//    public Authentication getAuthentication(String accessToken) {
-//        // Jwt 토큰 복호화
-//        Claims claims = parseClaims(accessToken);
-//
-//        if (claims.get("auth") == null) {
-//            throw new RuntimeException("권한 정보가 없는 토큰입니다.");
-//        }
-//
-//        // 클레임에서 권한 정보 가져오기
-//        Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get("auth").toString().split(","))
-//                .map(SimpleGrantedAuthority::new)
-//                .collect(Collectors.toList());
-//
-//        return new UsernamePasswordAuthenticationToken(principal, "", authorities);
-//    }
+    public Authentication getAuthentication(String accessToken) {
+        // 토큰 복호화
+        Claims claims = parseClaims(accessToken);
+
+        if (claims.get("auth") == null) {
+            throw new RuntimeException("권한 정보가 없는 토큰입니다.");
+        }
+
+        // 클레임에서 권한 정보 가져오기
+        Collection<? extends GrantedAuthority> authorities =
+                Arrays.stream(claims.get("auth").toString().split(","))
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+
+        // UserDetails 객체를 만들어서 Authentication 리턴
+        UserDetails principal = new User(claims.getSubject(), "", authorities);
+        return new UsernamePasswordAuthenticationToken(principal, "", authorities);
+    }
 
     // 토큰 정보를 검증하는 메서드
     public boolean validateToken(String token) {
