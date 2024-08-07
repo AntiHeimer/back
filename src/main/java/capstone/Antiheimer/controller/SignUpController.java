@@ -5,6 +5,8 @@ import capstone.Antiheimer.dto.SignupReqDto;
 import capstone.Antiheimer.exception.*;
 import capstone.Antiheimer.service.AesService;
 import capstone.Antiheimer.service.SignUpService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -80,6 +82,8 @@ public class SignUpController {
 
             result = new NormalResDto("400", "입력되지 않은 비밀번호");
             return result;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
     }
 }
