@@ -56,31 +56,31 @@ public class SignUpController {
             return result;
         } catch (InvalidIdException e) {
 
-            result = new NormalResDto("400", "유효하지 않은 아이디");
+            result = new NormalResDto("405", "유효하지 않은 아이디");
             return result;
         } catch (InvalidPwException e) {
 
-            result = new NormalResDto("400", "유효하지 않은 비밀번호");
+            result = new NormalResDto("405", "유효하지 않은 비밀번호");
             return result;
         } catch (InvalidNameException e) {
 
-            result = new NormalResDto("400", "유효하지 않은 이름");
+            result = new NormalResDto("405", "유효하지 않은 이름");
             return result;
         } catch (DuplicateIdException e) {
 
-            result = new NormalResDto("400", "중복된 아이디");
+            result = new NormalResDto("406", "중복된 아이디");
             return result;
         } catch (NullIdException e) {
 
-            result = new NormalResDto("400", "입력되지 않은 아이디");
+            result = new NormalResDto("407", "입력되지 않은 아이디");
             return result;
         } catch (NullNameException e) {
 
-            result = new NormalResDto("400", "입력되지 않은 이름");
+            result = new NormalResDto("407", "입력되지 않은 이름");
             return result;
         } catch (NullPwException e) {
 
-            result = new NormalResDto("400", "입력되지 않은 비밀번호");
+            result = new NormalResDto("407", "입력되지 않은 비밀번호");
             return result;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
