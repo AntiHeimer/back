@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class UserData {
+public class MemberData {
 
     @Id
     @Column(name = "data_id")
@@ -18,8 +18,8 @@ public class UserData {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @NotNull
     private Date date;

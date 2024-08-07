@@ -48,7 +48,7 @@ public class JwtTokenUtil {
         long now = (new Date()).getTime();
 
         Claims claims = Jwts.claims();
-        claims.put("iss", "")
+        claims.put("iss", "");
         claims.put("id", loginDto.getId());
         claims.put("pw", loginDto.getPw());
 

@@ -14,11 +14,11 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class User {
+public class Member {
 
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "member_id")
     private String uuid;
 
     @NotNull
@@ -28,13 +28,13 @@ public class User {
     @NotNull
     private String name;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Diagnosis> diagnoses = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Location> locations = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Result> results = new ArrayList<>();
-    @OneToMany(mappedBy = "user")
-    private List<UserData> userDatas = new ArrayList<>();
+    @OneToMany(mappedBy = "member")
+    private List<MemberData> userDatas = new ArrayList<>();
 
 }

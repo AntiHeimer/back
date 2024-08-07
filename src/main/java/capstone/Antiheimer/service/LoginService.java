@@ -1,11 +1,11 @@
 package capstone.Antiheimer.service;
 
 import capstone.Antiheimer.Jwt.JwtTokenUtil;
-import capstone.Antiheimer.domain.User;
+import capstone.Antiheimer.domain.Member;
 import capstone.Antiheimer.dto.LoginReqDto;
 import capstone.Antiheimer.exception.IncorrectPwException;
 import capstone.Antiheimer.exception.NotExistException;
-import capstone.Antiheimer.repository.UserRepository;
+import capstone.Antiheimer.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,37 +17,37 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class LoginService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final BcryptService bcryptService;
     private final JwtTokenUtil jwtTokenUtil;
 
 
     public String login(LoginReqDto request) {
 
-        userExistCheck(request.getId());
-        userCorrectPw(request);
+        memberExistCheck(request.getId());
+        memberCorrectPw(request);
 
         String token = jwtTokenUtil.generateToken(request).getAccessToken();
 
         return null;
     }
 
-    private void userExistCheck(String id) {
+    private void memberExistCheck(String id) {
 
-        User findUser = userRepository.findOneById(id);
+        Member findMember = memberRepository.findOneById(id);
 
-        if (findUser == null) {
+        if (findMember == null) {
 
             log.warn("존재하지 않는 회원입니다");
             throw new NotExistException();
         }
     }
 
-    private void userCorrectPw(LoginReqDto request) {
+    private void memberCorrectPw(LoginReqDto request) {
 
-        User findUser = userRepository.findOneById(request.getId());
+        Member findMember = memberRepository.findOneById(request.getId());
 
-        if (!bcryptService.isPwMatch(request.getPw(), findUser.getPw())) {
+        if (!bcryptService.isPwMatch(request.getPw(), findMember.getPw())) {
 
             log.warn("비밀번호가 일치하지 않습니다");
             throw new IncorrectPwException();
