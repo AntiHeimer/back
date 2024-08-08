@@ -23,14 +23,14 @@ public class AesService {
     private final static String AESIv = "0123456789abcdef";
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public String encryptAES(String ID) {
+    public String encryptAES(String id) {
         try {
 
             Cipher cipher = Cipher.getInstance(algorithms);
             SecretKeySpec keySpec = new SecretKeySpec(AESKey.getBytes(StandardCharsets.UTF_8), "AES");
             IvParameterSpec ivParameterSpec = new IvParameterSpec(AESIv.getBytes(StandardCharsets.UTF_8));
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivParameterSpec);
-            byte[] encryptedBytes = cipher.doFinal(ID.getBytes(StandardCharsets.UTF_8));
+            byte[] encryptedBytes = cipher.doFinal(id.getBytes(StandardCharsets.UTF_8));
             return Base64.getEncoder().encodeToString(encryptedBytes);
         } catch (Exception e) {
 
@@ -39,16 +39,18 @@ public class AesService {
         }
     }
 
-    public String decryptAES(String ID) {
+    public String decryptAES(String id) {
+
         try {
             Cipher cipher = Cipher.getInstance(algorithms);
             SecretKeySpec keySpec = new SecretKeySpec(AESKey.getBytes(StandardCharsets.UTF_8), "AES");
             IvParameterSpec ivParameterSpec = new IvParameterSpec(AESIv.getBytes(StandardCharsets.UTF_8));
             cipher.init(Cipher.DECRYPT_MODE, keySpec, ivParameterSpec);
-            byte[] decodedBytes = Base64.getDecoder().decode(ID);
+            byte[] decodedBytes = Base64.getDecoder().decode(id);
             byte[] decryptedBytes = cipher.doFinal(decodedBytes);
             return new String(decryptedBytes, StandardCharsets.UTF_8);
         } catch(Exception e) {
+
             e.printStackTrace();
             throw new RuntimeException("복호화 중 오류", e);
         }

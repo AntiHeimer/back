@@ -1,6 +1,5 @@
 package capstone.Antiheimer.service;
 
-import capstone.Antiheimer.Jwt.JwtTokenProvider;
 import capstone.Antiheimer.domain.Member;
 import capstone.Antiheimer.dto.LoginReqDto;
 import capstone.Antiheimer.exception.IncorrectPwException;
@@ -19,17 +18,19 @@ public class LoginService {
 
     private final MemberRepository memberRepository;
     private final BcryptService bcryptService;
-    private final JwtTokenProvider jwtTokenProvider;
 
 
     public String login(LoginReqDto request) {
 
+        String uuid;
+
         memberExistCheck(request.getId());
         memberCorrectPw(request);
 
-        String token = jwtTokenProvider.generateToken(request).getAccessToken();
+        uuid = memberRepository.findOneById(request.getId()).getUuid();
 
-        return null;
+        log.info("로그인 성공");
+        return uuid;
     }
 
     private void memberExistCheck(String id) {

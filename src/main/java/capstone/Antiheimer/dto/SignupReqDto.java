@@ -1,10 +1,10 @@
 package capstone.Antiheimer.dto;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class SignupReqDto {
 
     private String id;
