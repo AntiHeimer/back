@@ -16,7 +16,6 @@ import java.util.List;
 @Setter
 public class Member {
 
-
     @Id
     @Column(name = "member_id")
     private String uuid;
@@ -36,5 +35,4 @@ public class Member {
     private List<Result> results = new ArrayList<>();
     @OneToMany(mappedBy = "member")
     private List<MemberData> userDatas = new ArrayList<>();
-
 }

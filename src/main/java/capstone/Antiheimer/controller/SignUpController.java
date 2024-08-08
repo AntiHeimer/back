@@ -83,6 +83,7 @@ public class SignUpController {
             result = new NormalResDto("407", "입력되지 않은 비밀번호");
             return result;
         } catch (JsonProcessingException e) {
+
             throw new RuntimeException(e);
         }
     }

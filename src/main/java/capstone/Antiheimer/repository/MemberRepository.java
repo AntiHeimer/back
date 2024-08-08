@@ -50,6 +50,4 @@ public class MemberRepository {
                 .setParameter("id", id)
                 .getResultList();
     }
-
-
 }
