@@ -1,4 +1,4 @@
-package capstone.Antiheimer.Jwt;
+package capstone.Antiheimer.jwt;
 
 import capstone.Antiheimer.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +31,7 @@ public class SecurityConfig {
                 )
                 .authorizeRequests((authorizeRequests) ->
                         authorizeRequests
-                                .requestMatchers("/signup", "/login").permitAll()
+                                .requestMatchers("/signup", "/login", "/hello").permitAll()
                                 .anyRequest().authenticated())
                 .addFilterBefore(new JwtTokenFilter(memberRepository, jwtTokenUtil), UsernamePasswordAuthenticationFilter.class)
 

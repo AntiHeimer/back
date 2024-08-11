@@ -6,7 +6,6 @@ import capstone.Antiheimer.exception.*;
 import capstone.Antiheimer.service.AesService;
 import capstone.Antiheimer.service.SignUpService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +45,7 @@ public class SignUpController {
             return result;
         }
 
-        log.info("보호자 회원가입 시작");
+        log.info("회원가입 시작");
         try {
 
             String decryptedRequest = aesService.decryptAES(request);
@@ -56,33 +55,33 @@ public class SignUpController {
             log.info("보호자 회원가입 성공");
             result = new NormalResDto("200", "보호자 회원가입 성공");
             return result;
-        } catch (InvalidIdException e) {
-
-            result = new NormalResDto("405", "유효하지 않은 아이디");
-            return result;
-        } catch (InvalidPwException e) {
-
-            result = new NormalResDto("405", "유효하지 않은 비밀번호");
-            return result;
-        } catch (InvalidNameException e) {
-
-            result = new NormalResDto("405", "유효하지 않은 이름");
-            return result;
-        } catch (DuplicateIdException e) {
-
-            result = new NormalResDto("406", "중복된 아이디");
-            return result;
         } catch (NullIdException e) {
 
-            result = new NormalResDto("407", "입력되지 않은 아이디");
+            result = new NormalResDto("405", "입력되지 않은 아이디");
             return result;
         } catch (NullNameException e) {
 
-            result = new NormalResDto("407", "입력되지 않은 이름");
+            result = new NormalResDto("405", "입력되지 않은 이름");
             return result;
         } catch (NullPwException e) {
 
-            result = new NormalResDto("407", "입력되지 않은 비밀번호");
+            result = new NormalResDto("405", "입력되지 않은 비밀번호");
+            return result;
+        } catch (InvalidIdException e) {
+
+            result = new NormalResDto("406", "유효하지 않은 아이디");
+            return result;
+        } catch (InvalidPwException e) {
+
+            result = new NormalResDto("406", "유효하지 않은 비밀번호");
+            return result;
+        } catch (InvalidNameException e) {
+
+            result = new NormalResDto("406", "유효하지 않은 이름");
+            return result;
+        } catch (DuplicateIdException e) {
+
+            result = new NormalResDto("407", "중복된 아이디");
             return result;
         } catch (JsonProcessingException e) {
 

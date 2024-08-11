@@ -1,4 +1,4 @@
-package capstone.Antiheimer.Jwt;
+package capstone.Antiheimer.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -44,23 +44,39 @@ public class JwtTokenUtil {
                 .toString();
     }
 
-    public boolean validateToken(String token) {
+    public void validateToken(String token) {
 
         try {
             log.info("토큰 유효성 확인");
 
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
-            return true;
-        } catch (SecurityException | MalformedJwtException e) {
-            log.info("Invalid JWT signature, 유효하지 않는 JWT 서명 입니다.");
+        } catch (SignatureException | SecurityException | MalformedJwtException e) {
+            log.info("Invalid JWT signature, 유효하지 않는 JWT 서명 입니다");
+            throw new IllegalArgumentException("유효하지 않는 JWT 서명");
         } catch (ExpiredJwtException e) {
-            log.info("Expired JWT token, 만료된 JWT token 입니다.");
+            log.info("Expired JWT token, 만료된 JWT token 입니다");
+            throw new IllegalArgumentException("만료된 JWT 토큰");
         } catch (UnsupportedJwtException e) {
-            log.info("Unsupported JWT token, 지원되지 않는 JWT 토큰 입니다.");
+            log.info("Unsupported JWT token, 지원되지 않는 JWT 토큰 입니다");
+            throw new IllegalArgumentException("지원하지 않는 JWT 토큰");
         } catch (IllegalArgumentException e) {
-            log.info("JWT claims is empty, 잘못된 JWT 토큰 입니다.");
+            log.info("JWT claims is empty, 잘못된 JWT 토큰 입니다");
+            throw new IllegalArgumentException("잘못된 JWT 토큰");
         }
-        return false;
+    }
+
+    public void validateHeader(String header) {
+
+        log.info("헤더 유효성 확인");
+
+        if (header.isEmpty()) {
+            log.info("null 헤더");
+            throw new IllegalArgumentException("null 헤더");
+        }
+        if (!header.startsWith("Bearer ")) {
+            log.info("유효하지 않은 Bearer");
+            throw new IllegalArgumentException("Bearer 오류");
+        }
     }
 
     public Claims parseClaims(String token) {

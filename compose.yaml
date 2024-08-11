@@ -25,20 +25,20 @@ services:
       - ./target:/app
     networks:
       - my-network
-
-  nginx:
-    image: nginx
-    container_name: nginx-container
-    restart: always
-    ports:
-      - '80:80'
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - mysql
-      - springboot-app
-    networks:
-      - my-network
+#
+#  nginx:
+#    image: nginx
+#    container_name: nginx-container
+#    restart: always
+#    ports:
+#      - '80:80'
+#    volumes:
+#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#    depends_on:
+#      - mysql
+#      - springboot-app
+#    networks:
+#      - my-network
 
 networks:
   my-network:
