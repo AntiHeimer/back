@@ -2,16 +2,18 @@ package capstone.Antiheimer.controller;
 
 import capstone.Antiheimer.dto.LogoutReqDto;
 import capstone.Antiheimer.dto.NormalResDto;
+import capstone.Antiheimer.dto.SignupReqDto;
 import capstone.Antiheimer.exception.FailLogoutException;
+import capstone.Antiheimer.exception.InvalidUuidException;
+import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.exception.NullUuidException;
+import capstone.Antiheimer.service.AesService;
 import capstone.Antiheimer.service.LogoutService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,33 +22,34 @@ public class LogoutController {
 
     @Autowired
     private final LogoutService logoutService;
+    @Autowired
+    private final AesService aesService;
 
     @Value("${auth.key}")
     private String authKey;
 
-    @PostMapping("/logout")
-    public NormalResDto logout(@RequestHeader("auth") String auth,
-                               @RequestBody LogoutReqDto request) {
+    @PostMapping("/logout/{uuid}")
+    public NormalResDto logout(@PathVariable("uuid") String uuid) {
 
         NormalResDto result;
 
-        log.info("권환 확인");
-        if (!auth.equals(authKey)) {
-
-            log.error("권한이 없습니다");
-            result = new NormalResDto("400", "권한 없음");
-            return result;
-        }
+        String decryptedUuid = aesService.decryptAES(uuid);
 
         try {
             log.info("로그아웃 시작");
-            logoutService.logout(request);
+            logoutService.logout(decryptedUuid);
 
             log.info("로그아웃 성공");
             result = new NormalResDto("200", "로그아웃 성공");
             return result;
-        } catch (FailLogoutException e) {
-            result = new NormalResDto("403", "로그아웃 실패");
+        } catch (NullUuidException e) {
+            result = new NormalResDto("405", "입력되지 않은 uuid");
+            return result;
+        } catch (InvalidUuidException e) {
+            result = new NormalResDto("406", "유효하지 않은 uuid");
+            return result;
+        } catch (NotExistException e) {
+            result = new NormalResDto("408", "존재하지 않는 회원");
             return result;
         }
     }

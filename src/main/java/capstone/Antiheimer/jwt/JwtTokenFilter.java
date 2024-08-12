@@ -33,7 +33,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             String requestURI = request.getRequestURI();
 
             // 회원가입 경로에 대해서는 필터링을 건너뜁니다.
-            if ("/signup".equals(requestURI) || "/login".equals(requestURI) || "/hello".equals(requestURI)) {
+            if ("/signup".equals(requestURI) || "/login".equals(requestURI) || "/logout".equals(requestURI)) {
                 filterChain.doFilter(request, response);
             }
 

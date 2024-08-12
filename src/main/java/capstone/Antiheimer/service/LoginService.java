@@ -39,7 +39,7 @@ public class LoginService {
 
         if (findMember == null) {
 
-            log.warn("존재하지 않는 회원입니다");
+            log.warn("존재하지 않는 아이디입니다");
             throw new NotExistException();
         }
     }
