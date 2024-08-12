@@ -1,19 +1,31 @@
 # Antiheimer
 
+## JWT
+signup/login은 auth 키 사용, 그 외 모든 api는 JWT 사용
+
+**Header**
+
+- auth 키: auth
+- JWT token: Authorization
+
+## 기타
+path에 variable이 있는 경우 AES 암호화 필요
+
+ex) /login/{uuid}
+
 ## Signup
 #### /signup: POST
 
+지영이가 작성 예정
 
-
-## Login(AES)
+## Login
 #### /login: POST
-request AES 암호화
 
 **Header**
 - String auth
 
 **Body**
-- String request
+- String request(AES)
   - String id
   - String pw
 
@@ -31,7 +43,7 @@ incorrect(409)
 - IncorrectPwException: 일치하지 않는 비밀번호
 
 
-## Logout(AES)
+## Logout
 #### /logout/{uuid}: GET
 uuid AES 암호화
 
