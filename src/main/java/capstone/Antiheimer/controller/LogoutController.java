@@ -1,9 +1,6 @@
 package capstone.Antiheimer.controller;
 
-import capstone.Antiheimer.dto.LogoutReqDto;
 import capstone.Antiheimer.dto.NormalResDto;
-import capstone.Antiheimer.dto.SignupReqDto;
-import capstone.Antiheimer.exception.FailLogoutException;
 import capstone.Antiheimer.exception.InvalidUuidException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.exception.NullUuidException;
@@ -24,9 +21,6 @@ public class LogoutController {
     private final LogoutService logoutService;
     @Autowired
     private final AesService aesService;
-
-    @Value("${auth.key}")
-    private String authKey;
 
     @PostMapping("/logout/{uuid}")
     public NormalResDto logout(@PathVariable("uuid") String uuid) {

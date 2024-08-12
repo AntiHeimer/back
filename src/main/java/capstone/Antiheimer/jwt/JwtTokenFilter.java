@@ -31,10 +31,13 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         try {
             // 요청 경로 가져오기
             String requestURI = request.getRequestURI();
+            System.out.println("requestURI = " + requestURI);
 
             // 회원가입 경로에 대해서는 필터링을 건너뜁니다.
-            if ("/signup".equals(requestURI) || "/login".equals(requestURI) || "/logout".equals(requestURI)) {
+            if ("/signup".equals(requestURI) || "/login".equals(requestURI) || requestURI.startsWith("/swagger-ui/")
+            || requestURI.startsWith("/")) {
                 filterChain.doFilter(request, response);
+                return;
             }
 
             log.info("Header, Bearer 확인");

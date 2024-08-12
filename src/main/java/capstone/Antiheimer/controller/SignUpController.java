@@ -28,7 +28,7 @@ public class SignUpController {
     @Autowired
     private final ObjectMapper objectMapper;
 
-    @Value("asdf")
+    @Value("${auth.key}")
     private String authKey;
 
     private NormalResDto result;

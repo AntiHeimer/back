@@ -8,6 +8,13 @@ signup/login은 auth 키 사용, 그 외 모든 api는 JWT 사용
 - auth 키: auth
 - JWT token: Authorization
 
+### possible error
+auth(401)
+- 유효하지 않는 JWT 서명
+- 만료된 JWT 토큰
+- 지원하지 않는 JWT 토큰
+- 잘못된 JWT 토큰
+
 ## 기타
 path에 variable이 있는 경우 AES 암호화 필요
 

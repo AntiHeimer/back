@@ -30,7 +30,7 @@ public class LoginController {
     private final ObjectMapper objectMapper;
     private final JwtTokenUtil jwtTokenUtil;
 
-    @Value("asdf")
+    @Value("${auth.key}")
     private String authKey;
 
     LoginResDto result;

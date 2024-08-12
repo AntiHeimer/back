@@ -1,48 +1,48 @@
-services:
-  mysql:
-    image: mysql:8.2.0
-    container_name: mysql-container
-    environment:
-      MYSQL_ROOT_PASSWORD: qwer1234
-      MYSQL_DATABASE: antiheimer
-    ports:
-      - "3307:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - my-network
-
-  springboot-app:
-    image: spring-boot-app
-    container_name: springboot-container
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/antiheimer
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: qwer1234
-    volumes:
-      - ./target:/app
-    networks:
-      - my-network
-#
-#  nginx:
-#    image: nginx
-#    container_name: nginx-container
-#    restart: always
+#services:
+#  mysql:
+#    image: mysql:8.2.0
+#    container_name: mysql-container
+#    environment:
+#      MYSQL_ROOT_PASSWORD: qwer1234
+#      MYSQL_DATABASE: antiheimer
 #    ports:
-#      - '80:80'
+#      - "3307:3306"
 #    volumes:
-#      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-#    depends_on:
-#      - mysql
-#      - springboot-app
+#      - mysql-data:/var/lib/mysql
 #    networks:
 #      - my-network
-
-networks:
-  my-network:
-    driver: bridge
-
-volumes:
-  mysql-data:
+#
+#  springboot-app:
+#    image: spring-boot-app
+#    container_name: springboot-container
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/antiheimer
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: qwer1234
+#    volumes:
+#      - ./target:/app
+#    networks:
+#      - my-network
+##
+##  nginx:
+##    image: nginx
+##    container_name: nginx-container
+##    restart: always
+##    ports:
+##      - '80:80'
+##    volumes:
+##      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+##    depends_on:
+##      - mysql
+##      - springboot-app
+##    networks:
+##      - my-network
+#
+#networks:
+#  my-network:
+#    driver: bridge
+#
+#volumes:
+#  mysql-data:
