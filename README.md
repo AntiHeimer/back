@@ -27,9 +27,10 @@ ex) /login/{uuid}
 -String auth
 
 **Body**
-- String id; 8자 이상, 알파벳/숫자만, 공백/NULL x
-- String pw; 알파벳/숫자만, 공백/NULL x
-- String name; 공백/NULL x
+- String request(AES)
+  - String id; 8자 이상, 알파벳/숫자만, 공백/NULL x
+  - String pw; 알파벳/숫자만, 공백/NULL x
+  - String name; 공백/NULL x
 
 ### possible error
 auth(400): 권한 없음
