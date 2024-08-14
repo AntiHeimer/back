@@ -23,7 +23,28 @@ ex) /login/{uuid}
 ## Signup
 #### /signup: POST
 
-지영이가 작성 예정
+**Header**
+-String auth
+
+**Body**
+- String id; 8자 이상, 알파벳/숫자만, 공백/NULL x
+- String pw; 알파벳/숫자만, 공백/NULL x
+- String name; 공백/NULL x
+
+### possible error
+auth(400): 권한 없음
+
+invalid(401)
+- InvalidIdException(): 유효하지 않은 아이디
+- InvalidPwException(): 유효하지 않은 비밀번호
+- InvalidNameException(): 유효하지 않은 이름
+
+duplicate(402)
+- DuplicateIdException(): 중복된 아이디, 회원
+
+null(403)
+- NullNameException(): 입력되지 않은 이름
+- NullPwException():  입력되지 않은 비밀번호
 
 ## Login
 #### /login: POST
