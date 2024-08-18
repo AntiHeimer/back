@@ -34,7 +34,7 @@ public class SignUpController {
     private NormalResDto result;
 
     @PostMapping("/signup")
-    public NormalResDto signUp(@RequestHeader("auth") String auth,
+    public NormalResDto signup(@RequestHeader("auth") String auth,
                                @RequestBody String request) {
 
         log.info("권한 확인");

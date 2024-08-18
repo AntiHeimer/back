@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -35,9 +37,9 @@ public class LoginService {
 
     private void memberExistCheck(String id) {
 
-        Member findMember = memberRepository.findOneById(id);
+        List<Member> findMember = memberRepository.findById(id);
 
-        if (findMember == null) {
+        if (findMember.isEmpty()) {
 
             log.warn("존재하지 않는 아이디입니다");
             throw new NotExistException();
