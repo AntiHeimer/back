@@ -35,7 +35,7 @@ public class SignUpService {
 
     private void validateMember(SignupReqDto memberDto) {
 
-        if (memberDto.getId().length() <8 || !memberDto.getId().matches("^[a-zA-Z0-9]+$")) {
+        if (memberDto.getId().length() < 8 || !memberDto.getId().matches("^[a-zA-Z0-9]+$")) {
 
             log.warn("유효하지 않은 아이디입니다.");
             throw new InvalidIdException();
