@@ -5,7 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,8 +23,10 @@ public class MemberData {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    private double weight;
+
     @NotNull
-    private Date date;
+    private LocalDate date; // 날짜 단위로 저장
 
     @NotNull
     private int rem;
@@ -36,12 +40,13 @@ public class MemberData {
     @NotNull
     private int sleepTime;
 
-    @NotNull
-    private int move;
+    @OneToMany(mappedBy = "memberData")
+    private List<Active> activeList = new ArrayList<>();
 
-    @NotNull
-    private int stand;
+    @OneToMany(mappedBy = "memberData")
+    private List<Walk> walkList = new ArrayList<>();
 
-    @NotNull
-    private int exercise;
+    @OneToMany(mappedBy = "memberData")
+    private List<Move> moveList = new ArrayList<>();
+
 }

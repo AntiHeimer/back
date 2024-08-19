@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +28,19 @@ public class Member {
     @NotNull
     private String name;
 
+    private String sex;
+
+    private LocalDate birth;
+
     @OneToMany(mappedBy = "member")
-    private List<Diagnosis> diagnoses = new ArrayList<>();
+    private List<Diagnosis> diagnosisList = new ArrayList<>();
+
     @OneToMany(mappedBy = "member")
-    private List<Location> locations = new ArrayList<>();
+    private List<Location> locationList = new ArrayList<>();
+
     @OneToMany(mappedBy = "member")
-    private List<Result> results = new ArrayList<>();
+    private List<Result> resultList = new ArrayList<>();
+
     @OneToMany(mappedBy = "member")
-    private List<MemberData> userDatas = new ArrayList<>();
+    private List<MemberData> memberDataList = new ArrayList<>();
 }

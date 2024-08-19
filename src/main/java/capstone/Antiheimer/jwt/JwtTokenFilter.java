@@ -26,7 +26,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        log.info("filter 시작");
+        log.info("jwt filter 시작");
 
         try {
             // 요청 경로 가져오기
