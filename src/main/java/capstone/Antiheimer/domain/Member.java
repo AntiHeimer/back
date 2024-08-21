@@ -27,12 +27,12 @@ public class Member {
     private String pw;
     @NotNull
     private String name;
-
-    private String sex;
+    @NotNull
+    private String gender;
+    @NotNull
+    private LocalDate birth;
 
     private double weight;
-
-    private LocalDate birth;
 
     @OneToMany(mappedBy = "member")
     private List<Diagnosis> diagnosisList = new ArrayList<>();

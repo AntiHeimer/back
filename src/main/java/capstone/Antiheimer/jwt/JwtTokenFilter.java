@@ -23,6 +23,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private final MemberRepository memberRepository;
     private final JwtTokenUtil jwtTokenUtil;
+
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 

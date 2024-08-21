@@ -18,6 +18,7 @@ public class SecurityConfig {
 
     private final MemberRepository memberRepository;
     private final JwtTokenUtil jwtTokenUtil;
+    private final JwtTokenFilter jwtTokenFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -33,7 +34,7 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/signup", "/login", "/swagger-ui/**", "/").permitAll()
                                 .anyRequest().authenticated())
-                .addFilterBefore(new JwtTokenFilter(memberRepository, jwtTokenUtil), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();
     }
