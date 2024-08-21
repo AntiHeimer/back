@@ -1,5 +1,6 @@
 package capstone.Antiheimer.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -37,8 +38,8 @@ public class Active {
     @NotNull
     private int appleStandHoursGoal;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberdata_id")
-    private MemberData memberData;
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "healthdata_id")
+    private HealthData healthData;
 }

@@ -1,5 +1,6 @@
 package capstone.Antiheimer.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -17,13 +18,16 @@ public class Walk {
     private String uuid;
 
     @NotNull
-    private LocalDateTime dateTime; // datetime 단위
+    private LocalDateTime startDateTime; // datetime 단위
+
+    @NotNull
+    private LocalDateTime endDateTime; // datetime 단위
 
     @NotNull
     private int value;
 
-    @NotNull
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberdata_id")
-    private MemberData memberData;
+    @JoinColumn(name = "healthdata_id")
+    private HealthData healthData;
 }

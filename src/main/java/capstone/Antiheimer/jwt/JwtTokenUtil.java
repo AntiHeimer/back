@@ -69,7 +69,7 @@ public class JwtTokenUtil {
 
         log.info("헤더 유효성 확인");
 
-        if (header.isEmpty()) {
+        if (header == null) {
             log.info("null 헤더");
             throw new IllegalArgumentException("null 헤더");
         }

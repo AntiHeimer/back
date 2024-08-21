@@ -21,7 +21,6 @@ import static org.springframework.util.StringUtils.containsWhitespace;
 public class SignUpService {
 
     private final MemberRepository memberRepository;
-    private final AesService aesService;
 
     @Transactional
     public void signup(SignupReqDto memberDto) {

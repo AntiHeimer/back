@@ -59,6 +59,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
+            log.info("토큰 검증 완료");
             filterChain.doFilter(request, response);
 
         } catch (IllegalArgumentException e) {

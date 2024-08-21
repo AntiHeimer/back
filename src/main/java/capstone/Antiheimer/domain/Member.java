@@ -30,6 +30,8 @@ public class Member {
 
     private String sex;
 
+    private double weight;
+
     private LocalDate birth;
 
     @OneToMany(mappedBy = "member")
@@ -42,5 +44,5 @@ public class Member {
     private List<Result> resultList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
-    private List<MemberData> memberDataList = new ArrayList<>();
+    private List<HealthData> healthDataList = new ArrayList<>();
 }

@@ -25,8 +25,6 @@ public class LogoutController {
     @PostMapping("/logout/{uuid}")
     public NormalResDto logout(@PathVariable("uuid") String uuid) {
 
-        NormalResDto result;
-
         String decryptedUuid = aesService.decryptAES(uuid);
 
         try {
@@ -34,17 +32,13 @@ public class LogoutController {
             logoutService.logout(decryptedUuid);
 
             log.info("로그아웃 성공");
-            result = new NormalResDto("200", "로그아웃 성공");
-            return result;
+            return new NormalResDto("200", "로그아웃 성공");
         } catch (NullUuidException e) {
-            result = new NormalResDto("405", "입력되지 않은 uuid");
-            return result;
+            return new NormalResDto("405", "입력되지 않은 uuid");
         } catch (InvalidUuidException e) {
-            result = new NormalResDto("406", "유효하지 않은 uuid");
-            return result;
+            return new NormalResDto("406", "유효하지 않은 uuid");
         } catch (NotExistException e) {
-            result = new NormalResDto("408", "존재하지 않는 회원");
-            return result;
+            return new NormalResDto("408", "존재하지 않는 회원");
         }
     }
 }

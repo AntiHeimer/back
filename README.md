@@ -20,7 +20,9 @@ path에 variable이 있는 경우 AES 암호화 필요
 
 ex) /login/{uuid}
 
-## Signup
+# Signup
+
+## signup
 #### /signup: POST
 
 **Header**
@@ -47,7 +49,9 @@ null(403)
 - NullNameException(): 입력되지 않은 이름
 - NullPwException():  입력되지 않은 비밀번호
 
-## Login
+# Login
+
+## login
 #### /login: POST
 
 **Header**
@@ -72,7 +76,9 @@ incorrect(409)
 - IncorrectPwException: 일치하지 않는 비밀번호
 
 
-## Logout
+# Logout
+
+## logout
 #### /logout/{uuid}: GET
 uuid AES 암호화
 
@@ -87,6 +93,72 @@ null(405)
 
 invalid(406)
 - InvalidUuidException: 유효하지 않은 uuid
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
+# HealthData
+
+## saveActive
+#### /save/active: POST
+
+**Header**
+- String Authorization
+
+**Body**
+- String memberUuid
+- LocalDate date(dd-MM-yyyy)
+- List activeData
+  - int activeEnergyBurned
+  - int activeEnergyBurnedGoal
+  - int appleExerciseTime
+  - int appleExerciseTimeGoal
+  - int appleStandHours
+  - int appleStandHoursGoal
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+## saveMove
+#### /save/move: POST
+
+**Header**
+- String Authorization
+
+**Body**
+- String memberUuid
+- LocalDate date(dd-MM-yyyy)
+- List moveData
+  - LocalDateTime startDateTime
+  - LocalDateTime endDateTime
+  - int value
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+## saveWalk
+#### /save/walk: POST
+
+**Header**
+- String Authorization
+
+**Body**
+- String memberUuid
+- LocalDate date(dd-MM-yyyy)
+- List walkData
+  - LocalDateTime startDateTime
+  - LocalDateTime endDateTime
+  - int value
+
+### possible error
+auth(401): 권한 없음(토큰)
 
 exist(408)
 - NotExistException: 존재하지 않는 회원

@@ -1,5 +1,7 @@
 package capstone.Antiheimer.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -17,12 +19,16 @@ public class Move {
     private String uuid;
 
     @NotNull
-    private LocalDateTime dateTime; // datetime 단위
+    private LocalDateTime startDateTime; // datetime 단위
+
+    @NotNull
+    private LocalDateTime endDateTime; // datetime 단위
 
     @NotNull
     private double value;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberdata_id")
-    MemberData memberData;
+    @JoinColumn(name = "healthdata_id")
+    HealthData healthData;
 }
