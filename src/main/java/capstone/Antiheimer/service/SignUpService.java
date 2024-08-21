@@ -49,6 +49,11 @@ public class SignUpService {
             log.warn("유효하지 않은 이름입니다.");
             throw new InvalidNameException();
         }
+        if (!memberDto.getGender().equals("female") && !memberDto.getGender().equals("male")) {
+
+            log.warn("유효하지 않은 성별입니다.");
+            throw new InvalidGenderException();
+        }
     }
 
     private void duplicateMember(SignupReqDto memberDto) {
@@ -83,6 +88,16 @@ public class SignUpService {
 
             log.warn("비밀번호가 비어있습니다.");
             throw new NullPwException();
+        }
+        if (memberDto.getGender().isEmpty()) {
+
+            log.warn("성별이 비어있습니다.");
+            throw new NullGenderException();
+        }
+        if (memberDto.getBirth() == null) {
+
+            log.warn("생일이 비어있습니다.");
+            throw new NullBirthException();
         }
     }
 }

@@ -67,6 +67,14 @@ public class SignUpController {
 
             result = new NormalResDto("405", "입력되지 않은 비밀번호");
             return result;
+        } catch (NullGenderException e) {
+
+            result = new NormalResDto("405", "입력되지 않은 성별");
+            return result;
+        } catch (NullBirthException e) {
+
+            result = new NormalResDto("405", "입력되지 않은 생일");
+            return result;
         } catch (InvalidIdException e) {
 
             result = new NormalResDto("406", "유효하지 않은 아이디");
@@ -78,6 +86,10 @@ public class SignUpController {
         } catch (InvalidNameException e) {
 
             result = new NormalResDto("406", "유효하지 않은 이름");
+            return result;
+        } catch (InvalidGenderException e) {
+
+            result = new NormalResDto("406", "유효하지 않은 성별");
             return result;
         } catch (DuplicateIdException e) {
 
