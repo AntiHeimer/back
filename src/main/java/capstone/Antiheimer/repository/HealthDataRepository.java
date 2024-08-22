@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,19 +22,9 @@ public class HealthDataRepository {
 
         Active active = new Active();
 
-        List<ActiveVo> activeVoList = request.getActiveData();
-
-        for (ActiveVo activeVo : activeVoList) {
-
-            active.setUuid(UUID.randomUUID().toString());
-            active.setDate(request.getDate());
-            active.setActiveEnergyBurned(activeVo.getActiveEnergyBurned());
-            active.setActiveEnergyBurnedGoal(activeVo.getActiveEnergyBurnedGoal());
-            active.setAppleExerciseTime(activeVo.getAppleExerciseTime());
-            active.setAppleExerciseTimeGoal(activeVo.getAppleExerciseTimeGoal());
-            active.setAppleStandHours(activeVo.getAppleStandHours());
-            active.setAppleStandHoursGoal(activeVo.getAppleStandHoursGoal());
-        }
+        active.setUuid(UUID.randomUUID().toString());
+        active.setDate(request.getDate());
+        active.setActiveEnergyBurned(request.getActiveEnergyBurned());
 
         Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
 
@@ -67,86 +56,90 @@ public class HealthDataRepository {
 
         List<MoveVo> moveVoList = request.getMoveData();
 
-        List<Move> moveList = new ArrayList<>();
+        Move move = new Move();
+
+        move.setUuid(UUID.randomUUID().toString());
+        move.setDate(request.getDate());
+
+        int sumValue = 0;
 
         for (MoveVo moveVo : moveVoList) {
 
-            Move move = new Move();
-
-            move.setUuid(UUID.randomUUID().toString());
-            move.setStartDateTime(moveVo.getStartDateTime());
-            move.setEndDateTime(moveVo.getEndDateTime());
-            move.setValue(moveVo.getValue());
-
-            moveList.add(move);
-
-            Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
-
-            HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
-
-            if (findHealthData == null) {
-
-                HealthData newHealthData = new HealthData();
-
-                newHealthData.setUuid(UUID.randomUUID().toString());
-                newHealthData.setMember(findMember);
-                newHealthData.setDate(request.getDate());
-                newHealthData.setMoveList(moveList);
-                move.setHealthData(newHealthData);
-
-                em.persist(newHealthData);
-            } else {
-                findHealthData.setMoveList(moveList);
-                move.setHealthData(findHealthData);
-
-                em.persist(findHealthData);
-            }
-
-            em.persist(move);
+            sumValue += moveVo.getValue();
         }
+
+        move.setValue(sumValue);
+
+        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
+        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
+
+        if (findHealthData == null) {
+
+            HealthData newHealthData = new HealthData();
+
+            newHealthData.setUuid(UUID.randomUUID().toString());
+            newHealthData.setMember(findMember);
+            newHealthData.setDate(request.getDate());
+            move.setHealthData(newHealthData);
+
+            em.persist(newHealthData);
+        } else {
+
+            move.setHealthData(findHealthData);
+
+            em.persist(findHealthData);
+        }
+
+        em.persist(move);
     }
 
     public void saveWalk(SaveWalkReqDto request) {
 
         List<WalkVo> walkVoList = request.getWalkData();
 
-        List<Walk> walkList = new ArrayList<>();
+        Walk walk = new Walk();
+
+        walk.setUuid(UUID.randomUUID().toString());
+        walk.setDate(request.getDate());
+
+        int sumValue = 0;
 
         for (WalkVo walkVo : walkVoList) {
 
-            Walk walk = new Walk();
-
-            walk.setUuid(UUID.randomUUID().toString());
-            walk.setStartDateTime(walkVo.getStartDateTime());
-            walk.setEndDateTime(walkVo.getEndDateTime());
-            walk.setValue(walkVo.getValue());
-
-            walkList.add(walk);
-
-            Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
-
-            HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
-
-            if (findHealthData == null) {
-
-                HealthData newHealthData = new HealthData();
-
-                newHealthData.setUuid(UUID.randomUUID().toString());
-                newHealthData.setMember(findMember);
-                newHealthData.setDate(request.getDate());
-                newHealthData.setWalkList(walkList);
-                walk.setHealthData(newHealthData);
-
-                em.persist(newHealthData);
-            } else {
-                findHealthData.setWalkList(walkList);
-                walk.setHealthData(findHealthData);
-
-                em.persist(findHealthData);
-            }
-
-            em.persist(walk);
+            sumValue += walkVo.getValue();
         }
+
+        walk.setValue(sumValue);
+
+        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
+        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
+
+        if (findHealthData == null) {
+
+            HealthData newHealthData = new HealthData();
+
+            newHealthData.setUuid(UUID.randomUUID().toString());
+            newHealthData.setMember(findMember);
+            newHealthData.setDate(request.getDate());
+            walk.setHealthData(newHealthData);
+
+            em.persist(newHealthData);
+        } else {
+
+            walk.setHealthData(findHealthData);
+
+            em.persist(findHealthData);
+        }
+
+        em.persist(walk);
+    }
+
+    public void saveWeight(SaveWeightReqDto request) {
+
+        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
+        findMember.setWeight(request.getWeight());
+
+        em.persist(findMember);
     }
 
     public HealthData findDataByMemberAndDate(String uuid, LocalDate date) {
@@ -160,42 +153,81 @@ public class HealthDataRepository {
         }
     }
 
-    public List<Active> findActive(String uuid, LocalDate date) {
+//    public List<Active> findActive(String uuid, LocalDate date) {
+//
+//        HealthData healthData = findDataByMemberAndDate(uuid, date);
+//
+//        try {
+//            return em.createQuery("select a from Active a where a.healthData.uuid = :uuid", Active.class)
+//                    .setParameter("uuid", healthData.getUuid())
+//                    .getResultList();
+//        } catch (NullPointerException e) {
+//            return null;
+//        }
+//    }
+//
+//    public List<Move> findMove(String uuid, LocalDate date) {
+//
+//        HealthData healthData = findDataByMemberAndDate(uuid, date);
+//
+//        try {
+//            return em.createQuery("select m from Move m where m.healthData.uuid = :uuid", Move.class)
+//                    .setParameter("uuid", healthData.getUuid())
+//                    .getResultList();
+//        } catch (NullPointerException e) {
+//            return null;
+//        }
+//    }
+//
+//    public List<Walk> findWalk(String uuid, LocalDate date) {
+//
+//        HealthData healthData = findDataByMemberAndDate(uuid, date);
+//
+//        try {
+//            return em.createQuery("select w from Walk w where w.healthData.uuid = :uuid", Walk.class)
+//                    .setParameter("uuid", healthData.getUuid())
+//                    .getResultList();
+//        } catch (NullPointerException e) {
+//            return null;
+//        }
+//    }
 
-        HealthData healthData = findDataByMemberAndDate(uuid, date);
+    public boolean existActive(SaveActiveReqDto request) {
 
         try {
-            return em.createQuery("select a from Active a where a.healthData.uuid = :uuid", Active.class)
-                    .setParameter("uuid", healthData.getUuid())
-                    .getResultList();
-        } catch (NullPointerException e) {
-            return null;
+            em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
+                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+                    .getSingleResult();
+
+            return true;
+        } catch (NoResultException e) {
+            return false;
         }
     }
 
-    public List<Move> findMove(String uuid, LocalDate date) {
-
-        HealthData healthData = findDataByMemberAndDate(uuid, date);
+    public boolean existMove(SaveMoveReqDto request) {
 
         try {
-            return em.createQuery("select m from Move m where m.healthData.uuid = :uuid", Move.class)
-                    .setParameter("uuid", healthData.getUuid())
-                    .getResultList();
-        } catch (NullPointerException e) {
-            return null;
+            em.createQuery("select m from Move m where m.healthData.member.uuid = :uuid and m.date = :date", Move.class)
+                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+                    .getSingleResult();
+
+            return true;
+        } catch (NoResultException e) {
+            return false;
         }
     }
 
-    public List<Walk> findWalk(String uuid, LocalDate date) {
-
-        HealthData healthData = findDataByMemberAndDate(uuid, date);
+    public boolean existWalk(SaveWalkReqDto request) {
 
         try {
-            return em.createQuery("select w from Walk w where w.healthData.uuid = :uuid", Walk.class)
-                    .setParameter("uuid", healthData.getUuid())
-                    .getResultList();
-        } catch (NullPointerException e) {
-            return null;
+            em.createQuery("select w from Walk w where w.healthData.member.uuid = :uuid and w.date = :date", Walk.class)
+                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+                    .getSingleResult();
+
+            return true;
+        } catch (NoResultException e) {
+            return false;
         }
     }
 

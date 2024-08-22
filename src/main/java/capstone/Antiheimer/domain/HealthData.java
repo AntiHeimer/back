@@ -37,10 +37,10 @@ public class HealthData {
     @OneToOne(mappedBy = "healthData")
     private Active active;
 
-    @OneToMany(mappedBy = "healthData")
-    private List<Walk> walkList = new ArrayList<>();
+    @OneToOne(mappedBy = "healthData")
+    private Move move;
 
-    @OneToMany(mappedBy = "healthData")
-    private List<Move> moveList = new ArrayList<>();
+    @OneToOne(mappedBy = "healthData")
+    private Walk walk;
 
 }

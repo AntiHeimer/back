@@ -20,7 +20,8 @@ path에 variable이 있는 경우 AES 암호화 필요
 
 ex) /login/{uuid}
 
-# Signup
+
+# Member
 
 ## signup
 #### /signup: POST
@@ -55,7 +56,6 @@ null(403)
 - NullGenderException(): 입력되지 않은 성별
 - NullBirthException(): 입력되지 않은 생일
 
-# Login
 
 ## login
 #### /login: POST
@@ -81,8 +81,6 @@ exist(408)
 incorrect(409)
 - IncorrectPwException: 일치하지 않는 비밀번호
 
-
-# Logout
 
 ## logout
 #### /logout/{uuid}: GET
@@ -126,8 +124,12 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
+duplicate(407)
+- DuplicateHealthDataException: 중복된 활동 데이터
+
 exist(408)
 - NotExistException: 존재하지 않는 회원
+
 
 ## saveMove
 #### /save/move: POST
@@ -146,8 +148,12 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
+duplicate(407)
+- DuplicateHealthDataException: 중복된 움직인 거리 데이터
+
 exist(408)
 - NotExistException: 존재하지 않는 회원
+
 
 ## saveWalk
 #### /save/walk: POST
@@ -162,6 +168,26 @@ exist(408)
   - LocalDateTime startDateTime
   - LocalDateTime endDateTime
   - int value
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+duplicate(407)
+- DuplicateHealthDataException: 중복된 걸음수 데이터
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
+## saveWeight
+#### /save/weight: POST
+
+**Header**
+- String Authorization
+
+**Body**
+- String memberUuid
+- double weight
 
 ### possible error
 auth(401): 권한 없음(토큰)

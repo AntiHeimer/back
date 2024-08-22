@@ -36,4 +36,7 @@ out/
 ### VS Code ###
 .vscode/
 
+### Security ###
+src/main/java/capstone/Antiheimer/service/AesService.java
+src/main/resources/application.yml
 
