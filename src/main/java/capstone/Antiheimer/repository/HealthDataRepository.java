@@ -26,7 +26,7 @@ public class HealthDataRepository {
 
         active.setUuid(UUID.randomUUID().toString());
         active.setDate(request.getDate());
-        active.setActiveEnergyBurned(activeVoList.getFirst().getActiveEnergyBurned());
+        active.setActiveEnergyBurned(activeVoList.get(0).getActiveEnergyBurned());
 
         Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
 
