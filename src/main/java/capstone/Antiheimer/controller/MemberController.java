@@ -61,7 +61,7 @@ public class MemberController {
             signUpService.signup(reqDto);
 
             log.info("보호자 회원가입 성공");
-            result = new NormalResDto("200", "보호자 회원가입 성공");
+            result = new NormalResDto("200", "회원 회원가입 성공");
             return result;
         } catch (NullIdException e) {
 

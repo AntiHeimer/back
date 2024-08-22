@@ -12,5 +12,5 @@ public class SaveActiveReqDto {
 
     private String memberUuid;
     private LocalDate date;
-    private int activeEnergyBurned;
+    private List<ActiveVo> activeData;
 }
