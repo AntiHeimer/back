@@ -6,6 +6,8 @@ import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.service.HealthDataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class HealthDataController {
 
+    @Autowired
     private final HealthDataService healthDataService;
+
+    @Value("${auth.key}")
+    private String authKey;
 
     @PostMapping("/save/active")
     public NormalResDto saveActive(@RequestBody SaveActiveReqDto request) {
@@ -78,6 +84,33 @@ public class HealthDataController {
 
             return new NormalResDto("408", "존재하지 않는 회원");
         }
+    }
+
+    @PostMapping("/ai/send/data")
+    public HealthDataResDto aiData(@RequestHeader String auth,
+                                   @RequestBody AiReqDto request) {
+
+        log.info("권한 확인");
+
+        return null;
+//        if (!auth.equals(authKey)) {
+//
+//            log.warn("권한이 없습니다");
+//            return new HealthDataResDto("400", "권한 없음", null, null, null, null, null);
+//        }
+//
+//        log.info("AI서버에 데이터 전송");
+//        try {
+//            DiagnosisDto diagnosis = healthDataService.sendDataToAi(request);
+//            System.out.println("diagnosis = " + diagnosis);
+//            // DB에 진단결과 저장
+//            log.info("DB에 진단결과 저장");
+//            diagnosisService.saveDiagnosis(diagnosis);
+//
+//        } catch (Exception e) {
+//
+//        }
+
     }
 
 //
