@@ -23,21 +23,6 @@ public class Active {
     @NotNull
     private int activeEnergyBurned;
 
-    @NotNull
-    private int activeEnergyBurnedGoal;
-
-    @NotNull
-    private int appleExerciseTime;
-
-    @NotNull
-    private int appleExerciseTimeGoal;
-
-    @NotNull
-    private int appleStandHours;
-
-    @NotNull
-    private int appleStandHoursGoal;
-
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "healthdata_id")

@@ -46,6 +46,12 @@ jwt:
 auth:
   key: X3v9Lz2pTk8RgV5zYq7NwKjHcQ0sP4uM
 
+aes:
+  algorithms: AES/CBC/PKCS5Padding
+  key: abcdefghabcdefghabcdefghabcdefgh
+  iv: 0123456789abcdef
+
+
 server:
   port: 8080
   address: 0.0.0.0

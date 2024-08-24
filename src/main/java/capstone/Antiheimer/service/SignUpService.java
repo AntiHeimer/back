@@ -36,22 +36,22 @@ public class SignUpService {
 
         if (memberDto.getId().length() < 8 || !memberDto.getId().matches("^[a-zA-Z0-9]+$")) {
 
-            log.warn("유효하지 않은 아이디입니다.");
+            log.warn("유효하지 않은 아이디입니다");
             throw new InvalidIdException();
         }
         if (!memberDto.getPw().matches("^[a-zA-Z0-9]+$")) {
 
-            log.warn("유효하지 않은 비밀번호입니다.");
+            log.warn("유효하지 않은 비밀번호입니다");
             throw new InvalidPwException();
         }
         if (containsWhitespace(memberDto.getName())) {
 
-            log.warn("유효하지 않은 이름입니다.");
+            log.warn("유효하지 않은 이름입니다");
             throw new InvalidNameException();
         }
         if (!memberDto.getGender().equals("female") && !memberDto.getGender().equals("male")) {
 
-            log.warn("유효하지 않은 성별입니다.");
+            log.warn("유효하지 않은 성별입니다");
             throw new InvalidGenderException();
         }
     }
@@ -60,14 +60,14 @@ public class SignUpService {
 
         if (!memberRepository.findById(memberDto.getId()).isEmpty()) {
 
-            log.warn("이미 존재하는 아이디입니다.");
+            log.warn("이미 존재하는 아이디입니다");
             throw new DuplicateIdException();
         }
 
         List<Member> findMembersId = memberRepository.findById(memberDto.getId());
         if (!findMembersId.isEmpty()) {
 
-            log.warn("이미 존재하는 회원입니다.");
+            log.warn("이미 존재하는 회원입니다");
             throw new DuplicateIdException();
         }
     }
@@ -76,27 +76,27 @@ public class SignUpService {
 
         if (memberDto.getId().isEmpty()) {
 
-            log.warn("아이디가 비어있습니다.");
+            log.warn("아이디가 비어있습니다");
             throw new NullIdException();
         }
         if (memberDto.getName().isEmpty()) {
 
-            log.warn("이름이 비어있습니다.");
+            log.warn("이름이 비어있습니다");
             throw new NullNameException();
         }
         if (memberDto.getPw().isEmpty()) {
 
-            log.warn("비밀번호가 비어있습니다.");
+            log.warn("비밀번호가 비어있습니다");
             throw new NullPwException();
         }
         if (memberDto.getGender().isEmpty()) {
 
-            log.warn("성별이 비어있습니다.");
+            log.warn("성별이 비어있습니다");
             throw new NullGenderException();
         }
         if (memberDto.getBirth() == null) {
 
-            log.warn("생일이 비어있습니다.");
+            log.warn("생일이 비어있습니다");
             throw new NullBirthException();
         }
     }

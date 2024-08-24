@@ -7,6 +7,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

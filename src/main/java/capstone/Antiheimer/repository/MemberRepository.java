@@ -24,6 +24,8 @@ public class MemberRepository {
         member.setUuid(UUID.randomUUID().toString());
         member.setId(memberDto.getId());
         member.setName(memberDto.getName());
+        member.setBirth(memberDto.getBirth());
+        member.setGender(memberDto.getGender());
 
         //parent.setPw(parentDTO.getPw());
         String pw = memberDto.getPw();
@@ -50,5 +52,4 @@ public class MemberRepository {
                 .setParameter("id", id)
                 .getResultList();
     }
-
 }

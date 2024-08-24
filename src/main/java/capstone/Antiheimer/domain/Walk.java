@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,16 +19,13 @@ public class Walk {
     private String uuid;
 
     @NotNull
-    private LocalDateTime startDateTime; // datetime 단위
-
-    @NotNull
-    private LocalDateTime endDateTime; // datetime 단위
+    private LocalDate date;
 
     @NotNull
     private int value;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "healthdata_id")
     private HealthData healthData;
 }
