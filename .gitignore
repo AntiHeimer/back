@@ -37,6 +37,6 @@ out/
 .vscode/
 
 ### Security ###
-!**/src/main/resources/application.yml
-!**/src/main/resources/application-secure.yml
+/src/main/resources/application.yml
+/src/main/resources/application-secure.yml
 
