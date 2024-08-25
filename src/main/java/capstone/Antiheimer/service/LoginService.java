@@ -21,7 +21,13 @@ public class LoginService {
     private final MemberRepository memberRepository;
     private final BcryptService bcryptService;
 
-
+    /**
+     * 로그인
+     * - 회원 존재 확인
+     * - 비밀번호 확인
+     * @param request
+     * @return
+     */
     public String login(LoginReqDto request) {
 
         String uuid;
@@ -35,6 +41,10 @@ public class LoginService {
         return uuid;
     }
 
+    /**
+     * 회원 존재 확인
+     * @param id
+     */
     private void memberExistCheck(String id) {
 
         List<Member> findMember = memberRepository.findById(id);
@@ -46,6 +56,10 @@ public class LoginService {
         }
     }
 
+    /**
+     * 비밀번호 확인
+     * @param request
+     */
     private void memberCorrectPw(LoginReqDto request) {
 
         Member findMember = memberRepository.findOneById(request.getId());

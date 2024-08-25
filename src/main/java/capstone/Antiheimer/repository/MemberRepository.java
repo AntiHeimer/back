@@ -16,6 +16,10 @@ public class MemberRepository {
 
     private final EntityManager em;
 
+    /**
+     * 회원 저장
+     * @param memberDto
+     */
     public void save(SignupReqDto memberDto) {
 
         Member member = new Member();
@@ -27,13 +31,27 @@ public class MemberRepository {
         member.setBirth(memberDto.getBirth());
         member.setGender(memberDto.getGender());
 
-        //parent.setPw(parentDTO.getPw());
         String pw = memberDto.getPw();
-        member.setPw(bcryptService.encode(pw));
+        member.setPw(bcryptService.encode(pw)); // bcrypt 암호화
 
         em.persist(member);
     }
 
+    /**
+     * uuid로 회원 찾기
+     * @param uuid
+     * @return
+     */
+    public Member findOneByUuid(String uuid) {
+
+        return em.find(Member.class, uuid);
+    }
+
+    /**
+     * id로 회원 한 명 찾기(id가 확실히 존재할 때)
+     * @param id
+     * @return
+     */
     public Member findOneById(String id) {
 
         return em.createQuery("select u from Member u where u.id = :id", Member.class)
@@ -41,11 +59,11 @@ public class MemberRepository {
                 .getSingleResult();
     }
 
-    public Member findOneByUuid(String uuid) {
-
-        return em.find(Member.class, uuid);
-    }
-
+    /**
+     * id로 회원 여러 명 찾기(회원이 존재하는지 확인할 때)
+     * @param id
+     * @return
+     */
     public List<Member> findById(String id) {
 
         return em.createQuery("select u from Member u where u.id = :id", Member.class)
