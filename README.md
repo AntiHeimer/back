@@ -197,14 +197,14 @@ exist(408)
 
 
 ## recentData
-#### /recent: GET
+#### /recent?uuid={uuid}&data={data}: GET - url 인코딩
 
 **Header**
 - String Authorization
 
 **Param**
+- String uuid: uuid AES 암호화
 - String data
-- String uuid: uuid AES 암호화 후 인코딩
 
 ### possible error
 auth(401): 권한 없음(토큰)
