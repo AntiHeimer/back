@@ -116,6 +116,29 @@ public class HealthDataController {
     }
 
     /**
+     * 수면데이터 저장
+     * @param request
+     * @return NormalResDto
+     */
+    @PostMapping("/save/sleep")
+    public NormalResDto saveSleep(@RequestBody SaveSleepReqDto request) {
+
+        try {
+
+            log.info("수면 데이터 저장 시작");
+            healthDataService.insertSleep(request);
+
+            return new NormalResDto("200", "수면 데이터 저장 성공");
+        } catch (DuplicateHealthDataException e) {
+
+            return new NormalResDto("407", "중복된 수면 데이터");
+        } catch (NotExistException e) {
+
+            return new NormalResDto("408", "존재하지 않는 회원");
+        }
+    }
+
+    /**
      * 건강 데이터 최근 저장 날짜 조회
      * @param uuid
      * @return

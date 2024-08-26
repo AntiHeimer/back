@@ -82,6 +82,20 @@ public class HealthDataService {
     }
 
     /**
+     * 수면 데이터 저장
+     * - 회원 존재 확인
+     * - 수면 데이터 존재 확인(중복 확인)
+     * @param request
+     */
+    public void insertSleep(SaveSleepReqDto request) {
+
+        memberExistCheck(request.getMemberUuid());
+        sleepDataDuplicateCheck(request);
+        healthDataRepository.saveSleep(request);
+        log.info("수면 데이터 저장 성공");
+    }
+
+    /**
      * 건강 데이터 최근 저장 날짜 조회
      * @param uuid
      * @param data
@@ -210,6 +224,19 @@ public class HealthDataService {
         if (!data.equals("active") &&  !data.equals("move") && !data.equals("walk") && !data.equals("sleep")) {
 
             throw new InvalidDataTypeException();
+        }
+    }
+
+    /**
+     * 수면 데이터 존재 확인
+     * @param request
+     */
+    private void sleepDataDuplicateCheck(SaveSleepReqDto request) {
+
+        if (healthDataRepository.existSleep(request)) {
+
+            log.warn("이미 존재하는 수면 데이터입니다");
+            throw new DuplicateHealthDataException();
         }
     }
 
