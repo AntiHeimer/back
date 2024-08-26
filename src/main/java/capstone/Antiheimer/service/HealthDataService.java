@@ -3,6 +3,7 @@ package capstone.Antiheimer.service;
 import capstone.Antiheimer.domain.Member;
 import capstone.Antiheimer.dto.*;
 import capstone.Antiheimer.exception.DuplicateHealthDataException;
+import capstone.Antiheimer.exception.InvalidDataTypeException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.repository.HealthDataRepository;
 import capstone.Antiheimer.repository.MemberRepository;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
 
 @Service
 @Transactional(readOnly = true)
@@ -77,6 +80,33 @@ public class HealthDataService {
         healthDataRepository.saveWeight(request);
         log.info("Weight 저장 성공");
     }
+
+    public LocalDate recentDateOfHealthData(String uuid, String data) {
+
+        memberExistCheck(uuid);
+        dataTypeExistCheck(data);
+
+        return switch (data) {
+            case "active" -> healthDataRepository.findLastSentDateOfActive(uuid);
+            case "move" -> healthDataRepository.findLastSentDateOfMove(uuid);
+            case "walk" -> healthDataRepository.findLastSentDateOfWalk(uuid);
+            case "sleep" -> null;
+            default -> null;
+        };
+    }
+
+    public LocalDate recentDateOfMove(String uuid) {
+
+        memberExistCheck(uuid);
+        return healthDataRepository.findLastSentDateOfMove(uuid);
+    }
+
+    public LocalDate recentDateOfWalk(String uuid) {
+
+        memberExistCheck(uuid);
+        return healthDataRepository.findLastSentDateOfWalk(uuid);
+    }
+
 //    public List<Active> findActiveList(String uuid, LocalDate date) {
 //
 //        memberExistCheck(uuid);
@@ -165,4 +195,16 @@ public class HealthDataService {
             throw new DuplicateHealthDataException();
         }
     }
+
+    /**
+     * 데이터 타입 존재 확인
+     */
+    private void dataTypeExistCheck(String data) {
+
+        if (!data.equals("active") &&  !data.equals("move") && !data.equals("walk") && !data.equals("sleep")) {
+
+            throw new InvalidDataTypeException();
+        }
+    }
+
 }

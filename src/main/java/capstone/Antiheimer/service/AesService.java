@@ -19,11 +19,11 @@ import java.util.Base64;
 @Slf4j
 public class AesService {
 
-    @Value("{$aes.algorithms}")
+    @Value("${aes.algorithms}")
     private String algorithms;
-    @Value("{$aes.key}")
+    @Value("${aes.key}")
     private String AESKey;
-    @Value("{$aes.iv}")
+    @Value("${aes.iv}")
     private String AESIv;
 
     public String encryptAES(String id) {

@@ -38,23 +38,23 @@ ex) /login/{uuid}
   - LocalDate Birth; NULL x
 
 ### possible error
-auth(400): 권한 없음
+auth(401): 권한 없음
 
-invalid(401)
-- InvalidIdException(): 유효하지 않은 아이디
-- InvalidPwException(): 유효하지 않은 비밀번호
-- InvalidNameException(): 유효하지 않은 이름
-- InvalidGenderException(): 유효하지 않은 성별
-
-duplicate(402)
-- DuplicateIdException(): 중복된 아이디, 회원
-
-null(403)
+null(405)
 - NullIdException(): 입력되지 않은 아이디
 - NullNameException(): 입력되지 않은 이름
 - NullPwException():  입력되지 않은 비밀번호
 - NullGenderException(): 입력되지 않은 성별
 - NullBirthException(): 입력되지 않은 생일
+
+invalid(406)
+- InvalidIdException(): 유효하지 않은 아이디
+- InvalidPwException(): 유효하지 않은 비밀번호
+- InvalidNameException(): 유효하지 않은 이름
+- InvalidGenderException(): 유효하지 않은 성별
+
+duplicate(407)
+- DuplicateIdException(): 중복된 아이디, 회원
 
 
 ## login
@@ -194,3 +194,26 @@ auth(401): 권한 없음(토큰)
 
 exist(408)
 - NotExistException: 존재하지 않는 회원
+
+
+## recentData
+#### /recent: GET
+
+**Header**
+- String Authorization
+
+**Param**
+- String data
+- String uuid: uuid AES 암호화 후 인코딩
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+invalid(406)
+- InvalidDataTypeException: 유효하지 않은 데이터 타입
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+decoding(410)
+- UnsupportedEncodingException: 디코딩 오류

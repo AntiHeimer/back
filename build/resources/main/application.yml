@@ -14,11 +14,13 @@ spring:
         format_sql: true
 #        dialect: org.hibernate.dialect.MySQLDialect
 
+
 logging:
   level:
     root:
     org.hibernate.SQL: debug
     #org.hibernate.orm.jdbc.bind: trace
+
 
 springdoc:
   swagger-ui:
@@ -39,18 +41,20 @@ springdoc:
   paths-to-match:
     - /api/**
 
+
 jwt:
   secret: RlZnZpDJGfuNkUCIdlXoP12l50XSaHaacsT5o5v3gnc
   exp: 86400000 # 1일
 
+
 auth:
   key: X3v9Lz2pTk8RgV5zYq7NwKjHcQ0sP4uM
+
 
 aes:
   algorithms: AES/CBC/PKCS5Padding
   key: abcdefghabcdefghabcdefghabcdefgh
   iv: 0123456789abcdef
-
 
 server:
   port: 8080

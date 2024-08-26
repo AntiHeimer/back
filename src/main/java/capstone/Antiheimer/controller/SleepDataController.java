@@ -31,6 +31,11 @@ public class SleepDataController {
 
             log.info("Sleep데이터 저장 시작");
             sleepDataService.insertSleep(request);
+
+            return null;
+        } catch (Exception e) {
+
+            return null;
         }
     }
 }

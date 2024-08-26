@@ -179,6 +179,39 @@ public class HealthDataRepository {
         }
     }
 
+    /**
+     * 활동 데이터가 며칠까지 전송됐는지 찾기
+     * @return
+     */
+    public LocalDate findLastSentDateOfActive(String uuid) {
+
+        return em.createQuery("select max(a.date) as last_date from Active a where a.healthData.member.uuid =:uuid", LocalDate.class)
+                .setParameter("uuid", uuid)
+                .getSingleResult();
+    }
+
+    /**
+     * 움직인 거리 데이터가 며칠까지 전송됐는지 찾기
+     * @return
+     */
+    public LocalDate findLastSentDateOfMove(String uuid) {
+
+        return em.createQuery("select max(m.date) as last_date from Move m where m.healthData.member.uuid = :uuid", LocalDate.class)
+                .setParameter("uuid", uuid)
+                .getSingleResult();
+    }
+
+    /**
+     * 걸음수 데이터가 며칠까지 전송됐는지 찾기
+     * @return
+     */
+    public LocalDate findLastSentDateOfWalk(String uuid) {
+
+        return em.createQuery("select max(w.date) as last_date from Walk w where w.healthData.member.uuid = :uuid", LocalDate.class)
+                .setParameter("uuid", uuid)
+                .getSingleResult();
+    }
+
 //    public List<Active> findActive(String uuid, LocalDate date) {
 //
 //        HealthData healthData = findDataByMemberAndDate(uuid, date);

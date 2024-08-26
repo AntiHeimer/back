@@ -2,13 +2,20 @@ package capstone.Antiheimer.controller;
 
 import capstone.Antiheimer.dto.*;
 import capstone.Antiheimer.exception.DuplicateHealthDataException;
+import capstone.Antiheimer.exception.InvalidDataTypeException;
 import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.service.AesService;
 import capstone.Antiheimer.service.HealthDataService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,6 +24,8 @@ public class HealthDataController {
 
     @Autowired
     private final HealthDataService healthDataService;
+    @Autowired
+    private final AesService aesService;
 
     @Value("${auth.key}")
     private String authKey;
@@ -33,7 +42,7 @@ public class HealthDataController {
             log.info("Active 데이터 저장 시작");
             healthDataService.insertActive(request);
 
-            return new NormalResDto("200", "활동 데이터 저장 완료");
+            return new NormalResDto("200", "활동 데이터 저장 성공");
         } catch (DuplicateHealthDataException e) {
 
             return new NormalResDto("407", "중복된 활동 데이터");
@@ -55,7 +64,7 @@ public class HealthDataController {
             log.info("Move 데이터 저장 시작");
             healthDataService.insertMove(request);
 
-            return new NormalResDto("200", "움직인 거리 데이터 저장 완료");
+            return new NormalResDto("200", "움직인 거리 데이터 저장 성공");
         } catch (DuplicateHealthDataException e) {
 
             return new NormalResDto("407", "중복된 움직인 거리 데이터");
@@ -77,7 +86,7 @@ public class HealthDataController {
             log.info("Walk 데이터 저장 시작");
             healthDataService.insertWalk(request);
 
-            return new NormalResDto("200", "걸음수 데이터 저장 완료");
+            return new NormalResDto("200", "걸음수 데이터 저장 성공");
         } catch (DuplicateHealthDataException e) {
 
             return new NormalResDto("407", "중복된 걸음수 데이터");
@@ -93,16 +102,53 @@ public class HealthDataController {
      * @return NormalResDto
      */
     @PostMapping("/save/weight")
-    private NormalResDto saveWeight(@RequestBody SaveWeightReqDto request) {
+    public NormalResDto saveWeight(@RequestBody SaveWeightReqDto request) {
 
         try {
             log.info("Weight 저장 시작");
             healthDataService.insertWeight(request);
 
-            return new NormalResDto("200", "몸무게 저장 완료");
+            return new NormalResDto("200", "몸무게 저장 성공");
         } catch (NotExistException e) {
 
             return new NormalResDto("408", "존재하지 않는 회원");
+        }
+    }
+
+    /**
+     * 최근 활동 데이터 날짜 조회
+     *
+     * @param uuid
+     * @return
+     */
+    @GetMapping("/recent")
+    public RecentDateRes recentData(@RequestParam("data") String data,
+                                    @RequestParam("uuid") String uuid) {
+
+        try {
+            log.info("최근 활동 데이터 조회 시작");
+
+            // URL 디코딩
+            String decodedUuid = URLDecoder.decode(uuid, StandardCharsets.UTF_8.name());
+
+            // 공백을 +로 변환
+            String plusEncodedString = decodedUuid.replace(" ", "+");
+
+            // AES 복호화
+            String decryptedUuid = aesService.decryptAES(plusEncodedString);
+
+            LocalDate date = healthDataService.recentDateOfHealthData(decryptedUuid, data);
+
+            return new RecentDateRes("200", "최근 활동 데이터 조회 성공", date);
+        } catch (InvalidDataTypeException e) {
+
+            return new RecentDateRes("401", "유효하지 않은 데이터 타입", null);
+        } catch (NotExistException e) {
+
+            return new RecentDateRes("408", "존재하지 않는 회원", null);
+        } catch (UnsupportedEncodingException e) {
+
+            return new RecentDateRes("410", "디코딩 오류", null);
         }
     }
 
