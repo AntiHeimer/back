@@ -16,7 +16,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -117,7 +116,7 @@ public class HealthDataController {
     }
 
     /**
-     * 최근 활동 데이터 날짜 조회
+     * 건강 데이터 최근 저장 날짜 조회
      * @param uuid
      * @return
      */

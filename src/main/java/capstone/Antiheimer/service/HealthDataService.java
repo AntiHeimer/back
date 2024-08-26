@@ -81,6 +81,12 @@ public class HealthDataService {
         log.info("Weight 저장 성공");
     }
 
+    /**
+     * 건강 데이터 최근 저장 날짜 조회
+     * @param uuid
+     * @param data
+     * @return
+     */
     public LocalDate recentDateOfHealthData(String uuid, String data) {
 
         memberExistCheck(uuid);

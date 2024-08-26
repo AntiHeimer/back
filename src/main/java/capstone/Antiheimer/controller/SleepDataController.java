@@ -1,7 +1,6 @@
 package capstone.Antiheimer.controller;
 
 import capstone.Antiheimer.dto.NormalResDto;
-import capstone.Antiheimer.dto.SaveMoveReqDto;
 import capstone.Antiheimer.dto.SaveSleepReqDto;
 import capstone.Antiheimer.service.SleepDataService;
 import lombok.RequiredArgsConstructor;
