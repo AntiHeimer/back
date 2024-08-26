@@ -21,6 +21,11 @@ public class HealthDataController {
     @Value("${auth.key}")
     private String authKey;
 
+    /**
+     * 활동 데이터 저장
+     * @param request
+     * @return NormalResDto
+     */
     @PostMapping("/save/active")
     public NormalResDto saveActive(@RequestBody SaveActiveReqDto request) {
 
@@ -38,6 +43,11 @@ public class HealthDataController {
         }
     }
 
+    /**
+     * 움직인 거리 데이터 저장
+     * @param request
+     * @return NormalResDto
+     */
     @PostMapping("/save/move")
     public NormalResDto saveMove(@RequestBody SaveMoveReqDto request) {
 
@@ -55,6 +65,11 @@ public class HealthDataController {
         }
     }
 
+    /**
+     * 걸음수 데이터 저장
+     * @param request
+     * @return NormalResDto
+     */
     @PostMapping("/save/walk")
     public NormalResDto saveWalk(@RequestBody SaveWalkReqDto request) {
 
@@ -72,6 +87,11 @@ public class HealthDataController {
         }
     }
 
+    /**
+     * 몸무게 저장
+     * @param request
+     * @return NormalResDto
+     */
     @PostMapping("/save/weight")
     private NormalResDto saveWeight(@RequestBody SaveWeightReqDto request) {
 

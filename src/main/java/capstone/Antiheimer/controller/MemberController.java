@@ -40,6 +40,12 @@ public class MemberController {
     @Value("${auth.key}")
     private String authKey;
 
+    /**
+     * 회원가입
+     * @param auth
+     * @param request
+     * @return NormalResDto
+     */
     @PostMapping("/signup")
     public NormalResDto signup(@RequestHeader("auth") String auth,
                                @RequestBody String request) {
@@ -109,6 +115,12 @@ public class MemberController {
         }
     }
 
+    /**
+     * 로그인
+     * @param auth
+     * @param request
+     * @return LoginResDto
+     */
     @PostMapping("/login")
     public LoginResDto login(@RequestHeader("auth") String auth,
                              @RequestBody String request) {
@@ -156,6 +168,11 @@ public class MemberController {
         }
     }
 
+    /**
+     * 로그아웃
+     * @param uuid
+     * @return NormalResDto
+     */
     @PostMapping("/logout/{uuid}")
     public NormalResDto logout(@PathVariable("uuid") String uuid) {
 
@@ -179,6 +196,11 @@ public class MemberController {
         }
     }
 
+    /**
+     * 회원정보
+     * @param uuid
+     * @return InfoResDto
+     */
     @GetMapping("/info/{uuid}")
     public InfoResDto userInfo(@PathVariable("uuid") String uuid) {
 

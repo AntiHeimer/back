@@ -26,8 +26,6 @@ public class AesService {
     @Value("{$aes.iv}")
     private String AESIv;
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
     public String encryptAES(String id) {
         try {
 

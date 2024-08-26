@@ -22,6 +22,13 @@ public class SignUpService {
 
     private final MemberRepository memberRepository;
 
+    /**
+     * 회원가입
+     * - 유효한 형식 확인
+     * - 중복 확인
+     * - null 확인
+     * @param memberDto
+     */
     @Transactional
     public void signup(SignupReqDto memberDto) {
 
@@ -71,6 +78,7 @@ public class SignUpService {
             throw new DuplicateIdException();
         }
     }
+
 
     private void nullMember(SignupReqDto memberDto){
 

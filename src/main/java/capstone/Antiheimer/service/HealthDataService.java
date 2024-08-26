@@ -1,9 +1,6 @@
 package capstone.Antiheimer.service;
 
-import capstone.Antiheimer.domain.Active;
 import capstone.Antiheimer.domain.Member;
-import capstone.Antiheimer.domain.Move;
-import capstone.Antiheimer.domain.Walk;
 import capstone.Antiheimer.dto.*;
 import capstone.Antiheimer.exception.DuplicateHealthDataException;
 import capstone.Antiheimer.exception.NotExistException;
@@ -23,33 +20,56 @@ public class HealthDataService {
     private final MemberRepository memberRepository;
     private final HealthDataRepository healthDataRepository;
 
+    /**
+     * 활동 데이터 저장
+     * - 회원 존재 확인
+     * - 활동 데이터 존재 확인(중복 확인)
+     * @param request
+     */
     @Transactional
     public void insertActive(SaveActiveReqDto request) {
 
         memberExistCheck(request.getMemberUuid());
-        activeDataExistCheck(request);
+        activeDataDuplicateCheck(request);
         healthDataRepository.saveActive(request);
         log.info("Active 데이터 저장 성공");
     }
 
+    /**
+     * 움직인 거리 데이터 저장
+     * - 회원 존재 확인
+     * - 움직인 거리 데이터 존재 확인(중복 확인)
+     * @param request
+     */
     @Transactional
     public void insertMove(SaveMoveReqDto request) {
 
         memberExistCheck(request.getMemberUuid());
-        moveDataExistCheck(request);
+        moveDataDuplicateCheck(request);
         healthDataRepository.saveMove(request);
         log.info("Move 데이터 저장 성공");
     }
 
+    /**
+     * 걸음수 데이터 저장
+     * - 회원 존재 확인
+     * - 걸음수 데이터 존재 확인(중복 확인)
+     * @param request
+     */
     @Transactional
     public void insertWalk(SaveWalkReqDto request) {
 
         memberExistCheck(request.getMemberUuid());
-        walkDataExistCheck(request);
+        walkDataDuplicateCheck(request);
         healthDataRepository.saveWalk(request);
         log.info("Walk 데이터 저장 성공");
     }
 
+    /**
+     * 몸무게 저장
+     * - 회원 존재 확인
+     * @param request
+     */
     @Transactional
     public void insertWeight(SaveWeightReqDto request) {
 
@@ -83,13 +103,18 @@ public class HealthDataService {
 //
 //        memberExistCheck(uuid);
 //        List<Walk> walkList = healthDataRepository.findWalk(uuid, date);
-//        walkDataExistCheck(walkList);
+//        walkDataDuplicateCheck(walkList);
 //
 //        log.info("Walk 데이터 조회 성공");
 //
 //        return walkList;
 //    }
 //
+
+    /**
+     * 회원 존재 확인
+     * @param uuid
+     */
     private void memberExistCheck(String uuid) {
 
         Member findMember = memberRepository.findOneByUuid(uuid);
@@ -101,7 +126,11 @@ public class HealthDataService {
         }
     }
 
-    private void activeDataExistCheck(SaveActiveReqDto request) {
+    /**
+     * 활동 데이터 존재 확인
+     * @param request
+     */
+    private void activeDataDuplicateCheck(SaveActiveReqDto request) {
 
 
         if (healthDataRepository.existActive(request)) {
@@ -111,7 +140,11 @@ public class HealthDataService {
         }
     }
 
-    private void moveDataExistCheck(SaveMoveReqDto request) {
+    /**
+     * 움직인 거리 데이터 존재 확인
+     * @param request
+     */
+    private void moveDataDuplicateCheck(SaveMoveReqDto request) {
 
         if (healthDataRepository.existMove(request)) {
 
@@ -120,7 +153,11 @@ public class HealthDataService {
         }
     }
 
-    private void walkDataExistCheck(SaveWalkReqDto request) {
+    /**
+     * 걸음수 데이터 존재 확인
+     * @param request
+     */
+    private void walkDataDuplicateCheck(SaveWalkReqDto request) {
 
         if (healthDataRepository.existWalk(request)) {
 
