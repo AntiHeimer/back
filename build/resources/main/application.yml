@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/antiheimer
     username: capstone
-    password: qwer1234
+    password: caps01tone@ubuntu
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
