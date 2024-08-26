@@ -200,16 +200,16 @@ public class HealthDataRepository {
 
         for (SleepVo sleepVo : sleepVoList) {
             if (sleepVo.getValue().equals("INBED")) {
-                Duration duration = Duration.between(sleepVo.getStartDate(), sleepVo.getEndDate());
+                Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
                 sleepTime += (int) duration.getSeconds();
             } else if (sleepVo.getValue().equals("REM")) {
-                Duration duration = Duration.between(sleepVo.getStartDate(), sleepVo.getEndDate());
+                Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
                 rem += (int) duration.getSeconds();
             } else if (sleepVo.getValue().equals("CORE")) {
-                Duration duration = Duration.between(sleepVo.getStartDate(), sleepVo.getEndDate());
+                Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
                 core += (int) duration.getSeconds();
             } else if (sleepVo.getValue().equals("DEEP")) {
-                Duration duration = Duration.between(sleepVo.getStartDate(), sleepVo.getEndDate());
+                Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
                 deep += (int) duration.getSeconds();
             }
         }

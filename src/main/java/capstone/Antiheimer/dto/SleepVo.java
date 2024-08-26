@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class SleepVo {
 
-    private LocalDateTime endDate;
+    private LocalDateTime endDateTime;
     private String id;
     private String sourceId;
     private String sourceName;
-    private LocalDateTime startDate;
+    private LocalDateTime startDateTime;
     private String value;
 }

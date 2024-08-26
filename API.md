@@ -195,6 +195,31 @@ auth(401): 권한 없음(토큰)
 exist(408)
 - NotExistException: 존재하지 않는 회원
 
+## saveSleep
+#### /save/sleep: POST
+
+**Header**
+- String Authorization
+
+**Body**
+- String memberUuid
+- LocalDate date(dd-mm-yyyy)
+- List sleepData
+    - LocalDateTime startDateTime
+    - LocalDateTime endDateTime
+    - String id
+    - String sourceId
+    - String sourceName
+    - String value
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+duplicate(407)
+- DuplicateHealthDataException: 중복된 수면 데이터
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
 
 ## recentData
 #### /recent?uuid={uuid}&data={data}: GET - url 인코딩
