@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Repository
@@ -57,6 +58,21 @@ public class HealthDataRepository {
         }
         em.persist(active);
     }
+
+//    public void saveTest(Map<LocalDate, List<SaveActiveReqDto>> request) {
+//
+//        Active active = new Active();
+//
+//
+//        request.forEach((date, saveActiveReqDtoList) -> {
+//            // 각 날짜에 해당하는 데이터 리스트를 처리하는 로직
+//            System.out.println("Date: " + date);
+//            for (SaveActiveReqDto data : saveActiveReqDtoList) {
+//                System.out.println(data);
+//                // 여기서 데이터베이스에 저장하는 로직을 추가할 수 있습니다.
+//            }
+//        });
+//    }
 
     /**
      * 움직인 거리 데이터 저장
@@ -258,15 +274,17 @@ public class HealthDataRepository {
      */
     public boolean existActive(SaveActiveReqDto request) {
 
-        try {
-            em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
-                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
-                    .getSingleResult();
+//        try {
+//            em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
+//                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+//                    .getSingleResult();
+//
+//            return true;
+//        } catch (NoResultException e) {
+//            return false;
+//        }
 
-            return true;
-        } catch (NoResultException e) {
-            return false;
-        }
+        return true;
     }
 
     /**
