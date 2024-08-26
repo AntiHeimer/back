@@ -199,18 +199,23 @@ public class HealthDataRepository {
         int deep = 0;
 
         for (SleepVo sleepVo : sleepVoList) {
-            if (sleepVo.getValue().equals("INBED")) {
-                Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
-                sleepTime += (int) duration.getSeconds();
-            } else if (sleepVo.getValue().equals("REM")) {
-                Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
-                rem += (int) duration.getSeconds();
-            } else if (sleepVo.getValue().equals("CORE")) {
-                Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
-                core += (int) duration.getSeconds();
-            } else if (sleepVo.getValue().equals("DEEP")) {
-                Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
-                deep += (int) duration.getSeconds();
+            switch (sleepVo.getValue()) {
+                case "INBED" -> {
+                    Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
+                    sleepTime += (int) duration.getSeconds();
+                }
+                case "REM" -> {
+                    Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
+                    rem += (int) duration.getSeconds();
+                }
+                case "CORE" -> {
+                    Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
+                    core += (int) duration.getSeconds();
+                }
+                case "DEEP" -> {
+                    Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
+                    deep += (int) duration.getSeconds();
+                }
             }
         }
 
@@ -267,6 +272,18 @@ public class HealthDataRepository {
     public LocalDate findLastSentDateOfWalk(String uuid) {
 
         return em.createQuery("select max(w.date) as last_date from Walk w where w.healthData.member.uuid = :uuid", LocalDate.class)
+                .setParameter("uuid", uuid)
+                .getSingleResult();
+    }
+
+    /**
+     * 수면 데이터가 며칠까지 전송됐는지 찾기
+     * @param uuid
+     * @return
+     */
+    public LocalDate findLastSentDateOfSleep(String uuid) {
+
+        return em.createQuery("select max(h.date) as last_date from HealthData h where h.member.uuid = :uuid", LocalDate.class)
                 .setParameter("uuid", uuid)
                 .getSingleResult();
     }

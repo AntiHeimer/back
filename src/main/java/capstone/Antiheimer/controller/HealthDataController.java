@@ -148,7 +148,7 @@ public class HealthDataController {
                                     @RequestParam("uuid") String uuid) {
 
         try {
-            log.info("최근 활동 데이터 조회 시작");
+            log.info("최근 건강 데이터 조회 시작");
 
             // URL 디코딩
             String decodedUuid = URLDecoder.decode(uuid, StandardCharsets.UTF_8.name());
@@ -161,7 +161,7 @@ public class HealthDataController {
 
             LocalDate date = healthDataService.recentDateOfHealthData(decryptedUuid, data);
 
-            return new RecentDateRes("200", "최근 활동 데이터 조회 성공", date);
+            return new RecentDateRes("200", "최근 건강 데이터 조회 성공", date);
         } catch (InvalidDataTypeException e) {
 
             return new RecentDateRes("401", "유효하지 않은 데이터 타입", null);

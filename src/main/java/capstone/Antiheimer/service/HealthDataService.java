@@ -110,22 +110,11 @@ public class HealthDataService {
             case "active" -> healthDataRepository.findLastSentDateOfActive(uuid);
             case "move" -> healthDataRepository.findLastSentDateOfMove(uuid);
             case "walk" -> healthDataRepository.findLastSentDateOfWalk(uuid);
-            case "sleep" -> null;
+            case "sleep" -> healthDataRepository.findLastSentDateOfSleep(uuid);
             default -> null;
         };
     }
 
-    public LocalDate recentDateOfMove(String uuid) {
-
-        memberExistCheck(uuid);
-        return healthDataRepository.findLastSentDateOfMove(uuid);
-    }
-
-    public LocalDate recentDateOfWalk(String uuid) {
-
-        memberExistCheck(uuid);
-        return healthDataRepository.findLastSentDateOfWalk(uuid);
-    }
 
 //    public List<Active> findActiveList(String uuid, LocalDate date) {
 //
