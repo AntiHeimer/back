@@ -7,6 +7,7 @@ import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -175,6 +176,49 @@ public class HealthDataRepository {
         findMember.setWeight(request.getWeight());
 
         em.persist(findMember);
+    }
+
+    /**
+     * 수면데이터 저장
+     * @param request
+     */
+    public void saveSleep (SaveSleepReqDto request) {
+
+        List<SleepVo> sleepVoList = request.getSleepData();
+
+        HealthData healthData = new HealthData();
+
+        healthData.setUuid(UUID.randomUUID().toString());
+        Member member = memberRepository.findOneByUuid(request.getMemberUuid());
+        healthData.setMember(member);
+        healthData.setDate(request.getDate());
+
+        int sleepTime = 0;
+        int rem = 0;
+        int core = 0;
+        int deep = 0;
+
+        for (SleepVo sleepVo : sleepVoList) {
+            if (sleepVo.getValue().equals("INBED")) {
+                Duration duration = Duration.between(sleepVo.getStartDate(), sleepVo.getEndDate());
+                sleepTime += (int) duration.getSeconds();
+            } else if (sleepVo.getValue().equals("REM")) {
+                Duration duration = Duration.between(sleepVo.getStartDate(), sleepVo.getEndDate());
+                rem += (int) duration.getSeconds();
+            } else if (sleepVo.getValue().equals("CORE")) {
+                Duration duration = Duration.between(sleepVo.getStartDate(), sleepVo.getEndDate());
+                core += (int) duration.getSeconds();
+            } else if (sleepVo.getValue().equals("DEEP")) {
+                Duration duration = Duration.between(sleepVo.getStartDate(), sleepVo.getEndDate());
+                deep += (int) duration.getSeconds();
+            }
+        }
+
+        healthData.setRem(rem);
+        healthData.setCore(core);
+        healthData.setDeep(deep);
+        healthData.setSleepTime(sleepTime);
+
     }
 
     /**
