@@ -43,5 +43,4 @@ public class HealthData {
 
     @OneToOne(mappedBy = "healthData")
     private Walk walk;
-
 }

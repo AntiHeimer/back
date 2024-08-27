@@ -28,11 +28,10 @@ public class HealthDataRepository {
 
         Active active = new Active();
 
-        List<ActiveVo> activeVoList = request.getActiveData();
 
         active.setUuid(UUID.randomUUID().toString());
         active.setDate(request.getDate());
-        active.setActiveEnergyBurned(activeVoList.get(0).getActiveEnergyBurned());
+        active.setActiveEnergyBurned(request.getActiveData());
 
         Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
 
@@ -180,7 +179,7 @@ public class HealthDataRepository {
     }
 
     /**
-     * 수면데이터 저장
+     * 수면 데이터 저장
      * @param request
      */
     @Transactional
@@ -388,6 +387,11 @@ public class HealthDataRepository {
         }
     }
 
+    /**
+     * 수면 데이터 존재 확인
+     * @param request
+     * @return
+     */
     public boolean existSleep(SaveSleepReqDto request) {
 
         try {
