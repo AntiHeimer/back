@@ -10,9 +10,6 @@ import java.time.LocalDateTime;
 public class SleepVo {
 
     private LocalDateTime endDateTime;
-    private String id;
-    private String sourceId;
-    private String sourceName;
     private LocalDateTime startDateTime;
     private String value;
 }

@@ -202,7 +202,8 @@ public class HealthDataRepository {
             switch (sleepVo.getValue()) {
                 case "INBED" -> {
                     Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
-                    sleepTime += (int) duration.getSeconds();
+                    int second = (int) duration.getSeconds();
+                    sleepTime += second;
                 }
                 case "REM" -> {
                     Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
@@ -223,6 +224,8 @@ public class HealthDataRepository {
         healthData.setCore(core);
         healthData.setDeep(deep);
         healthData.setSleepTime(sleepTime);
+
+        em.persist(healthData);
 
     }
 
