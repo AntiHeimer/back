@@ -6,7 +6,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -182,8 +181,7 @@ public class HealthDataRepository {
      * 수면 데이터 저장
      * @param request
      */
-
-    public void saveSleep (SaveSleepReqDto request) {
+    public void saveSleep(SaveSleepReqDto request) {
 
         List<SleepVo> sleepVoList = request.getSleepData();
 
@@ -243,7 +241,6 @@ public class HealthDataRepository {
         }
 
         em.persist(sleep);
-
     }
 
     /**

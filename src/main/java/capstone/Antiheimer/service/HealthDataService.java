@@ -87,6 +87,7 @@ public class HealthDataService {
      * - 수면 데이터 존재 확인(중복 확인)
      * @param request
      */
+    @Transactional
     public void insertSleep(SaveSleepReqDto request) {
 
         memberExistCheck(request.getMemberUuid());
