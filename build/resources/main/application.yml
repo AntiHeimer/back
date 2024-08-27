@@ -20,6 +20,7 @@ logging:
     root:
     org.hibernate.SQL: debug
     #org.hibernate.orm.jdbc.bind: trace
+    security: debug
 
 
 springdoc:

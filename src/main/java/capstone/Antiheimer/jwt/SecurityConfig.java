@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -18,7 +19,6 @@ public class SecurityConfig {
 
     private final MemberRepository memberRepository;
     private final JwtTokenUtil jwtTokenUtil;
-    private final JwtTokenFilter jwtTokenFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -28,15 +28,27 @@ public class SecurityConfig {
                 .httpBasic(httpBasic -> httpBasic.disable())
 //                .formLogin(formLogin -> formLogin.disable())
                 .sessionManagement((sessionManagement) ->
-                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .authorizeRequests((authorizeRequests) ->
-                        authorizeRequests
-                                .requestMatchers("/signup", "/login", "/swagger-ui/**", "/").permitAll()
-                                .anyRequest().authenticated())
-                .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests((authorizeRequests) -> authorizeRequests
+                        .requestMatchers("/signup", "/login", "/swagger-ui/**", "/").permitAll()
+                        .anyRequest().authenticated())
+                .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 
                 .build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> {
+            web.ignoring()
+                    .requestMatchers("/signup", "/login", "/swagger-ui/**", "/");
+        };
+    }
+
+    @Bean
+    public JwtTokenFilter jwtTokenFilter() {
+
+        return new JwtTokenFilter(memberRepository, jwtTokenUtil);
     }
 
     @Bean

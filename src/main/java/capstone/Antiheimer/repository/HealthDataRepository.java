@@ -411,7 +411,7 @@ public class HealthDataRepository {
     public boolean existSleep(SaveSleepReqDto request) {
 
         try {
-            em.createQuery("select h from HealthData h where h.member.uuid = :uuid and h.date = :date", HealthData.class)
+            em.createQuery("select s from Sleep s where s.healthData.uuid = :uuid and s.date = :date", Sleep.class)
                     .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
                     .getSingleResult();
             return true;
