@@ -187,12 +187,10 @@ public class HealthDataRepository {
 
         List<SleepVo> sleepVoList = request.getSleepData();
 
-        HealthData healthData = new HealthData();
+        Sleep sleep = new Sleep();
 
-        healthData.setUuid(UUID.randomUUID().toString());
-        Member member = memberRepository.findOneByUuid(request.getMemberUuid());
-        healthData.setMember(member);
-        healthData.setDate(request.getDate());
+        sleep.setSleepUuid(UUID.randomUUID().toString());
+        sleep.setDate(request.getDate());
 
         int sleepTime = 0;
         int rem = 0;
@@ -203,8 +201,7 @@ public class HealthDataRepository {
             switch (sleepVo.getValue()) {
                 case "INBED" -> {
                     Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
-                    int second = (int) duration.getSeconds();
-                    sleepTime += second;
+                    sleepTime += (int) duration.getSeconds();
                 }
                 case "REM" -> {
                     Duration duration = Duration.between(sleepVo.getStartDateTime(), sleepVo.getEndDateTime());
@@ -221,12 +218,27 @@ public class HealthDataRepository {
             }
         }
 
-        healthData.setRem(rem);
-        healthData.setCore(core);
-        healthData.setDeep(deep);
-        healthData.setSleepTime(sleepTime);
+        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
+        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
 
-        em.persist(healthData);
+        if (findHealthData == null) {
+
+            HealthData newHealthData = new HealthData();
+
+            newHealthData.setUuid(UUID.randomUUID().toString());
+            newHealthData.setMember(findMember);
+            newHealthData.setDate(request.getDate());
+            sleep.setHealthData(newHealthData);
+
+            em.persist(newHealthData);
+        } else { // findMember와 date가 동시에 존재하는 인스턴스가 있으면
+
+            sleep.setHealthData(findHealthData);
+
+            em.persist(findHealthData);
+        }
+
+        em.persist(sleep);
 
     }
 
@@ -287,7 +299,7 @@ public class HealthDataRepository {
      */
     public LocalDate findLastSentDateOfSleep(String uuid) {
 
-        return em.createQuery("select max(h.date) as last_date from HealthData h where h.member.uuid = :uuid", LocalDate.class)
+        return em.createQuery("select max(s.date) as last_date from Sleep s where s.healthData.member.uuid = :uuid", LocalDate.class)
                 .setParameter("uuid", uuid)
                 .getSingleResult();
     }

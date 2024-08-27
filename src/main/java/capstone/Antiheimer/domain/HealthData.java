@@ -25,15 +25,10 @@ public class HealthData {
     private Member member;
 
     @NotNull
-    private LocalDate date; // 날짜 단위로 저장
+    private LocalDate date; //날짜 단위로 저장
 
-    private int rem;
-
-    private int core;
-
-    private int deep;
-
-    private int sleepTime;
+    @OneToOne(mappedBy = "healthData")
+    private Sleep sleep;
 
     @OneToOne(mappedBy = "healthData")
     private Active active;
