@@ -15,7 +15,7 @@ public class Sleep {
 
     @Id
     @Column(name = "sleep_id")
-    private String sleepUuid;
+    private String uuid;
 
     @NotNull
     private LocalDate date; // 날짜 단위로 저장

@@ -182,14 +182,14 @@ public class HealthDataRepository {
      * 수면 데이터 저장
      * @param request
      */
-    @Transactional
+
     public void saveSleep (SaveSleepReqDto request) {
 
         List<SleepVo> sleepVoList = request.getSleepData();
 
         Sleep sleep = new Sleep();
 
-        sleep.setSleepUuid(UUID.randomUUID().toString());
+        sleep.setUuid(UUID.randomUUID().toString());
         sleep.setDate(request.getDate());
 
         int sleepTime = 0;
@@ -217,6 +217,10 @@ public class HealthDataRepository {
                 }
             }
         }
+        sleep.setSleepTime(sleepTime);
+        sleep.setDeep(deep);
+        sleep.setCore(core);
+        sleep.setRem(rem);
 
         Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
         HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
@@ -231,7 +235,7 @@ public class HealthDataRepository {
             sleep.setHealthData(newHealthData);
 
             em.persist(newHealthData);
-        } else { // findMember와 date가 동시에 존재하는 인스턴스가 있으면
+        } else {
 
             sleep.setHealthData(findHealthData);
 
