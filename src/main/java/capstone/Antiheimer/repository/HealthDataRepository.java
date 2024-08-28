@@ -166,18 +166,6 @@ public class HealthDataRepository {
     }
 
     /**
-     * 몸무게 저장
-     * @param request
-     */
-    public void saveWeight(SaveWeightReqDto request) {
-
-        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
-        findMember.setWeight(request.getWeight());
-
-        em.persist(findMember);
-    }
-
-    /**
      * 수면 데이터 저장
      * @param request
      */
@@ -241,6 +229,18 @@ public class HealthDataRepository {
         }
 
         em.persist(sleep);
+    }
+
+    /**
+     * 몸무게 저장
+     * @param request
+     */
+    public void saveWeight(SaveWeightReqDto request) {
+
+        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
+        findMember.setWeight(request.getWeight());
+
+        em.persist(findMember);
     }
 
     /**
@@ -351,17 +351,15 @@ public class HealthDataRepository {
      */
     public boolean existActive(SaveActiveReqDto request) {
 
-//        try {
-//            em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
-//                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
-//                    .getSingleResult();
-//
-//            return true;
-//        } catch (NoResultException e) {
-//            return false;
-//        }
+        try {
+            em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
+                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+                    .getSingleResult();
 
-        return true;
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
     }
 
     /**
