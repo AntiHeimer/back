@@ -1,8 +1,6 @@
 package capstone.Antiheimer.repository;
 
 import capstone.Antiheimer.domain.Location;
-import capstone.Antiheimer.domain.Sleep;
-import capstone.Antiheimer.dto.SaveSleepReqDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +13,6 @@ import java.util.UUID;
 public class LocationRepository {
 
     private final EntityManager em;
-    private final MemberRepository memberRepository;
 
 
     /**

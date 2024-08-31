@@ -242,3 +242,27 @@ exist(408)
 
 decoding(410)
 - UnsupportedEncodingException: 디코딩 오류
+
+
+## saveLocation
+#### /save/sleep: POST
+
+**Header**
+- String auth
+
+**Body**
+- String request(AES)
+  - String memberUuid;
+  - LocalDateTime date;
+  - LocationDto location;
+    - double latitude;
+    - double longitude;
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+duplicate(407)
+- DuplicateLocationException: 중복된 위치 정보
+
+exist(408)
+- NotExistException: 존재하지 않는 회원

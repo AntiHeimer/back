@@ -2,9 +2,6 @@ package capstone.Antiheimer.service;
 
 import capstone.Antiheimer.domain.Member;
 import capstone.Antiheimer.dto.LocationReqDto;
-import capstone.Antiheimer.dto.SaveActiveReqDto;
-import capstone.Antiheimer.dto.SignupReqDto;
-import capstone.Antiheimer.exception.DuplicateHealthDataException;
 import capstone.Antiheimer.exception.DuplicateLocationException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.repository.LocationRepository;
