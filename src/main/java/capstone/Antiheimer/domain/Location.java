@@ -17,16 +17,19 @@ public class Location {
     private String uuid;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    private String encryptedLocation;
 
-    @NotNull
-    private String latitude;
-
-    @NotNull
-    private String longitude;
-
-    @NotNull
-    private LocalDateTime dateTime;
+//    @NotNull
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+//
+//    @NotNull
+//    private String latitude;
+//
+//    @NotNull
+//    private String longitude;
+//
+//    @NotNull
+//    private LocalDateTime dateTime;
 }
