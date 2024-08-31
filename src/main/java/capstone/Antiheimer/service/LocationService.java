@@ -33,7 +33,7 @@ public class LocationService {
 
         memberExistCheck(reqDto.getMemberUuid()); // 회원 존재 확인
         locationDuplicateCheck(request);
-        locationRepository.saveLocation(request);
+        locationRepository.saveLocation(request, reqDto);
         log.info("위치 정보 저장 성공");
     }
 

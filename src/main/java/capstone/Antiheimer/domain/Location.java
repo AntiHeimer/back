@@ -19,11 +19,11 @@ public class Location {
     @NotNull
     private String encryptedLocation;
 
-//    @NotNull
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_id")
-//    private Member member;
-//
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
 //    @NotNull
 //    private String latitude;
 //
