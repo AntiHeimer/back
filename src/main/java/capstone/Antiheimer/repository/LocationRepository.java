@@ -33,11 +33,11 @@ public class LocationRepository {
         em.persist(location);
     }
 
-    public boolean existLocation(String request) {
+    public boolean existLocation(String request, LocationReqDto reqDto) {
 
         try {
-            em.createQuery("select l from Location l where l.encryptedLocation = :location ", Location.class)
-                    .setParameter("location", request)
+            em.createQuery("select l from Location l where l.encryptedLocation = : location and l.member.uuid =: uuid", Location.class)
+                    .setParameter("location", request).setParameter("uuid", reqDto.getMemberUuid())
                     .getSingleResult();
             return true;
         } catch (NoResultException e) {

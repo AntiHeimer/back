@@ -32,7 +32,7 @@ public class LocationService {
     public void insertLocation(String request, LocationReqDto reqDto) {
 
         memberExistCheck(reqDto.getMemberUuid()); // 회원 존재 확인
-        locationDuplicateCheck(request);
+        locationDuplicateCheck(request, reqDto);
         locationRepository.saveLocation(request, reqDto);
         log.info("위치 정보 저장 성공");
     }
@@ -52,14 +52,16 @@ public class LocationService {
         }
     }
 
+
     /**
      * 위치 정보 저장 확인
      * @param request
+     * @param reqDto
      */
-    private void locationDuplicateCheck(String request) {
+    private void locationDuplicateCheck(String request, LocationReqDto reqDto) {
 
 
-        if (locationRepository.existLocation(request)) {
+        if (locationRepository.existLocation(request, reqDto)) {
 
             log.warn("이미 존재하는 위치 정보입니다");
             throw new DuplicateLocationException();
