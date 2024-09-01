@@ -20,6 +20,7 @@ logging:
     root:
     org.hibernate.SQL: debug
     #org.hibernate.orm.jdbc.bind: trace
+    security: debug
 
 
 springdoc:
@@ -44,7 +45,7 @@ springdoc:
 
 jwt:
   secret: RlZnZpDJGfuNkUCIdlXoP12l50XSaHaacsT5o5v3gnc
-  exp: 86400000 # 1일
+  exp: 7776000000 # 3달
 
 
 auth:
