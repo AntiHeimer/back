@@ -29,6 +29,7 @@ public class LocationService {
      * @param request
      * @param reqDto
      */
+    @Transactional
     public void insertLocation(String request, LocationReqDto reqDto) {
 
         memberExistCheck(reqDto.getMemberUuid()); // 회원 존재 확인

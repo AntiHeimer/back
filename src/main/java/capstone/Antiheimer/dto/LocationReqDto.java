@@ -12,6 +12,6 @@ import java.time.LocalDateTime;
 public class LocationReqDto {
 
     private String memberUuid;
-    private LocalDateTime date;
+    private LocalDateTime formattedDate;
     private LocationDto location;
 }
