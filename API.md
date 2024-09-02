@@ -268,3 +268,18 @@ duplicate(407)
 
 exist(408)
 - NotExistException: 존재하지 않는 회원
+
+## recentLocation
+#### /recent/location: GET
+
+**Header**
+- String Authorization
+
+**Body**
+- String memberUuid;
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
