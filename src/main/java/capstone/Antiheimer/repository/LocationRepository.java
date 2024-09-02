@@ -37,7 +37,7 @@ public class LocationRepository {
     public boolean existLocation(String request, LocationReqDto reqDto) {
 
         try {
-            em.createQuery("select l from Location l where l.encryptedLocation = : location and l.member.uuid =: uuid", Location.class)
+            em.createQuery("select l from Location l where l.encryptedLocation = :location and l.member.uuid = :uuid", Location.class)
                     .setParameter("location", request).setParameter("uuid", reqDto.getMemberUuid())
                     .getSingleResult();
             return true;
@@ -48,7 +48,7 @@ public class LocationRepository {
 
     public Location findLastLocation(String memberUuid) {
 
-        return em.createQuery("select max(l.date) from Location l where l.member.uuid = : uuid", Location.class)
+        return em.createQuery("select l from Location l where l.member.uuid = :uuid and l.date = (SELECT MAX(l.date) FROM Location l WHERE l.member.uuid = :uuid)", Location.class)
                 .setParameter("uuid", memberUuid)
                 .getSingleResult();
     }
