@@ -247,7 +247,7 @@ decoding(410)
 
 
 ## saveLocation
-#### /save/sleep: POST
+#### /save/location: POST
 
 **Header**
 - String auth
