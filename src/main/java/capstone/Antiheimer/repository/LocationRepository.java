@@ -46,9 +46,9 @@ public class LocationRepository {
         }
     }
 
-    public Location findByMemberUuid(String memberUuid) {
+    public Location findLastLocation(String memberUuid) {
 
-        return em.createQuery("select l from Location l where l.member.uuid = : uuid", Location.class)
+        return em.createQuery("select max(l.date) from Location l where l.member.uuid = : uuid", Location.class)
                 .setParameter("uuid", memberUuid)
                 .getSingleResult();
     }

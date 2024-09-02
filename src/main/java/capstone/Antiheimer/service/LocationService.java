@@ -41,7 +41,7 @@ public class LocationService {
     public Location recentLocation(String memberUuid) {
 
         memberExistCheck(memberUuid); //회원 존재 확인
-        Location location = locationRepository.findByMemberUuid(memberUuid);
+        Location location = locationRepository.findLastLocation(memberUuid);
         log.info("위치 정보 불러오기 성공");
         return location;
     }
