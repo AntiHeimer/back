@@ -1,18 +1,18 @@
 package capstone.Antiheimer.service;
 
+import capstone.Antiheimer.domain.Location;
 import capstone.Antiheimer.domain.Member;
 import capstone.Antiheimer.dto.LocationReqDto;
 import capstone.Antiheimer.exception.DuplicateLocationException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.repository.LocationRepository;
 import capstone.Antiheimer.repository.MemberRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -36,6 +36,14 @@ public class LocationService {
         locationDuplicateCheck(request, reqDto);
         locationRepository.saveLocation(request, reqDto);
         log.info("위치 정보 저장 성공");
+    }
+
+    public Location recentLocation(String memberUuid) {
+
+        memberExistCheck(memberUuid); //회원 존재 확인
+        Location location = locationRepository.findByMemberUuid(memberUuid);
+        log.info("위치 정보 불러오기 성공");
+        return location;
     }
 
     /**

@@ -28,6 +28,7 @@ public class LocationRepository {
         location.setUuid(UUID.randomUUID().toString());
         Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
         location.setMember(findMember);
+        location.setDate(reqDto.getFormattedDate());
         location.setEncryptedLocation(request);
 
         em.persist(location);
@@ -43,5 +44,12 @@ public class LocationRepository {
         } catch (NoResultException e) {
             return false;
         }
+    }
+
+    public Location findByMemberUuid(String memberUuid) {
+
+        return em.createQuery("select l from Location l where l.member.uuid = : uuid", Location.class)
+                .setParameter("uuid", memberUuid)
+                .getSingleResult();
     }
 }

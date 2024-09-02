@@ -1,21 +1,21 @@
 package capstone.Antiheimer.controller;
 
+import capstone.Antiheimer.domain.Location;
 import capstone.Antiheimer.dto.LocationReqDto;
 import capstone.Antiheimer.dto.NormalResDto;
+import capstone.Antiheimer.dto.RecentLocationResDto;
 import capstone.Antiheimer.exception.DuplicateLocationException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.service.AesService;
 import capstone.Antiheimer.service.LocationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,6 +32,14 @@ public class LocationController {
     @Value("${auth.key}")
     private String authKey;
 
+    RecentLocationResDto result;
+
+    /**
+     * 위치 정보 저장
+     * @param auth
+     * @param request
+     * @return
+     */
     @PostMapping("/save/location")
     public NormalResDto saveLocation(@RequestHeader("auth") String auth,
                                      @RequestBody String request) {
@@ -57,6 +65,34 @@ public class LocationController {
         } catch (NotExistException e) {
 
             return new NormalResDto("408", "존재하지 않는 회원");
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 최근 위치 정보 조회
+     * @param memberUuid
+     * @return
+     */
+    @GetMapping("/recent/location")
+    public RecentLocationResDto recentLocation(@RequestParam("memberUuid") String memberUuid) {
+
+        try {
+            log.info("최근 위치 정보 조회 시작");
+
+            Location location = locationService.recentLocation(memberUuid);
+            String decryptedRequest = aesService.decryptAES(location.getEncryptedLocation());
+            LocationReqDto resDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
+
+            result = new RecentLocationResDto("200", "위치 정보 조회 성공", resDto.getFormattedDate(), resDto.getLocation());
+
+            return result;
+        } catch (NotExistException e) {
+
+            result = new RecentLocationResDto("408", "존재하지 않는 회원", null, null);
+
+            return result;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

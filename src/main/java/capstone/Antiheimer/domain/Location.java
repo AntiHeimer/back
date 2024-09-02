@@ -24,6 +24,9 @@ public class Location {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @NotNull
+    private LocalDateTime date;
+
 //    @NotNull
 //    private String latitude;
 //
