@@ -1,12 +1,41 @@
 package capstone.Antiheimer.service;
 
+import capstone.Antiheimer.domain.Member;
+import capstone.Antiheimer.dto.TokenReqDto;
+import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.repository.MemberRepository;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.Message;
 import com.google.firebase.messaging.Notification;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class FcmService {
+
+    private final MemberRepository memberRepository;
+
+    /**
+     *
+     * @param tokenReqDto
+     */
+    @Transactional
+    public void updateDeviceToken(TokenReqDto tokenReqDto) {
+
+        Member findMember = memberRepository.findOneByUuid(tokenReqDto.getMemberUuid());
+
+        if (findMember == null) {
+
+            log.warn("존재하지 않는 회원입니다");
+            throw new NotExistException();
+        }
+        memberRepository.updateDeviceToken(tokenReqDto);
+        log.info("디바이스 토큰 저장 성공");
+    }
 
     public void sendNotification(String targetToken, String title, String body) {
 

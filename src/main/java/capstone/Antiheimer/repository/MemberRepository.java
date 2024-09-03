@@ -2,16 +2,14 @@ package capstone.Antiheimer.repository;
 
 import capstone.Antiheimer.domain.Member;
 import capstone.Antiheimer.dto.SignupReqDto;
+import capstone.Antiheimer.dto.TokenReqDto;
 import capstone.Antiheimer.service.BcryptService;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-
-import static java.util.Arrays.stream;
 
 @Repository
 @RequiredArgsConstructor
@@ -36,6 +34,18 @@ public class MemberRepository {
 
         String pw = memberDto.getPw();
         member.setPw(bcryptService.encode(pw)); // bcrypt 암호화
+
+        em.persist(member);
+    }
+
+    /**
+     * 디바이스 토큰 저장
+     * @param tokenReqDto
+     */
+    public void updateDeviceToken(TokenReqDto tokenReqDto) {
+
+        Member member = findOneByUuid(tokenReqDto.getMemberUuid());
+        member.setDeviceToken(tokenReqDto.getDeviceToken());
 
         em.persist(member);
     }

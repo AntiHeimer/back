@@ -61,7 +61,6 @@ public class LocationService {
         }
     }
 
-
     /**
      * 위치 정보 저장 확인
      * @param request

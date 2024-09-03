@@ -14,7 +14,7 @@ public class TestController {
     }
 
     @GetMapping("/check-token")
-    public ResponseEntity<String> checkToken() {
-        return new ResponseEntity<>("토큰 확인 완료", HttpStatus.OK);
+    public ResponseEntity<Boolean> checkToken() {
+        return new ResponseEntity<>(true, HttpStatus.OK);
     }
 }
