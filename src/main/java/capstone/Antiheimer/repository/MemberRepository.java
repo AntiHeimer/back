@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+
+import static java.util.Arrays.stream;
 
 @Repository
 @RequiredArgsConstructor
@@ -54,7 +57,7 @@ public class MemberRepository {
      */
     public Member findOneById(String id) {
 
-        return em.createQuery("select u from Member u where u.id = :id", Member.class)
+        return em.createQuery("select m from Member m where m.id = :id", Member.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
@@ -66,8 +69,19 @@ public class MemberRepository {
      */
     public List<Member> findById(String id) {
 
-        return em.createQuery("select u from Member u where u.id = :id", Member.class)
+        return em.createQuery("select m from Member m where m.id = :id", Member.class)
                 .setParameter("id", id)
                 .getResultList();
+    }
+
+    public String findTokenById(String id) {
+
+        return em.createQuery("SELECT m from Member m where m.id = :id", Member.class)
+                .setParameter("id", id)
+                .getResultList()
+                .stream()
+                .findFirst()
+                .map(Member::getDeviceToken)
+                .orElse(null);
     }
 }
