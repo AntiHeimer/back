@@ -52,4 +52,16 @@ public class LocationRepository {
                 .setParameter("uuid", memberUuid)
                 .getSingleResult();
     }
+
+    public boolean findLocation(String uuid) {
+
+        try {
+            em.createQuery("select l from Location l where l.encryptedLocation = :location and l.member.uuid = :uuid", Location.class)
+                    .setParameter("uuid", uuid)
+                    .getSingleResult();
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 }

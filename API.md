@@ -298,3 +298,4 @@ auth(401): 권한 없음(토큰)
 
 exist(408)
 - NotExistException: 존재하지 않는 회원
+- NotExistLocationException: 존재하지 않는 위치 정보

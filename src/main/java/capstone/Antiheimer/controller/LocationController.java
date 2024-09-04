@@ -6,10 +6,10 @@ import capstone.Antiheimer.dto.NormalResDto;
 import capstone.Antiheimer.dto.RecentLocationResDto;
 import capstone.Antiheimer.exception.DuplicateLocationException;
 import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.exception.NotExistLocationException;
 import capstone.Antiheimer.service.AesService;
 import capstone.Antiheimer.service.LocationService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -91,6 +91,11 @@ public class LocationController {
         } catch (NotExistException e) {
 
             result = new RecentLocationResDto("408", "존재하지 않는 회원", null, null);
+
+            return result;
+        } catch (NotExistLocationException e) {
+
+            result = new RecentLocationResDto("408", "존재하지 않는 위치 정보", null, null);
 
             return result;
         } catch (JsonProcessingException e) {

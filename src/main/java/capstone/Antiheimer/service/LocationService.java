@@ -41,6 +41,7 @@ public class LocationService {
     public Location recentLocation(String memberUuid) {
 
         memberExistCheck(memberUuid); //회원 존재 확인
+        locationExitCheck(memberUuid); //위치 정보 존재 확인
         Location location = locationRepository.findLastLocation(memberUuid);
         log.info("위치 정보 불러오기 성공");
         return location;
@@ -73,6 +74,20 @@ public class LocationService {
 
             log.warn("이미 존재하는 위치 정보입니다");
             throw new DuplicateLocationException();
+        }
+    }
+
+
+    /**
+     * 위치 정보 존재 확인
+     * @param uuid
+     */
+    private void locationExitCheck(String uuid) {
+
+        if (!locationRepository.findLocation(uuid)) {
+
+            log.warn("해당 회원의 위치 정보가 존재하지 않습니다");
+            throw new NotExistException();
         }
     }
 }
