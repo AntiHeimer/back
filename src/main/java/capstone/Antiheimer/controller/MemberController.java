@@ -5,10 +5,7 @@ import capstone.Antiheimer.dto.*;
 import capstone.Antiheimer.exception.*;
 import capstone.Antiheimer.jwt.JwtTokenUtil;
 import capstone.Antiheimer.repository.MemberRepository;
-import capstone.Antiheimer.service.AesService;
-import capstone.Antiheimer.service.LoginService;
-import capstone.Antiheimer.service.LogoutService;
-import capstone.Antiheimer.service.SignUpService;
+import capstone.Antiheimer.service.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +28,8 @@ public class MemberController {
     @Autowired
     private final LogoutService logoutService;
     @Autowired
+    private final FcmService fcmService;
+    @Autowired
     private final AesService aesService;
     @Autowired
     private final ObjectMapper objectMapper;
@@ -42,6 +41,7 @@ public class MemberController {
 
     /**
      * 회원가입
+     *
      * @param auth
      * @param request
      * @return NormalResDto
@@ -117,6 +117,7 @@ public class MemberController {
 
     /**
      * 로그인
+     *
      * @param auth
      * @param request
      * @return LoginResDto
@@ -170,6 +171,7 @@ public class MemberController {
 
     /**
      * 로그아웃
+     *
      * @param uuid
      * @return NormalResDto
      */
@@ -198,6 +200,7 @@ public class MemberController {
 
     /**
      * 회원정보
+     *
      * @param uuid
      * @return InfoResDto
      */
@@ -208,5 +211,20 @@ public class MemberController {
         Member member = memberRepository.findOneByUuid(decryptedUuid);
 
         return new InfoResDto("200", "회원 조회 성공", member.getUuid(), member.getId(), member.getName());
+    }
+
+    @PostMapping("/save/device-token")
+    private NormalResDto saveDeviceToken(@RequestBody TokenReqDto request) {
+
+        try {
+            log.info("디바이스 토큰 저장 시작");
+            fcmService.updateDeviceToken(request);
+
+            log.info("디바이스 토큰 저장 성공");
+            return new NormalResDto("200", "디바이스 토큰 저장 성공");
+        } catch (NotExistException e) {
+
+            return new NormalResDto("408", "존재하지 않는 회원");
+        }
     }
 }

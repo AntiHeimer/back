@@ -12,4 +12,9 @@ public class TestController {
     public ResponseEntity<String> HelloWorld() {
         return new ResponseEntity<>("Hello World", HttpStatus.OK);
     }
+
+    @GetMapping("/check-token")
+    public ResponseEntity<Boolean> checkToken() {
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
 }
