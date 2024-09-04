@@ -72,15 +72,16 @@ public class LocationController {
 
     /**
      * 최근 위치 정보 조회
-     * @param memberUuid
+     * @param request
      * @return
      */
     @GetMapping("/recent/location")
-    public RecentLocationResDto recentLocation(@RequestParam("memberUuid") String memberUuid) {
+    public RecentLocationResDto recentLocation(@RequestParam("memberUuid") String request) {
 
         try {
             log.info("최근 위치 정보 조회 시작");
 
+            String memberUuid = aesService.decryptAES(request);
             Location location = locationService.recentLocation(memberUuid);
             String decryptedRequest = aesService.decryptAES(location.getEncryptedLocation());
             LocationReqDto resDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
