@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const socket = new WebSocket("ws://localhost:8080/ws");
+    const socket = new WebSocket("wss://antiheimer.com/ws");
 
     socket.addEventListener("open", () => {
         console.log("Connected to WebSocket");
