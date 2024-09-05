@@ -30,6 +30,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
+
         System.out.println("message = " + message.getPayload());
 
         NotificationReqDto reqDto = objectMapper.readValue(message.getPayload(), NotificationReqDto.class);
