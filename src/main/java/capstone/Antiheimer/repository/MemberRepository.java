@@ -39,18 +39,6 @@ public class MemberRepository {
     }
 
     /**
-     * 디바이스 토큰 저장
-     * @param tokenReqDto
-     */
-    public void updateDeviceToken(TokenReqDto tokenReqDto) {
-
-        Member member = findOneByUuid(tokenReqDto.getMemberUuid());
-        member.setDeviceToken(tokenReqDto.getDeviceToken());
-
-        em.persist(member);
-    }
-
-    /**
      * uuid로 회원 찾기
      * @param uuid
      * @return
@@ -82,16 +70,5 @@ public class MemberRepository {
         return em.createQuery("select m from Member m where m.id = :id", Member.class)
                 .setParameter("id", id)
                 .getResultList();
-    }
-
-    public String findTokenById(String id) {
-
-        return em.createQuery("SELECT m from Member m where m.id = :id", Member.class)
-                .setParameter("id", id)
-                .getResultList()
-                .stream()
-                .findFirst()
-                .map(Member::getDeviceToken)
-                .orElse(null);
     }
 }
