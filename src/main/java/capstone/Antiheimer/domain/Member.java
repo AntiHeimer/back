@@ -35,8 +35,6 @@ public class Member {
 
     private double weight;
 
-    private String deviceToken;
-
     @OneToMany(mappedBy = "member")
     private List<Diagnosis> diagnosisList = new ArrayList<>();
 

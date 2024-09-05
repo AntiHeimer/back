@@ -39,3 +39,6 @@ out/
 ### Security ###
 /src/main/resources/application.yml
 /src/main/resources/firebase
+
+### Firebase ###
+/src/main/java/capstone/Antiheimer/firebase/

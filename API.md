@@ -270,7 +270,7 @@ decoding(410)
 - String auth
 
 **Body**
-- String request(AES)
+- String request: AES 암호화
   - String memberUuid;
   - LocalDateTime date;
   - LocationDto location;
@@ -292,6 +292,9 @@ exist(408)
 
 **Header**
 - String Authorization
+
+**Param**
+- String memberUuid: AES 암호화
 
 ### possible error
 auth(401): 권한 없음(토큰)
