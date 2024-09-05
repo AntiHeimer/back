@@ -210,4 +210,19 @@ public class MemberController {
 
         return new InfoResDto("200", "회원 조회 성공", member.getUuid(), member.getId(), member.getName());
     }
+
+//    @PostMapping("/save/device-token")
+//    private NormalResDto saveDeviceToken(@RequestBody TokenReqDto request) {
+//
+//        try {
+//            log.info("디바이스 토큰 저장 시작");
+//            fcmService.updateDeviceToken(request);
+//
+//            log.info("디바이스 토큰 저장 성공");
+//            return new NormalResDto("200", "디바이스 토큰 저장 성공");
+//        } catch (NotExistException e) {
+//
+//            return new NormalResDto("408", "존재하지 않는 회원");
+//        }
+//    }
 }
