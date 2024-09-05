@@ -1,5 +1,6 @@
 package capstone.Antiheimer.domain;
 
+import capstone.Antiheimer.member.Member;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

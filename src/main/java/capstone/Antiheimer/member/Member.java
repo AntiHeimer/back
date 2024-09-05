@@ -1,5 +1,9 @@
-package capstone.Antiheimer.domain;
+package capstone.Antiheimer.member;
 
+import capstone.Antiheimer.domain.Diagnosis;
+import capstone.Antiheimer.domain.HealthData;
+import capstone.Antiheimer.domain.Location;
+import capstone.Antiheimer.domain.Result;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -2,6 +2,7 @@ package capstone.Antiheimer.repository;
 
 import capstone.Antiheimer.domain.*;
 import capstone.Antiheimer.dto.*;
+import capstone.Antiheimer.member.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;

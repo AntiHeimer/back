@@ -1,6 +1,6 @@
 package capstone.Antiheimer.repository;
 
-import capstone.Antiheimer.domain.Member;
+import capstone.Antiheimer.member.Member;
 import capstone.Antiheimer.dto.SignupReqDto;
 import capstone.Antiheimer.dto.TokenReqDto;
 import capstone.Antiheimer.service.BcryptService;

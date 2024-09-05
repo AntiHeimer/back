@@ -1,7 +1,7 @@
 package capstone.Antiheimer.service;
 
 import capstone.Antiheimer.domain.Location;
-import capstone.Antiheimer.domain.Member;
+import capstone.Antiheimer.member.Member;
 import capstone.Antiheimer.dto.LocationReqDto;
 import capstone.Antiheimer.exception.DuplicateLocationException;
 import capstone.Antiheimer.exception.NotExistException;
@@ -11,8 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)

@@ -1,6 +1,6 @@
 package capstone.Antiheimer.controller;
 
-import capstone.Antiheimer.domain.Member;
+import capstone.Antiheimer.member.Member;
 import capstone.Antiheimer.dto.*;
 import capstone.Antiheimer.exception.*;
 import capstone.Antiheimer.jwt.JwtTokenUtil;

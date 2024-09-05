@@ -1,7 +1,7 @@
 package capstone.Antiheimer.repository;
 
 import capstone.Antiheimer.domain.Location;
-import capstone.Antiheimer.domain.Member;
+import capstone.Antiheimer.member.Member;
 import capstone.Antiheimer.dto.LocationReqDto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;

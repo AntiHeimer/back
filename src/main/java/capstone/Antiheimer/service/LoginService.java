@@ -1,6 +1,6 @@
 package capstone.Antiheimer.service;
 
-import capstone.Antiheimer.domain.Member;
+import capstone.Antiheimer.member.Member;
 import capstone.Antiheimer.dto.LoginReqDto;
 import capstone.Antiheimer.exception.IncorrectPwException;
 import capstone.Antiheimer.exception.NotExistException;

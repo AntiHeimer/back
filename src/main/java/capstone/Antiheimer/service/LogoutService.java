@@ -1,6 +1,6 @@
 package capstone.Antiheimer.service;
 
-import capstone.Antiheimer.domain.Member;
+import capstone.Antiheimer.member.Member;
 import capstone.Antiheimer.exception.InvalidUuidException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.exception.NullUuidException;
