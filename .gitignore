@@ -41,4 +41,4 @@ out/
 /src/main/resources/firebase
 
 ### Firebase ###
-/src/main/java/capstone/Antiheimer/firebase/
+/src/main/java/capstone/Antiheimer/firebase/*

@@ -1,7 +1,7 @@
 package capstone.Antiheimer.controller;
 
 import capstone.Antiheimer.dto.NotificationReq;
-import capstone.Antiheimer.service.FcmService;
+import capstone.Antiheimer.firebase.FcmService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
