@@ -1,7 +1,7 @@
 package capstone.Antiheimer.feature.member;
 
 import capstone.Antiheimer.feature.member.dto.SignupReqDto;
-import capstone.Antiheimer.util.BcryptService;
+import capstone.Antiheimer.util.encrypt.BcryptService;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

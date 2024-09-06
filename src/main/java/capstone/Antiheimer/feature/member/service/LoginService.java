@@ -5,7 +5,7 @@ import capstone.Antiheimer.feature.member.dto.LoginReqDto;
 import capstone.Antiheimer.exception.IncorrectPwException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.feature.member.MemberRepository;
-import capstone.Antiheimer.util.BcryptService;
+import capstone.Antiheimer.util.encrypt.BcryptService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package capstone.Antiheimer.util;
+package capstone.Antiheimer.util.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

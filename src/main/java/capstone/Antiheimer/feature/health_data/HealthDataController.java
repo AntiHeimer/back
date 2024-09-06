@@ -5,7 +5,7 @@ import capstone.Antiheimer.exception.DuplicateHealthDataException;
 import capstone.Antiheimer.exception.InvalidDataTypeException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.feature.health_data.dto.*;
-import capstone.Antiheimer.util.AesService;
+import capstone.Antiheimer.util.encrypt.AesService;
 import capstone.Antiheimer.util.NormalResDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

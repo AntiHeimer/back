@@ -9,7 +9,7 @@ import capstone.Antiheimer.feature.member.service.LogoutService;
 import capstone.Antiheimer.feature.member.service.SignUpService;
 import capstone.Antiheimer.exception.*;
 import capstone.Antiheimer.util.jwt.JwtTokenUtil;
-import capstone.Antiheimer.util.AesService;
+import capstone.Antiheimer.util.encrypt.AesService;
 import capstone.Antiheimer.util.NormalResDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

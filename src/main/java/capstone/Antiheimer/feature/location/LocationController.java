@@ -6,7 +6,7 @@ import capstone.Antiheimer.feature.location.dto.RecentLocationResDto;
 import capstone.Antiheimer.exception.DuplicateLocationException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.exception.NotExistLocationException;
-import capstone.Antiheimer.util.AesService;
+import capstone.Antiheimer.util.encrypt.AesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package capstone.Antiheimer.util;
+package capstone.Antiheimer.util.encrypt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

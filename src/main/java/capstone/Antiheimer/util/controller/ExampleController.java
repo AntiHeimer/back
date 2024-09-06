@@ -1,4 +1,4 @@
-package capstone.Antiheimer.util;
+package capstone.Antiheimer.util.controller;
 
 import capstone.Antiheimer.util.dto.BasicResponseDto;
 import capstone.Antiheimer.util.dto.MemberJoinRequestDto;

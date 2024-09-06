@@ -1,4 +1,4 @@
-package capstone.Antiheimer.util;
+package capstone.Antiheimer.util.encrypt;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
