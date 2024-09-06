@@ -6,7 +6,6 @@ import capstone.Antiheimer.feature.notification.dto.NotificationResDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -18,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class WebsocketHandler extends TextWebSocketHandler {
+public class ProtectorHandler extends TextWebSocketHandler {
 
     private final ConcurrentHashMap<String, WebSocketSession> sessions = new ConcurrentHashMap<>();
     private final MemberRepository memberRepository;
@@ -58,7 +57,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
         System.out.println("recipientSession = " + recipientSession);
 
         if (recipientSession != null && recipientSession.isOpen()) {
-            NotificationResDto resDto = new NotificationResDto(reqDto.getFromMemberUuid(), fromMemberName, toMemberUuid, reqDto.getMessage());
+            NotificationResDto resDto = new NotificationResDto(reqDto.getFromMemberUuid(), fromMemberName, toMemberUuid);
             String jsonResponse = objectMapper.writeValueAsString(resDto);
             recipientSession.sendMessage(new TextMessage(jsonResponse));
         }

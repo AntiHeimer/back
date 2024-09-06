@@ -12,12 +12,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Relation {
+
     @Id
     @Column(name = "relation_id")
     private String uuid;
 
     @NotNull
-    private String guardianId;
+    private String protectorId;
 
     @NotNull
     private String wardId;

@@ -13,5 +13,4 @@ public class NotificationReqDto {
 
     private String fromMemberUuid;
     private String toMemberId;
-    private String message;
 }
