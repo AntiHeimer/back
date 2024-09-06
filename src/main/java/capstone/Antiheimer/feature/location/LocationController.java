@@ -89,7 +89,7 @@ public class LocationController {
             // 공백을 +로 변환
             String plusEncodedString = decodedUuid.replace(" ", "+");
 
-            String memberUuid = aesService.decryptAES(request);
+            String memberUuid = aesService.decryptAES(plusEncodedString);
             Location location = locationService.recentLocation(memberUuid);
             String decryptedRequest = aesService.decryptAES(location.getEncryptedLocation());
             LocationReqDto resDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
