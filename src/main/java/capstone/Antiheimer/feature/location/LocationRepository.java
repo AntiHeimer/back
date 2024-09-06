@@ -58,7 +58,7 @@ public class LocationRepository {
         try {
             em.createQuery("select l from Location l where l.member.uuid = :uuid", Location.class)
                     .setParameter("uuid", uuid)
-                    .getSingleResult();
+                    .getResultList();
             return true;
         } catch (NoResultException e) {
             return false;
