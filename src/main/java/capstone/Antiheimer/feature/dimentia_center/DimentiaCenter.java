@@ -1,0 +1,25 @@
+package capstone.Antiheimer.feature.dimentia_center;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+public class DimentiaCenter {
+
+    @Id
+    @Column(name = "center_id")
+    private String uuid;
+
+    @NotNull
+    private String name;
+    @NotNull
+    private String callNumber;
+    @NotNull
+    private String centerLocation;
+}

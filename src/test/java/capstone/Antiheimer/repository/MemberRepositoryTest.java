@@ -1,5 +1,6 @@
 package capstone.Antiheimer.repository;
 
+import capstone.Antiheimer.feature.member.MemberRepository;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
