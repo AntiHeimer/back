@@ -15,6 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -79,6 +83,12 @@ public class LocationController {
         try {
             log.info("최근 위치 정보 조회 시작");
 
+            // URL 디코딩
+            String decodedUuid = URLDecoder.decode(request, StandardCharsets.UTF_8.name());
+
+            // 공백을 +로 변환
+            String plusEncodedString = decodedUuid.replace(" ", "+");
+
             String memberUuid = aesService.decryptAES(request);
             Location location = locationService.recentLocation(memberUuid);
             String decryptedRequest = aesService.decryptAES(location.getEncryptedLocation());
@@ -98,6 +108,8 @@ public class LocationController {
 
             return result;
         } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
     }
