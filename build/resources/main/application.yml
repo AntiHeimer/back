@@ -57,10 +57,10 @@ aes:
   iv: 0123456789abcdef
 
 
-fcm:
-  key:
-    path: antiheimer-27faa-firebase-adminsdk-fp8cv-7c98759331.json
-    scope: https://www.googleapis.com/auth/cloud-platform
+#fcm:
+#  key:
+#    path: antiheimer-27faa-firebase-adminsdk-fp8cv-7c98759331.json
+#    scope: https://www.googleapis.com/auth/cloud-platform
 
 server:
   port: 8080

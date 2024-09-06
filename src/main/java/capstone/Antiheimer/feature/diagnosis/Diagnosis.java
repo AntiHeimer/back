@@ -1,0 +1,30 @@
+package capstone.Antiheimer.feature.diagnosis;
+
+import capstone.Antiheimer.feature.member.Member;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Entity
+@Getter
+@Setter
+public class Diagnosis {
+
+    @Id
+    @Column(name = "diagnosis_id")
+    private String uuid;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @NotNull
+    private LocalDate diagnosisDate;
+
+    @NotNull
+    private int score;
+}

@@ -1,0 +1,11 @@
+package capstone.Antiheimer.feature.member.dto;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+public class LogoutReqDto {
+
+    private String uuid;
+}
