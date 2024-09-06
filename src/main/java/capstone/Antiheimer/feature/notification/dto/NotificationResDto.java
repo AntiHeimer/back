@@ -12,6 +12,7 @@ import lombok.Setter;
 public class NotificationResDto {
 
     private String fromMemberUuid;
+    private String fromMemberName;
     private String toMemberUuid;
     private String message;
 }
