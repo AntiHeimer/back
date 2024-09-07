@@ -288,7 +288,7 @@ exist(408)
 
 
 ## recentLocation
-#### /recent/location?memberUuid={memberUuid}: GET
+#### /recent/location?memberUuid={memberUuid}: GET - url 인코딩
 
 **Header**
 - String Authorization

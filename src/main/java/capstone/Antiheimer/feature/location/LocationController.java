@@ -86,12 +86,13 @@ public class LocationController {
             // URL 디코딩
             String decodedUuid = URLDecoder.decode(request, StandardCharsets.UTF_8.name());
 
-            log.info("decoding: "+ decodedUuid);
+            System.out.println("decodedUuid = " + decodedUuid);
             // 공백을 +로 변환
             String plusEncodedString = decodedUuid.replace(" ", "+");
 
+            System.out.println("plusEncodedString = " + plusEncodedString);
+
             String memberUuid = aesService.decryptAES(plusEncodedString);
-            log.info("aes: "+ memberUuid);
             Location location = locationService.recentLocation(memberUuid);
             String decryptedRequest = aesService.decryptAES(location.getEncryptedLocation());
             LocationReqDto resDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);

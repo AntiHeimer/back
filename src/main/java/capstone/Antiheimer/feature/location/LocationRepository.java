@@ -6,10 +6,13 @@ import capstone.Antiheimer.feature.member.MemberRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class LocationRepository {
@@ -55,13 +58,9 @@ public class LocationRepository {
 
     public boolean findLocation(String uuid) {
 
-        try {
-            em.createQuery("select l from Location l where l.member.uuid = :uuid", Location.class)
-                    .setParameter("uuid", uuid)
-                    .getResultList();
-            return true;
-        } catch (NoResultException e) {
-            return false;
-        }
+        List<Location> locationList = em.createQuery("select l from Location l where l.member.uuid = :uuid", Location.class)
+                .setParameter("uuid", uuid)
+                .getResultList();
+        return !locationList.isEmpty();
     }
 }
