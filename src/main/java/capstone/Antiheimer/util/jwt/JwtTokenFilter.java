@@ -1,7 +1,7 @@
 package capstone.Antiheimer.util.jwt;
 
-import capstone.Antiheimer.feature.member.Member;
-import capstone.Antiheimer.feature.member.MemberRepository;
+import capstone.Antiheimer.feature.member.entity.Member;
+import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

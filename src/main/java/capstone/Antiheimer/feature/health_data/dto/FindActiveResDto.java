@@ -1,6 +1,6 @@
 package capstone.Antiheimer.feature.health_data.dto;
 
-import capstone.Antiheimer.feature.health_data.domain.Active;
+import capstone.Antiheimer.feature.health_data.entity.Active;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

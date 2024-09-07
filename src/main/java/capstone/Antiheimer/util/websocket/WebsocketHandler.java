@@ -1,12 +1,11 @@
 package capstone.Antiheimer.util.websocket;
 
-import capstone.Antiheimer.feature.member.MemberRepository;
+import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.feature.notification.dto.NotificationReqDto;
 import capstone.Antiheimer.feature.notification.dto.NotificationResDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;

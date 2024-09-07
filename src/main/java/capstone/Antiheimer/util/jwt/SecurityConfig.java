@@ -1,6 +1,6 @@
 package capstone.Antiheimer.util.jwt;
 
-import capstone.Antiheimer.feature.member.MemberRepository;
+import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

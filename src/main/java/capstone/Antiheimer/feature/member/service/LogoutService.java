@@ -1,10 +1,10 @@
 package capstone.Antiheimer.feature.member.service;
 
-import capstone.Antiheimer.feature.member.Member;
+import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.exception.InvalidUuidException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.exception.NullUuidException;
-import capstone.Antiheimer.feature.member.MemberRepository;
+import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
