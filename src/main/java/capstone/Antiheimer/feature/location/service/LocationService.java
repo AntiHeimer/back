@@ -1,5 +1,6 @@
 package capstone.Antiheimer.feature.location.service;
 
+import capstone.Antiheimer.exception.NotExistLocationException;
 import capstone.Antiheimer.feature.location.entity.Location;
 import capstone.Antiheimer.feature.location.repository.LocationRepository;
 import capstone.Antiheimer.feature.member.entity.Member;
@@ -85,7 +86,7 @@ public class LocationService {
         if (!locationRepository.findLocation(uuid)) {
 
             log.warn("해당 회원의 위치 정보가 존재하지 않습니다");
-            throw new NotExistException();
+            throw new NotExistLocationException();
         }
     }
 }
