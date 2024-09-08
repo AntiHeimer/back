@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class MemberController {
 
-    @Autowired
     private final MemberRepository memberRepository;
     @Autowired
     private final SignUpService signUpService;

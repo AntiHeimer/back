@@ -1,5 +1,6 @@
 package capstone.Antiheimer.feature.relation.entity;
 
+import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -21,4 +23,8 @@ public class Relation {
 
     @NotNull
     private String wardId;
+
+    public void setUuid() {
+        this.uuid = UUID.randomUUID().toString();
+    }
 }
