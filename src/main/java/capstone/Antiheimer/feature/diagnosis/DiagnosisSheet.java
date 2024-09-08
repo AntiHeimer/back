@@ -18,6 +18,8 @@ public class DiagnosisSheet {
     @NotNull
     private String question;
     @NotNull
+    private String direction;
+    @NotNull
     private int point;
     @NotNull
     private String answer;
