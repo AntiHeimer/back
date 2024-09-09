@@ -14,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Relation {
+
     @Id
     @Column(name = "relation_id")
     private String uuid;

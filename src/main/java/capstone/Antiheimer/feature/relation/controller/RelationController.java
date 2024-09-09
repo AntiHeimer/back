@@ -1,12 +1,14 @@
 package capstone.Antiheimer.feature.relation.controller;
 
 import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianResDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoWardDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoWardResDto;
 import capstone.Antiheimer.feature.relation.dto.save.SaveGuardianReqDto;
 import capstone.Antiheimer.feature.relation.dto.save.SaveWardReqDto;
+import capstone.Antiheimer.feature.notification.service.NotificationService;
 import capstone.Antiheimer.feature.relation.service.RelationService;
 import capstone.Antiheimer.util.dto.NormalResDto;
 import capstone.Antiheimer.util.encrypt.AesService;
@@ -22,7 +24,19 @@ import java.util.List;
 public class RelationController {
 
     private final RelationService relationService;
+    private final NotificationService notificationService;
     private final AesService aesService;
+
+    @PostMapping("/request-relation")
+    public NormalResDto requestRelation(@RequestBody RequestRelationReqDto) {
+
+        try {
+            log.info("관계 요청 알림 저장 시작");
+
+//            notificationService.saveNotification()
+        }
+    }
+
 
     /**
      * 보호자 등록
