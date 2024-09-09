@@ -12,6 +12,7 @@ spring:
       hibernate:
         #show_sql: true
         format_sql: true
+#        dialect: org.hibernate.dialect.MySQLDialect
 
 
 logging:
@@ -19,7 +20,6 @@ logging:
     root:
     org.hibernate.SQL: debug
     #org.hibernate.orm.jdbc.bind: trace
-    security: debug
 
 
 springdoc:
@@ -44,7 +44,7 @@ springdoc:
 
 jwt:
   secret: RlZnZpDJGfuNkUCIdlXoP12l50XSaHaacsT5o5v3gnc
-  exp: 7776000000 # 3달
+  exp: 86400000 # 1일
 
 
 auth:
@@ -56,11 +56,6 @@ aes:
   key: abcdefghabcdefghabcdefghabcdefgh
   iv: 0123456789abcdef
 
-
-#fcm:
-#  key:
-#    path: antiheimer-27faa-firebase-adminsdk-fp8cv-7c98759331.json
-#    scope: https://www.googleapis.com/auth/cloud-platform
 
 server:
   port: 8080
