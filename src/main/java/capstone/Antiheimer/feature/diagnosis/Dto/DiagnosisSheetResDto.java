@@ -1,9 +1,8 @@
 package capstone.Antiheimer.feature.diagnosis.Dto;
 
-import capstone.Antiheimer.feature.diagnosis.domain.DiagnosisSheet;
+import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.messaging.simp.stomp.StompReactorNettyCodec;
 
 @Getter
 @NoArgsConstructor

@@ -1,7 +1,6 @@
 package capstone.Antiheimer.feature.diagnosis;
 
-import capstone.Antiheimer.feature.diagnosis.domain.DiagnosisSheet;
-import capstone.Antiheimer.feature.location.Location;
+import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

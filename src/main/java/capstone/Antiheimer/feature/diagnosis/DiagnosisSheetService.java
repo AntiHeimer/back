@@ -1,7 +1,7 @@
 package capstone.Antiheimer.feature.diagnosis;
 
 import capstone.Antiheimer.exception.IncorrectNumException;
-import capstone.Antiheimer.feature.diagnosis.domain.DiagnosisSheet;
+import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
