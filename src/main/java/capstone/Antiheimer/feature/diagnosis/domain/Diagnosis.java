@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.diagnosis;
+package capstone.Antiheimer.feature.diagnosis.domain;
 
 import capstone.Antiheimer.feature.member.Member;
 import jakarta.persistence.*;

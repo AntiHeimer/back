@@ -1,0 +1,34 @@
+package capstone.Antiheimer.feature.diagnosis;
+
+import capstone.Antiheimer.exception.IncorrectNumException;
+import capstone.Antiheimer.feature.diagnosis.Dto.DiagnosisSheetResDto;
+import capstone.Antiheimer.feature.diagnosis.domain.DiagnosisSheet;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+@Slf4j
+public class DiagnosisSheetController {
+
+    private final DiagnosisSheetService diagnosisSheetService;
+
+    @GetMapping("/diagnosisSheet")
+    public DiagnosisSheetResDto returnDiagnosisSheet(@RequestParam("num") int num) {
+
+        try {
+            log.info("진단문제 반환 시작");
+
+            DiagnosisSheet diagnosisSheet = diagnosisSheetService.returnDiagnosisSheet(num);
+
+            return new DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet);
+        } catch (IncorrectNumException e){
+
+            return new DiagnosisSheetResDto("410", "잘못된 번호", null);
+        }
+    }
+
+}

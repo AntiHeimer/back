@@ -1,7 +1,7 @@
 package capstone.Antiheimer.feature.member;
 
-import capstone.Antiheimer.feature.diagnosis.Diagnosis;
-import capstone.Antiheimer.feature.diagnosis.Result;
+import capstone.Antiheimer.feature.diagnosis.domain.Diagnosis;
+import capstone.Antiheimer.feature.diagnosis.domain.Result;
 import capstone.Antiheimer.feature.health_data.domain.HealthData;
 import capstone.Antiheimer.feature.location.Location;
 import jakarta.persistence.Column;
