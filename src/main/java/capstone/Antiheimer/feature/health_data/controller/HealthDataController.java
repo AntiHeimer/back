@@ -1,6 +1,6 @@
 package capstone.Antiheimer.feature.health_data.controller;
 
-import capstone.Antiheimer.feature.diagnosis.AiReqDto;
+import capstone.Antiheimer.feature.diagnosis.Dto.AiReqDto;
 import capstone.Antiheimer.exception.DuplicateHealthDataException;
 import capstone.Antiheimer.exception.InvalidDataTypeException;
 import capstone.Antiheimer.exception.NotExistException;
