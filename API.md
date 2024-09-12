@@ -304,6 +304,7 @@ exist(408)
 - NotExistLocationException: 존재하지 않는 위치 정보
 
 
+# Diagnosis
 ## returnDiagnosisSheet
 #### /diagnosisSheet?num={num}: GET
 
