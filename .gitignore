@@ -42,3 +42,4 @@ out/
 
 ### Firebase ###
 /src/main/java/capstone/Antiheimer/firebase/*
+/build/

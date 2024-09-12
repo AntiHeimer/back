@@ -1,9 +1,6 @@
 package capstone.Antiheimer.feature.notification.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -12,6 +9,6 @@ import lombok.Setter;
 public class NotificationReqDto {
 
     private String fromMemberUuid;
-    private String toMemberId;
-    private String message;
+    private String toMemberUuid;
+    private String requestType;
 }

@@ -5,14 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class NotificationResDto {
 
-    private String fromMemberUuid;
-    private String fromMemberName;
-    private String toMemberUuid;
+    private String statusCode;
     private String message;
+    private List<NotificationDto> notificationDtoList;
 }
