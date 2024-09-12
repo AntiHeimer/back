@@ -20,7 +20,7 @@ public class Notification {
     private String uuid;
 
     @NotNull
-    private NotificationType type;
+    private String type;
 
     @NotNull
     private boolean isRead;
@@ -31,10 +31,6 @@ public class Notification {
     private String fromMemberUuid;
 
     private String fromMemberName;
-
-    public enum NotificationType {
-        GUARDIAN, WARD
-    }
 
     public void setUuid() {
         this.uuid = UUID.randomUUID().toString();

@@ -5,10 +5,14 @@ import capstone.Antiheimer.feature.notification.dto.NotificationDto;
 import capstone.Antiheimer.feature.notification.dto.NotificationResDto;
 import capstone.Antiheimer.feature.notification.service.NotificationService;
 import capstone.Antiheimer.util.dto.NormalResDto;
+import capstone.Antiheimer.util.encrypt.AesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Slf4j
@@ -17,13 +21,23 @@ import java.util.List;
 public class NotificationController {
 
     private final NotificationService notificationService;
+    private final AesService aesService;
 
     @GetMapping("/find-notification/{memberUuid}")
     public NotificationResDto findNotification(@PathVariable("memberUuid") String memberUuid) {
 
         try {
             log.info("알림 조회 시작");
-            List<NotificationDto> notificationList = notificationService.findNotificationByUuid(memberUuid);
+
+            // URL 디코딩
+            String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
+
+            // 공백을 +로 변환
+            String plusEncodedString = decodedUuid.replace(" ", "+");
+
+            // AES 복호화
+            String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
+            List<NotificationDto> notificationList = notificationService.findNotificationByUuid(decryptedMemberUuid);
 
             log.info("알림 조회 성공");
             log.info("알림 isRead 변경");
@@ -33,6 +47,8 @@ public class NotificationController {
         } catch (NotExistException e) {
 
             return new NotificationResDto("408", "존재하지 않는 회원", null);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -42,11 +58,21 @@ public class NotificationController {
         try {
             log.info("알림 삭제");
 
-            notificationService.deleteNotification(notificationUuid);
+            // URL 디코딩
+            String decodedUuid = URLDecoder.decode(notificationUuid, StandardCharsets.UTF_8.name());
+
+            // 공백을 +로 변환
+            String plusEncodedString = decodedUuid.replace(" ", "+");
+
+            // AES 복호화
+            String decryptedNotificationUuid = aesService.decryptAES(plusEncodedString);
+            notificationService.deleteNotification(decryptedNotificationUuid);
             return new NormalResDto("200", "알림 삭제 성공");
         } catch (NotExistException e) {
 
             return new NormalResDto("408", "존재하지 않는 알림");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
     }
 

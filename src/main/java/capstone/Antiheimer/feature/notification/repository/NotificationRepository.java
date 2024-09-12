@@ -1,6 +1,5 @@
 package capstone.Antiheimer.feature.notification.repository;
 
-import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.feature.notification.dto.NotificationDto;
 import capstone.Antiheimer.feature.notification.entity.Notification;
 import jakarta.persistence.EntityManager;
@@ -33,7 +32,7 @@ public class NotificationRepository {
 
     public List<NotificationDto> findNotificationListByUuid(String memberUuid) {
 
-        return em.createQuery("SELECT new capstone.Antiheimer.feature.notification.dto.NotificationDto(n.uuid, n.fromMemberUuid, n.fromMemberName, n.isRead, n.type) from Notification n where n.memberUuid = :memberUuid", NotificationDto.class)
+        return em.createQuery("SELECT new capstone.Antiheimer.feature.notification.dto.NotificationDto(n.uuid, n.fromMemberUuid, n.fromMemberName, n.isRead, n.type) FROM Notification n WHERE n.memberUuid = :memberUuid", NotificationDto.class)
                 .setParameter("memberUuid", memberUuid)
                 .getResultList();
     }

@@ -14,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static java.lang.String.valueOf;
-
 @Slf4j
 @Service
 @Transactional(readOnly = true)
@@ -29,8 +27,6 @@ public class NotificationService {
     public void saveNotification(RequestRelationReqDto request) {
 
         Member toMember = memberRepository.findOneById(request.getToMemberId());
-
-        System.out.println("toMember = " + toMember);
 
         if (isExist(request.getFromMemberUuid()) && toMember != null) {
 
@@ -68,12 +64,12 @@ public class NotificationService {
         }
     }
 
+    @Transactional
     public void changeIsReadNotification(List<NotificationDto> notificationDtoList) {
 
         if (notificationDtoList.isEmpty()) {
 
             log.warn("알림이 존재하지 않습니다");
-            throw new NotExistException();
         } else {
             notificationRepository.changeIsReadNotification(notificationDtoList);
         }
@@ -89,8 +85,7 @@ public class NotificationService {
         notification.setMemberUuid(toMemberUuid);
         notification.setFromMemberUuid(request.getFromMemberUuid());
         notification.setFromMemberName(fromMember.getName());
-        System.out.println("Notification.NotificationType.valueOf(request.getRequestType()) = " + Notification.NotificationType.valueOf(request.getRequestType()));
-        notification type = Notification.NotificationType.valueOf(request.getRequestType());
+        notification.setType(request.getRequestType());
 
         return notification;
     }
