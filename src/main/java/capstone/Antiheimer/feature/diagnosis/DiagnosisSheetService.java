@@ -16,6 +16,11 @@ public class DiagnosisSheetService {
 
     private final DiagnosisSheetRepository diagnosisSheetRepository;
 
+    /**
+     * 진단지 문제 반환
+     * @param num
+     * @return
+     */
     public DiagnosisSheet returnDiagnosisSheet(int num) {
 
         checkNum(num);

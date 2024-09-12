@@ -11,6 +11,11 @@ public class DiagnosisSheetRepository {
 
     private final EntityManager em;
 
+    /**
+     * 번호로 문제 찾아서 반환
+     * @param num
+     * @return
+     */
     public DiagnosisSheet findQuestion(int num) {
 
         return em.createQuery("select d from DiagnosisSheet d where d.number = :num ", DiagnosisSheet.class)

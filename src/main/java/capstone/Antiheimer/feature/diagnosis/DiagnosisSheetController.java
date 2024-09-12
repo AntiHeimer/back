@@ -32,7 +32,7 @@ public class DiagnosisSheetController {
             return new DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet);
         } catch (IncorrectNumException e){
 
-            return new DiagnosisSheetResDto("410", "잘못된 번호", null);
+            return new DiagnosisSheetResDto("409", "잘못된 번호", null);
         }
     }
 
