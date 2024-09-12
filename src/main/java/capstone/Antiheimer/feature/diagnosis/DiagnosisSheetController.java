@@ -16,6 +16,11 @@ public class DiagnosisSheetController {
 
     private final DiagnosisSheetService diagnosisSheetService;
 
+    /**
+     * 진단지 반환
+     * @param num
+     * @return
+     */
     @GetMapping("/diagnosisSheet")
     public DiagnosisSheetResDto returnDiagnosisSheet(@RequestParam("num") int num) {
 
