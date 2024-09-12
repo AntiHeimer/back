@@ -36,6 +36,9 @@ public class NotificationService {
 
             log.info("알림 저장");
             notificationRepository.saveNotification(notification);
+        } else {
+
+            throw new NotExistException();
         }
     }
 
