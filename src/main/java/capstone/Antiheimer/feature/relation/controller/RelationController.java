@@ -27,13 +27,24 @@ public class RelationController {
     private final NotificationService notificationService;
     private final AesService aesService;
 
+    /**
+     * 관계 요청 알림
+     *
+     * @param request
+     * @return
+     */
     @PostMapping("/request-relation")
-    public NormalResDto requestRelation(@RequestBody RequestRelationReqDto) {
+    public NormalResDto requestRelation(@RequestBody RequestRelationReqDto request) {
 
         try {
             log.info("관계 요청 알림 저장 시작");
+            notificationService.saveNotification(request);
 
-//            notificationService.saveNotification()
+            log.info("관계 요청 알림 저장 성공");
+            return new NormalResDto("200", "관계 요청 성공");
+        } catch (NotExistException e) {
+
+            return new NormalResDto("408", "존재하지 않는 회원");
         }
     }
 

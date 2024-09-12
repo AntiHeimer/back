@@ -5,9 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
+import java.util.UUID;
+
 @Getter
+@Setter
 @Entity
 public class Notification {
 
@@ -24,9 +28,15 @@ public class Notification {
     @NotNull
     private String memberUuid;
 
-    private String fromMemberId;
+    private String fromMemberUuid;
+
+    private String fromMemberName;
 
     public enum NotificationType {
         GUARDIAN, WARD
+    }
+
+    public void setUuid() {
+        this.uuid = UUID.randomUUID().toString();
     }
 }
