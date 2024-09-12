@@ -16,9 +16,39 @@ public class RelationRepository {
 
     private final EntityManager em;
 
-    public void save(Relation relation) {
+    public void saveRelation(Relation relation) {
 
         em.persist(relation);
+    }
+
+    public void saveGuardian(Relation relation) {
+
+        relation.setActive(true);
+        em.persist(relation);
+    }
+
+    public void saveWard(Relation relation) {
+
+        relation.setActive(true);
+        em.persist(relation);
+    }
+
+    public Relation findRelation(String guardianUuid, String wardUuid) {
+
+        List<Relation> findRelation = em.createQuery("SELECT r FROM Relation r WHERE (r.guardianUuid = :guardianUuid AND r.wardUuid = :wardUuid)", Relation.class)
+                .setParameter("guardianUuid", guardianUuid).setParameter("wardUuid", wardUuid)
+                .getResultList();
+
+        return findRelation.isEmpty() ? null : findRelation.get(0);
+    }
+
+    public boolean isRelationExist(Relation relation) {
+
+        List<Relation> findRelation = em.createQuery("SELECT r FROM Relation r WHERE (r.guardianUuid = :guardianUuid AND r.wardUuid = :wardUuid)", Relation.class)
+                .setParameter("guardianUuid", relation.getGuardianUuid()).setParameter("wardUuid", relation.getWardUuid())
+                .getResultList();
+
+        return !findRelation.isEmpty();
     }
 
     public List<InfoWardDto> infoWard(String memberUuid) {

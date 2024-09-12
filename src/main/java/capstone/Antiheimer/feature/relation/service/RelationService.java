@@ -1,7 +1,9 @@
 package capstone.Antiheimer.feature.relation.service;
 
+import capstone.Antiheimer.exception.DuplicateRelationException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
+import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoWardDto;
 import capstone.Antiheimer.feature.relation.dto.save.SaveGuardianReqDto;
@@ -9,11 +11,13 @@ import capstone.Antiheimer.feature.relation.dto.save.SaveWardReqDto;
 import capstone.Antiheimer.feature.relation.entity.Relation;
 import capstone.Antiheimer.feature.relation.repository.RelationRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -23,25 +27,65 @@ public class RelationService {
     private final RelationRepository relationRepository;
 
     /**
-     * 보호자 등록
+     * 관계 임시 등록(active false 상태)
+     *
+     * @param reqDto
+     */
+    @Transactional
+    public void saveRelation(RequestRelationReqDto reqDto) {
+
+        if (reqDto.getRequestType().equals("guardian")) {
+
+            String guardianUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
+            String wardUuid = reqDto.getFromMemberUuid();
+
+            if (isExist(wardUuid) && isExist(guardianUuid)) {
+
+                Relation relation = convertToEntity(wardUuid, guardianUuid);
+
+                if (relationRepository.isRelationExist(relation)) {
+
+                    log.warn("이미 존재하는 관계");
+                    throw new DuplicateRelationException();
+                }
+                relationRepository.saveRelation(relation);
+            }
+        } else if (reqDto.getRequestType().equals("ward")) {
+
+            String wardUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
+            String guardianUuid = reqDto.getFromMemberUuid();
+
+            if (isExist(wardUuid) && isExist(guardianUuid)) {
+
+                Relation relation = convertToEntity(wardUuid, guardianUuid);
+
+                if (relationRepository.isRelationExist(relation)) {
+
+                    log.warn("이미 존재하는 관계");
+                    throw new DuplicateRelationException();
+                }
+                relationRepository.saveRelation(relation);
+            }
+        }
+    }
+
+    /**
+     * 보호자 등록(active true 변경)
      *
      * @param reqDto
      */
     @Transactional
     public void saveGuardian(SaveGuardianReqDto reqDto) {
 
-        String wardUuid = memberRepository.findOneById(reqDto.getGuardianId()).getUuid();
-        String guardianUuid = reqDto.getWardUuid();
+        String guardianUuid = memberRepository.findOneById(reqDto.getGuardianId()).getUuid();
+        String wardUuid = reqDto.getWardUuid();
 
-        if (isExist(wardUuid) && isExist(guardianUuid)) {
-
-            Relation relation = convertToEntity(wardUuid, guardianUuid);
-            relationRepository.save(relation);
-        }
+        Relation relation = relationRepository.findRelation(guardianUuid, wardUuid);
+        relationRepository.saveGuardian(relation);
     }
 
     /**
-     * 피보호자 등록
+     * 피보호자 등록(active true 변경)
      *
      * @param reqDto
      */
@@ -51,11 +95,8 @@ public class RelationService {
         String wardUuid = memberRepository.findOneById(reqDto.getWardId()).getUuid();
         String guardianUuid = reqDto.getGuardianUuid();
 
-        if (isExist(wardUuid) && isExist(guardianUuid)) {
-
-            Relation relation = convertToEntity(wardUuid, guardianUuid);
-            relationRepository.save(relation);
-        }
+        Relation relation = relationRepository.findRelation(guardianUuid, wardUuid);
+        relationRepository.saveWard(relation);
     }
 
     /**
@@ -96,8 +137,9 @@ public class RelationService {
         Relation relation = new Relation();
 
         relation.setUuid();
-        relation.setGuardianId(guardianUuid);
-        relation.setWardId(wardUuid);
+        relation.setGuardianUuid(guardianUuid);
+        relation.setWardUuid(wardUuid);
+        relation.setActive(false);
 
         return relation;
     }

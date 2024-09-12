@@ -20,10 +20,13 @@ public class Relation {
     private String uuid;
 
     @NotNull
-    private String guardianId;
+    private String guardianUuid;
 
     @NotNull
-    private String wardId;
+    private String wardUuid;
+
+    @NotNull
+    private boolean active;
 
     public void setUuid() {
         this.uuid = UUID.randomUUID().toString();

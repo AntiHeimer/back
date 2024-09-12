@@ -7,6 +7,8 @@ import capstone.Antiheimer.feature.notification.dto.NotificationDto;
 import capstone.Antiheimer.feature.notification.entity.Notification;
 import capstone.Antiheimer.feature.notification.repository.NotificationRepository;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
+import capstone.Antiheimer.feature.relation.dto.save.SaveGuardianReqDto;
+import capstone.Antiheimer.feature.relation.dto.save.SaveWardReqDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class NotificationService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public void saveNotification(RequestRelationReqDto request) {
+    public void saveRequestNotification(RequestRelationReqDto request) {
 
         Member toMember = memberRepository.findOneById(request.getToMemberId());
 
@@ -33,6 +35,44 @@ public class NotificationService {
             Notification notification = convertToEntity(request, toMember.getUuid());
 
             log.info("알림 저장");
+            notificationRepository.saveNotification(notification);
+        }
+    }
+
+    @Transactional
+    public void saveGuardianNotification(SaveGuardianReqDto request) {
+
+        Member guardian = memberRepository.findOneById(request.getGuardianId());
+
+        if (isExist(request.getWardUuid()) && guardian != null) {
+
+            Notification notification = new Notification();
+
+            notification.setUuid();
+            notification.setMemberUuid(request.getWardUuid());
+            notification.setFromMemberUuid(guardian.getUuid());
+            notification.setFromMemberName(guardian.getName());
+            notification.setType("resultGuardian");
+
+            notificationRepository.saveNotification(notification);
+        }
+    }
+
+    @Transactional
+    public void saveWardNotification(SaveWardReqDto request) {
+
+        Member ward = memberRepository.findOneById(request.getWardId());
+
+        if (isExist(request.getGuardianUuid()) && ward != null) {
+
+            Notification notification = new Notification();
+
+            notification.setUuid();
+            notification.setMemberUuid(request.getGuardianUuid());
+            notification.setFromMemberUuid(ward.getUuid());
+            notification.setFromMemberName(ward.getName());
+            notification.setType("resultWard");
+
             notificationRepository.saveNotification(notification);
         }
     }

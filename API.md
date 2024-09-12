@@ -305,6 +305,27 @@ exist(408)
 
 
 # Relation
+## requestRelation
+#### /request-relation: POST
+
+**Header**
+- String Authorization
+
+**Body**
+- String fromMemberUuid;
+- String toMemberId;
+- String requestType; guardian/ward
+
+## possible error
+auth(401): 권한 없음(토큰)
+
+duplicate(407)
+- Duplicate: 이미 존재하는 관계
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
 ## saveGuardian
 #### /save-relation/guardian: POST
 
@@ -312,6 +333,7 @@ exist(408)
 - String Authorization
 
 **Body**
+- String notificationUuid
 - String guardianId
 - String wardUuid
 
@@ -330,6 +352,7 @@ exist(408)
 - String Authorization
 
 **Body**
+- String notificationUuid
 - String guardianUuid
 - String wardId
 
@@ -369,3 +392,34 @@ auth(401): 권한 없음(토큰)
 
 exist(408)
 - NotExistException: 존재하지 않는 회원
+
+
+# Notification
+## findNotification
+#### /find-notification/{memberUuid}: GET
+memberUuid AES 암호화 + 인코딩
+
+**Header**
+- String Authorization
+
+### possible error
+
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
+## deleteNotification
+#### /delete-notification/{notificationUuid}: DELETE
+notificationUuid AES 암호화 + 인코딩
+
+**Header**
+- String Authorization
+
+### possible error
+
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 알림

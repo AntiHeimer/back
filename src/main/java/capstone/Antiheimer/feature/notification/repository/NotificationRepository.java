@@ -22,7 +22,6 @@ public class NotificationRepository {
     public void deleteNotification(Notification notification) {
 
         em.remove(notification);
-        em.persist(notification);
     }
 
     public Notification findNotificationByUuid(String notificationUuid) {

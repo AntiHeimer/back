@@ -40,7 +40,7 @@ public class NotificationController {
             List<NotificationDto> notificationList = notificationService.findNotificationByUuid(decryptedMemberUuid);
 
             log.info("알림 조회 성공");
-            log.info("알림 isRead 변경");
+            // 알림 isRead 변경
             notificationService.changeIsReadNotification(notificationList);
 
             return new NotificationResDto("200", "알림 조회 성공", notificationList);
@@ -56,7 +56,7 @@ public class NotificationController {
     public NormalResDto deleteNotification(@PathVariable("notificationUuid") String notificationUuid) {
 
         try {
-            log.info("알림 삭제");
+            log.info("알림 삭제 시작");
 
             // URL 디코딩
             String decodedUuid = URLDecoder.decode(notificationUuid, StandardCharsets.UTF_8.name());
@@ -67,6 +67,8 @@ public class NotificationController {
             // AES 복호화
             String decryptedNotificationUuid = aesService.decryptAES(plusEncodedString);
             notificationService.deleteNotification(decryptedNotificationUuid);
+            log.info("알림 삭제 성공");
+
             return new NormalResDto("200", "알림 삭제 성공");
         } catch (NotExistException e) {
 

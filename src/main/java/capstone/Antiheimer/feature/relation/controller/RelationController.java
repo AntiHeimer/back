@@ -1,5 +1,6 @@
 package capstone.Antiheimer.feature.relation.controller;
 
+import capstone.Antiheimer.exception.DuplicateRelationException;
 import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
@@ -37,11 +38,17 @@ public class RelationController {
     public NormalResDto requestRelation(@RequestBody RequestRelationReqDto request) {
 
         try {
+            // 관계 저장(비활성화)
+            relationService.saveRelation(request);
+
             log.info("관계 요청 알림 저장 시작");
-            notificationService.saveNotification(request);
+            notificationService.saveRequestNotification(request);
 
             log.info("관계 요청 알림 저장 성공");
             return new NormalResDto("200", "관계 요청 성공");
+        } catch (DuplicateRelationException e) {
+
+            return new NormalResDto("407", "이미 존재하는 관계");
         } catch (NotExistException e) {
 
             return new NormalResDto("408", "존재하지 않는 회원");
@@ -61,6 +68,12 @@ public class RelationController {
         try {
             log.info("보호자 등록 시작");
             relationService.saveGuardian(request);
+
+            // 보호자 등록 알림 저장
+            notificationService.saveGuardianNotification(request);
+
+            // 요청 알림 삭제
+            notificationService.deleteNotification(request.getNotificationUuid());
 
             log.info("보호자 등록 성공");
             return new NormalResDto("200", "보호자 등록 성공");
@@ -83,6 +96,12 @@ public class RelationController {
             log.info("피보호자 등록 시작");
             relationService.saveWard(request);
 
+            // 피보호자 등록 알림 저장
+            notificationService.saveWardNotification(request);
+
+            // 요청 알림 삭제
+            notificationService.deleteNotification(request.getNotificationUuid());
+
             log.info("피보호자 등록 성공");
             return new NormalResDto("200", "피보호자 등록 성공");
         } catch (NotExistException e) {
@@ -101,7 +120,7 @@ public class RelationController {
     public InfoWardResDto infoWard(@PathVariable String memberUuid) {
 
         try {
-            log.info("uuid 복호화");
+            // uuid 복호화
             String decryptedMemberUuid = aesService.decryptAES(memberUuid);
 
             log.info("피보호자 정보 조회 시작");
@@ -125,7 +144,7 @@ public class RelationController {
     public InfoGuardianResDto infoGuardian(@PathVariable String memberUuid) {
 
         try {
-            log.info("uuid 복호화");
+            // uuid 복호화
             String decryptedMemberUuid = aesService.decryptAES(memberUuid);
 
             log.info("피보호자 정보 조회 시작");
