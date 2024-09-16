@@ -1,6 +1,7 @@
 package capstone.Antiheimer.feature.diagnosis;
 
 import capstone.Antiheimer.exception.IncorrectNumException;
+import capstone.Antiheimer.feature.diagnosis.Dto.DSRandomWordDto;
 import capstone.Antiheimer.feature.diagnosis.Dto.DiagnosisSheetResDto;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,6 +36,26 @@ public class DiagnosisSheetController {
         } catch (IncorrectNumException e){
 
             return new DiagnosisSheetResDto("409", "잘못된 번호", null);
+        }
+    }
+
+    /**
+     * 진단지 1번 랜덤 세단어 반환
+     * @param num
+     * @return
+     */
+    @GetMapping("/diagnosisSheet/word")
+    public DSRandomWordDto returnRandomWords(@RequestParam("num") int num) {
+
+        try {
+            log.info("진단지 1번 세단어 랜덤 반환 시작");
+
+            List<String> Words = diagnosisSheetService.randomWords(num);
+
+            return new DSRandomWordDto("200", "진단지 1번 랜덤 세단어 반환 성공", Words);
+        } catch (IncorrectNumException e) {
+
+            return new DSRandomWordDto("409", "잘못된 번호", null);
         }
     }
 
