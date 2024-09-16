@@ -39,8 +39,13 @@ public class DiagnosisSheetController {
         }
     }
 
+    /**
+     * 진단지 1번 랜덤 세단어 반환
+     * @param num
+     * @return
+     */
     @GetMapping("/diagnosisSheet/num1")
-    public DSRandomWordDto RandomWords(@RequestParam("num") int num) {
+    public DSRandomWordDto returnRandomWords(@RequestParam("num") int num) {
 
         try {
             log.info("진단지 1번 세단어 랜덤 반환 시작");

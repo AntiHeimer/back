@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -39,25 +41,17 @@ public class DiagnosisSheetService {
      */
     public List<String> randomWords(int num) {
 
-        checkNumEqualOne(num);
+        checkNumEqualOne(num);  //1번 문제인지 확인
 
-        List<String> words = new ArrayList<>();
-        words.add("연필");
-        words.add("시계");
-        words.add("핸드폰");
-        words.add("아파트");
-        words.add("수건");
-        words.add("냉장고");
-        words.add("가방");
-        words.add("신발");
-        words.add("우산");
-        words.add("세탁기");
+        List<String> words = List.of("연필", "시계", "핸드폰", "아파트", "수건", "냉장고", "가방", "신발", "우산", "세탁기");
 
-        // 리스트를 랜덤하게 섞음
-        Collections.shuffle(words);
+        // Stream을 이용하여 랜덤으로 3개의 단어를 추출
+        List<String> random = new Random().ints(0, words.size()) // 0부터 words.size() 사이의 랜덤 인덱스 생성
+                .distinct()              // 중복을 제거
+                .limit(3)                // 3개의 숫자만 가져옴
+                .mapToObj(words::get)    // 랜덤으로 생성된 숫자를 사용하여 단어 리스트에서 단어를 가져옴
+                .collect(Collectors.toList());  // 추출된 단어들을 리스트로 수집
 
-        // 섞인 리스트에서 처음 3개 단어 추출
-        List<String> random = words.subList(0, 3);
 
         return random;
     }

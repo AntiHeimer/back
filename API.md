@@ -312,13 +312,29 @@ exist(408)
 -String Authorization
 
 **Param**
--String num
+-int num
 
 ### possible error
 auth(401): 권한 없음(토큰)
 
 Incorrect(409)
 - IncorrectNumException: 올바르지 않은 번호
+
+
+## returnRandomWords
+### /diagnosisSheet/num1?num={num}: GET
+
+**Header**
+-String Authorization
+
+**Param**
+-int num
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+Incorrect(409)
+- IncorrectNumException: 잘못된 번호
 
 
 # Relation
