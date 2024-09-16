@@ -44,7 +44,7 @@ public class DiagnosisSheetController {
      * @param num
      * @return
      */
-    @GetMapping("/diagnosisSheet/num1")
+    @GetMapping("/diagnosisSheet/word")
     public DSRandomWordDto returnRandomWords(@RequestParam("num") int num) {
 
         try {
