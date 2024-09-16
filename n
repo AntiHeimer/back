@@ -1,0 +1,1067 @@
+[33mcommit 5b347b6def95bde345bc4a04e869f37d0d562869[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 46f43ce b1ee749
+Author: me11ong <huijih9@gmail.com>
+Date:   Fri Sep 13 00:11:47 2024 +0900
+
+    build gitignore
+
+[33mcommit b1ee74990ef166c8c6faa6316a964048b0268a20[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 13 00:08:02 2024 +0900
+
+    notification 수정, build
+
+[33mcommit e30162d89c00babbe0fe9f7d291a98d6a0c711d6[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 13 00:07:53 2024 +0900
+
+    notification 수정, build
+
+[33mcommit 46f43ceb73254df3348c5564d86a750211147390[m
+Merge: 3a24503 409a18a
+Author: me11ong <huijih9@gmail.com>
+Date:   Thu Sep 12 23:48:12 2024 +0900
+
+    Remove build files and resolve conflicts
+
+[33mcommit 3a2450386e8a81ac7f57095efc3dbbefa4bc559e[m
+Author: me11ong <huijih9@gmail.com>
+Date:   Thu Sep 12 23:47:00 2024 +0900
+
+    Save local changes
+
+[33mcommit 409a18a6cb56f76e3b14cbf57d799ee09d4bbee2[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 12 22:39:40 2024 +0900
+
+    API.md 수정, build
+
+[33mcommit aafbcdc3f2c038c694a8e87cc5c25987960bc20c[m
+Merge: 505641d 103c36d
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 12 22:38:40 2024 +0900
+
+    Merge branch 'feature/relation'
+    
+    # Conflicts:
+    #       API.md
+    #       build/tmp/compileJava/previous-compilation-data.bin
+
+[33mcommit 103c36dcab98bddb59948116a05f7c9636367e26[m[33m ([m[1;31morigin/feature/relation[m[33m)[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 12 22:34:09 2024 +0900
+
+    요청/알림 API 1차 완성, API.md 작성, build
+
+[33mcommit 7894b0ab880cd629e174c81f7f3659f6b7fef3e6[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 12 15:19:06 2024 +0900
+
+    요청/알림 API ing, build
+
+[33mcommit 505641dce446550924ae4d9abd15788574c313c0[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Thu Sep 12 13:23:25 2024 +0900
+
+    returnDiagnosisSheet api 명세서 작성
+
+[33mcommit 0d4053f2734a1145f9006ccf9f230ff6c116d7e7[m
+Merge: 0f38233 bbd61f4
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Thu Sep 12 13:09:26 2024 +0900
+
+    Merge branch 'main' of https://github.com/AntiHeimer/back
+
+[33mcommit 0f3823339efbfd55b7bde32e463eb1cc2a57262a[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Thu Sep 12 13:08:55 2024 +0900
+
+    충동 수정2
+
+[33mcommit bbd61f4442269fea1f49ba762716afeafade56e6[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 12 12:58:24 2024 +0900
+
+    build 파일
+
+[33mcommit bb0ad0b0e229f5f4682707763aab25be5eb59377[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 12 12:54:36 2024 +0900
+
+    요청/알림 API ing, build
+
+[33mcommit 4f88771d01fdd950e9b41ad92282acbec0a16527[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 12 12:53:24 2024 +0900
+
+    요청/알림 API ing, build
+
+[33mcommit e0421c6ecde36a0d3dfa3deb2175a435610f952b[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 11 19:22:00 2024 +0900
+
+    diagnoSis 병합하려다가 운다
+
+[33mcommit fc79400768fcda447796a1cbd760dbec03b17730[m
+Merge: 424588d 4bb1f34
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 11 19:21:29 2024 +0900
+
+    충돌 해결
+
+[33mcommit 4bb1f3419173b99da3169f177a8755437ecd927c[m[33m ([m[1;31morigin/feature/diagnosisSheet[m[33m)[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 11 18:40:07 2024 +0900
+
+    diagnosisSheet 반환 코드 수정
+
+[33mcommit 0625934b0e2449126a228971e5168907e5e383d4[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 11 18:38:35 2024 +0900
+
+    diagnosisSheet 반환 코드 수정
+
+[33mcommit 8565058a3a7c83aafd62e8254b2b28318a06fa8d[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 11 14:29:04 2024 +0900
+
+    diagnosisSheet 반환 코드작성
+
+[33mcommit 2b13b9bc761427140d13db8214b3ce032e455009[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Sep 9 23:43:17 2024 +0900
+
+    보호자/피보호자 요청 API ing, build
+
+[33mcommit bd8b1a7582d1116685e8000dbccdf8c40df990e7[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Sep 9 13:32:31 2024 +0900
+
+    diagnosisSheet answer notnull 삭제
+
+[33mcommit 10131818aa3128e822e60315e184e90e6f2e95ec[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Sep 9 02:53:58 2024 +0900
+
+    diagnosisSheet answer notnull 삭제
+
+[33mcommit 3a10d16afbb50c7323aed433681ac9dd1c402d47[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Sep 9 02:48:29 2024 +0900
+
+    diagnosisSheet manual->direction
+
+[33mcommit 424588db2bbbfc1b5e1c6511d72355840f11f353[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Sep 9 02:46:32 2024 +0900
+
+    diagnosisSheet manual->direction
+
+[33mcommit 0fa66f7af6f9ba4eab67702e63059f0c7630a1a6[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Sep 8 22:29:00 2024 +0900
+
+    보호자/피보호자 등록, 조회 API 1차 완료 및 api.md 작성, build
+
+[33mcommit 116280369695ba1b241b39357cdae318a0be2d43[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 8 12:36:14 2024 +0900
+
+    recentLocation locationExit 오류 수정
+
+[33mcommit eb78d6707d0891862c29dee7fb7bc4fdf13740cf[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sat Sep 7 22:05:38 2024 +0900
+
+    구조 리팩토링, build
+
+[33mcommit 18a6ad1a590f6b1c3e8eac3f80c65ae93daf27c0[m
+Merge: d91300d d79f924
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sat Sep 7 19:25:40 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit d91300d7f7eb25251c7d05495994c205c4755622[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sat Sep 7 19:25:20 2024 +0900
+
+    location 일부 수정, build
+
+[33mcommit d79f924428d3fc4b922cf1eae026a93c09c75758[m
+Merge: 36d75c6 781ea41
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Fri Sep 6 20:23:16 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 36d75c63dd829e671bd94798f96aaa5f9b221da5[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Fri Sep 6 20:22:28 2024 +0900
+
+    recentLocation 레포지토리 수정2
+
+[33mcommit 781ea4172c77d680c363816bde79a275ff51923c[m
+Merge: 297538d eb6c0dd
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 6 20:00:52 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 297538dd622169f874f611b3f50ed04b2c58a7f3[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 6 20:00:26 2024 +0900
+
+    recent/location api 추가, build
+
+[33mcommit eb6c0dd40f9d6d60b74b126ed6c814936e73ee32[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Fri Sep 6 19:59:16 2024 +0900
+
+    recentLocation 레포지토리 수정
+
+[33mcommit 6256ffe7b227a2f7cee6550e8d0806e623c9e668[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 6 19:50:57 2024 +0900
+
+    recent/location encoding 추가, build
+
+[33mcommit 393e9f7f31bf021169c816d9ea36bd23cf59ab7d[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 6 19:45:04 2024 +0900
+
+    recent/location encoding 추가, build
+
+[33mcommit 26471f956677363e41addcb5950a1a7cc7fefe5f[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 6 18:12:58 2024 +0900
+
+    웹소켓 ing(브랜치 변경 전), build
+
+[33mcommit 39822e19f69eda8c64a2ad9824618217664780aa[m
+Merge: 2719bf6 6b8d977
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 6 16:00:24 2024 +0900
+
+    구조 리팩토링 3, build
+
+[33mcommit 6b8d97760ec4119b521aad27e649b0e9eb1824fd[m[33m ([m[1;31morigin/refactor/refactor-service-layer[m[33m)[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 6 15:42:30 2024 +0900
+
+    구조 리팩토링 2, build
+
+[33mcommit 092c0434a44b457b22f57d8b0d534bb5221df80e[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Sep 6 15:37:01 2024 +0900
+
+    구조 리팩토링, build
+
+[33mcommit 2719bf63b6a5b19b4939e405298cb38b16435227[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 20:48:02 2024 +0900
+
+    websocket wss수정, build
+
+[33mcommit f9eed44a9d17795fab6b3a3c08539d62eeeddc46[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 20:44:37 2024 +0900
+
+    websocket wss수정, build
+
+[33mcommit 011df4c42cc5a57c2e2c71979aba14be6ede3140[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 20:24:02 2024 +0900
+
+    websocket wss수정, build
+
+[33mcommit 1c29e3def2edca5c34d69accf15c4379052cc7c8[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 19:54:52 2024 +0900
+
+    websocket wss수정, build
+
+[33mcommit c7e92661b0b8adb069f687714e2108d317d05f8b[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 19:48:41 2024 +0900
+
+    websocket ing, build
+
+[33mcommit 828c1e7dd924d210f86a95301697c7348ec71fdb[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 19:37:00 2024 +0900
+
+    merge websocket branch, build
+
+[33mcommit 7d579901ae861ff6c60bc1d47b231041cc642861[m
+Merge: 5c3ef75 8f662da
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 19:36:40 2024 +0900
+
+    Merge branch 'feature/websocket'
+    
+    # Conflicts:
+    #       build/tmp/compileJava/previous-compilation-data.bin
+    #       src/main/java/capstone/Antiheimer/controller/MemberController.java
+
+[33mcommit 5c3ef754a1d0e9e1b03865c8ed085c4b36c2f50f[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 19:28:04 2024 +0900
+
+    websocket ing, build
+
+[33mcommit 8f662da520f6133cdbb805fab317d0c63e8d3118[m[33m ([m[1;31morigin/feature/websocket[m[33m)[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 19:15:52 2024 +0900
+
+    websocket ing, build
+
+[33mcommit a54c7e62c02368fe82c542f38805b404e17c4682[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 09:42:19 2024 +0900
+
+    firebase 취소3
+
+[33mcommit 513a9c74e8372f3919e2b0e7cf83ab62ed75a397[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 09:40:43 2024 +0900
+
+    firebase 취소2
+
+[33mcommit b968a6906e389f9a98f8876fd0cec42fc966a01c[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Sep 5 09:37:34 2024 +0900
+
+    firebase 취소
+
+[33mcommit ccc761034de270b7fb12937fa92e2e1ca86a88dc[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Wed Sep 4 16:05:41 2024 +0900
+
+    jar 파일 lfs 추적, build
+
+[33mcommit eb489f23abd00acaa0cdba4db71366f601d9ea8c[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 4 15:47:55 2024 +0900
+
+    recentLocation memberUuid aes
+
+[33mcommit 5118a9db96974aa877f52b28ca97eb977bf459ce[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 4 15:45:56 2024 +0900
+
+    recentLocation 오류 추가
+
+[33mcommit c8de1e5dcc670ae1b77ea4cf16fd969df6637525[m
+Merge: efa7f26 0e917cd
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 4 13:58:58 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit efa7f26c9feba32c3f97710d8e3e9d870d3aa8c3[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Sep 4 13:58:43 2024 +0900
+
+    recentLocation 수정2
+
+[33mcommit 0e917cdb64cd6220fa3fc0195c47a4d945138dcd[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 20:41:11 2024 +0900
+
+    디바이스 토큰 저장 api 1차 완성, build
+
+[33mcommit bb03abd2e028375cdc13e2181846809e9f4559f5[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 17:07:07 2024 +0900
+
+    jar 파일 오류, build
+
+[33mcommit 91c8abcc4417dbd18f98c53bf5958c0d0556f827[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 16:08:43 2024 +0900
+
+    jar 파일 오류, build
+
+[33mcommit 7ca58499b31f0b9e9a41a9e62e6374d1b533d478[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 15:52:57 2024 +0900
+
+    jar 파일 오류, build
+
+[33mcommit 3f7768ca7514c5bf2afbcaed83e532b1cb90321e[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 15:47:25 2024 +0900
+
+    jar 파일 오류, build
+
+[33mcommit 2275ba8752b89b4a8d79931077c9bdec0202d481[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 13:59:35 2024 +0900
+
+    jar 파일 오류, build
+
+[33mcommit 86cb41d986f825c5209726860650628f45f2acbb[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 13:46:10 2024 +0900
+
+    jar 파일 오류, build
+
+[33mcommit 2eba42747790a6aa5df79728b19715207a16725b[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 13:07:16 2024 +0900
+
+    git 헤메기, build
+
+[33mcommit ea9eee4adc3f001ee8e054ca89c788d8c2aabfea[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 13:03:01 2024 +0900
+
+    Add large file to LFS
+
+[33mcommit 585dbe0b9da538074f38ed4b419bcdc56d1fa641[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Sep 3 13:01:06 2024 +0900
+
+    recent/location api.md 수정, build
+
+[33mcommit 57a31403af9be44ac3a77964c9e7ef6dbdb3e9d1[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Sep 3 00:50:49 2024 +0900
+
+    recentLocation 수정2
+
+[33mcommit bb70aaa9179cf7bf4917b101b7fed9ddf1fdee1a[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Sep 3 00:45:05 2024 +0900
+
+    recentLocation 수정2
+
+[33mcommit 9ba5d705011d8ce1057807f4666740aa46dcdf86[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Sep 2 23:53:35 2024 +0900
+
+    recentLocation 수정
+
+[33mcommit fe3f47458df92092f329a1b79c03740ed87df373[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Sep 2 23:51:45 2024 +0900
+
+    recentLocation api.md 작성
+
+[33mcommit e42b19488be9ba3f5df07b300bf33905ef917afd[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Sep 2 23:50:14 2024 +0900
+
+    위치정보 확인 기능 작성
+
+[33mcommit e1fe2f561eaf3a1dc2eef41a8d2580a53facf134[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Sep 2 13:35:22 2024 +0900
+
+    api.md location 수정
+
+[33mcommit b788509b4d3dee147f0259fb7142aa035db62ade[m
+Merge: 260bece de31ae5
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 1 23:54:05 2024 +0900
+
+    Merge remote-tracking branch 'origin/feature/location'
+
+[33mcommit de31ae58d276d9982f31e0198c7babad34e7a819[m
+Merge: a015d3e 7a58d6c
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 1 23:45:57 2024 +0900
+
+    Merge remote-tracking branch 'origin/feature/location' into feature/location
+
+[33mcommit a015d3eaed8bda921bec915caf7c4d4407f33a32[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 1 23:45:36 2024 +0900
+
+    locationDuplicate확인 수정
+
+[33mcommit 260bece1ac149c06ba46e9e3f9b8f2fa0a04cf6f[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Sep 1 14:58:35 2024 +0900
+
+    location 수정, 확인, build
+
+[33mcommit 7a58d6c458367e0e7234236ecf157ceb2dc85a51[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Sep 1 14:22:53 2024 +0900
+
+    before merge
+
+[33mcommit 895c240f02c7129ef3166970648d89b1d25edd45[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 1 04:12:24 2024 +0900
+
+    locationDuplicate확인 수정
+
+[33mcommit f3ff307a42543de22d37d7a82ab1f9520f76e513[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 1 03:48:59 2024 +0900
+
+    JwtTokenFilter 수정(location 추가)
+
+[33mcommit 55a23a7ffb67898e99216dffd4e0f8c52db05ee8[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 1 03:38:48 2024 +0900
+
+    위치정보 저장 수정
+
+[33mcommit 2a5ec2833b3f075abdc55fc52c130c7ad0b385ec[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 1 03:24:19 2024 +0900
+
+    위치 정보 저장 api.md 작성
+
+[33mcommit f29da33bb1ad871d56c173a3d01b47c9df837416[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Sep 1 03:17:37 2024 +0900
+
+    위치 정보 저장 기능 완료
+
+[33mcommit f41d3daf5b6fe79ff8f87c3c23a7bdcf95dccbb3[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Fri Aug 30 12:19:20 2024 +0900
+
+    위치 기능 작성중(dto 생성)
+
+[33mcommit 8d40e4b55699bbcb2a578ad4cd0b4c3171691df5[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Fri Aug 30 11:27:02 2024 +0900
+
+    위치브랜치 생성
+
+[33mcommit 0fb52f7af017ce5d81cbb7f7412033433254d4e7[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Wed Aug 28 14:14:56 2024 +0900
+
+    active 데이터 오류발견 + 수정, build
+
+[33mcommit fac613cffc29f20c431478f1250cf1f20ceb44bf[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 27 22:24:53 2024 +0900
+
+    sleep 데이터 오류발견 + 수정, build
+
+[33mcommit 42fb59f9bb3b1b46501c1e1f1d9415ec73473f92[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 27 22:10:12 2024 +0900
+
+    sleep 데이터 수정, build
+
+[33mcommit 4b51c111774666973c2becb79f4f100f335ae44c[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 27 22:05:15 2024 +0900
+
+    sleep 데이터 수정, build
+
+[33mcommit 01b06d7577a6f99760badc07615c2c536bb1c6e3[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 21:39:46 2024 +0900
+
+    수면데이터 저장 방식 수정(Sleep domain추가)
+
+[33mcommit 521354bbcfc200f382dd0dce34da32ce0893ea88[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 21:25:01 2024 +0900
+
+    수면데이터 저장 방식 수정(Sleep domain추가)
+
+[33mcommit 370f7083e29a25ea7e4d0679afacc924c6078678[m
+Merge: d17cdef e3b3efc
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 21:12:02 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       build/classes/java/main/capstone/Antiheimer/repository/HealthDataRepository.class
+    #       build/tmp/compileJava/previous-compilation-data.bin
+
+[33mcommit d17cdef476647b1e90c252866698c1b94c73733e[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 21:11:11 2024 +0900
+
+    수면데이터 저장 수정(어노테이션 추가)
+
+[33mcommit e3b3efc19b5ead79987e69dd84a3f02f10daa5e0[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 27 17:54:15 2024 +0900
+
+    active 데이터 수정, build
+
+[33mcommit 34a6a69a727a92dd677811f30c10f89827d80dae[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 09:29:34 2024 +0900
+
+    수면데이터 저장 수정(어노테이션 추가)
+
+[33mcommit aa95be83722316a63e808ced6ff1ce4a6412abef[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 09:21:36 2024 +0900
+
+    수면데이터 저장 수정
+
+[33mcommit c0ff93dc2e0ce20ce1cc49caa8836ae8fdfb9bf9[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 06:39:07 2024 +0900
+
+    수면 데이터 최근 조회 코드 작성
+
+[33mcommit c42573dc1d7b93098741ed87bfff60013a8f6195[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 06:10:48 2024 +0900
+
+    수면 데이터 저장 api.md 작성
+
+[33mcommit 0f13bdc3e8021199d99c716483fe7cac44aeccee[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 05:52:37 2024 +0900
+
+    sleepDataController 삭제
+
+[33mcommit 367e236dd997093f54bbbb9e4aa67827267171a4[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 05:52:06 2024 +0900
+
+    [HealthDataService], [HealthDataController] 수면데이터 저장 작성
+
+[33mcommit 84bf5436b7cc40066e23ea5fca6cc7d4354569bb[m
+Merge: 1f37280 518e356
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 05:35:45 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 1f372807ce6bab475b69f0e7a0d76e8f64098f90[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 27 05:35:21 2024 +0900
+
+    [HealthDataRepository] 수면데이터 저장 작성
+
+[33mcommit 518e356a55d2315ec18cf32d8e3a7f2bb3c8851c[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 27 02:39:52 2024 +0900
+
+    remove firebase from git tracking
+
+[33mcommit 9663f59fd7a6cfa952af99167a0b32a90ab4cd36[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 27 02:31:50 2024 +0900
+
+    api md 추가, build
+
+[33mcommit 4f4117bbdfa55a76bdf649a4b593e34eaa2fe424[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 27 02:28:49 2024 +0900
+
+    RecentData API readme 수정, build
+
+[33mcommit f3d3636d96ff3f4bf9ae445e2779a7e42e50a900[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 27 02:27:14 2024 +0900
+
+    RecentData API readme 수정, build
+
+[33mcommit d5999d9f29a4436ffd3e3bdbb1d900db63f75669[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 26 21:44:57 2024 +0900
+
+    RecentData API readme 수정, build
+
+[33mcommit 996be2816b2bdb7cc04dc691b1a170abc24172e2[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 26 21:38:29 2024 +0900
+
+    RecentData API 추가 수정, build
+
+[33mcommit bb47b2af83f21976ac7f147755df1fe0ba0263e7[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 26 21:36:22 2024 +0900
+
+    RecentData API 추가 수정, build
+
+[33mcommit c0c1d9ec5cdf18d6b5824f434f39705e664fd876[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 26 19:30:41 2024 +0900
+
+    firebase 일부 추가, RecentData API 완료, build
+
+[33mcommit c37a0668a9742fb5710b056c0450a491bffab2a7[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 26 19:30:18 2024 +0900
+
+    firebase 일부 추가, RecentData API 완료, build
+
+[33mcommit 472e2507b223a7611fe779ab4138f27c00a30fd3[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Aug 26 12:47:28 2024 +0900
+
+    sleepdata 저장 리포지토리 작성중
+
+[33mcommit ac0b749efd1e1de3114c6eb354690457370e23d1[m
+Merge: 7f1a861 6961a99
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Aug 26 11:47:50 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 7f1a861360526299bee609f1522ff696611f0b6d[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Mon Aug 26 11:47:15 2024 +0900
+
+    sleepdata 추가 시작
+
+[33mcommit 6961a995d0154c15e24e458a5d828348b8a6818f[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Aug 25 19:48:17 2024 +0900
+
+    Remove application.yml and application-secure.yml from Git tracking
+
+[33mcommit 15d81d30b6fce62c717fd950cec90cc5516fed92[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Aug 25 19:47:04 2024 +0900
+
+    gitignore 테스트, build
+
+[33mcommit e58a3b405a38c4091a98747ddc26672536959ac3[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Aug 25 19:45:06 2024 +0900
+
+    주석 달기, build
+
+[33mcommit 600894092d1726d54f8263e5b433006307f27931[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Aug 25 19:41:04 2024 +0900
+
+    주석 달기, build
+
+[33mcommit 9b5bf63433d4c789a5de4117dead58e0954b5dc5[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Aug 25 19:38:59 2024 +0900
+
+    주석 달기, build
+
+[33mcommit 72d03a62bd4c31ceaa52ec8cbd1254b5d93e1dfa[m
+Merge: ec55c67 f264777
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Aug 25 00:26:42 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit ec55c67ad96d8b94a47cb591af5706b193427388[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Aug 25 00:26:24 2024 +0900
+
+    signup 기능 gender, birth 추가2
+
+[33mcommit f264777fb7238f1810c140e5cd2cdb185d688ce3[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sat Aug 24 18:37:53 2024 +0900
+
+    Active API 수정, build
+
+[33mcommit 7994fbfbdec5ebce9ce3885de95010f261781b1c[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Aug 23 00:28:49 2024 +0900
+
+    Active API 수정, build
+
+[33mcommit 23d124e0cc06368ca22648e2290cecc5853d336b[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Aug 23 00:24:56 2024 +0900
+
+    Active API 수정, build
+
+[33mcommit d1bb79661ff88022ce91af708e2697b2d3ad072c[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Aug 22 23:55:28 2024 +0900
+
+    Active/Move/Walk 클라이언트 API 완성, Weight API 완성, build
+
+[33mcommit ae6dac8718777240d20db46c9d94431c8dc0e45d[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Thu Aug 22 05:42:01 2024 +0900
+
+    signup 기능 gender, birth 추가
+
+[33mcommit e303c66d40e9a267a02521ab4e54f6ca0407e9fc[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Aug 22 03:15:55 2024 +0900
+
+    jwt 2번 출력 오류 수정, build
+
+[33mcommit beed79c838c1311c5013d78972fa739dcdfd0df7[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Aug 22 02:29:45 2024 +0900
+
+    Active/Move/Walk API 1차 완료, build
+
+[33mcommit 79a1584c97392777c4f97381f2e0cb8ca8a9b78d[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 19 20:44:59 2024 +0900
+
+    MemberData 수정, Active, Move, Walk 도메인 추가, Member 도메인에 성별/생년월일 추가, build
+
+[33mcommit a0bc6cbaf047374558dd720cedd24d62f919ef48[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 19 02:58:26 2024 +0900
+
+    로그인/회원가입 성공 확인, build
+
+[33mcommit e9456bcc05f6ab7de34cf7de7cd8bc55a4fe9b19[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 19 02:12:11 2024 +0900
+
+    login service memberExistCheck 수정, build
+
+[33mcommit fec68e12aea658b372bbc003e1a3a5563c879b5e[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 19 00:12:11 2024 +0900
+
+    nginx 해결, login test, build
+
+[33mcommit f81e398e517ebb2d8d99d344e89bcb8b17ae7319[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Aug 14 17:24:39 2024 +0900
+
+    signup readme 수정
+
+[33mcommit ea0adeb0b71eebf7392459dd5d5a35330a657fd9[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Aug 14 13:46:42 2024 +0900
+
+    signup readme 작성
+
+[33mcommit 187adfe492058024b25fbfebe16ab2d16b46ecb1[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 13 20:42:28 2024 +0900
+
+    jwt가 문제일까 확인, build
+
+[33mcommit 04315fd5595ca2847491bcfea7aa8f7cdebaf32b[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 13 18:18:43 2024 +0900
+
+    mysql 유저 생성 및 application.yml 수정, build
+
+[33mcommit 7fbc7bea320379a1d3b1c4a37bdbbce2b4aedbbc[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 13 17:46:38 2024 +0900
+
+    build.gradle mysql connector 수정, build
+
+[33mcommit b12994d72a358237707e5bc1a267e1309219d74d[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 13 17:23:46 2024 +0900
+
+    mysql 연결 성공, build
+
+[33mcommit 5cce569cecad2a971fff09874836364701991888[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 13 17:06:55 2024 +0900
+
+    mysql 연결 성공, build
+
+[33mcommit e2f5ef5235d5f708a27076aa331580da8b12461c[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Aug 13 01:46:31 2024 +0900
+
+    도커 주석처리, build
+
+[33mcommit 73d9fd4fa30a9d3dba2ca34616ab397fdfc2a639[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 12 18:35:58 2024 +0900
+
+    로그인, 로그아웃 리드미 2차 작성, build
+
+[33mcommit 75157a2231ef6818d03cf39007a23a647be292bf[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 12 18:27:18 2024 +0900
+
+    로그인, 로그아웃 리드미 작성, build
+
+[33mcommit 5eef80793938a5cfbcf82567eec1b3a422a23d0a[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Aug 11 22:59:49 2024 +0900
+
+    build 파일 gitignore에서 제외
+
+[33mcommit f3c5be8f22dc1daa6383821621b9030cd19018b9[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Aug 11 22:52:15 2024 +0900
+
+    도커파일/도커컴포즈 수정 - nginx 삭제, 로그인/로그아웃 1차 구현, build
+
+[33mcommit aafd8b52fa2308af6bef100f97437447751ba644[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Aug 9 05:09:05 2024 +0900
+
+    nginx.conf 도메인 추가, build
+
+[33mcommit ae35a5301588e3e4ac0543a74a35907164ee9bf2[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Fri Aug 9 04:28:09 2024 +0900
+
+    jwt 구현 1차 성공, build
+
+[33mcommit a301f49d7b375c8ee85166da0209d653e9ab3a89[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Thu Aug 8 17:21:52 2024 +0900
+
+    jwt ㅗ
+
+[33mcommit 76009838afeceed47e15125a3fcf826ca31fe843[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Aug 7 14:28:54 2024 +0900
+
+    user->member
+
+[33mcommit 2162d36d5d140926837b827b430fd95edad22fd4[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Aug 7 13:50:53 2024 +0900
+
+    userSignup Controller 에러코드 수정
+
+[33mcommit f270a55e0315ccb56c6dd237fa0f93d7e3cfbe85[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Wed Aug 7 13:44:03 2024 +0900
+
+    readvalue 수정
+
+[33mcommit 46fc07e75160d677ea2cf63a85c6ec227f5fd3f3[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Wed Aug 7 13:39:02 2024 +0900
+
+    로그인 JWT ing
+
+[33mcommit 1256bebab6f7245d8974ab90ac6a932ce0bcbc4e[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Tue Aug 6 22:52:45 2024 +0900
+
+    userSignup Controller 작성완
+
+[33mcommit f44bf4d04e720e8766373281e9b82ade85b03cf1[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Aug 5 21:16:19 2024 +0900
+
+    로그인 JWT ing, 빌드 성공
+
+[33mcommit 45d2c3592bfff990f1fcce914cca5f52b60cfc02[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Aug 4 16:49:33 2024 +0900
+
+    userSignup Controller 작성 중..
+
+[33mcommit d9689a296a373effcd35348c70126a7d7c7489fc[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sun Aug 4 16:41:06 2024 +0900
+
+    userSignup Service 작성
+
+[33mcommit b3b2e714634c2b55b495d718b6bc012c62da4c59[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sun Aug 4 12:42:41 2024 +0900
+
+    졍아... 내가 회원가입 일부했어..., 빌드 성공
+
+[33mcommit f3345c9ec208ff6230b7a9c4158d90847b95f75b[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Jul 31 13:56:24 2024 +0900
+
+    entity 수정 - oneToMany 추가
+
+[33mcommit 0c03606900123d4fb7dbc49937560c9f5a615e40[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Jul 31 02:06:09 2024 +0900
+
+    entity<UserDate> 수정 - 이름 잘못씀
+
+[33mcommit 694ee0900ea71ad6cbd9f3dcdcde1e2804ccc16f[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Wed Jul 31 02:04:44 2024 +0900
+
+    entity 작성(지영)
+
+[33mcommit 3c82e6b21103b5d2785eef4ce4f783c65c0cca1d[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Jul 30 15:23:15 2024 +0900
+
+    도커 컴포즈 nginx 추가(nginx.conf), 빌드 성공
+
+[33mcommit 8950695c09e67fbe134955d2674fe92050972d76[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Jul 30 14:06:54 2024 +0900
+
+    도커파일 볼륨 마운트 수정, 빌드 성공
+
+[33mcommit 5b73e35cf9843e09e117b077cb90b918810bd6ea[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Tue Jul 30 14:02:02 2024 +0900
+
+    도커파일 볼륨 마운트 추가, 빌드 성공
+
+[33mcommit a72186252b949f8d05a2fe19f5dee220944cb6b5[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Jul 29 22:50:27 2024 +0900
+
+    도커파일 작성, 빌드 성공
+
+[33mcommit 8b787d3eb5dfc4247f35e509c1049bfe26bb97af[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Jul 29 22:44:32 2024 +0900
+
+    도커 컴포즈, 빌드 성공
+
+[33mcommit ed634bb845328b7c3505b9a57c8d5b9bc19a77e9[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Jul 29 22:35:11 2024 +0900
+
+    도커 컴포즈
+
+[33mcommit 5cccc9f2a894523e2eeb773bac2bd097c70ea6b4[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Mon Jul 29 15:14:32 2024 +0900
+
+    Entity 일부 작성
+
+[33mcommit f62fc74fef876e4e575d7cccba13ff0d16ba330d[m
+Merge: d976b3e 5f823aa
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sat Jul 27 22:27:46 2024 +0900
+
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit d976b3e55dfe50db1b59e842ba8d94dc1a8342aa[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sat Jul 27 22:27:02 2024 +0900
+
+    application.yml 일부 추가
+
+[33mcommit 5f823aa957ba2754feb24bf85ef10cadf91ead20[m
+Author: ziyoungkwon <gy011003@naver.com>
+Date:   Sat Jul 27 19:34:18 2024 +0900
+
+    commit 테스트
+
+[33mcommit 8ca48df7d52dfb9c3d9ae765f4556d12cecb9326[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sat Jul 27 19:16:01 2024 +0900
+
+    branch 완료
+
+[33mcommit 2d9034d7543f389cea359b48aa07bfdd37ffadbb[m
+Author: yereumi <lovelyyeji01@gmail.com>
+Date:   Sat Jul 27 18:48:30 2024 +0900
+
+    test
+
+[33mcommit 108b7ed6b9141479d3ba42d0e97b37795f9e226c[m
+Author: yereumi <91780220+yereumi@users.noreply.github.com>
+Date:   Sat Jul 27 18:37:08 2024 +0900
+
+    Initial commit
