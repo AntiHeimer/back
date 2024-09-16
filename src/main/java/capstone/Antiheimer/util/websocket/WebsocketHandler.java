@@ -38,28 +38,28 @@ public class WebsocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
-        log.info("message 수신 성공");
-        System.out.println("message = " + message.getPayload());
-
-        NotificationReqDto reqDto = objectMapper.readValue(message.getPayload(), NotificationReqDto.class);
-        System.out.println("reqDto = " + reqDto);
-
-        String toMemberId = reqDto.getToMemberId();
-        String toMemberUuid = memberRepository.findOneById(toMemberId).getUuid();
-        String fromMemberName = memberRepository.findOneByUuid(reqDto.getFromMemberUuid()).getName();
-        System.out.println("toMemberUuid = " + toMemberUuid);
-
-        // 사용자 ID를 세션과 매핑
-        sessions.put(toMemberUuid, session); // 세션을 사용자 ID로 저장
-        System.out.println("session = " + session);
-
-        WebSocketSession recipientSession = sessions.get(toMemberUuid);
-        System.out.println("recipientSession = " + recipientSession);
-
-        if (recipientSession != null && recipientSession.isOpen()) {
-            NotificationResDto resDto = new NotificationResDto(reqDto.getFromMemberUuid(), fromMemberName, toMemberUuid, reqDto.getMessage());
-            String jsonResponse = objectMapper.writeValueAsString(resDto);
-            recipientSession.sendMessage(new TextMessage(jsonResponse));
-        }
+//        log.info("message 수신 성공");
+//        System.out.println("message = " + message.getPayload());
+//
+//        NotificationReqDto reqDto = objectMapper.readValue(message.getPayload(), NotificationReqDto.class);
+//        System.out.println("reqDto = " + reqDto);
+//
+//        String toMemberId = reqDto.getToMemberUuid();
+//        String toMemberUuid = memberRepository.findOneById(toMemberId).getUuid();
+//        String fromMemberName = memberRepository.findOneByUuid(reqDto.getFromMemberUuid()).getName();
+//        System.out.println("toMemberUuid = " + toMemberUuid);
+//
+//        // 사용자 ID를 세션과 매핑
+//        sessions.put(toMemberUuid, session); // 세션을 사용자 ID로 저장
+//        System.out.println("session = " + session);
+//
+//        WebSocketSession recipientSession = sessions.get(toMemberUuid);
+//        System.out.println("recipientSession = " + recipientSession);
+//
+//        if (recipientSession != null && recipientSession.isOpen()) {
+//            NotificationResDto resDto = new NotificationResDto(reqDto.getFromMemberUuid(), fromMemberName, toMemberUuid, reqDto.getRequestType());
+//            String jsonResponse = objectMapper.writeValueAsString(resDto);
+//            recipientSession.sendMessage(new TextMessage(jsonResponse));
+//        }
     }
 }

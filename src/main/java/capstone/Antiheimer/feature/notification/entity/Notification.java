@@ -1,32 +1,36 @@
-package capstone.Antiheimer.feature.relation.entity;
+package capstone.Antiheimer.feature.notification.entity;
 
-import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.UUID;
 
-@Entity
 @Getter
 @Setter
-public class Relation {
+@Entity
+public class Notification {
 
     @Id
-    @Column(name = "relation_id")
+    @Column(name = "notifiation_id")
     private String uuid;
 
     @NotNull
-    private String guardianUuid;
+    private String type;
 
     @NotNull
-    private String wardUuid;
+    private boolean isRead;
 
     @NotNull
-    private boolean active;
+    private String memberUuid;
+
+    private String fromMemberUuid;
+
+    private String fromMemberName;
 
     public void setUuid() {
         this.uuid = UUID.randomUUID().toString();
