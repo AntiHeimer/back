@@ -322,19 +322,13 @@ Incorrect(409)
 
 
 ## returnRandomWords
-### /diagnosisSheet/num1?num={num}: GET
+### /diagnosisSheet/word: GET
 
 **Header**
 -String Authorization
 
-**Param**
--int num
-
 ### possible error
 auth(401): 권한 없음(토큰)
-
-Incorrect(409)
-- IncorrectNumException: 잘못된 번호
 
 
 # Relation
