@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -40,23 +42,23 @@ public class DiagnosisSheetController {
     }
 
     /**
-     * 진단지 1번 랜덤 세단어 반환
-     * @param num
+     * 진단지 1번 무작위 세단어 반환
      * @return
      */
     @GetMapping("/diagnosisSheet/word")
-    public DSRandomWordDto returnRandomWords(@RequestParam("num") int num) {
+    public DSRandomWordDto randomWords() {
 
-        try {
-            log.info("진단지 1번 세단어 랜덤 반환 시작");
+        List<String> words = List.of("연필", "시계", "핸드폰", "아파트", "수건", "냉장고", "가방", "신발", "우산", "세탁기");
 
-            List<String> Words = diagnosisSheetService.randomWords(num);
+        // Stream을 이용하여 랜덤으로 3개의 단어를 추출
+        List<String> random = new Random().ints(0, words.size()) // 0부터 words.size() 사이의 랜덤 인덱스 생성
+                .distinct()              // 중복을 제거
+                .limit(3)                // 3개의 숫자만 가져옴
+                .mapToObj(words::get)    // 랜덤으로 생성된 숫자를 사용하여 단어 리스트에서 단어를 가져옴
+                .collect(Collectors.toList());  // 추출된 단어들을 리스트로 수집
 
-            return new DSRandomWordDto("200", "진단지 1번 랜덤 세단어 반환 성공", Words);
-        } catch (IncorrectNumException e) {
 
-            return new DSRandomWordDto("409", "잘못된 번호", null);
-        }
+        return new DSRandomWordDto("200", "세단어 반환 성공", random);
     }
 
 }
