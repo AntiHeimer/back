@@ -23,8 +23,8 @@ public class NotificationController {
     private final NotificationService notificationService;
     private final AesService aesService;
 
-    @GetMapping("/find-notification/{memberUuid}")
-    public NotificationResDto findNotification(@PathVariable("memberUuid") String memberUuid) {
+    @GetMapping("/find-notification")
+    public NotificationResDto findNotification(@RequestParam("memberUuid") String memberUuid) {
 
         try {
             log.info("알림 조회 시작");
