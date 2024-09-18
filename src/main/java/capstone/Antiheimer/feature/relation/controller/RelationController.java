@@ -17,6 +17,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Slf4j
@@ -116,12 +119,18 @@ public class RelationController {
      * @param memberUuid
      * @return
      */
-    @GetMapping("/info-relation/ward/{memberUuid}")
-    public InfoWardResDto infoWard(@PathVariable String memberUuid) {
+    @GetMapping("/info-relation/ward/")
+    public InfoWardResDto infoWard(@RequestParam String memberUuid) {
 
         try {
+            // URL 디코딩
+            String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
+
+            // 공백을 +로 변환
+            String plusEncodedString = decodedUuid.replace(" ", "+");
+
             // uuid 복호화
-            String decryptedMemberUuid = aesService.decryptAES(memberUuid);
+            String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
             log.info("피보호자 정보 조회 시작");
             List<InfoWardDto> infoWardList = relationService.infoWard(decryptedMemberUuid);
@@ -131,6 +140,8 @@ public class RelationController {
         } catch (NotExistException e) {
 
             return new InfoWardResDto("408", "존재하지 않는 회원", null);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -140,12 +151,18 @@ public class RelationController {
      * @param memberUuid
      * @return
      */
-    @GetMapping("/info-relation/guardian/{memberUuid}")
-    public InfoGuardianResDto infoGuardian(@PathVariable String memberUuid) {
+    @GetMapping("/info-relation/guardian")
+    public InfoGuardianResDto infoGuardian(@RequestParam String memberUuid) {
 
         try {
+            // URL 디코딩
+            String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
+
+            // 공백을 +로 변환
+            String plusEncodedString = decodedUuid.replace(" ", "+");
+
             // uuid 복호화
-            String decryptedMemberUuid = aesService.decryptAES(memberUuid);
+            String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
             log.info("피보호자 정보 조회 시작");
             List<InfoGuardianDto> infoGuardianList = relationService.infoGuardian(decryptedMemberUuid);
@@ -155,6 +172,8 @@ public class RelationController {
         } catch (NotExistException e) {
 
             return new InfoGuardianResDto("408", "존재하지 않는 회원", null);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
     }
 

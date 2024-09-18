@@ -392,8 +392,8 @@ exist(408)
 
 
 ## infoGuardian
-#### /info-relation/guardian/{memberUuid}: GET
-memberUuid AES 암호화
+#### /info-relation/guardian?memberUuid={memberUuid}: GET
+memberUuid AES 암호화 + 인코딩
 
 **Header**
 - String Authorization
@@ -407,8 +407,8 @@ exist(408)
 
 
 ## infoWard
-#### /info-relation/ward/{memberUuid}: GET
-memberUuid AES 암호화
+#### /info-relation/ward?memberUuid={memberUuid}: GET
+memberUuid AES 암호화 + 인코딩
 
 **Header**
 - String Authorization
@@ -423,7 +423,7 @@ exist(408)
 
 # Notification
 ## findNotification
-#### /find-notification/{memberUuid}: GET
+#### /find-notification?memberUuid={memberUuid}: GET
 memberUuid AES 암호화 + 인코딩
 
 **Header**
