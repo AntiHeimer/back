@@ -2,6 +2,7 @@ package capstone.Antiheimer.feature.relation.service;
 
 import capstone.Antiheimer.exception.DuplicateRelationException;
 import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
@@ -36,6 +37,11 @@ public class RelationService {
 
         if (reqDto.getRequestType().equals("guardian")) {
 
+            List<Member> findMember = memberRepository.findById(reqDto.getToMemberId());
+            if (findMember.isEmpty()) {
+                throw new NotExistException();
+            }
+
             String guardianUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
             String wardUuid = reqDto.getFromMemberUuid();
 
@@ -51,6 +57,11 @@ public class RelationService {
                 relationRepository.saveRelation(relation);
             }
         } else if (reqDto.getRequestType().equals("ward")) {
+
+            List<Member> findMember = memberRepository.findById(reqDto.getToMemberId());
+            if (findMember.isEmpty()) {
+                throw new NotExistException();
+            }
 
             String wardUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
             String guardianUuid = reqDto.getFromMemberUuid();
@@ -152,7 +163,7 @@ public class RelationService {
      */
     public boolean isExist(String uuid) {
 
-        if (memberRepository.findOneByUuid(uuid) == null) {
+        if (memberRepository.findOneById(uuid) == null) {
 
             throw new NotExistException();
         } else {

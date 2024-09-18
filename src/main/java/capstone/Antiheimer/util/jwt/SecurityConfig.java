@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .sessionManagement((sessionManagement) ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorizeRequests) -> authorizeRequests
-                        .requestMatchers("/", "/favicon.ico", "/signup", "/login", "/swagger-ui/**", "/save/location", "/wss", "/ws").permitAll()
+                        .requestMatchers("/", "/favicon.ico", "/signup", "/login", "/swagger-ui/**", "/save/location").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 
