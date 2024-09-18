@@ -11,10 +11,12 @@ import capstone.Antiheimer.feature.relation.dto.save.SaveGuardianReqDto;
 import capstone.Antiheimer.feature.relation.dto.save.SaveWardReqDto;
 import capstone.Antiheimer.feature.relation.entity.Relation;
 import capstone.Antiheimer.feature.relation.repository.RelationRepository;
+import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yaml.snakeyaml.tokens.ScalarToken;
 
 import java.util.List;
 
@@ -37,46 +39,48 @@ public class RelationService {
 
         if (reqDto.getRequestType().equals("guardian")) {
 
-            List<Member> findMember = memberRepository.findById(reqDto.getToMemberId());
-            if (findMember.isEmpty()) {
-                throw new NotExistException();
-            }
+            try {
+                memberRepository.findById(reqDto.getToMemberId());
 
-            String guardianUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
-            String wardUuid = reqDto.getFromMemberUuid();
+                String guardianUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
+                String wardUuid = reqDto.getFromMemberUuid();
 
-            if (isExist(wardUuid) && isExist(guardianUuid)) {
+                if (isExist(wardUuid) && isExist(guardianUuid)) {
 
-                Relation relation = convertToEntity(wardUuid, guardianUuid);
+                    Relation relation = convertToEntity(wardUuid, guardianUuid);
 
-                if (relationRepository.isRelationExist(relation)) {
+                    if (relationRepository.isRelationExist(relation)) {
 
-                    log.warn("이미 존재하는 관계");
-                    throw new DuplicateRelationException();
+                        log.warn("이미 존재하는 관계");
+                        throw new DuplicateRelationException();
+                    }
+                    relationRepository.saveRelation(relation);
                 }
-                relationRepository.saveRelation(relation);
+            } catch(NoResultException e) {
+                throw new NotExistException();
             }
         } else if (reqDto.getRequestType().equals("ward")) {
 
-            List<Member> findMember = memberRepository.findById(reqDto.getToMemberId());
-            if (findMember.isEmpty()) {
-                throw new NotExistException();
-            }
+            try {
+                memberRepository.findById(reqDto.getToMemberId());
 
-            String wardUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
-            String guardianUuid = reqDto.getFromMemberUuid();
+                String wardUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
+                String guardianUuid = reqDto.getFromMemberUuid();
 
-            if (isExist(wardUuid) && isExist(guardianUuid)) {
+                if (isExist(wardUuid) && isExist(guardianUuid)) {
 
-                Relation relation = convertToEntity(wardUuid, guardianUuid);
+                    Relation relation = convertToEntity(wardUuid, guardianUuid);
 
-                if (relationRepository.isRelationExist(relation)) {
+                    if (relationRepository.isRelationExist(relation)) {
 
-                    log.warn("이미 존재하는 관계");
-                    throw new DuplicateRelationException();
+                        log.warn("이미 존재하는 관계");
+                        throw new DuplicateRelationException();
+                    }
+                    relationRepository.saveRelation(relation);
                 }
-                relationRepository.saveRelation(relation);
-            }
+            } catch(NoResultException e) {
+                    throw new NotExistException();
+                }
         }
     }
 
