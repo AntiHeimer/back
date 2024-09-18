@@ -44,7 +44,7 @@ public class RelationRepository {
 
     public boolean isRelationExist(Relation relation) {
 
-        List<Relation> findRelation = em.createQuery("SELECT r FROM Relation r WHERE (r.guardianUuid = :guardianUuid AND r.wardUuid = :wardUuid)", Relation.class)
+        List<Relation> findRelation = em.createQuery("SELECT r FROM Relation r WHERE (r.guardianUuid = :guardianUuid AND r.wardUuid = :wardUuid AND r.active = false)", Relation.class)
                 .setParameter("guardianUuid", relation.getGuardianUuid()).setParameter("wardUuid", relation.getWardUuid())
                 .getResultList();
 
