@@ -14,6 +14,7 @@ import capstone.Antiheimer.feature.relation.repository.RelationRepository;
 import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yaml.snakeyaml.tokens.ScalarToken;
@@ -56,7 +57,7 @@ public class RelationService {
                     }
                     relationRepository.saveRelation(relation);
                 }
-            } catch(NoResultException e) {
+            } catch(EmptyResultDataAccessException e) {
                 throw new NotExistException();
             }
         } else if (reqDto.getRequestType().equals("ward")) {
@@ -78,7 +79,7 @@ public class RelationService {
                     }
                     relationRepository.saveRelation(relation);
                 }
-            } catch(NoResultException e) {
+            } catch(EmptyResultDataAccessException e) {
                     throw new NotExistException();
                 }
         }
