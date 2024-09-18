@@ -7,5 +7,5 @@ public class SaveWardReqDto {
 
     private String notificationUuid;
     private String guardianUuid;
-    private String wardId;
+    private String wardUuid;
 }

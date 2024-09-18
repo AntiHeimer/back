@@ -99,7 +99,7 @@ public class RelationService {
     @Transactional
     public void saveGuardian(SaveGuardianReqDto reqDto) {
 
-        String guardianUuid = memberRepository.findOneById(reqDto.getGuardianId()).getUuid();
+        String guardianUuid = memberRepository.findOneById(reqDto.getGuardianUuid()).getUuid();
         String wardUuid = reqDto.getWardUuid();
 
         Relation relation = relationRepository.findRelation(guardianUuid, wardUuid);
@@ -114,7 +114,7 @@ public class RelationService {
     @Transactional
     public void saveWard(SaveWardReqDto reqDto) {
 
-        String wardUuid = memberRepository.findOneById(reqDto.getWardId()).getUuid();
+        String wardUuid = memberRepository.findOneById(reqDto.getWardUuid()).getUuid();
         String guardianUuid = reqDto.getGuardianUuid();
 
         Relation relation = relationRepository.findRelation(guardianUuid, wardUuid);

@@ -52,8 +52,8 @@ public class NotificationController {
         }
     }
 
-    @DeleteMapping("/delete-notification/{notificationUuid}")
-    public NormalResDto deleteNotification(@PathVariable("notificationUuid") String notificationUuid) {
+    @DeleteMapping("/delete-notification")
+    public NormalResDto deleteNotification(@RequestParam("notificationUuid") String notificationUuid) {
 
         try {
             log.info("알림 삭제 시작");

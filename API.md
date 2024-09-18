@@ -361,7 +361,7 @@ exist(408)
 
 **Body**
 - String notificationUuid
-- String guardianId
+- String guardianUuid
 - String wardUuid
 
 ### possible error
@@ -438,7 +438,7 @@ exist(408)
 
 
 ## deleteNotification
-#### /delete-notification/{notificationUuid}: DELETE
+#### /delete-notification?notificationUuid={notificationUuid}: DELETE
 notificationUuid AES 암호화 + 인코딩
 
 **Header**

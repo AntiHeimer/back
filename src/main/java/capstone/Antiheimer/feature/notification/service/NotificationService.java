@@ -28,7 +28,7 @@ public class NotificationService {
     @Transactional
     public void saveRequestNotification(RequestRelationReqDto request) {
 
-        Member toMember = memberRepository.findOneById(request.getToMemberId());
+        Member toMember = memberRepository.findOneByUuid(request.getToMemberId());
 
         if (isExist(request.getFromMemberUuid()) && toMember != null) {
 
@@ -45,7 +45,7 @@ public class NotificationService {
     @Transactional
     public void saveGuardianNotification(SaveGuardianReqDto request) {
 
-        Member guardian = memberRepository.findOneById(request.getGuardianId());
+        Member guardian = memberRepository.findOneByUuid(request.getGuardianUuid());
 
         if (isExist(request.getWardUuid()) && guardian != null) {
 
@@ -64,7 +64,7 @@ public class NotificationService {
     @Transactional
     public void saveWardNotification(SaveWardReqDto request) {
 
-        Member ward = memberRepository.findOneById(request.getWardId());
+        Member ward = memberRepository.findOneByUuid(request.getWardUuid());
 
         if (isExist(request.getGuardianUuid()) && ward != null) {
 

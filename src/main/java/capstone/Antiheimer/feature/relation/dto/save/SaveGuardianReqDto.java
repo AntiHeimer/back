@@ -6,6 +6,6 @@ import lombok.Getter;
 public class SaveGuardianReqDto {
 
     private String notificationUuid;
-    private String guardianId;
+    private String guardianUuid;
     private String wardUuid;
 }
