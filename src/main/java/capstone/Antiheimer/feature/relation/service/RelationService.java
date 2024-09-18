@@ -63,10 +63,15 @@ public class RelationService {
         } else if (reqDto.getRequestType().equals("ward")) {
 
             try {
+                System.out.println("reqDto.getToMemberId() = " + reqDto.getToMemberId());
                 memberRepository.findById(reqDto.getToMemberId());
 
+                System.out.println("reqDto = " + reqDto);
                 String wardUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
                 String guardianUuid = reqDto.getFromMemberUuid();
+
+                System.out.println("guardianUuid = " + guardianUuid);
+                System.out.println("wardUuid = " + wardUuid);
 
                 if (isExist(wardUuid) && isExist(guardianUuid)) {
 
@@ -79,9 +84,10 @@ public class RelationService {
                     }
                     relationRepository.saveRelation(relation);
                 }
-            } catch(EmptyResultDataAccessException e) {
-                    throw new NotExistException();
-                }
+            } catch(NoResultException e) {
+
+                throw new NotExistException();
+            }
         }
     }
 
@@ -168,8 +174,9 @@ public class RelationService {
      */
     public boolean isExist(String uuid) {
 
-        if (memberRepository.findOneById(uuid) == null) {
+        if (memberRepository.findOneByUuid(uuid) == null) {
 
+            log.warn("회원이 존재하지 않습니다");
             throw new NotExistException();
         } else {
             return true;
