@@ -21,6 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -205,15 +209,28 @@ public class MemberController {
     /**
      * 회원정보
      *
-     * @param uuid
-     * @return InfoResDto
+     * @param memberUuid
+     * @return
      */
-    @GetMapping("/info/{uuid}")
-    public InfoResDto userInfo(@PathVariable("uuid") String uuid) {
+    @GetMapping("/info")
+    public InfoResDto userInfo(@RequestParam("memberUuid") String memberUuid) {
 
-        String decryptedUuid = aesService.decryptAES(uuid);
-        Member member = memberRepository.findOneByUuid(decryptedUuid);
+        try {
+            // URL 디코딩
+            String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
 
-        return new InfoResDto("200", "회원 조회 성공", member.getUuid(), member.getId(), member.getName());
+            // 공백을 +로 변환
+            String plusEncodedString = decodedUuid.replace(" ", "+");
+
+            // uuid 복호화
+            String decryptedUuid = aesService.decryptAES(plusEncodedString);
+
+            Member member = memberRepository.findOneByUuid(decryptedUuid);
+
+            return new InfoResDto("200", "회원 조회 성공", member.getId(), member.getName(), member.getGender(), member.getBirth());
+        } catch (UnsupportedEncodingException e) {
+
+            throw new RuntimeException(e);
+        }
     }
 }

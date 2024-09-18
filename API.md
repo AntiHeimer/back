@@ -102,21 +102,42 @@ exist(408)
 - NotExistException: 존재하지 않는 회원
 
 
-## saveDeviceToken
-#### /save/device-token: POST
+## info
+#### /info?memberUuid={memberUuid}: GET
+memberUuid AES 암호화 + URL 인코딩
 
 **Header**
 - String Authorization
 
-**Body**
-- String memberUuid
-- String deviceToken
-
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+
+[//]: # (## saveDeviceToken)
+
+[//]: # (#### /save/device-token: POST)
+
+[//]: # ()
+[//]: # (**Header**)
+
+[//]: # (- String Authorization)
+
+[//]: # ()
+[//]: # (**Body**)
+
+[//]: # (- String memberUuid)
+
+[//]: # (- String deviceToken)
+
+[//]: # ()
+[//]: # (### possible error)
+
+[//]: # (auth&#40;401&#41;: 권한 없음&#40;토큰&#41;)
+
+[//]: # ()
+[//]: # (exist&#40;408&#41;)
+
+[//]: # (- NotExistException: 존재하지 않는 회원)
 
 
 # HealthData
