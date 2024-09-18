@@ -84,7 +84,7 @@ public class RelationService {
                     }
                     relationRepository.saveRelation(relation);
                 }
-            } catch(NoResultException e) {
+            } catch(EmptyResultDataAccessException e) {
 
                 throw new NotExistException();
             }
