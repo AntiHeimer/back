@@ -28,7 +28,7 @@ public class NotificationService {
     @Transactional
     public void saveRequestNotification(RequestRelationReqDto request) {
 
-        Member toMember = memberRepository.findOneByUuid(request.getToMemberId());
+        Member toMember = memberRepository.findOneById(request.getToMemberId());
 
         if (isExist(request.getFromMemberUuid()) && toMember != null) {
 
