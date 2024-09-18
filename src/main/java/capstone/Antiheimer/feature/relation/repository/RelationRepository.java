@@ -53,7 +53,7 @@ public class RelationRepository {
 
     public List<InfoWardDto> infoWard(String memberUuid) {
 
-        return em.createQuery("SELECT new capstone.Antiheimer.feature.relation.dto.info.InfoWardDto(m.uuid, m.id, m.name) FROM Member m JOIN Relation r ON m.uuid = r.wardId WHERE r.guardianId = :memberUuid", InfoWardDto.class)
+        return em.createQuery("SELECT new capstone.Antiheimer.feature.relation.dto.info.InfoWardDto(m.uuid, m.id, m.name) FROM Member m JOIN Relation r ON m.uuid = r.wardUuid WHERE r.guardianUuid = :memberUuid", InfoWardDto.class)
                 .setParameter("memberUuid", memberUuid)
                 .getResultList();
     }
@@ -65,7 +65,7 @@ public class RelationRepository {
      */
     public List<InfoGuardianDto> infoGuardian(String memberUuid) {
 
-        return em.createQuery("SELECT new capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto(m.uuid, m.id, m.name) FROM Member m JOIN Relation r ON m.uuid = r.guardianId WHERE r.wardId = :memberUuid", InfoGuardianDto.class)
+        return em.createQuery("SELECT new capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto(m.uuid, m.id, m.name) FROM Member m JOIN Relation r ON m.uuid = r.guardianUuid WHERE r.wardUuid = :memberUuid", InfoGuardianDto.class)
                 .setParameter("memberUuid", memberUuid)
                 .getResultList();
     }
