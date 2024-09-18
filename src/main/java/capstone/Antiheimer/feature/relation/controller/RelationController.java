@@ -119,7 +119,7 @@ public class RelationController {
      * @param memberUuid
      * @return
      */
-    @GetMapping("/info-relation/ward/")
+    @GetMapping("/info-relation/ward")
     public InfoWardResDto infoWard(@RequestParam String memberUuid) {
 
         try {
