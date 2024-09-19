@@ -213,7 +213,7 @@ public class MemberController {
      * @return
      */
     @GetMapping("/info")
-    public InfoResDto userInfo(@RequestParam("memberUuid") String memberUuid) {
+    public InfoResDto memberInfo(@RequestParam("memberUuid") String memberUuid) {
 
         try {
             // URL 디코딩

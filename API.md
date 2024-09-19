@@ -102,7 +102,7 @@ exist(408)
 - NotExistException: 존재하지 않는 회원
 
 
-## info
+## memberInfo
 #### /info?memberUuid={memberUuid}: GET
 memberUuid AES 암호화 + URL 인코딩
 
