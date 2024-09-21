@@ -44,18 +44,13 @@ public class DiagnosisController {
      * @return
      */
     @GetMapping("/diagnosisSheet")
-    public DiagnosisSheetResDto returnDiagnosisSheet(@RequestParam("num") int num) {
+    public ResponseEntity<DiagnosisSheetResDto> returnDiagnosisSheet(@RequestParam("num") int num) {
 
-        try {
-            log.info("[Controller] 진단문제 반환 시작");
+        log.info("[Controller] 진단문제 반환 시작");
+        DiagnosisSheet diagnosisSheet = diagnosisService.returnDiagnosisSheet(num);
 
-            DiagnosisSheet diagnosisSheet = diagnosisService.returnDiagnosisSheet(num);
-
-            return new DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet);
-        } catch (IncorrectNumException e){
-
-            return new DiagnosisSheetResDto("409", "잘못된 번호", null);
-        }
+        log.info("[Controller] 진단문제 반환 성공");
+        return new ResponseEntity<>(new DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet), HttpStatus.OK);
     }
 
     /**
@@ -63,10 +58,11 @@ public class DiagnosisController {
      * @return
      */
     @GetMapping("/diagnosisSheet/word")
-    public DSRandomWordDto randomWords() {
+    public ResponseEntity<DSRandomWordDto> randomWords() {
 
         List<String> words = List.of("연필", "시계", "핸드폰", "아파트", "수건", "냉장고", "가방", "신발", "우산", "세탁기");
 
+        log.info("[Controller] 랜덤 세단어 추출 시작");
         // Stream을 이용하여 랜덤으로 3개의 단어를 추출
         List<String> random = new Random().ints(0, words.size()) // 0부터 words.size() 사이의 랜덤 인덱스 생성
                 .distinct()              // 중복을 제거
@@ -74,8 +70,8 @@ public class DiagnosisController {
                 .mapToObj(words::get)    // 랜덤으로 생성된 숫자를 사용하여 단어 리스트에서 단어를 가져옴
                 .collect(Collectors.toList());  // 추출된 단어들을 리스트로 수집
 
-
-        return new DSRandomWordDto("200", "세단어 반환 성공", random);
+        log.info("[Controller] 랜덤 세단어 추출 성공");
+        return new ResponseEntity<>(new DSRandomWordDto("200", "세단어 반환 성공", random), HttpStatus.OK);
     }
 
     @PostMapping("/diagnosis/start")
