@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.diagnosis.Dto;
+package capstone.Antiheimer.feature.diagnosis.dto;
 
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import lombok.Getter;

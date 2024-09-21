@@ -33,7 +33,6 @@ public class RelationController {
 
     /**
      * 관계 요청 알림
-     *
      * @param reqDto
      * @return
      */
@@ -52,7 +51,6 @@ public class RelationController {
 
     /**
      * 보호자 등록
-     *
      * @param reqDto
      * @return
      */
@@ -73,7 +71,6 @@ public class RelationController {
 
     /**
      * 피보호자 등록
-     *
      * @param reqDto
      * @return
      */
@@ -94,7 +91,6 @@ public class RelationController {
 
     /**
      * 보호자 조회
-     *
      * @param memberUuid
      * @return
      */
@@ -118,7 +114,6 @@ public class RelationController {
 
     /**
      * 피보호자 조회
-     *
      * @param memberUuid
      * @return
      */

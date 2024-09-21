@@ -1,5 +1,6 @@
 package capstone.Antiheimer.feature.notification.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,6 +26,7 @@ public class Notification {
     @NotNull
     private boolean isRead;
 
+    @JsonIgnore
     @NotNull
     private String memberUuid;
 

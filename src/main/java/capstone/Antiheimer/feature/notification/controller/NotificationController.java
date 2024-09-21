@@ -1,7 +1,8 @@
 package capstone.Antiheimer.feature.notification.controller;
 
 import capstone.Antiheimer.feature.notification.dto.NotificationDto;
-import capstone.Antiheimer.feature.notification.dto.NotificationResDto;
+import capstone.Antiheimer.feature.notification.dto.NotificationListResDto;
+import capstone.Antiheimer.feature.notification.entity.Notification;
 import capstone.Antiheimer.feature.notification.service.NotificationService;
 import capstone.Antiheimer.util.dto.NormalResDto;
 import capstone.Antiheimer.util.encrypt.AesService;
@@ -25,14 +26,13 @@ public class NotificationController {
     private final AesService aesService;
 
     /**
-     * 알림 조회
-     *
+     * 알림 리스트 조회
      * @param memberUuid
      * @return
      * @throws UnsupportedEncodingException
      */
     @GetMapping("/find-notification")
-    public ResponseEntity<NotificationResDto> findNotification(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
+    public ResponseEntity<NotificationListResDto> findNotification(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
@@ -42,18 +42,17 @@ public class NotificationController {
         // uuid 복호화
         String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
-        log.info("[Controller] 알림 조회 시작");
-        List<NotificationDto> notificationList = notificationService.findNotificationByUuid(decryptedMemberUuid);
+        log.info("[Controller] 알림 리스트 조회 시작");
+        List<Notification> notificationList = notificationService.findNotificationByUuid(decryptedMemberUuid);
         // 알림 isRead 변경
         notificationService.changeIsReadNotification(notificationList);
 
-        log.info("[Controller] 알림 조회 성공");
-        return new ResponseEntity<>(new NotificationResDto("200", "알림 조회 성공", notificationList), HttpStatus.OK);
+        log.info("[Controller] 알림 리스트 조회 성공");
+        return new ResponseEntity<>(new NotificationListResDto("200", "알림 리스트 조회 성공", notificationList), HttpStatus.OK);
     }
 
     /**
      * 알림 삭제
-     *
      * @param notificationUuid
      * @return
      * @throws UnsupportedEncodingException

@@ -45,8 +45,8 @@ public class Member {
     private List<Location> locationList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
-    private List<Result> resultList = new ArrayList<>();
+    private List<HealthData> healthDataList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
-    private List<HealthData> healthDataList = new ArrayList<>();
+    private List<Result> resultList = new ArrayList<>();
 }

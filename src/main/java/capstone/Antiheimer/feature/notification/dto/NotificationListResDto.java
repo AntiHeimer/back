@@ -1,5 +1,6 @@
 package capstone.Antiheimer.feature.notification.dto;
 
+import capstone.Antiheimer.feature.notification.entity.Notification;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationResDto {
+public class NotificationListResDto {
 
     private String statusCode;
     private String message;
-    private List<NotificationDto> notificationDtoList;
+    private List<Notification> notificationList;
 }
