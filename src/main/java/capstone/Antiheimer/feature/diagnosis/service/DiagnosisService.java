@@ -1,7 +1,8 @@
-package capstone.Antiheimer.feature.diagnosis;
+package capstone.Antiheimer.feature.diagnosis.service;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
+import capstone.Antiheimer.feature.diagnosis.repository.DiagnosisRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Slf4j
 @Transactional(readOnly = true)
-public class DiagnosisSheetService {
+public class DiagnosisService {
 
-    private final DiagnosisSheetRepository diagnosisSheetRepository;
+    private final DiagnosisRepository diagnosisSheetRepository;
 
     /**
      * 진단지 문제 반환

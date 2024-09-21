@@ -1,6 +1,7 @@
-package capstone.Antiheimer.feature.diagnosis;
+package capstone.Antiheimer.feature.diagnosis.controller;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
+import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
 import capstone.Antiheimer.feature.diagnosis.Dto.DSRandomWordDto;
 import capstone.Antiheimer.feature.diagnosis.Dto.DiagnosisSheetResDto;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
@@ -17,9 +18,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class DiagnosisSheetController {
+public class DiagnosisController {
 
-    private final DiagnosisSheetService diagnosisSheetService;
+    private final DiagnosisService diagnosisSheetService;
 
     /**
      * 진단지 반환

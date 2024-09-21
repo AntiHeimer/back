@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.diagnosis;
+package capstone.Antiheimer.feature.diagnosis.repository;
 
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import jakarta.persistence.EntityManager;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class DiagnosisSheetRepository {
+public class DiagnosisRepository {
 
     private final EntityManager em;
 
