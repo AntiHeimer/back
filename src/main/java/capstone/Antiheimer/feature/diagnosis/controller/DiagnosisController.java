@@ -1,10 +1,10 @@
-package capstone.Antiheimer.feature.diagnosis.controller;
+package capstone.Antiheimer.feature.diagnosis;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordDto;
 import capstone.Antiheimer.feature.diagnosis.dto.DiagnosisSheetResDto;
-import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
+import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +31,7 @@ public class DiagnosisController {
     public DiagnosisSheetResDto returnDiagnosisSheet(@RequestParam("num") int num) {
 
         try {
-            log.info("[Controller] 진단문제 반환 시작");
+            log.info("[Service] 진단문제 반환 시작");
 
             DiagnosisSheet diagnosisSheet = diagnosisSheetService.returnDiagnosisSheet(num);
 
@@ -61,4 +61,5 @@ public class DiagnosisController {
 
         return new DSRandomWordDto("200", "세단어 반환 성공", random);
     }
+
 }
