@@ -89,25 +89,25 @@ public class MemberController {
         LoginReqDto reqDto = objectMapper.readValue(decryptedRequest, LoginReqDto.class);
 
         log.info("[Controller] 로그인 시작");
-        String uuid = memberService.login(reqDto);
+        String memberUuid = memberService.login(reqDto);
 
         log.info("[Controller] Jwt 토큰 발급");
-        String jwtToken = jwtTokenUtil.generateToken(uuid);
+        String jwtToken = jwtTokenUtil.generateToken(memberUuid);
 
         log.info("[Controller] 로그인 성공");
-        return new ResponseEntity<>(new LoginResDto("200", "로그인 성공", uuid, jwtToken), HttpStatus.OK);
+        return new ResponseEntity<>(new LoginResDto("200", "로그인 성공", memberUuid, jwtToken), HttpStatus.OK);
     }
 
     /**
      * 로그아웃
      *
-     * @param uuid
+     * @param memberUuid
      * @return NormalResDto
      */
     @PostMapping("/logout/{uuid}")
-    public ResponseEntity<NormalResDto> logout(@PathVariable("uuid") String uuid) {
+    public ResponseEntity<NormalResDto> logout(@PathVariable("uuid") String memberUuid) {
 
-        String decryptedUuid = aesService.decryptAES(uuid);
+        String decryptedUuid = aesService.decryptAES(memberUuid);
 
         log.info("[Controller] 로그아웃 시작");
         memberService.logout(decryptedUuid);

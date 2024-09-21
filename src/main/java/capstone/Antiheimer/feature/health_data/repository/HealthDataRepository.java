@@ -24,6 +24,7 @@ public class HealthDataRepository {
 
     /**
      * 활동 데이터 저장
+     *
      * @param reqDto
      */
     public void saveActive(SaveActiveReqDto reqDto) {
@@ -170,6 +171,7 @@ public class HealthDataRepository {
 
     /**
      * 수면 데이터 저장
+     *
      * @param reqDto
      */
     public void saveSleep(SaveSleepReqDto reqDto) {
@@ -252,11 +254,11 @@ public class HealthDataRepository {
      * @param date
      * @return
      */
-    public HealthData findDataByMemberAndDate(String uuid, LocalDate date) {
+    public HealthData findDataByMemberAndDate(String memberUuid, LocalDate date) {
 
         try {
-            return em.createQuery("select h from HealthData h where h.date = :date and h.member.uuid = :uuid", HealthData.class)
-                    .setParameter("uuid", uuid).setParameter("date", date)
+            return em.createQuery("select h from HealthData h where h.date = :date and h.member.uuid = :memberUuid", HealthData.class)
+                    .setParameter("memberUuid", memberUuid).setParameter("date", date)
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;
@@ -267,46 +269,49 @@ public class HealthDataRepository {
      * 활동 데이터가 며칠까지 전송됐는지 찾기
      * @return
      */
-    public LocalDate findLastSentDateOfActive(String uuid) {
+    public LocalDate findLastSentDateOfActive(String memberUuid) {
 
-        return em.createQuery("select max(a.date) as last_date from Active a where a.healthData.member.uuid =:uuid", LocalDate.class)
-                .setParameter("uuid", uuid)
+        return em.createQuery("select max(a.date) as last_date from Active a where a.healthData.member.uuid =:memberUuid", LocalDate.class)
+                .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
 
     /**
      * 움직인 거리 데이터가 며칠까지 전송됐는지 찾기
-     * @param uuid
+     *
+     * @param memberUuid
      * @return
      */
-    public LocalDate findLastSentDateOfMove(String uuid) {
+    public LocalDate findLastSentDateOfMove(String memberUuid) {
 
-        return em.createQuery("select max(m.date) as last_date from Move m where m.healthData.member.uuid = :uuid", LocalDate.class)
-                .setParameter("uuid", uuid)
+        return em.createQuery("select max(m.date) as last_date from Move m where m.healthData.member.uuid = :memberUuid", LocalDate.class)
+                .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
 
     /**
      * 걸음수 데이터가 며칠까지 전송됐는지 찾기
-     * @param uuid
+     *
+     * @param memberUuid
      * @return
      */
-    public LocalDate findLastSentDateOfWalk(String uuid) {
+    public LocalDate findLastSentDateOfWalk(String memberUuid) {
 
-        return em.createQuery("select max(w.date) as last_date from Walk w where w.healthData.member.uuid = :uuid", LocalDate.class)
-                .setParameter("uuid", uuid)
+        return em.createQuery("select max(w.date) as last_date from Walk w where w.healthData.member.uuid = :memberUuid", LocalDate.class)
+                .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
 
     /**
      * 수면 데이터가 며칠까지 전송됐는지 찾기
-     * @param uuid
+     *
+     * @param memberUuid
      * @return
      */
-    public LocalDate findLastSentDateOfSleep(String uuid) {
+    public LocalDate findLastSentDateOfSleep(String memberUuid) {
 
-        return em.createQuery("select max(s.date) as last_date from Sleep s where s.healthData.member.uuid = :uuid", LocalDate.class)
-                .setParameter("uuid", uuid)
+        return em.createQuery("select max(s.date) as last_date from Sleep s where s.healthData.member.uuid = :memberUuid", LocalDate.class)
+                .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
 
@@ -432,13 +437,13 @@ public class HealthDataRepository {
 
     /**
      *
-     * @param uuid
+     * @param memberUuid
      * @return
      */
-    public List<HealthData> findDataByMember(String uuid) {
+    public List<HealthData> findDataByMember(String memberUuid) {
 
-        return em.createQuery("select h from HealthData h where h.member.uuid = :uuid", HealthData.class)
-                .setParameter("uuid", uuid)
+        return em.createQuery("select h from HealthData h where h.member.uuid = :memberUuid", HealthData.class)
+                .setParameter("memberUuid", memberUuid)
                 .getResultList();
     }
 }

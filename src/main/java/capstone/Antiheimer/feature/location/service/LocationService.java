@@ -48,11 +48,11 @@ public class LocationService {
 
     /**
      * 회원 존재 확인
-     * @param uuid
+     * @param memberUuid
      */
-    private void memberExistCheck(String uuid) {
+    private void memberExistCheck(String memberUuid) {
 
-        Member findMember = memberRepository.findOneByUuid(uuid);
+        Member findMember = memberRepository.findOneByUuid(memberUuid);
 
         if (findMember == null) {
 
@@ -79,11 +79,11 @@ public class LocationService {
 
     /**
      * 위치 정보 존재 확인
-     * @param uuid
+     * @param memberUuid
      */
-    private void locationExitCheck(String uuid) {
+    private void locationExitCheck(String memberUuid) {
 
-        if (!locationRepository.findLocation(uuid)) {
+        if (!locationRepository.findLocation(memberUuid)) {
 
             log.warn("해당 회원의 위치 정보가 존재하지 않습니다");
             throw new NotExistLocationException();

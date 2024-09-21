@@ -52,15 +52,15 @@ public class LocationRepository {
 
     public Location findLastLocation(String memberUuid) {
 
-        return em.createQuery("select l from Location l where l.member.uuid = :uuid and l.date = (SELECT MAX(l.date) FROM Location l WHERE l.member.uuid = :uuid)", Location.class)
-                .setParameter("uuid", memberUuid)
+        return em.createQuery("select l from Location l where l.member.uuid = :uuid and l.date = (SELECT MAX(l.date) FROM Location l WHERE l.member.uuid = :memberUuid)", Location.class)
+                .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
 
-    public boolean findLocation(String uuid) {
+    public boolean findLocation(String memberUuid) {
 
         List<Location> locationList = em.createQuery("select l from Location l where l.member.uuid = :uuid", Location.class)
-                .setParameter("uuid", uuid)
+                .setParameter("uuid", memberUuid)
                 .getResultList();
         return !locationList.isEmpty();
     }

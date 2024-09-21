@@ -36,9 +36,9 @@ public class CheckService {
      *
      * @param uuid
      */
-    public void checkUuidNotNull(String uuid) {
+    public void checkUuidNotNull(String memberUuid) {
 
-        Member member = memberRepository.findOneByUuid(uuid);
+        Member member = memberRepository.findOneByUuid(memberUuid);
 
         if (member.getUuid().isEmpty()) {
 
@@ -86,9 +86,9 @@ public class CheckService {
      *
      * @param uuid
      */
-    public void checkUuidValid(String uuid) {
+    public void checkUuidValid(String memberUuid) {
 
-        Member member = memberRepository.findOneByUuid(uuid);
+        Member member = memberRepository.findOneByUuid(memberUuid);
 
         if (containsWhitespace(member.getUuid()) || member.getUuid().length() != 36) {
 
@@ -131,9 +131,9 @@ public class CheckService {
      *
      * @param uuid
      */
-    public void checkMemberExists(String uuid) {
+    public void checkMemberExists(String memberUuid) {
 
-        Member member = memberRepository.findOneByUuid(uuid);
+        Member member = memberRepository.findOneByUuid(memberUuid);
 
         if (memberRepository.findOneByUuid(member.getUuid()) == null) {
 

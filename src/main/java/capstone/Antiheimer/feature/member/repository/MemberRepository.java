@@ -42,9 +42,9 @@ public class MemberRepository {
      * @param uuid
      * @return
      */
-    public Member findOneByUuid(String uuid) {
+    public Member findOneByUuid(String memberUuid) {
 
-        return em.find(Member.class, uuid);
+        return em.find(Member.class, memberUuid);
     }
 
     /**

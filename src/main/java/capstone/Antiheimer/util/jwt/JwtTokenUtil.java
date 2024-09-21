@@ -22,12 +22,12 @@ public class JwtTokenUtil {
         this.exp = exp;
     }
 
-    public String generateToken(String uuid) {
+    public String generateToken(String memberUuid) {
 
         log.info("[JWT] 토큰 생성 시작");
 
         Claims claims = Jwts.claims();
-        claims.put("uuid", uuid);
+        claims.put("memberUuid", memberUuid);
 
         return Jwts.builder()
                 .setClaims(claims)

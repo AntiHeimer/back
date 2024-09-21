@@ -48,8 +48,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             String token = authorizationHeader.split(" ")[1];
             jwtTokenUtil.validateToken(token);
 
-            String uuid = jwtTokenUtil.getUuid(token);
-            Member member = memberRepository.findOneByUuid(uuid);
+            String memberUuid = jwtTokenUtil.getUuid(token);
+            Member member = memberRepository.findOneByUuid(memberUuid);
 
             if (member == null) {
                 throw new IllegalArgumentException("유효하지 않은 uuid");

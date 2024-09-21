@@ -105,16 +105,16 @@ public class HealthDataService {
      * @param data
      * @return
      */
-    public LocalDate recentDateOfHealthData(String uuid, String data) {
+    public LocalDate recentDateOfHealthData(String memberUuid, String data) {
 
-        memberExistCheck(uuid);
+        memberExistCheck(memberUuid);
         dataTypeExistCheck(data);
 
         return switch (data) {
-            case "active" -> healthDataRepository.findLastSentDateOfActive(uuid);
-            case "move" -> healthDataRepository.findLastSentDateOfMove(uuid);
-            case "walk" -> healthDataRepository.findLastSentDateOfWalk(uuid);
-            case "sleep" -> healthDataRepository.findLastSentDateOfSleep(uuid);
+            case "active" -> healthDataRepository.findLastSentDateOfActive(memberUuid);
+            case "move" -> healthDataRepository.findLastSentDateOfMove(memberUuid);
+            case "walk" -> healthDataRepository.findLastSentDateOfWalk(memberUuid);
+            case "sleep" -> healthDataRepository.findLastSentDateOfSleep(memberUuid);
             default -> null;
         };
     }
@@ -135,10 +135,10 @@ public class HealthDataService {
     }
 
 
-//    public List<Active> findActiveList(String uuid, LocalDate date) {
+//    public List<Active> findActiveList(String memberUuid, LocalDate date) {
 //
-//        checkIdExists(uuid);
-//        List<Active> activeList = healthDataRepository.findActive(uuid, date);
+//        checkIdExists(memberUuid);
+//        List<Active> activeList = healthDataRepository.findActive(memberUuid, date);
 //        activeDataExistCheck(activeList);
 //
 //        log.info("[Controller] Active 데이터 조회 성공");
@@ -146,10 +146,10 @@ public class HealthDataService {
 //        return activeList;
 //    }
 //
-//    public List<Move> findMoveList(String uuid, LocalDate date) {
+//    public List<Move> findMoveList(String memberUuid, LocalDate date) {
 //
-//        checkIdExists(uuid);
-//        List<Move> moveList = healthDataRepository.findMove(uuid, date);
+//        checkIdExists(memberUuid);
+//        List<Move> moveList = healthDataRepository.findMove(memberUuid, date);
 //        moveDataExistCheck(moveList);
 //
 //        log.info("[Controller] Move 데이터 조회 성공");
@@ -157,10 +157,10 @@ public class HealthDataService {
 //        return moveList;
 //    }
 //
-//    public List<Walk> findWalkList(String uuid, LocalDate date) {
+//    public List<Walk> findWalkList(String memberUuid, LocalDate date) {
 //
-//        checkIdExists(uuid);
-//        List<Walk> walkList = healthDataRepository.findWalk(uuid, date);
+//        checkIdExists(memberUuid);
+//        List<Walk> walkList = healthDataRepository.findWalk(memberUuid, date);
 //        walkDataDuplicateCheck(walkList);
 //
 //        log.info("[Controller] Walk 데이터 조회 성공");
@@ -173,9 +173,9 @@ public class HealthDataService {
      * 회원 존재 확인
      * @param uuid
      */
-    private void memberExistCheck(String uuid) {
+    private void memberExistCheck(String memberUuid) {
 
-        Member findMember = memberRepository.findOneByUuid(uuid);
+        Member findMember = memberRepository.findOneByUuid(memberUuid);
 
         if (findMember == null) {
 
