@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor
-public class FindDataReqDto {
+public class FindHealthDataReqDto {
 
     String memberUuid;
     LocalDate date;

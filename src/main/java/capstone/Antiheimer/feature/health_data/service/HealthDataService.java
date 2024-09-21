@@ -1,6 +1,7 @@
 package capstone.Antiheimer.feature.health_data.service;
 
 import capstone.Antiheimer.feature.health_data.dto.*;
+import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.health_data.repository.HealthDataRepository;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.exception.DuplicateHealthDataException;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -114,6 +116,21 @@ public class HealthDataService {
             case "sleep" -> healthDataRepository.findLastSentDateOfSleep(uuid);
             default -> null;
         };
+    }
+
+    public List<HealthData> findHealthDataByMemberUuid(FindHealthDataReqDto request) {
+
+        memberExistCheck(request.getMemberUuid());
+
+        List<HealthData> healthDataList = healthDataRepository.findHealthDataByMemberUuid(request.getMemberUuid(), request.getDate());
+
+        if (healthDataList.isEmpty()) {
+            log.warn("건강 데이터가 존재하지 않습니다");
+            return null;
+        }
+
+
+        return healthDataList;
     }
 
 

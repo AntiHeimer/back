@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -275,6 +276,7 @@ public class HealthDataRepository {
 
     /**
      * 움직인 거리 데이터가 며칠까지 전송됐는지 찾기
+     * @param uuid
      * @return
      */
     public LocalDate findLastSentDateOfMove(String uuid) {
@@ -286,6 +288,7 @@ public class HealthDataRepository {
 
     /**
      * 걸음수 데이터가 며칠까지 전송됐는지 찾기
+     * @param uuid
      * @return
      */
     public LocalDate findLastSentDateOfWalk(String uuid) {
@@ -305,6 +308,16 @@ public class HealthDataRepository {
         return em.createQuery("select max(s.date) as last_date from Sleep s where s.healthData.member.uuid = :uuid", LocalDate.class)
                 .setParameter("uuid", uuid)
                 .getSingleResult();
+    }
+
+    public List<HealthData> findHealthDataByMemberUuid(String memberUuid, LocalDate date) {
+
+        LocalDate startDate = date.minus(7, ChronoUnit.DAYS);
+
+
+        return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid AND h.date >= :startDate AND h.date <= :date", HealthData.class)
+                .setParameter("memberUuid", memberUuid).setParameter("date", date).setParameter("startDate", startDate)
+                .getResultList();
     }
 
 //    public List<Active> findActive(String uuid, LocalDate date) {

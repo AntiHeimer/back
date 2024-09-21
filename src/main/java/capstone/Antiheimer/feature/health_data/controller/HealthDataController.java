@@ -4,6 +4,7 @@ import capstone.Antiheimer.feature.diagnosis.Dto.AiReqDto;
 import capstone.Antiheimer.exception.DuplicateHealthDataException;
 import capstone.Antiheimer.exception.InvalidDataTypeException;
 import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.health_data.service.HealthDataService;
 import capstone.Antiheimer.feature.health_data.dto.*;
 import capstone.Antiheimer.util.encrypt.AesService;
@@ -18,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -150,7 +152,7 @@ public class HealthDataController {
                                     @RequestParam("uuid") String uuid) {
 
         try {
-            log.info("최근 건강 데이터 조회 시작");
+            log.info("최근 건강 데이터 날짜 조회 시작");
 
             // URL 디코딩
             String decodedUuid = URLDecoder.decode(uuid, StandardCharsets.UTF_8.name());
@@ -163,7 +165,7 @@ public class HealthDataController {
 
             LocalDate date = healthDataService.recentDateOfHealthData(decryptedUuid, data);
 
-            return new RecentDateRes("200", "최근 건강 데이터 조회 성공", date);
+            return new RecentDateRes("200", "최근 건강 데이터 날짜 조회 성공", date);
         } catch (InvalidDataTypeException e) {
 
             return new RecentDateRes("401", "유효하지 않은 데이터 타입", null);
@@ -173,6 +175,22 @@ public class HealthDataController {
         } catch (UnsupportedEncodingException e) {
 
             return new RecentDateRes("410", "디코딩 오류", null);
+        }
+    }
+
+    @PostMapping("/find/health-data")
+    public FindHealthDataResDto findHealthData(@RequestBody FindHealthDataReqDto request) {
+
+        try {
+            log.info("건강 데이터 조회 시작");
+
+            List<HealthData> healthDataList = healthDataService.findHealthDataByMemberUuid(request);
+
+            log.info("건강 데이터 조회 성공");
+            return new FindHealthDataResDto("200", "건강 데이터 조회 성공", healthDataList);
+        } catch (NotExistException e) {
+
+            return new FindHealthDataResDto("408", "존재하지 않는 회원", null);
         }
     }
 
