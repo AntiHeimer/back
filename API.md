@@ -284,6 +284,25 @@ decoding(410)
 - UnsupportedEncodingException: 디코딩 오류
 
 
+## findHealthData
+#### /find/health-data
+
+**Header**
+- String auth
+
+**Body**
+- String memberUuid
+- LocalDate date
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
+# Location
+
 ## saveLocation
 #### /save/location: POST
 
