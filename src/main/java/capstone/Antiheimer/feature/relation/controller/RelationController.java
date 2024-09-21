@@ -1,7 +1,5 @@
 package capstone.Antiheimer.feature.relation.controller;
 
-import capstone.Antiheimer.exception.DuplicateRelationException;
-import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianResDto;
@@ -40,22 +38,14 @@ public class RelationController {
     @PostMapping("/request-relation")
     public NormalResDto requestRelation(@RequestBody RequestRelationReqDto request) {
 
-        try {
-            // 관계 저장(비활성화)
-            relationService.saveRelation(request);
+        // 관계 저장(비활성화)
+        relationService.saveRelation(request);
 
-            log.info("관계 요청 알림 저장 시작");
-            notificationService.saveRequestNotification(request);
+        log.info("관계 요청 알림 저장 시작");
+        notificationService.saveRequestNotification(request);
 
-            log.info("관계 요청 알림 저장 성공");
-            return new NormalResDto("200", "관계 요청 성공");
-        } catch (DuplicateRelationException e) {
-
-            return new NormalResDto("407", "이미 존재하는 관계");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
+        log.info("관계 요청 알림 저장 성공");
+        return new NormalResDto("200", "관계 요청 성공");
     }
 
 
@@ -68,22 +58,17 @@ public class RelationController {
     @PostMapping("/save-relation/guardian")
     public NormalResDto saveGuardian(@RequestBody SaveGuardianReqDto request) {
 
-        try {
-            log.info("보호자 등록 시작");
-            relationService.saveGuardian(request);
+        log.info("보호자 등록 시작");
+        relationService.saveGuardian(request);
 
-            // 보호자 등록 알림 저장
-            notificationService.saveGuardianNotification(request);
+        // 보호자 등록 알림 저장
+        notificationService.saveGuardianNotification(request);
 
-            // 요청 알림 삭제
-            notificationService.deleteNotification(request.getNotificationUuid());
+        // 요청 알림 삭제
+        notificationService.deleteNotification(request.getNotificationUuid());
 
-            log.info("보호자 등록 성공");
-            return new NormalResDto("200", "보호자 등록 성공");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
+        log.info("보호자 등록 성공");
+        return new NormalResDto("200", "보호자 등록 성공");
     }
 
     /**
@@ -95,22 +80,17 @@ public class RelationController {
     @PostMapping("/save-relation/ward")
     public NormalResDto saveWard(@RequestBody SaveWardReqDto request) {
 
-        try {
-            log.info("피보호자 등록 시작");
-            relationService.saveWard(request);
+        log.info("피보호자 등록 시작");
+        relationService.saveWard(request);
 
-            // 피보호자 등록 알림 저장
-            notificationService.saveWardNotification(request);
+        // 피보호자 등록 알림 저장
+        notificationService.saveWardNotification(request);
 
-            // 요청 알림 삭제
-            notificationService.deleteNotification(request.getNotificationUuid());
+        // 요청 알림 삭제
+        notificationService.deleteNotification(request.getNotificationUuid());
 
-            log.info("피보호자 등록 성공");
-            return new NormalResDto("200", "피보호자 등록 성공");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
+        log.info("피보호자 등록 성공");
+        return new NormalResDto("200", "피보호자 등록 성공");
     }
 
     /**
@@ -120,29 +100,22 @@ public class RelationController {
      * @return
      */
     @GetMapping("/info-relation/ward")
-    public InfoWardResDto infoWard(@RequestParam String memberUuid) {
+    public InfoWardResDto infoWard(@RequestParam String memberUuid) throws UnsupportedEncodingException {
 
-        try {
-            // URL 디코딩
-            String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
+        // URL 디코딩
+        String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
 
-            // 공백을 +로 변환
-            String plusEncodedString = decodedUuid.replace(" ", "+");
+        // 공백을 +로 변환
+        String plusEncodedString = decodedUuid.replace(" ", "+");
 
-            // uuid 복호화
-            String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
+        // uuid 복호화
+        String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
-            log.info("피보호자 정보 조회 시작");
-            List<InfoWardDto> infoWardList = relationService.infoWard(decryptedMemberUuid);
+        log.info("피보호자 정보 조회 시작");
+        List<InfoWardDto> infoWardList = relationService.infoWard(decryptedMemberUuid);
 
-            log.info("피보호자 정보 조회 성공");
-            return new InfoWardResDto("200", "피보호자 정보 조회 성공", infoWardList);
-        } catch (NotExistException e) {
-
-            return new InfoWardResDto("408", "존재하지 않는 회원", null);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        log.info("피보호자 정보 조회 성공");
+        return new InfoWardResDto("200", "피보호자 정보 조회 성공", infoWardList);
     }
 
     /**
@@ -152,29 +125,22 @@ public class RelationController {
      * @return
      */
     @GetMapping("/info-relation/guardian")
-    public InfoGuardianResDto infoGuardian(@RequestParam String memberUuid) {
+    public InfoGuardianResDto infoGuardian(@RequestParam String memberUuid) throws UnsupportedEncodingException {
 
-        try {
-            // URL 디코딩
-            String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
+        // URL 디코딩
+        String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
 
-            // 공백을 +로 변환
-            String plusEncodedString = decodedUuid.replace(" ", "+");
+        // 공백을 +로 변환
+        String plusEncodedString = decodedUuid.replace(" ", "+");
 
-            // uuid 복호화
-            String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
+        // uuid 복호화
+        String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
-            log.info("피보호자 정보 조회 시작");
-            List<InfoGuardianDto> infoGuardianList = relationService.infoGuardian(decryptedMemberUuid);
+        log.info("피보호자 정보 조회 시작");
+        List<InfoGuardianDto> infoGuardianList = relationService.infoGuardian(decryptedMemberUuid);
 
-            log.info("피보호자 정보 조회 성공");
-            return new InfoGuardianResDto("200", "보호자 정보 조회 성공", infoGuardianList);
-        } catch (NotExistException e) {
-
-            return new InfoGuardianResDto("408", "존재하지 않는 회원", null);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        log.info("피보호자 정보 조회 성공");
+        return new InfoGuardianResDto("200", "보호자 정보 조회 성공", infoGuardianList);
     }
 
 }

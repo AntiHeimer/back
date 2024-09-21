@@ -1,8 +1,7 @@
 package capstone.Antiheimer.feature.relation.service;
 
-import capstone.Antiheimer.exception.DuplicateRelationException;
-import capstone.Antiheimer.exception.NotExistException;
-import capstone.Antiheimer.feature.member.entity.Member;
+import capstone.Antiheimer.exception.duplicate.DuplicateRelationException;
+import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
@@ -11,13 +10,11 @@ import capstone.Antiheimer.feature.relation.dto.save.SaveGuardianReqDto;
 import capstone.Antiheimer.feature.relation.dto.save.SaveWardReqDto;
 import capstone.Antiheimer.feature.relation.entity.Relation;
 import capstone.Antiheimer.feature.relation.repository.RelationRepository;
-import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yaml.snakeyaml.tokens.ScalarToken;
 
 import java.util.List;
 
@@ -41,24 +38,9 @@ public class RelationService {
         if (reqDto.getRequestType().equals("guardian")) {
 
             try {
-                memberRepository.findById(reqDto.getToMemberId());
 
-                String guardianUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
-                String wardUuid = reqDto.getFromMemberUuid();
-
-                if (isExist(wardUuid) && isExist(guardianUuid)) {
-
-                    Relation relation = convertToEntity(wardUuid, guardianUuid);
-
-                    if (relationRepository.isRelationExist(relation)) {
-
-                        log.warn("이미 존재하는 관계");
-                        throw new DuplicateRelationException();
-                    }
-                    relationRepository.saveRelation(relation);
-                }
             } catch(EmptyResultDataAccessException e) {
-                throw new NotExistException();
+                throw new NotExistMemberException();
             }
         } else if (reqDto.getRequestType().equals("ward")) {
 
@@ -86,7 +68,7 @@ public class RelationService {
                 }
             } catch(EmptyResultDataAccessException e) {
 
-                throw new NotExistException();
+                throw new NotExistMemberException();
             }
         }
     }
@@ -177,7 +159,7 @@ public class RelationService {
         if (memberRepository.findOneByUuid(uuid) == null) {
 
             log.warn("회원이 존재하지 않습니다");
-            throw new NotExistException();
+            throw new NotExistMemberException();
         } else {
             return true;
         }

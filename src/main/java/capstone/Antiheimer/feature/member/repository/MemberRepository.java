@@ -1,11 +1,9 @@
 package capstone.Antiheimer.feature.member.repository;
 
-import capstone.Antiheimer.exception.NotExistException;
 import capstone.Antiheimer.feature.member.dto.SignupReqDto;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.util.encrypt.BcryptService;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

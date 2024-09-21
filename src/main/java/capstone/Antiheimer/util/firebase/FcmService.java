@@ -2,7 +2,7 @@
 //
 //import capstone.Antiheimer.member.Member;
 //import capstone.Antiheimer.dto.TokenReqDto;
-//import capstone.Antiheimer.exception.NotExistException;
+//import capstone.Antiheimer.exception.notexist.NotExistException;
 //import capstone.Antiheimer.member.MemberRepository;
 //import lombok.RequiredArgsConstructor;
 //import lombok.extern.slf4j.Slf4j;

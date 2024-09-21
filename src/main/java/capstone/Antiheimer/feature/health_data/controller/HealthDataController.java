@@ -1,9 +1,8 @@
 package capstone.Antiheimer.feature.health_data.controller;
 
 import capstone.Antiheimer.feature.diagnosis.Dto.AiReqDto;
-import capstone.Antiheimer.exception.DuplicateHealthDataException;
-import capstone.Antiheimer.exception.InvalidDataTypeException;
-import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.exception.duplicate.DuplicateHealthDataException;
+import capstone.Antiheimer.exception.invalid.InvalidDataTypeException;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.health_data.service.HealthDataService;
 import capstone.Antiheimer.feature.health_data.dto.*;
@@ -42,18 +41,11 @@ public class HealthDataController {
     @PostMapping("/save/active")
     public NormalResDto saveActive(@RequestBody SaveActiveReqDto request) {
 
-        try {
-            log.info("Active 데이터 저장 시작");
-            healthDataService.insertActive(request);
+        log.info("Active 데이터 저장 시작");
+        healthDataService.insertActive(request);
 
-            return new NormalResDto("200", "활동 데이터 저장 성공");
-        } catch (DuplicateHealthDataException e) {
+        return new NormalResDto("200", "활동 데이터 저장 성공");
 
-            return new NormalResDto("407", "중복된 활동 데이터");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
     }
 
     /**
@@ -64,18 +56,11 @@ public class HealthDataController {
     @PostMapping("/save/move")
     public NormalResDto saveMove(@RequestBody SaveMoveReqDto request) {
 
-        try {
-            log.info("Move 데이터 저장 시작");
-            healthDataService.insertMove(request);
+        log.info("Move 데이터 저장 시작");
+        healthDataService.insertMove(request);
 
-            return new NormalResDto("200", "움직인 거리 데이터 저장 성공");
-        } catch (DuplicateHealthDataException e) {
+        return new NormalResDto("200", "움직인 거리 데이터 저장 성공");
 
-            return new NormalResDto("407", "중복된 움직인 거리 데이터");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
     }
 
     /**
@@ -86,18 +71,10 @@ public class HealthDataController {
     @PostMapping("/save/walk")
     public NormalResDto saveWalk(@RequestBody SaveWalkReqDto request) {
 
-        try {
-            log.info("Walk 데이터 저장 시작");
-            healthDataService.insertWalk(request);
+        log.info("Walk 데이터 저장 시작");
+        healthDataService.insertWalk(request);
 
-            return new NormalResDto("200", "걸음수 데이터 저장 성공");
-        } catch (DuplicateHealthDataException e) {
-
-            return new NormalResDto("407", "중복된 걸음수 데이터");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
+        return new NormalResDto("200", "걸음수 데이터 저장 성공");
     }
 
     /**
@@ -108,15 +85,10 @@ public class HealthDataController {
     @PostMapping("/save/weight")
     public NormalResDto saveWeight(@RequestBody SaveWeightReqDto request) {
 
-        try {
-            log.info("Weight 저장 시작");
-            healthDataService.insertWeight(request);
+        log.info("Weight 저장 시작");
+        healthDataService.insertWeight(request);
 
-            return new NormalResDto("200", "몸무게 저장 성공");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
+        return new NormalResDto("200", "몸무게 저장 성공");
     }
 
     /**
@@ -127,19 +99,10 @@ public class HealthDataController {
     @PostMapping("/save/sleep")
     public NormalResDto saveSleep(@RequestBody SaveSleepReqDto request) {
 
-        try {
+        log.info("수면 데이터 저장 시작");
+        healthDataService.insertSleep(request);
 
-            log.info("수면 데이터 저장 시작");
-            healthDataService.insertSleep(request);
-
-            return new NormalResDto("200", "수면 데이터 저장 성공");
-        } catch (DuplicateHealthDataException e) {
-
-            return new NormalResDto("407", "중복된 수면 데이터");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
+        return new NormalResDto("200", "수면 데이터 저장 성공");
     }
 
     /**
@@ -149,49 +112,34 @@ public class HealthDataController {
      */
     @GetMapping("/recent")
     public RecentDateRes recentData(@RequestParam("data") String data,
-                                    @RequestParam("uuid") String uuid) {
+                                    @RequestParam("uuid") String uuid) throws UnsupportedEncodingException {
 
-        try {
-            log.info("최근 건강 데이터 날짜 조회 시작");
+        log.info("최근 건강 데이터 날짜 조회 시작");
 
-            // URL 디코딩
-            String decodedUuid = URLDecoder.decode(uuid, StandardCharsets.UTF_8.name());
+        // URL 디코딩
+        String decodedUuid = URLDecoder.decode(uuid, StandardCharsets.UTF_8.name());
 
-            // 공백을 +로 변환
-            String plusEncodedString = decodedUuid.replace(" ", "+");
+        // 공백을 +로 변환
+        String plusEncodedString = decodedUuid.replace(" ", "+");
 
-            // AES 복호화
-            String decryptedUuid = aesService.decryptAES(plusEncodedString);
+        // AES 복호화
+        String decryptedUuid = aesService.decryptAES(plusEncodedString);
 
-            LocalDate date = healthDataService.recentDateOfHealthData(decryptedUuid, data);
+        LocalDate date = healthDataService.recentDateOfHealthData(decryptedUuid, data);
 
-            return new RecentDateRes("200", "최근 건강 데이터 날짜 조회 성공", date);
-        } catch (InvalidDataTypeException e) {
+        return new RecentDateRes("200", "최근 건강 데이터 날짜 조회 성공", date);
 
-            return new RecentDateRes("401", "유효하지 않은 데이터 타입", null);
-        } catch (NotExistException e) {
-
-            return new RecentDateRes("408", "존재하지 않는 회원", null);
-        } catch (UnsupportedEncodingException e) {
-
-            return new RecentDateRes("410", "디코딩 오류", null);
-        }
     }
 
     @PostMapping("/find/health-data")
     public FindHealthDataResDto findHealthData(@RequestBody FindHealthDataReqDto request) {
 
-        try {
-            log.info("건강 데이터 조회 시작");
+        log.info("건강 데이터 조회 시작");
 
-            List<HealthData> healthDataList = healthDataService.findHealthDataByMemberUuid(request);
+        List<HealthData> healthDataList = healthDataService.findHealthDataByMemberUuid(request);
 
-            log.info("건강 데이터 조회 성공");
-            return new FindHealthDataResDto("200", "건강 데이터 조회 성공", healthDataList);
-        } catch (NotExistException e) {
-
-            return new FindHealthDataResDto("408", "존재하지 않는 회원", null);
-        }
+        log.info("건강 데이터 조회 성공");
+        return new FindHealthDataResDto("200", "건강 데이터 조회 성공", healthDataList);
     }
 
     @PostMapping("/ai/send/data")

@@ -1,9 +1,9 @@
 package capstone.Antiheimer.feature.member.service;
 
+import capstone.Antiheimer.exception.notexist.NotExistIdException;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.dto.LoginReqDto;
-import capstone.Antiheimer.exception.IncorrectPwException;
-import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.exception.incorrect.IncorrectPwException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.util.encrypt.BcryptService;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +53,7 @@ public class LoginService {
         if (findMember.isEmpty()) {
 
             log.warn("존재하지 않는 아이디입니다");
-            throw new NotExistException();
+            throw new NotExistIdException();
         }
     }
 

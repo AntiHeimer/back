@@ -1,6 +1,6 @@
 package capstone.Antiheimer.feature.notification.controller;
 
-import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.notification.dto.NotificationDto;
 import capstone.Antiheimer.feature.notification.dto.NotificationResDto;
 import capstone.Antiheimer.feature.notification.service.NotificationService;
@@ -44,7 +44,7 @@ public class NotificationController {
             notificationService.changeIsReadNotification(notificationList);
 
             return new NotificationResDto("200", "알림 조회 성공", notificationList);
-        } catch (NotExistException e) {
+        } catch (NotExistMemberException e) {
 
             return new NotificationResDto("408", "존재하지 않는 회원", null);
         } catch (UnsupportedEncodingException e) {
@@ -70,7 +70,7 @@ public class NotificationController {
             log.info("알림 삭제 성공");
 
             return new NormalResDto("200", "알림 삭제 성공");
-        } catch (NotExistException e) {
+        } catch (NotExistMemberException e) {
 
             return new NormalResDto("408", "존재하지 않는 알림");
         } catch (UnsupportedEncodingException e) {

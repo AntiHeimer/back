@@ -1,6 +1,6 @@
 package capstone.Antiheimer.feature.diagnosis;
 
-import capstone.Antiheimer.exception.IncorrectNumException;
+import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.feature.diagnosis.Dto.DSRandomWordDto;
 import capstone.Antiheimer.feature.diagnosis.Dto.DiagnosisSheetResDto;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;

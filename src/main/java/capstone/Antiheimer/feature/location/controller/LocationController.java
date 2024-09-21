@@ -5,9 +5,6 @@ import capstone.Antiheimer.feature.location.dto.LocationReqDto;
 import capstone.Antiheimer.feature.location.entity.Location;
 import capstone.Antiheimer.util.dto.NormalResDto;
 import capstone.Antiheimer.feature.location.dto.RecentLocationResDto;
-import capstone.Antiheimer.exception.DuplicateLocationException;
-import capstone.Antiheimer.exception.NotExistException;
-import capstone.Antiheimer.exception.NotExistLocationException;
 import capstone.Antiheimer.util.encrypt.AesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,7 +43,7 @@ public class LocationController {
      */
     @PostMapping("/save/location")
     public NormalResDto saveLocation(@RequestHeader("auth") String auth,
-                                     @RequestBody String request) {
+                                     @RequestBody String request) throws JsonProcessingException {
 
         log.info("권한 확인");
         if (!auth.equals(authKey)) {
@@ -55,23 +52,13 @@ public class LocationController {
             return new NormalResDto("401", "권한 없음");
         }
 
-        try{
-            String decryptedRequest = aesService.decryptAES(request);
-            LocationReqDto reqDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
+        String decryptedRequest = aesService.decryptAES(request);
+        LocationReqDto reqDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
 
-            log.info("위치 데이터 저장 시작");
-            locationService.insertLocation(request, reqDto);
+        log.info("위치 데이터 저장 시작");
+        locationService.insertLocation(request, reqDto);
 
-            return new NormalResDto("200", "위치 정보 저장 성공");
-        } catch (DuplicateLocationException e) {
-
-            return new NormalResDto("407", "중복된 위치 정보");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return new NormalResDto("200", "위치 정보 저장 성공");
     }
 
     /**
@@ -80,42 +67,24 @@ public class LocationController {
      * @return
      */
     @GetMapping("/recent/location")
-    public RecentLocationResDto recentLocation(@RequestParam("memberUuid") String request) {
+    public RecentLocationResDto recentLocation(@RequestParam("memberUuid") String request) throws UnsupportedEncodingException, JsonProcessingException {
 
-        try {
-            log.info("최근 위치 정보 조회 시작");
+        log.info("최근 위치 정보 조회 시작");
 
-            // URL 디코딩
-            String decodedUuid = URLDecoder.decode(request, StandardCharsets.UTF_8.name());
+        // URL 디코딩
+        String decodedUuid = URLDecoder.decode(request, StandardCharsets.UTF_8.name());
 
-            System.out.println("decodedUuid = " + decodedUuid);
-            // 공백을 +로 변환
-            String plusEncodedString = decodedUuid.replace(" ", "+");
+        System.out.println("decodedUuid = " + decodedUuid);
+        // 공백을 +로 변환
+        String plusEncodedString = decodedUuid.replace(" ", "+");
 
-            System.out.println("plusEncodedString = " + plusEncodedString);
+        System.out.println("plusEncodedString = " + plusEncodedString);
 
-            String memberUuid = aesService.decryptAES(plusEncodedString);
-            Location location = locationService.recentLocation(memberUuid);
-            String decryptedRequest = aesService.decryptAES(location.getEncryptedLocation());
-            LocationReqDto resDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
+        String memberUuid = aesService.decryptAES(plusEncodedString);
+        Location location = locationService.recentLocation(memberUuid);
+        String decryptedRequest = aesService.decryptAES(location.getEncryptedLocation());
+        LocationReqDto resDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
 
-            result = new RecentLocationResDto("200", "위치 정보 조회 성공", resDto.getFormattedDate(), resDto.getLocation());
-
-            return result;
-        } catch (NotExistException e) {
-
-            result = new RecentLocationResDto("408", "존재하지 않는 회원", null, null);
-
-            return result;
-        } catch (NotExistLocationException e) {
-
-            result = new RecentLocationResDto("408", "존재하지 않는 위치 정보", null, null);
-
-            return result;
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
+        return new RecentLocationResDto("200", "위치 정보 조회 성공", resDto.getFormattedDate(), resDto.getLocation());
     }
 }

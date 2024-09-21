@@ -1,6 +1,7 @@
 package capstone.Antiheimer.feature.notification.service;
 
-import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.exception.notexist.NotExistMemberException;
+import capstone.Antiheimer.exception.notexist.NotExistNotificationException;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.feature.notification.dto.NotificationDto;
@@ -38,7 +39,7 @@ public class NotificationService {
             notificationRepository.saveNotification(notification);
         } else {
 
-            throw new NotExistException();
+            throw new NotExistMemberException();
         }
     }
 
@@ -91,7 +92,7 @@ public class NotificationService {
         } else {
 
             log.warn("알림이 존재하지 않습니다");
-            throw new NotExistException();
+            throw new NotExistNotificationException();
         }
     }
 
@@ -103,7 +104,7 @@ public class NotificationService {
         } else {
 
             log.warn("회원이 존재하지 않습니다");
-            throw new NotExistException();
+            throw new NotExistMemberException();
         }
     }
 
@@ -140,7 +141,7 @@ public class NotificationService {
         if (findMember == null) {
 
             log.warn("회원이 존재하지 않습니다");
-            throw new NotExistException();
+            throw new NotExistMemberException();
         } else {
             return true;
         }

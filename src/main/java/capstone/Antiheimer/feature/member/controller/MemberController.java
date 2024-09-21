@@ -1,5 +1,8 @@
 package capstone.Antiheimer.feature.member.controller;
 
+import capstone.Antiheimer.exception.duplicate.DuplicateIdException;
+import capstone.Antiheimer.exception.invalid.*;
+import capstone.Antiheimer.exception.nullE.*;
 import capstone.Antiheimer.feature.member.dto.InfoResDto;
 import capstone.Antiheimer.feature.member.dto.LoginReqDto;
 import capstone.Antiheimer.feature.member.dto.LoginResDto;
@@ -9,7 +12,6 @@ import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.feature.member.service.LoginService;
 import capstone.Antiheimer.feature.member.service.LogoutService;
 import capstone.Antiheimer.feature.member.service.SignUpService;
-import capstone.Antiheimer.exception.*;
 import capstone.Antiheimer.util.dto.NormalResDto;
 import capstone.Antiheimer.util.jwt.JwtTokenUtil;
 import capstone.Antiheimer.util.encrypt.AesService;
@@ -132,7 +134,7 @@ public class MemberController {
      */
     @PostMapping("/login")
     public LoginResDto login(@RequestHeader("auth") String auth,
-                             @RequestBody String request) {
+                             @RequestBody String request) throws JsonProcessingException {
 
         LoginResDto result;
 
@@ -145,36 +147,15 @@ public class MemberController {
         }
 
         log.info("로그인 시작");
-        try {
-            String decryptedRequest = aesService.decryptAES(request);
-            LoginReqDto reqDto = objectMapper.readValue(decryptedRequest, LoginReqDto.class);
+        String decryptedRequest = aesService.decryptAES(request);
+        LoginReqDto reqDto = objectMapper.readValue(decryptedRequest, LoginReqDto.class);
 
-            String uuid = loginService.login(reqDto);
+        String uuid = loginService.login(reqDto);
 
-            String jwtToken = jwtTokenUtil.generateToken(uuid);
-            log.info("Jwt 토큰 발급 성공");
+        String jwtToken = jwtTokenUtil.generateToken(uuid);
+        log.info("Jwt 토큰 발급 성공");
 
-            result = new LoginResDto("200", "로그인 성공", uuid, jwtToken);
-            return result;
-        } catch (NullIdException e) {
-
-            result = new LoginResDto("405", "입력되지 않은 아이디", null, null);
-            return result;
-        } catch (NullPwException e) {
-
-            result = new LoginResDto("405", "입력되지 않은 비밀번호", null, null);
-            return result;
-        } catch (NotExistException e) {
-
-            result = new LoginResDto("408", "존재하지 않는 아이디", null, null);
-            return result;
-        } catch (IncorrectPwException e) {
-
-            result = new LoginResDto("409", "일치하지 않는 비밀번호", null, null);
-            return result;
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return new LoginResDto("200", "로그인 성공", uuid, jwtToken);
     }
 
     /**
@@ -188,22 +169,12 @@ public class MemberController {
 
         String decryptedUuid = aesService.decryptAES(uuid);
 
-        try {
-            log.info("로그아웃 시작");
-            logoutService.logout(decryptedUuid);
+        log.info("로그아웃 시작");
+        logoutService.logout(decryptedUuid);
 
-            log.info("로그아웃 성공");
-            return new NormalResDto("200", "로그아웃 성공");
-        } catch (NullUuidException e) {
+        log.info("로그아웃 성공");
+        return new NormalResDto("200", "로그아웃 성공");
 
-            return new NormalResDto("405", "입력되지 않은 uuid");
-        } catch (InvalidUuidException e) {
-
-            return new NormalResDto("406", "유효하지 않은 uuid");
-        } catch (NotExistException e) {
-
-            return new NormalResDto("408", "존재하지 않는 회원");
-        }
     }
 
     /**
@@ -213,24 +184,19 @@ public class MemberController {
      * @return
      */
     @GetMapping("/info")
-    public InfoResDto memberInfo(@RequestParam("memberUuid") String memberUuid) {
+    public InfoResDto memberInfo(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
 
-        try {
-            // URL 디코딩
-            String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
+        // URL 디코딩
+        String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
 
-            // 공백을 +로 변환
-            String plusEncodedString = decodedUuid.replace(" ", "+");
+        // 공백을 +로 변환
+        String plusEncodedString = decodedUuid.replace(" ", "+");
 
-            // uuid 복호화
-            String decryptedUuid = aesService.decryptAES(plusEncodedString);
+        // uuid 복호화
+        String decryptedUuid = aesService.decryptAES(plusEncodedString);
 
-            Member member = memberRepository.findOneByUuid(decryptedUuid);
+        Member member = memberRepository.findOneByUuid(decryptedUuid);
 
-            return new InfoResDto("200", "회원 조회 성공", member.getId(), member.getName(), member.getGender(), member.getBirth());
-        } catch (UnsupportedEncodingException e) {
-
-            throw new RuntimeException(e);
-        }
+        return new InfoResDto("200", "회원 조회 성공", member.getId(), member.getName(), member.getGender(), member.getBirth());
     }
 }

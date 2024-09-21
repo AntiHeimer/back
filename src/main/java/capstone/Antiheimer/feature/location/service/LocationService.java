@@ -1,12 +1,12 @@
 package capstone.Antiheimer.feature.location.service;
 
-import capstone.Antiheimer.exception.NotExistLocationException;
+import capstone.Antiheimer.exception.notexist.NotExistLocationException;
+import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.location.entity.Location;
 import capstone.Antiheimer.feature.location.repository.LocationRepository;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.location.dto.LocationReqDto;
-import capstone.Antiheimer.exception.DuplicateLocationException;
-import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.exception.duplicate.DuplicateLocationException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +57,7 @@ public class LocationService {
         if (findMember == null) {
 
             log.warn("존재하지 않는 회원입니다");
-            throw new NotExistException();
+            throw new NotExistMemberException();
         }
     }
 

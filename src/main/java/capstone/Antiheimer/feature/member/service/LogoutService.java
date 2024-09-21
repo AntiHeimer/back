@@ -1,9 +1,9 @@
 package capstone.Antiheimer.feature.member.service;
 
+import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.member.entity.Member;
-import capstone.Antiheimer.exception.InvalidUuidException;
-import capstone.Antiheimer.exception.NotExistException;
-import capstone.Antiheimer.exception.NullUuidException;
+import capstone.Antiheimer.exception.invalid.InvalidUuidException;
+import capstone.Antiheimer.exception.nullE.NullUuidException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -65,7 +65,7 @@ public class LogoutService {
         if (memberRepository.findOneByUuid(member.getUuid()) == null) {
 
             log.warn("회원이 존재하지 않습니다");
-            throw new NotExistException();
+            throw new NotExistMemberException();
         }
     }
 }

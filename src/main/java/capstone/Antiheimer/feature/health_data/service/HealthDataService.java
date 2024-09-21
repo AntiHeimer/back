@@ -1,12 +1,12 @@
 package capstone.Antiheimer.feature.health_data.service;
 
+import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.health_data.dto.*;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.health_data.repository.HealthDataRepository;
 import capstone.Antiheimer.feature.member.entity.Member;
-import capstone.Antiheimer.exception.DuplicateHealthDataException;
-import capstone.Antiheimer.exception.InvalidDataTypeException;
-import capstone.Antiheimer.exception.NotExistException;
+import capstone.Antiheimer.exception.duplicate.DuplicateHealthDataException;
+import capstone.Antiheimer.exception.invalid.InvalidDataTypeException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -179,7 +179,7 @@ public class HealthDataService {
         if (findMember == null) {
 
             log.warn("존재하지 않는 회원입니다");
-            throw new NotExistException();
+            throw new NotExistMemberException();
         }
     }
 
