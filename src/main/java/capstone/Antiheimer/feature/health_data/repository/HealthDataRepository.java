@@ -312,7 +312,7 @@ public class HealthDataRepository {
 
     public List<HealthData> findHealthDataByMemberUuid(String memberUuid, LocalDate date) {
 
-        LocalDate startDate = date.minus(7, ChronoUnit.DAYS);
+        LocalDate startDate = date.minusDays(7);
 
 
         return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid AND h.date >= :startDate AND h.date <= :date ORDER BY h.date DESC", HealthData.class)
