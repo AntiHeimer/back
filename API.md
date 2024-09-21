@@ -301,6 +301,23 @@ exist(408)
 - NotExistException: 존재하지 않는 회원
 
 
+## findActive
+#### /find/active/{memberUuid}/{date}
+
+**Header**
+- String auth
+
+**Body**
+- String memberUuid
+- LocalDate date
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
 # Location
 
 ## saveLocation

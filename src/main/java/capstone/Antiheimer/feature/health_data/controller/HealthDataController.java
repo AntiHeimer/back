@@ -22,7 +22,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
-@RestController
+@RestController()
 @RequiredArgsConstructor
 public class HealthDataController {
 
