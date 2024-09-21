@@ -315,7 +315,7 @@ public class HealthDataRepository {
         LocalDate startDate = date.minus(7, ChronoUnit.DAYS);
 
 
-        return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid AND h.date >= :startDate AND h.date <= :date", HealthData.class)
+        return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid AND h.date >= :startDate AND h.date <= :date ORDER BY h.date DESC", HealthData.class)
                 .setParameter("memberUuid", memberUuid).setParameter("date", date).setParameter("startDate", startDate)
                 .getResultList();
     }
