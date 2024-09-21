@@ -3,6 +3,7 @@ package capstone.Antiheimer.feature.member.service;
 import capstone.Antiheimer.feature.member.dto.LoginReqDto;
 import capstone.Antiheimer.feature.member.dto.SignupReqDto;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
+import capstone.Antiheimer.util.CheckService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
