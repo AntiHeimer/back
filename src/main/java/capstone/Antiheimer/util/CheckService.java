@@ -6,10 +6,7 @@ import capstone.Antiheimer.exception.duplicate.DuplicateLocationException;
 import capstone.Antiheimer.exception.duplicate.DuplicateRelationException;
 import capstone.Antiheimer.exception.incorrect.IncorrectPwException;
 import capstone.Antiheimer.exception.invalid.*;
-import capstone.Antiheimer.exception.notexist.NotExistHealthDataException;
-import capstone.Antiheimer.exception.notexist.NotExistIdException;
-import capstone.Antiheimer.exception.notexist.NotExistLocationException;
-import capstone.Antiheimer.exception.notexist.NotExistMemberException;
+import capstone.Antiheimer.exception.notexist.*;
 import capstone.Antiheimer.exception.nullE.*;
 import capstone.Antiheimer.feature.health_data.dto.*;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;
@@ -20,6 +17,7 @@ import capstone.Antiheimer.feature.member.dto.LoginReqDto;
 import capstone.Antiheimer.feature.member.dto.SignupReqDto;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
+import capstone.Antiheimer.feature.notification.entity.Notification;
 import capstone.Antiheimer.feature.relation.entity.Relation;
 import capstone.Antiheimer.feature.relation.repository.RelationRepository;
 import capstone.Antiheimer.util.encrypt.BcryptService;
@@ -48,9 +46,7 @@ public class CheckService {
      */
     public void checkUuidNotNull(String memberUuid) {
 
-        Member member = memberRepository.findOneByUuid(memberUuid);
-
-        if (member.getUuid().isEmpty()) {
+        if (memberUuid.isEmpty()) {
 
             log.warn("uuid가 비어있습니다");
             throw new NullUuidException();
@@ -96,9 +92,7 @@ public class CheckService {
      */
     public void checkUuidValid(String memberUuid) {
 
-        Member member = memberRepository.findOneByUuid(memberUuid);
-
-        if (containsWhitespace(member.getUuid()) || member.getUuid().length() != 36) {
+        if (containsWhitespace(memberUuid) || memberUuid.length() != 36) {
 
             log.warn("유효하지 않은 uuid입니다");
             throw new InvalidUuidException();
@@ -152,9 +146,7 @@ public class CheckService {
      */
     public void checkMemberExists(String memberUuid) {
 
-        Member member = memberRepository.findOneByUuid(memberUuid);
-
-        if (memberRepository.findOneByUuid(member.getUuid()) == null) {
+        if (memberRepository.findOneByUuid(memberUuid) == null) {
 
             log.warn("존재하지 않는 회원입니다");
             throw new NotExistMemberException();
@@ -167,9 +159,7 @@ public class CheckService {
      */
     public void checkIdExists(String id) {
 
-        List<Member> findMember = memberRepository.findById(id);
-
-        if (findMember.isEmpty()) {
+        if (memberRepository.findById(id).isEmpty()) {
 
             log.warn("존재하지 않는 아이디입니다");
             throw new NotExistIdException();
@@ -182,21 +172,38 @@ public class CheckService {
      */
     public void checkLocationExits(String memberUuid) {
 
-        if (!locationRepository.findLocation(memberUuid)) {
+        if (locationRepository.findLocation(memberUuid).isEmpty()) {
 
-            log.warn("해당 회원의 위치 정보가 존재하지 않습니다");
+            log.warn("존재하지 않는 위치 정보입니다");
             throw new NotExistLocationException();
         }
     }
 
+    /**
+     * 건강 데이터 존재 확인
+     * @param reqDto
+     */
     public void checkHealthDataExists(FindHealthDataReqDto reqDto) {
 
         List<HealthData> healthDataList = healthDataRepository.findHealthDataByMemberUuid(reqDto.getMemberUuid(), reqDto.getDate());
 
         if (healthDataList.isEmpty()) {
 
-            log.warn("건강 데이터가 존재하지 않습니다");
+            log.warn("존재하지 않는 건강 데이터입니다");
             throw new NotExistHealthDataException();
+        }
+    }
+
+    /**
+     * 알림 존재 확인
+     * @param notification
+     */
+    public void checkNotificationExists(Notification notification) {
+
+        if (notification == null) {
+
+            log.warn("존재하지 않는 알림입니다");
+            throw new NotExistNotificationException();
         }
     }
 
@@ -235,7 +242,7 @@ public class CheckService {
      */
     public void checkLocationDuplicate(String request, LocationReqDto reqDto) {
 
-        if (locationRepository.existLocation(request, reqDto)) {
+        if (locationRepository.isExistLocation(request, reqDto)) {
 
             log.warn("이미 존재하는 위치 정보입니다");
             throw new DuplicateLocationException();
@@ -248,7 +255,7 @@ public class CheckService {
      */
     public void checkWalkDataDuplicate(SaveWalkReqDto reqDto) {
 
-        if (healthDataRepository.existWalk(reqDto)) {
+        if (healthDataRepository.isExistWalk(reqDto)) {
 
             log.warn("이미 존재하는 걸음수 데이터입니다");
             throw new DuplicateHealthDataException();
@@ -261,7 +268,7 @@ public class CheckService {
      */
     public void checkActiveDataDuplicate(SaveActiveReqDto reqDto) {
 
-        if (healthDataRepository.existActive(reqDto)) {
+        if (healthDataRepository.isExistActive(reqDto)) {
 
             log.warn("이미 존재하는 활동 데이터입니다");
             throw new DuplicateHealthDataException();
@@ -274,7 +281,7 @@ public class CheckService {
      */
     public void checkMoveDataDuplicate(SaveMoveReqDto reqDto) {
 
-        if (healthDataRepository.existMove(reqDto)) {
+        if (healthDataRepository.isExistMove(reqDto)) {
 
             log.warn("이미 존재하는 움직인 거리 데이터입니다");
             throw new DuplicateHealthDataException();
@@ -287,7 +294,7 @@ public class CheckService {
      */
     public void checkSleepDataDuplicate(SaveSleepReqDto reqDto) {
 
-        if (healthDataRepository.existSleep(reqDto)) {
+        if (healthDataRepository.isExistSleep(reqDto)) {
 
             log.warn("이미 존재하는 수면 데이터입니다");
             throw new DuplicateHealthDataException();

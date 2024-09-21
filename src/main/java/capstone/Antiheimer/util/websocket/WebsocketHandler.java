@@ -1,8 +1,6 @@
 package capstone.Antiheimer.util.websocket;
 
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
-import capstone.Antiheimer.feature.notification.dto.NotificationReqDto;
-import capstone.Antiheimer.feature.notification.dto.NotificationResDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +55,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
 //        System.out.println("recipientSession = " + recipientSession);
 //
 //        if (recipientSession != null && recipientSession.isOpen()) {
-//            NotificationResDto resDto = new NotificationResDto(reqDto.getFromMemberUuid(), fromMemberName, toMemberUuid, reqDto.getRequestType());
+//            NotificationListResDto resDto = new NotificationListResDto(reqDto.getFromMemberUuid(), fromMemberName, toMemberUuid, reqDto.getRequestType());
 //            String jsonResponse = objectMapper.writeValueAsString(resDto);
 //            recipientSession.sendMessage(new TextMessage(jsonResponse));
 //        }

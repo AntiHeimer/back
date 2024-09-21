@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,13 +23,11 @@ public class HealthDataRepository {
 
     /**
      * 활동 데이터 저장
-     *
      * @param reqDto
      */
     public void saveActive(SaveActiveReqDto reqDto) {
 
         Active active = new Active();
-
 
         active.setUuid(UUID.randomUUID().toString());
         active.setDate(reqDto.getDate());
@@ -39,7 +36,7 @@ public class HealthDataRepository {
         Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
 
         // HealthData에서 findMember와 date 값이 있는 인스턴스 찾기
-        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), active.getDate());
+        HealthData findHealthData = findHealthDataByMemberAndDate(findMember.getUuid(), active.getDate());
 
         if (findHealthData == null) { // findMember와 date가 동시에 존재하는 인스턴스가 없으면
 
@@ -61,21 +58,6 @@ public class HealthDataRepository {
         }
         em.persist(active);
     }
-
-//    public void saveTest(Map<LocalDate, List<SaveActiveReqDto>> reqDto) {
-//
-//        Active active = new Active();
-//
-//
-//        reqDto.forEach((date, saveActiveReqDtoList) -> {
-//            // 각 날짜에 해당하는 데이터 리스트를 처리하는 로직
-//            System.out.println("Date: " + date);
-//            for (SaveActiveReqDto data : saveActiveReqDtoList) {
-//                System.out.println(data);
-//                // 여기서 데이터베이스에 저장하는 로직을 추가할 수 있습니다.
-//            }
-//        });
-//    }
 
     /**
      * 움직인 거리 데이터 저장
@@ -101,7 +83,7 @@ public class HealthDataRepository {
         move.setValue(sumValue);
 
         Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
-        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
+        HealthData findHealthData = findHealthDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
 
         if (findHealthData == null) { // findMember와 date가 동시에 존재하는 인스턴스가 없으면
 
@@ -147,7 +129,7 @@ public class HealthDataRepository {
         walk.setValue(sumValue);
 
         Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
-        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
+        HealthData findHealthData = findHealthDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
 
         if (findHealthData == null) { // findMember와 date가 동시에 존재하는 인스턴스가 없으면
 
@@ -171,7 +153,6 @@ public class HealthDataRepository {
 
     /**
      * 수면 데이터 저장
-     *
      * @param reqDto
      */
     public void saveSleep(SaveSleepReqDto reqDto) {
@@ -214,7 +195,7 @@ public class HealthDataRepository {
         sleep.setRem(rem);
 
         Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
-        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
+        HealthData findHealthData = findHealthDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
 
         if (findHealthData == null) {
 
@@ -237,7 +218,7 @@ public class HealthDataRepository {
     }
 
     /**
-     * 몸무게 저장
+     * 몸무게 데이터 저장
      * @param reqDto
      */
     public void saveWeight(SaveWeightReqDto reqDto) {
@@ -249,12 +230,12 @@ public class HealthDataRepository {
     }
 
     /**
-     * 회원과 날짜로 건강 데이터 찾기
-     * @param uuid
+     * 건강 데이터 조회
+     * @param memberUuid
      * @param date
      * @return
      */
-    public HealthData findDataByMemberAndDate(String memberUuid, LocalDate date) {
+    public HealthData findHealthDataByMemberAndDate(String memberUuid, LocalDate date) {
 
         try {
             return em.createQuery("select h from HealthData h where h.date = :date and h.member.uuid = :memberUuid", HealthData.class)
@@ -266,7 +247,7 @@ public class HealthDataRepository {
     }
 
     /**
-     * 활동 데이터가 며칠까지 전송됐는지 찾기
+     * 최근 저장된 활동 데이터 날짜 조회
      * @return
      */
     public LocalDate findLastSentDateOfActive(String memberUuid) {
@@ -277,8 +258,7 @@ public class HealthDataRepository {
     }
 
     /**
-     * 움직인 거리 데이터가 며칠까지 전송됐는지 찾기
-     *
+     * 최근 저장된 움직인 거리 데이터 날짜 조회
      * @param memberUuid
      * @return
      */
@@ -290,8 +270,7 @@ public class HealthDataRepository {
     }
 
     /**
-     * 걸음수 데이터가 며칠까지 전송됐는지 찾기
-     *
+     * 최근 저장된 걸음수 데이터 날짜 조회
      * @param memberUuid
      * @return
      */
@@ -303,8 +282,7 @@ public class HealthDataRepository {
     }
 
     /**
-     * 수면 데이터가 며칠까지 전송됐는지 찾기
-     *
+     * 최근 저장된 수면 데이터 날짜 조회
      * @param memberUuid
      * @return
      */
@@ -315,71 +293,78 @@ public class HealthDataRepository {
                 .getSingleResult();
     }
 
+    /**
+     * 건강 데이터 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
     public List<HealthData> findHealthDataByMemberUuid(String memberUuid, LocalDate date) {
 
         LocalDate startDate = date.minusDays(7);
-
 
         return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid AND h.date >= :startDate AND h.date <= :date ORDER BY h.date DESC", HealthData.class)
                 .setParameter("memberUuid", memberUuid).setParameter("date", date).setParameter("startDate", startDate)
                 .getResultList();
     }
 
-//    public List<Active> findActive(String uuid, LocalDate date) {
-//
-//        HealthData healthData = findDataByMemberAndDate(uuid, date);
-//
-//        try {
-//            return em.createQuery("select a from Active a where a.healthData.uuid = :uuid", Active.class)
-//                    .setParameter("uuid", healthData.getUuid())
-//                    .getResultList();
-//        } catch (NullPointerException e) {
-//            return null;
-//        }
-//    }
-//
-//    public List<Move> findMove(String uuid, LocalDate date) {
-//
-//        HealthData healthData = findDataByMemberAndDate(uuid, date);
-//
-//        try {
-//            return em.createQuery("select m from Move m where m.healthData.uuid = :uuid", Move.class)
-//                    .setParameter("uuid", healthData.getUuid())
-//                    .getResultList();
-//        } catch (NullPointerException e) {
-//            return null;
-//        }
-//    }
-//
-//    public List<Walk> findWalk(String uuid, LocalDate date) {
-//
-//        HealthData healthData = findDataByMemberAndDate(uuid, date);
-//
-//        try {
-//            return em.createQuery("select w from Walk w where w.healthData.uuid = :uuid", Walk.class)
-//                    .setParameter("uuid", healthData.getUuid())
-//                    .getResultList();
-//        } catch (NullPointerException e) {
-//            return null;
-//        }
-//    }
+    /**
+     * 활동 데이터 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
+    public List<Active> findActive(String memberUuid, LocalDate date) {
+
+        LocalDate startDate = date.minusDays(7);
+
+        return em.createQuery("SELECT a FROM Active a WHERE a.healthData.member.uuid = :memberUuid AND a.date >= :startDate AND a.date <= :date ORDER BY a.date DESC", Active.class)
+                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate)
+                .getResultList();
+    }
+
+    /**
+     * 움직인 거리 데이터 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
+    public List<Move> findMove(String memberUuid, LocalDate date) {
+
+        LocalDate startDate = date.minusDays(7);
+
+        return em.createQuery("SELECT m FROM Move m WHERE m.healthData.member.uuid = :memberUuid AND m.date >= :startDate AND m.date <= :date ORDER BY m.date DESC", Move.class)
+                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate)
+                .getResultList();
+    }
+
+    /**
+     * 걸음수 데이터 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
+    public List<Walk> findWalk(String memberUuid, LocalDate date) {
+
+        LocalDate startDate = date.minusDays(7);
+
+        return em.createQuery("SELECT w FROM Walk w WHERE w.healthData.member.uuid = :memberUuid AND w.date >= :startDate AND w.date <= :date ORDER BY w.date DESC", Walk.class)
+                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate)
+                .getResultList();
+    }
 
     /**
      * 활동 데이터 존재 확인
      * @param reqDto
      * @return
      */
-    public boolean existActive(SaveActiveReqDto reqDto) {
+    public boolean isExistActive(SaveActiveReqDto reqDto) {
 
-        try {
-            em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
-                    .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
-                    .getSingleResult();
+        List<Active> activeList = em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
+                .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
+                .getResultList();
 
-            return true;
-        } catch (NoResultException e) {
-            return false;
-        }
+        return !activeList.isEmpty();
     }
 
     /**
@@ -387,17 +372,13 @@ public class HealthDataRepository {
      * @param reqDto
      * @return
      */
-    public boolean existMove(SaveMoveReqDto reqDto) {
+    public boolean isExistMove(SaveMoveReqDto reqDto) {
 
-        try {
-            em.createQuery("select m from Move m where m.healthData.member.uuid = :uuid and m.date = :date", Move.class)
-                    .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
-                    .getSingleResult();
+        List<Move> moveList = em.createQuery("select m from Move m where m.healthData.member.uuid = :uuid and m.date = :date", Move.class)
+                .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
+                .getResultList();
 
-            return true;
-        } catch (NoResultException e) {
-            return false;
-        }
+        return !moveList.isEmpty();
     }
 
     /**
@@ -405,17 +386,13 @@ public class HealthDataRepository {
      * @param reqDto
      * @return
      */
-    public boolean existWalk(SaveWalkReqDto reqDto) {
+    public boolean isExistWalk(SaveWalkReqDto reqDto) {
 
-        try {
-            em.createQuery("select w from Walk w where w.healthData.member.uuid = :uuid and w.date = :date", Walk.class)
-                    .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
-                    .getSingleResult();
+        List<Walk> walkList = em.createQuery("select w from Walk w where w.healthData.member.uuid = :uuid and w.date = :date", Walk.class)
+                .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
+                .getResultList();
 
-            return true;
-        } catch (NoResultException e) {
-            return false;
-        }
+        return !walkList.isEmpty();
     }
 
     /**
@@ -423,16 +400,13 @@ public class HealthDataRepository {
      * @param reqDto
      * @return
      */
-    public boolean existSleep(SaveSleepReqDto reqDto) {
+    public boolean isExistSleep(SaveSleepReqDto reqDto) {
 
-        try {
-            em.createQuery("select s from Sleep s where s.healthData.member.uuid = :uuid and s.date = :date", Sleep.class)
-                    .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
-                    .getSingleResult();
-            return true;
-        } catch (NoResultException e) {
-            return false;
-        }
+        List<Sleep> sleepList = em.createQuery("select s from Sleep s where s.healthData.member.uuid = :uuid and s.date = :date", Sleep.class)
+                .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
+                .getResultList();
+
+        return sleepList.isEmpty();
     }
 
     /**

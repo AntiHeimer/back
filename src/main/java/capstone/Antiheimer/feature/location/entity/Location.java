@@ -27,13 +27,4 @@ public class Location {
 
     @NotNull
     private LocalDateTime date;
-
-//    @NotNull
-//    private String latitude;
-//
-//    @NotNull
-//    private String longitude;
-//
-//    @NotNull
-//    private LocalDateTime dateTime;
 }

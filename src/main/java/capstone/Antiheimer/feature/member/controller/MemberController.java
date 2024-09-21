@@ -39,7 +39,6 @@ public class MemberController {
 
     /**
      * 회원가입
-     *
      * @param auth
      * @param request
      * @return NormalResDto
@@ -68,7 +67,6 @@ public class MemberController {
 
     /**
      * 로그인
-     *
      * @param auth
      * @param request
      * @return LoginResDto
@@ -100,7 +98,6 @@ public class MemberController {
 
     /**
      * 로그아웃
-     *
      * @param memberUuid
      * @return NormalResDto
      */
@@ -118,7 +115,6 @@ public class MemberController {
 
     /**
      * 회원정보
-     *
      * @param memberUuid
      * @return
      */

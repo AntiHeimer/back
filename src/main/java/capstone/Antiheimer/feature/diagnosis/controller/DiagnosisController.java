@@ -1,9 +1,9 @@
 package capstone.Antiheimer.feature.diagnosis.controller;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
+import capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordDto;
+import capstone.Antiheimer.feature.diagnosis.dto.DiagnosisSheetResDto;
 import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
-import capstone.Antiheimer.feature.diagnosis.Dto.DSRandomWordDto;
-import capstone.Antiheimer.feature.diagnosis.Dto.DiagnosisSheetResDto;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,5 +61,4 @@ public class DiagnosisController {
 
         return new DSRandomWordDto("200", "세단어 반환 성공", random);
     }
-
 }

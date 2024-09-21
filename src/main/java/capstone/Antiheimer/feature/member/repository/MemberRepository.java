@@ -18,28 +18,17 @@ public class MemberRepository {
 
     /**
      * 회원 저장
-     * @param memberDto
+     * @param member
      */
-    public void save(SignupReqDto memberDto) {
-
-        Member member = new Member();
-        BcryptService bcryptService = new BcryptService();
-
-        member.setUuid(UUID.randomUUID().toString());
-        member.setId(memberDto.getId());
-        member.setName(memberDto.getName());
-        member.setBirth(memberDto.getBirth());
-        member.setGender(memberDto.getGender());
-
-        String pw = memberDto.getPw();
-        member.setPw(bcryptService.encode(pw)); // bcrypt 암호화
+    public void save(Member member) {
 
         em.persist(member);
     }
 
     /**
      * uuid로 회원 찾기
-     * @param uuid
+     * uuid 존재 확인 완료
+     * @param memberUuid
      * @return
      */
     public Member findOneByUuid(String memberUuid) {
@@ -48,7 +37,8 @@ public class MemberRepository {
     }
 
     /**
-     * id로 회원 한 명 찾기(id가 확실히 존재할 때)
+     * id로 회원 찾기
+     * id 존재 확인 완료
      * @param id
      * @return
      */
