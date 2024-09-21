@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.diagnosis;
+package capstone.Antiheimer.feature.diagnosis.controller;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordDto;
@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 public class DiagnosisController {
 
-    private final DiagnosisService diagnosisSheetService;
+    private final DiagnosisService diagnosisService;
 
     /**
      * 진단지 반환
@@ -33,7 +33,7 @@ public class DiagnosisController {
         try {
             log.info("[Service] 진단문제 반환 시작");
 
-            DiagnosisSheet diagnosisSheet = diagnosisSheetService.returnDiagnosisSheet(num);
+            DiagnosisSheet diagnosisSheet = diagnosisService.returnDiagnosisSheet(num);
 
             return new DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet);
         } catch (IncorrectNumException e){
