@@ -361,7 +361,7 @@ Incorrect(409)
 - IncorrectNumException: 올바르지 않은 번호
 
 
-## returnRandomWords
+## RandomWords
 ### /diagnosisSheet/word: GET
 
 **Header**
@@ -369,6 +369,21 @@ Incorrect(409)
 
 ### possible error
 auth(401): 권한 없음(토큰)
+
+
+
+## StartDiagnosis
+### /diagnosis/start: POST
+
+**Header**
+-String Authorization
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
 
 
 # Relation

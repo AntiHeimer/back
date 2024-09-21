@@ -75,7 +75,7 @@ public class DiagnosisController {
     }
 
     @PostMapping("/diagnosis/start")
-    public ResponseEntity<StartDiagnosisResDto> diagnosisStart(@RequestParam("uuid") String uuid) throws JsonProcessingException {
+    public ResponseEntity<StartDiagnosisResDto> Startdiagnosis(@RequestParam("uuid") String uuid) throws JsonProcessingException {
 
         log.info("[Controller] AES 복호화");
         String decryptedRequest = aesService.decryptAES(uuid);
