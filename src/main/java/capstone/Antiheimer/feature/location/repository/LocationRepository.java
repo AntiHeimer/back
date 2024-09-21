@@ -1,16 +1,13 @@
 package capstone.Antiheimer.feature.location.repository;
 
 import capstone.Antiheimer.feature.location.entity.Location;
-import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.location.dto.LocationReqDto;
-import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Repository

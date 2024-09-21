@@ -1,6 +1,5 @@
 package capstone.Antiheimer.feature.health_data.controller;
 
-import capstone.Antiheimer.exception.notexist.NotExistHealthDataException;
 import capstone.Antiheimer.feature.diagnosis.dto.AiReqDto;
 import capstone.Antiheimer.feature.health_data.entity.Active;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;

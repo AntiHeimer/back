@@ -1,6 +1,5 @@
 package capstone.Antiheimer.feature.notification.controller;
 
-import capstone.Antiheimer.feature.notification.dto.NotificationDto;
 import capstone.Antiheimer.feature.notification.dto.NotificationListResDto;
 import capstone.Antiheimer.feature.notification.entity.Notification;
 import capstone.Antiheimer.feature.notification.service.NotificationService;

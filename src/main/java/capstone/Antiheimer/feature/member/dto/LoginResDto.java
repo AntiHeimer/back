@@ -1,21 +1,17 @@
 package capstone.Antiheimer.feature.member.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class LoginResDto {
 
     private String statusCode;
     private String message;
     private String uuid;
     private String jwtToken;
-
-    public LoginResDto(String statusCode, String message, String uuid, String jwtToken) {
-        this.statusCode = statusCode;
-        this.message = message;
-        this.uuid = uuid;
-        this.jwtToken = jwtToken;
-    }
 }

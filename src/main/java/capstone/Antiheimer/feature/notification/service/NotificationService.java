@@ -1,10 +1,7 @@
 package capstone.Antiheimer.feature.notification.service;
 
-import capstone.Antiheimer.exception.notexist.NotExistMemberException;
-import capstone.Antiheimer.exception.notexist.NotExistNotificationException;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
-import capstone.Antiheimer.feature.notification.dto.NotificationDto;
 import capstone.Antiheimer.feature.notification.entity.Notification;
 import capstone.Antiheimer.feature.notification.repository.NotificationRepository;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
