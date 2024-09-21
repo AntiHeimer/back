@@ -24,7 +24,7 @@ public class JwtTokenUtil {
 
     public String generateToken(String uuid) {
 
-        log.info("토큰 생성 시작");
+        log.info("[JWT] 토큰 생성 시작");
 
         Claims claims = Jwts.claims();
         claims.put("uuid", uuid);
@@ -47,34 +47,34 @@ public class JwtTokenUtil {
     public void validateToken(String token) {
 
         try {
-            log.info("토큰 유효성 확인");
+            log.info("[JWT] 토큰 유효성 확인");
 
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
         } catch (SignatureException | SecurityException | MalformedJwtException e) {
-            log.info("Invalid JWT signature, 유효하지 않는 JWT 서명 입니다");
+            log.info("[JWT] Invalid JWT signature, 유효하지 않는 JWT 서명 입니다");
             throw new IllegalArgumentException("유효하지 않는 JWT 서명");
         } catch (ExpiredJwtException e) {
-            log.info("Expired JWT token, 만료된 JWT token 입니다");
+            log.info("[JWT] Expired JWT token, 만료된 JWT token 입니다");
             throw new IllegalArgumentException("만료된 JWT 토큰");
         } catch (UnsupportedJwtException e) {
-            log.info("Unsupported JWT token, 지원되지 않는 JWT 토큰 입니다");
+            log.info("[JWT] Unsupported JWT token, 지원되지 않는 JWT 토큰 입니다");
             throw new IllegalArgumentException("지원하지 않는 JWT 토큰");
         } catch (IllegalArgumentException e) {
-            log.info("JWT claims is empty, 잘못된 JWT 토큰 입니다");
+            log.info("[JWT] JWT claims is empty, 잘못된 JWT 토큰 입니다");
             throw new IllegalArgumentException("잘못된 JWT 토큰");
         }
     }
 
     public void validateHeader(String header) {
 
-        log.info("헤더 유효성 확인");
+        log.info("[JWT] 헤더 유효성 확인");
 
         if (header == null) {
-            log.info("null 헤더");
+            log.info("[JWT] null 헤더");
             throw new IllegalArgumentException("null 헤더");
         }
         if (!header.startsWith("Bearer ")) {
-            log.info("유효하지 않은 Bearer");
+            log.info("[JWT] 유효하지 않은 Bearer");
             throw new IllegalArgumentException("Bearer 오류");
         }
     }

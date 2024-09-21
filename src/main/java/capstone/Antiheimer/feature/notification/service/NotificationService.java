@@ -27,15 +27,15 @@ public class NotificationService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public void saveRequestNotification(RequestRelationReqDto request) {
+    public void saveRequestNotification(RequestRelationReqDto reqDto) {
 
-        Member toMember = memberRepository.findOneById(request.getToMemberId());
+        Member toMember = memberRepository.findOneById(reqDto.getToMemberId());
 
-        if (isExist(request.getFromMemberUuid()) && toMember != null) {
+        if (isExist(reqDto.getFromMemberUuid()) && toMember != null) {
 
-            Notification notification = convertToEntity(request, toMember.getUuid());
+            Notification notification = convertToEntity(reqDto, toMember.getUuid());
 
-            log.info("알림 저장");
+            log.info("[Controller] 알림 저장");
             notificationRepository.saveNotification(notification);
         } else {
 
@@ -44,16 +44,16 @@ public class NotificationService {
     }
 
     @Transactional
-    public void saveGuardianNotification(SaveGuardianReqDto request) {
+    public void saveGuardianNotification(SaveGuardianReqDto reqDto) {
 
-        Member guardian = memberRepository.findOneByUuid(request.getGuardianUuid());
+        Member guardian = memberRepository.findOneByUuid(reqDto.getGuardianUuid());
 
-        if (isExist(request.getWardUuid()) && guardian != null) {
+        if (isExist(reqDto.getWardUuid()) && guardian != null) {
 
             Notification notification = new Notification();
 
             notification.setUuid();
-            notification.setMemberUuid(request.getWardUuid());
+            notification.setMemberUuid(reqDto.getWardUuid());
             notification.setFromMemberUuid(guardian.getUuid());
             notification.setFromMemberName(guardian.getName());
             notification.setType("resultGuardian");
@@ -63,16 +63,16 @@ public class NotificationService {
     }
 
     @Transactional
-    public void saveWardNotification(SaveWardReqDto request) {
+    public void saveWardNotification(SaveWardReqDto reqDto) {
 
-        Member ward = memberRepository.findOneByUuid(request.getWardUuid());
+        Member ward = memberRepository.findOneByUuid(reqDto.getWardUuid());
 
-        if (isExist(request.getGuardianUuid()) && ward != null) {
+        if (isExist(reqDto.getGuardianUuid()) && ward != null) {
 
             Notification notification = new Notification();
 
             notification.setUuid();
-            notification.setMemberUuid(request.getGuardianUuid());
+            notification.setMemberUuid(reqDto.getGuardianUuid());
             notification.setFromMemberUuid(ward.getUuid());
             notification.setFromMemberName(ward.getName());
             notification.setType("resultWard");
@@ -119,17 +119,17 @@ public class NotificationService {
         }
     }
 
-    public Notification convertToEntity(RequestRelationReqDto request, String toMemberUuid) {
+    public Notification convertToEntity(RequestRelationReqDto reqDto, String toMemberUuid) {
 
         Notification notification = new Notification();
 
-        Member fromMember = memberRepository.findOneByUuid(request.getFromMemberUuid());
+        Member fromMember = memberRepository.findOneByUuid(reqDto.getFromMemberUuid());
 
         notification.setUuid();
         notification.setMemberUuid(toMemberUuid);
-        notification.setFromMemberUuid(request.getFromMemberUuid());
+        notification.setFromMemberUuid(reqDto.getFromMemberUuid());
         notification.setFromMemberName(fromMember.getName());
-        notification.setType(request.getRequestType());
+        notification.setType(reqDto.getRequestType());
 
         return notification;
     }

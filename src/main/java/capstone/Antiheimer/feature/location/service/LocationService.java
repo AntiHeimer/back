@@ -25,7 +25,7 @@ public class LocationService {
     /**
      * 위치 정보 저장
      * - 회원 존재 확인
-     * @param request
+     * @param reqDto
      * @param reqDto
      */
     @Transactional
@@ -34,7 +34,7 @@ public class LocationService {
         memberExistCheck(reqDto.getMemberUuid()); // 회원 존재 확인
         locationDuplicateCheck(request, reqDto);
         locationRepository.saveLocation(request, reqDto);
-        log.info("위치 정보 저장 성공");
+        log.info("[Controller] 위치 정보 저장 성공");
     }
 
     public Location recentLocation(String memberUuid) {
@@ -42,7 +42,7 @@ public class LocationService {
         memberExistCheck(memberUuid); //회원 존재 확인
         locationExitCheck(memberUuid); //위치 정보 존재 확인
         Location location = locationRepository.findLastLocation(memberUuid);
-        log.info("위치 정보 불러오기 성공");
+        log.info("[Controller] 위치 정보 불러오기 성공");
         return location;
     }
 
@@ -63,7 +63,7 @@ public class LocationService {
 
     /**
      * 위치 정보 저장 확인
-     * @param request
+     * @param reqDto
      * @param reqDto
      */
     private void locationDuplicateCheck(String request, LocationReqDto reqDto) {

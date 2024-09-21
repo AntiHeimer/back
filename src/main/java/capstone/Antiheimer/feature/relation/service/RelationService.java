@@ -1,8 +1,8 @@
 package capstone.Antiheimer.feature.relation.service;
 
-import capstone.Antiheimer.exception.duplicate.DuplicateRelationException;
 import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
+import capstone.Antiheimer.feature.member.service.CheckService;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoWardDto;
@@ -26,6 +26,7 @@ public class RelationService {
 
     private final MemberRepository memberRepository;
     private final RelationRepository relationRepository;
+    private final CheckService checkService;
 
     /**
      * 관계 임시 등록(active false 상태)
@@ -35,42 +36,39 @@ public class RelationService {
     @Transactional
     public void saveRelation(RequestRelationReqDto reqDto) {
 
-        if (reqDto.getRequestType().equals("guardian")) {
+        String guardianUuid = null;
+        String wardUuid = null;
 
-            try {
+        try {
+            if (reqDto.getRequestType().equals("guardian")) {
 
-            } catch(EmptyResultDataAccessException e) {
-                throw new NotExistMemberException();
-            }
-        } else if (reqDto.getRequestType().equals("ward")) {
-
-            try {
-                System.out.println("reqDto.getToMemberId() = " + reqDto.getToMemberId());
                 memberRepository.findById(reqDto.getToMemberId());
 
-                System.out.println("reqDto = " + reqDto);
-                String wardUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
-                String guardianUuid = reqDto.getFromMemberUuid();
+                guardianUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
+                wardUuid = reqDto.getFromMemberUuid();
+            } else if (reqDto.getRequestType().equals("ward")) {
 
-                System.out.println("guardianUuid = " + guardianUuid);
-                System.out.println("wardUuid = " + wardUuid);
+                memberRepository.findById(reqDto.getToMemberId());
 
-                if (isExist(wardUuid) && isExist(guardianUuid)) {
-
-                    Relation relation = convertToEntity(wardUuid, guardianUuid);
-
-                    if (relationRepository.isRelationExist(relation)) {
-
-                        log.warn("이미 존재하는 관계");
-                        throw new DuplicateRelationException();
-                    }
-                    relationRepository.saveRelation(relation);
-                }
-            } catch(EmptyResultDataAccessException e) {
-
-                throw new NotExistMemberException();
+                wardUuid = memberRepository.findOneById(reqDto.getToMemberId()).getUuid();
+                guardianUuid = reqDto.getFromMemberUuid();
             }
+        } catch(EmptyResultDataAccessException e){
+
+            throw new NotExistMemberException();
         }
+
+        log.info("[Service] 회원 존재 확인");
+        checkService.checkMemberExists(wardUuid);
+        checkService.checkMemberExists(guardianUuid);
+
+        Relation relation = convertToEntity(wardUuid, guardianUuid);
+
+        log.info("[Service] 관계 존재 확인");
+        checkService.checkDuplicateRelation(relation);
+
+        log.info("[Service] 관계 저장");
+        relationRepository.saveRelation(relation);
     }
 
     /**
@@ -111,7 +109,7 @@ public class RelationService {
      */
     public List<InfoGuardianDto> infoGuardian(String memberUuid) {
 
-        isExist(memberUuid);
+        checkService.checkMemberExists(memberUuid);
 
         return relationRepository.infoGuardian(memberUuid);
     }
@@ -124,7 +122,7 @@ public class RelationService {
      */
     public List<InfoWardDto> infoWard(String memberUuid) {
 
-        isExist(memberUuid);
+        checkService.checkMemberExists(memberUuid);
 
         return relationRepository.infoWard(memberUuid);
     }
@@ -146,22 +144,5 @@ public class RelationService {
         relation.setActive(false);
 
         return relation;
-    }
-
-    /**
-     * 회원 존재 확인
-     *
-     * @param uuid
-     * @return
-     */
-    public boolean isExist(String uuid) {
-
-        if (memberRepository.findOneByUuid(uuid) == null) {
-
-            log.warn("회원이 존재하지 않습니다");
-            throw new NotExistMemberException();
-        } else {
-            return true;
-        }
     }
 }

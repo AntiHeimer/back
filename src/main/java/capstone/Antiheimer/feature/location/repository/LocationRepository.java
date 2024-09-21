@@ -23,7 +23,7 @@ public class LocationRepository {
 
     /**
      * 위치 저장
-     * @param request
+     * @param reqDto
      */
     public void saveLocation(String request, LocationReqDto reqDto) {
 
@@ -42,7 +42,7 @@ public class LocationRepository {
 
         try {
             em.createQuery("select l from Location l where l.encryptedLocation = :location and l.member.uuid = :uuid", Location.class)
-                    .setParameter("location", request).setParameter("uuid", reqDto.getMemberUuid())
+                    .setParameter("location", reqDto).setParameter("uuid", reqDto.getMemberUuid())
                     .getSingleResult();
             return true;
         } catch (NoResultException e) {

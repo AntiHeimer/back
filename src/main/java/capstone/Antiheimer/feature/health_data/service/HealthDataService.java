@@ -29,77 +29,78 @@ public class HealthDataService {
      * 활동 데이터 저장
      * - 회원 존재 확인
      * - 활동 데이터 존재 확인(중복 확인)
-     * @param request
+     * @param reqDto
      */
     @Transactional
-    public void insertActive(SaveActiveReqDto request) {
+    public void insertActive(SaveActiveReqDto reqDto) {
 
-        memberExistCheck(request.getMemberUuid());
-        activeDataDuplicateCheck(request);
-        healthDataRepository.saveActive(request);
-        log.info("Active 데이터 저장 성공");
+        memberExistCheck(reqDto.getMemberUuid());
+        activeDataDuplicateCheck(reqDto);
+        healthDataRepository.saveActive(reqDto);
+        log.info("[Controller] Active 데이터 저장 성공");
     }
 
     /**
      * 움직인 거리 데이터 저장
      * - 회원 존재 확인
      * - 움직인 거리 데이터 존재 확인(중복 확인)
-     * @param request
+     * @param reqDto
      */
     @Transactional
-    public void insertMove(SaveMoveReqDto request) {
+    public void insertMove(SaveMoveReqDto reqDto) {
 
-        memberExistCheck(request.getMemberUuid());
-        moveDataDuplicateCheck(request);
-        healthDataRepository.saveMove(request);
-        log.info("Move 데이터 저장 성공");
+        memberExistCheck(reqDto.getMemberUuid());
+        moveDataDuplicateCheck(reqDto);
+        healthDataRepository.saveMove(reqDto);
+        log.info("[Controller] Move 데이터 저장 성공");
     }
 
     /**
      * 걸음수 데이터 저장
      * - 회원 존재 확인
      * - 걸음수 데이터 존재 확인(중복 확인)
-     * @param request
+     * @param reqDto
      */
     @Transactional
-    public void insertWalk(SaveWalkReqDto request) {
+    public void insertWalk(SaveWalkReqDto reqDto) {
 
-        memberExistCheck(request.getMemberUuid());
-        walkDataDuplicateCheck(request);
-        healthDataRepository.saveWalk(request);
-        log.info("Walk 데이터 저장 성공");
+        memberExistCheck(reqDto.getMemberUuid());
+        walkDataDuplicateCheck(reqDto);
+        healthDataRepository.saveWalk(reqDto);
+        log.info("[Controller] Walk 데이터 저장 성공");
     }
 
     /**
      * 몸무게 저장
      * - 회원 존재 확인
-     * @param request
+     * @param reqDto
      */
     @Transactional
-    public void insertWeight(SaveWeightReqDto request) {
+    public void insertWeight(SaveWeightReqDto reqDto) {
 
-        memberExistCheck(request.getMemberUuid());
-        healthDataRepository.saveWeight(request);
-        log.info("Weight 저장 성공");
+        memberExistCheck(reqDto.getMemberUuid());
+        healthDataRepository.saveWeight(reqDto);
+        log.info("[Controller] Weight 저장 성공");
     }
 
     /**
      * 수면 데이터 저장
      * - 회원 존재 확인
      * - 수면 데이터 존재 확인(중복 확인)
-     * @param request
+     * @param reqDto
      */
     @Transactional
-    public void insertSleep(SaveSleepReqDto request) {
+    public void insertSleep(SaveSleepReqDto reqDto) {
 
-        memberExistCheck(request.getMemberUuid());
-        sleepDataDuplicateCheck(request);
-        healthDataRepository.saveSleep(request);
-        log.info("수면 데이터 저장 성공");
+        memberExistCheck(reqDto.getMemberUuid());
+        sleepDataDuplicateCheck(reqDto);
+        healthDataRepository.saveSleep(reqDto);
+        log.info("[Controller] 수면 데이터 저장 성공");
     }
 
     /**
      * 건강 데이터 최근 저장 날짜 조회
+     *
      * @param uuid
      * @param data
      * @return
@@ -118,11 +119,11 @@ public class HealthDataService {
         };
     }
 
-    public List<HealthData> findHealthDataByMemberUuid(FindHealthDataReqDto request) {
+    public List<HealthData> findHealthDataByMemberUuid(FindHealthDataReqDto reqDto) {
 
-        memberExistCheck(request.getMemberUuid());
+        memberExistCheck(reqDto.getMemberUuid());
 
-        List<HealthData> healthDataList = healthDataRepository.findHealthDataByMemberUuid(request.getMemberUuid(), request.getDate());
+        List<HealthData> healthDataList = healthDataRepository.findHealthDataByMemberUuid(reqDto.getMemberUuid(), reqDto.getDate());
 
         if (healthDataList.isEmpty()) {
             log.warn("건강 데이터가 존재하지 않습니다");
@@ -136,33 +137,33 @@ public class HealthDataService {
 
 //    public List<Active> findActiveList(String uuid, LocalDate date) {
 //
-//        memberExistCheck(uuid);
+//        checkIdExists(uuid);
 //        List<Active> activeList = healthDataRepository.findActive(uuid, date);
 //        activeDataExistCheck(activeList);
 //
-//        log.info("Active 데이터 조회 성공");
+//        log.info("[Controller] Active 데이터 조회 성공");
 //
 //        return activeList;
 //    }
 //
 //    public List<Move> findMoveList(String uuid, LocalDate date) {
 //
-//        memberExistCheck(uuid);
+//        checkIdExists(uuid);
 //        List<Move> moveList = healthDataRepository.findMove(uuid, date);
 //        moveDataExistCheck(moveList);
 //
-//        log.info("Move 데이터 조회 성공");
+//        log.info("[Controller] Move 데이터 조회 성공");
 //
 //        return moveList;
 //    }
 //
 //    public List<Walk> findWalkList(String uuid, LocalDate date) {
 //
-//        memberExistCheck(uuid);
+//        checkIdExists(uuid);
 //        List<Walk> walkList = healthDataRepository.findWalk(uuid, date);
 //        walkDataDuplicateCheck(walkList);
 //
-//        log.info("Walk 데이터 조회 성공");
+//        log.info("[Controller] Walk 데이터 조회 성공");
 //
 //        return walkList;
 //    }
@@ -185,12 +186,12 @@ public class HealthDataService {
 
     /**
      * 활동 데이터 존재 확인
-     * @param request
+     * @param reqDto
      */
-    private void activeDataDuplicateCheck(SaveActiveReqDto request) {
+    private void activeDataDuplicateCheck(SaveActiveReqDto reqDto) {
 
 
-        if (healthDataRepository.existActive(request)) {
+        if (healthDataRepository.existActive(reqDto)) {
 
             log.warn("이미 존재하는 활동 데이터입니다");
             throw new DuplicateHealthDataException();
@@ -199,11 +200,11 @@ public class HealthDataService {
 
     /**
      * 움직인 거리 데이터 존재 확인
-     * @param request
+     * @param reqDto
      */
-    private void moveDataDuplicateCheck(SaveMoveReqDto request) {
+    private void moveDataDuplicateCheck(SaveMoveReqDto reqDto) {
 
-        if (healthDataRepository.existMove(request)) {
+        if (healthDataRepository.existMove(reqDto)) {
 
             log.warn("이미 존재하는 움직인 거리 데이터입니다");
             throw new DuplicateHealthDataException();
@@ -212,11 +213,11 @@ public class HealthDataService {
 
     /**
      * 걸음수 데이터 존재 확인
-     * @param request
+     * @param reqDto
      */
-    private void walkDataDuplicateCheck(SaveWalkReqDto request) {
+    private void walkDataDuplicateCheck(SaveWalkReqDto reqDto) {
 
-        if (healthDataRepository.existWalk(request)) {
+        if (healthDataRepository.existWalk(reqDto)) {
 
             log.warn("이미 존재하는 걸음수 데이터입니다");
             throw new DuplicateHealthDataException();
@@ -236,11 +237,11 @@ public class HealthDataService {
 
     /**
      * 수면 데이터 존재 확인
-     * @param request
+     * @param reqDto
      */
-    private void sleepDataDuplicateCheck(SaveSleepReqDto request) {
+    private void sleepDataDuplicateCheck(SaveSleepReqDto reqDto) {
 
-        if (healthDataRepository.existSleep(request)) {
+        if (healthDataRepository.existSleep(reqDto)) {
 
             log.warn("이미 존재하는 수면 데이터입니다");
             throw new DuplicateHealthDataException();

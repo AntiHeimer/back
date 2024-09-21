@@ -24,18 +24,18 @@ public class HealthDataRepository {
 
     /**
      * 활동 데이터 저장
-     * @param request
+     * @param reqDto
      */
-    public void saveActive(SaveActiveReqDto request) {
+    public void saveActive(SaveActiveReqDto reqDto) {
 
         Active active = new Active();
 
 
         active.setUuid(UUID.randomUUID().toString());
-        active.setDate(request.getDate());
-        active.setActiveEnergyBurned(request.getActiveData());
+        active.setDate(reqDto.getDate());
+        active.setActiveEnergyBurned(reqDto.getActiveData());
 
-        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
+        Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
 
         // HealthData에서 findMember와 date 값이 있는 인스턴스 찾기
         HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), active.getDate());
@@ -61,12 +61,12 @@ public class HealthDataRepository {
         em.persist(active);
     }
 
-//    public void saveTest(Map<LocalDate, List<SaveActiveReqDto>> request) {
+//    public void saveTest(Map<LocalDate, List<SaveActiveReqDto>> reqDto) {
 //
 //        Active active = new Active();
 //
 //
-//        request.forEach((date, saveActiveReqDtoList) -> {
+//        reqDto.forEach((date, saveActiveReqDtoList) -> {
 //            // 각 날짜에 해당하는 데이터 리스트를 처리하는 로직
 //            System.out.println("Date: " + date);
 //            for (SaveActiveReqDto data : saveActiveReqDtoList) {
@@ -78,16 +78,16 @@ public class HealthDataRepository {
 
     /**
      * 움직인 거리 데이터 저장
-     * @param request
+     * @param reqDto
      */
-    public void saveMove(SaveMoveReqDto request) {
+    public void saveMove(SaveMoveReqDto reqDto) {
 
-        List<MoveVo> moveVoList = request.getMoveData();
+        List<MoveVo> moveVoList = reqDto.getMoveData();
 
         Move move = new Move();
 
         move.setUuid(UUID.randomUUID().toString());
-        move.setDate(request.getDate());
+        move.setDate(reqDto.getDate());
 
         int sumValue = 0; // 총 움직인 거리
 
@@ -99,8 +99,8 @@ public class HealthDataRepository {
 
         move.setValue(sumValue);
 
-        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
-        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
+        Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
+        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
 
         if (findHealthData == null) { // findMember와 date가 동시에 존재하는 인스턴스가 없으면
 
@@ -108,7 +108,7 @@ public class HealthDataRepository {
 
             newHealthData.setUuid(UUID.randomUUID().toString());
             newHealthData.setMember(findMember);
-            newHealthData.setDate(request.getDate());
+            newHealthData.setDate(reqDto.getDate());
             move.setHealthData(newHealthData);
 
             em.persist(newHealthData);
@@ -124,16 +124,16 @@ public class HealthDataRepository {
 
     /**
      * 걸음수 데이터 저장
-     * @param request
+     * @param reqDto
      */
-    public void saveWalk(SaveWalkReqDto request) {
+    public void saveWalk(SaveWalkReqDto reqDto) {
 
-        List<WalkVo> walkVoList = request.getWalkData();
+        List<WalkVo> walkVoList = reqDto.getWalkData();
 
         Walk walk = new Walk();
 
         walk.setUuid(UUID.randomUUID().toString());
-        walk.setDate(request.getDate());
+        walk.setDate(reqDto.getDate());
 
         int sumValue = 0; // 총 걸음수
 
@@ -145,8 +145,8 @@ public class HealthDataRepository {
 
         walk.setValue(sumValue);
 
-        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
-        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
+        Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
+        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
 
         if (findHealthData == null) { // findMember와 date가 동시에 존재하는 인스턴스가 없으면
 
@@ -154,7 +154,7 @@ public class HealthDataRepository {
 
             newHealthData.setUuid(UUID.randomUUID().toString());
             newHealthData.setMember(findMember);
-            newHealthData.setDate(request.getDate());
+            newHealthData.setDate(reqDto.getDate());
             walk.setHealthData(newHealthData);
 
             em.persist(newHealthData);
@@ -170,16 +170,16 @@ public class HealthDataRepository {
 
     /**
      * 수면 데이터 저장
-     * @param request
+     * @param reqDto
      */
-    public void saveSleep(SaveSleepReqDto request) {
+    public void saveSleep(SaveSleepReqDto reqDto) {
 
-        List<SleepVo> sleepVoList = request.getSleepData();
+        List<SleepVo> sleepVoList = reqDto.getSleepData();
 
         Sleep sleep = new Sleep();
 
         sleep.setUuid(UUID.randomUUID().toString());
-        sleep.setDate(request.getDate());
+        sleep.setDate(reqDto.getDate());
 
         int sleepTime = 0;
         int rem = 0;
@@ -211,8 +211,8 @@ public class HealthDataRepository {
         sleep.setCore(core);
         sleep.setRem(rem);
 
-        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
-        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), request.getDate());
+        Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
+        HealthData findHealthData = findDataByMemberAndDate(findMember.getUuid(), reqDto.getDate());
 
         if (findHealthData == null) {
 
@@ -220,7 +220,7 @@ public class HealthDataRepository {
 
             newHealthData.setUuid(UUID.randomUUID().toString());
             newHealthData.setMember(findMember);
-            newHealthData.setDate(request.getDate());
+            newHealthData.setDate(reqDto.getDate());
             sleep.setHealthData(newHealthData);
 
             em.persist(newHealthData);
@@ -236,12 +236,12 @@ public class HealthDataRepository {
 
     /**
      * 몸무게 저장
-     * @param request
+     * @param reqDto
      */
-    public void saveWeight(SaveWeightReqDto request) {
+    public void saveWeight(SaveWeightReqDto reqDto) {
 
-        Member findMember = memberRepository.findOneByUuid(request.getMemberUuid());
-        findMember.setWeight(request.getWeight());
+        Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
+        findMember.setWeight(reqDto.getWeight());
 
         em.persist(findMember);
     }
@@ -361,14 +361,14 @@ public class HealthDataRepository {
 
     /**
      * 활동 데이터 존재 확인
-     * @param request
+     * @param reqDto
      * @return
      */
-    public boolean existActive(SaveActiveReqDto request) {
+    public boolean existActive(SaveActiveReqDto reqDto) {
 
         try {
             em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
-                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+                    .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
                     .getSingleResult();
 
             return true;
@@ -379,14 +379,14 @@ public class HealthDataRepository {
 
     /**
      * 움직인 거리 데이터 존재 확인
-     * @param request
+     * @param reqDto
      * @return
      */
-    public boolean existMove(SaveMoveReqDto request) {
+    public boolean existMove(SaveMoveReqDto reqDto) {
 
         try {
             em.createQuery("select m from Move m where m.healthData.member.uuid = :uuid and m.date = :date", Move.class)
-                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+                    .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
                     .getSingleResult();
 
             return true;
@@ -397,14 +397,14 @@ public class HealthDataRepository {
 
     /**
      * 걸음수 데이터 존재 확인
-     * @param request
+     * @param reqDto
      * @return
      */
-    public boolean existWalk(SaveWalkReqDto request) {
+    public boolean existWalk(SaveWalkReqDto reqDto) {
 
         try {
             em.createQuery("select w from Walk w where w.healthData.member.uuid = :uuid and w.date = :date", Walk.class)
-                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+                    .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
                     .getSingleResult();
 
             return true;
@@ -415,14 +415,14 @@ public class HealthDataRepository {
 
     /**
      * 수면 데이터 존재 확인
-     * @param request
+     * @param reqDto
      * @return
      */
-    public boolean existSleep(SaveSleepReqDto request) {
+    public boolean existSleep(SaveSleepReqDto reqDto) {
 
         try {
             em.createQuery("select s from Sleep s where s.healthData.member.uuid = :uuid and s.date = :date", Sleep.class)
-                    .setParameter("uuid", request.getMemberUuid()).setParameter("date", request.getDate())
+                    .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
                     .getSingleResult();
             return true;
         } catch (NoResultException e) {

@@ -27,7 +27,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        log.info("jwt filter 시작");
+        log.info("[JWT] jwt filter 시작");
 
         try {
             // 요청 경로 가져오기
@@ -40,11 +40,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 return;
             }
 
-            log.info("Header, Bearer 확인");
+            log.info("[JWT] Header, Bearer 확인");
             String authorizationHeader = request.getHeader("Authorization");
             jwtTokenUtil.validateHeader(authorizationHeader);
 
-            log.info("토큰 확인");
+            log.info("[JWT] 토큰 확인");
             String token = authorizationHeader.split(" ")[1];
             jwtTokenUtil.validateToken(token);
 
@@ -60,12 +60,12 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
-            log.info("토큰 검증 완료");
+            log.info("[JWT] 토큰 검증 완료");
             filterChain.doFilter(request, response);
 
         } catch (IllegalArgumentException e) {
 
-            log.info("Jwt 토큰 오류: {}", e.getMessage());
+            log.info("[JWT] Jwt 토큰 오류: {}", e.getMessage());
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

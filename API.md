@@ -30,7 +30,7 @@ ex) /login/{uuid}
 -String auth
 
 **Body**
-- String request(AES)
+- String reqDto(AES)
     - String id; 8자 이상, 알파벳/숫자만, 공백/NULL x
     - String pw; 알파벳/숫자만, 공백/NULL x
     - String name; 공백/NULL x
@@ -64,7 +64,7 @@ duplicate(407)
 - String auth
 
 **Body**
-- String request(AES)
+- String reqDto(AES)
     - String id
     - String pw
 
@@ -310,7 +310,7 @@ exist(408)
 - String auth
 
 **Body**
-- String request: AES 암호화
+- String reqDto: AES 암호화
   - String memberUuid;
   - LocalDateTime date;
   - LocationDto location;

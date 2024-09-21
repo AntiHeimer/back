@@ -30,7 +30,7 @@ public class DiagnosisSheetController {
     public DiagnosisSheetResDto returnDiagnosisSheet(@RequestParam("num") int num) {
 
         try {
-            log.info("진단문제 반환 시작");
+            log.info("[Controller] 진단문제 반환 시작");
 
             DiagnosisSheet diagnosisSheet = diagnosisSheetService.returnDiagnosisSheet(num);
 

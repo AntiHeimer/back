@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -33,58 +35,57 @@ public class LocationController {
     @Value("${auth.key}")
     private String authKey;
 
-    RecentLocationResDto result;
-
     /**
      * 위치 정보 저장
+     *
      * @param auth
      * @param request
      * @return
      */
     @PostMapping("/save/location")
-    public NormalResDto saveLocation(@RequestHeader("auth") String auth,
-                                     @RequestBody String request) throws JsonProcessingException {
+    public ResponseEntity<NormalResDto> saveLocation(@RequestHeader("auth") String auth,
+                                                    @RequestBody String request) throws JsonProcessingException {
 
-        log.info("권한 확인");
+        log.info("[Controller] 권한 확인");
         if (!auth.equals(authKey)) {
 
-            log.warn("권한이 없습니다.");
-            return new NormalResDto("401", "권한 없음");
+            log.warn("권한이 없습니다");
+            return new ResponseEntity<>(new NormalResDto("401", "권한 없음"), HttpStatus.UNAUTHORIZED);
         }
 
+        log.info("[Controller] AES 복호화");
         String decryptedRequest = aesService.decryptAES(request);
         LocationReqDto reqDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
 
-        log.info("위치 데이터 저장 시작");
+        log.info("[Controller] 위치 데이터 저장 시작");
         locationService.insertLocation(request, reqDto);
 
-        return new NormalResDto("200", "위치 정보 저장 성공");
+        log.info("[Controller] 위치 데이터 저장 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "위치 데이터 저장 성공"), HttpStatus.OK);
     }
 
     /**
      * 최근 위치 정보 조회
+     *
      * @param request
      * @return
      */
     @GetMapping("/recent/location")
-    public RecentLocationResDto recentLocation(@RequestParam("memberUuid") String request) throws UnsupportedEncodingException, JsonProcessingException {
+    public ResponseEntity<RecentLocationResDto> recentLocation(@RequestParam("memberUuid") String request) throws UnsupportedEncodingException, JsonProcessingException {
 
-        log.info("최근 위치 정보 조회 시작");
-
+        log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
         String decodedUuid = URLDecoder.decode(request, StandardCharsets.UTF_8.name());
-
-        System.out.println("decodedUuid = " + decodedUuid);
         // 공백을 +로 변환
         String plusEncodedString = decodedUuid.replace(" ", "+");
-
-        System.out.println("plusEncodedString = " + plusEncodedString);
-
         String memberUuid = aesService.decryptAES(plusEncodedString);
+
+        log.info("[Controller] 최근 위치 정보 조회 시작");
         Location location = locationService.recentLocation(memberUuid);
         String decryptedRequest = aesService.decryptAES(location.getEncryptedLocation());
         LocationReqDto resDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
 
-        return new RecentLocationResDto("200", "위치 정보 조회 성공", resDto.getFormattedDate(), resDto.getLocation());
+        log.info("[Controller] 최근 위치 정보 조회 성공");
+        return new ResponseEntity<>(new RecentLocationResDto("200", "위치 정보 조회 성공", resDto.getFormattedDate(), resDto.getLocation()), HttpStatus.OK);
     }
 }

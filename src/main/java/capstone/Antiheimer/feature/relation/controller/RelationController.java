@@ -13,6 +13,8 @@ import capstone.Antiheimer.util.dto.NormalResDto;
 import capstone.Antiheimer.util.encrypt.AesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -32,65 +34,62 @@ public class RelationController {
     /**
      * 관계 요청 알림
      *
-     * @param request
+     * @param reqDto
      * @return
      */
     @PostMapping("/request-relation")
-    public NormalResDto requestRelation(@RequestBody RequestRelationReqDto request) {
+    public ResponseEntity<NormalResDto> requestRelation(@RequestBody RequestRelationReqDto reqDto) {
 
         // 관계 저장(비활성화)
-        relationService.saveRelation(request);
+        relationService.saveRelation(reqDto);
 
-        log.info("관계 요청 알림 저장 시작");
-        notificationService.saveRequestNotification(request);
+        log.info("[Controller] [Controller] 관계 요청 알림 저장 시작");
+        notificationService.saveRequestNotification(reqDto);
 
-        log.info("관계 요청 알림 저장 성공");
-        return new NormalResDto("200", "관계 요청 성공");
+        log.info("[Controller] [Controller] 관계 요청 알림 저장 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "관계 요청 성공"), HttpStatus.OK);
     }
-
 
     /**
      * 보호자 등록
      *
-     * @param request
+     * @param reqDto
      * @return
      */
     @PostMapping("/save-relation/guardian")
-    public NormalResDto saveGuardian(@RequestBody SaveGuardianReqDto request) {
+    public ResponseEntity<NormalResDto> saveGuardian(@RequestBody SaveGuardianReqDto reqDto) {
 
-        log.info("보호자 등록 시작");
-        relationService.saveGuardian(request);
+        log.info("[Controller] 보호자 등록 시작");
+        relationService.saveGuardian(reqDto);
 
-        // 보호자 등록 알림 저장
-        notificationService.saveGuardianNotification(request);
+        log.info("[Controller] 보호자 등록 알림 저장");
+        notificationService.saveGuardianNotification(reqDto);
+        log.info("[Controller] 요청 알림 삭제");
+        notificationService.deleteNotification(reqDto.getNotificationUuid());
 
-        // 요청 알림 삭제
-        notificationService.deleteNotification(request.getNotificationUuid());
-
-        log.info("보호자 등록 성공");
-        return new NormalResDto("200", "보호자 등록 성공");
+        log.info("[Controller] 보호자 등록 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "보호자 등록 성공"), HttpStatus.OK);
     }
 
     /**
      * 피보호자 등록
      *
-     * @param request
+     * @param reqDto
      * @return
      */
     @PostMapping("/save-relation/ward")
-    public NormalResDto saveWard(@RequestBody SaveWardReqDto request) {
+    public ResponseEntity<NormalResDto> saveWard(@RequestBody SaveWardReqDto reqDto) {
 
-        log.info("피보호자 등록 시작");
-        relationService.saveWard(request);
+        log.info("[Controller] 피보호자 등록 시작");
+        relationService.saveWard(reqDto);
 
-        // 피보호자 등록 알림 저장
-        notificationService.saveWardNotification(request);
+        log.info("[Controller] 피보호자 등록 알림 저장");
+        notificationService.saveWardNotification(reqDto);
+        log.info("[Controller] 요청 알림 삭제");
+        notificationService.deleteNotification(reqDto.getNotificationUuid());
 
-        // 요청 알림 삭제
-        notificationService.deleteNotification(request.getNotificationUuid());
-
-        log.info("피보호자 등록 성공");
-        return new NormalResDto("200", "피보호자 등록 성공");
+        log.info("[Controller] 피보호자 등록 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "피보호자 등록 성공"), HttpStatus.OK);
     }
 
     /**
@@ -100,22 +99,21 @@ public class RelationController {
      * @return
      */
     @GetMapping("/info-relation/ward")
-    public InfoWardResDto infoWard(@RequestParam String memberUuid) throws UnsupportedEncodingException {
+    public ResponseEntity<InfoWardResDto> infoWard(@RequestParam String memberUuid) throws UnsupportedEncodingException {
 
+        log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
         String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
-
         // 공백을 +로 변환
         String plusEncodedString = decodedUuid.replace(" ", "+");
-
         // uuid 복호화
         String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
-        log.info("피보호자 정보 조회 시작");
+        log.info("[Controller] 피보호자 정보 조회 시작");
         List<InfoWardDto> infoWardList = relationService.infoWard(decryptedMemberUuid);
 
-        log.info("피보호자 정보 조회 성공");
-        return new InfoWardResDto("200", "피보호자 정보 조회 성공", infoWardList);
+        log.info("[Controller] 피보호자 정보 조회 성공");
+        return new ResponseEntity<>(new InfoWardResDto("200", "피보호자 정보 조회 성공", infoWardList), HttpStatus.OK);
     }
 
     /**
@@ -125,22 +123,20 @@ public class RelationController {
      * @return
      */
     @GetMapping("/info-relation/guardian")
-    public InfoGuardianResDto infoGuardian(@RequestParam String memberUuid) throws UnsupportedEncodingException {
+    public ResponseEntity<InfoGuardianResDto> infoGuardian(@RequestParam String memberUuid) throws UnsupportedEncodingException {
 
+        log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
         String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
-
         // 공백을 +로 변환
         String plusEncodedString = decodedUuid.replace(" ", "+");
-
         // uuid 복호화
         String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
-        log.info("피보호자 정보 조회 시작");
+        log.info("[Controller] 피보호자 정보 조회 시작");
         List<InfoGuardianDto> infoGuardianList = relationService.infoGuardian(decryptedMemberUuid);
 
-        log.info("피보호자 정보 조회 성공");
-        return new InfoGuardianResDto("200", "보호자 정보 조회 성공", infoGuardianList);
+        log.info("[Controller] 피보호자 정보 조회 성공");
+        return new ResponseEntity<>(new InfoGuardianResDto("200", "보호자 정보 조회 성공", infoGuardianList), HttpStatus.OK);
     }
-
 }

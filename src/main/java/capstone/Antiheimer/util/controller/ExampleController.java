@@ -36,7 +36,7 @@ public class ExampleController {
             @Parameter(name = "paramValue", description = "Parameter Value", example = "3", required = true)
             @RequestParam final Long paramValue,
 
-            //Request Body
+            //reqDto Body
             @RequestBody @Valid MemberJoinRequestDto requestBody
     ) {
         String s = String.format("PathValue = %d , ParamValue = %s, Request Email : %s", pathValue, paramValue, requestBody.getEmail());

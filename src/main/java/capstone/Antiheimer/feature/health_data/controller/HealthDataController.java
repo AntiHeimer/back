@@ -1,8 +1,6 @@
 package capstone.Antiheimer.feature.health_data.controller;
 
 import capstone.Antiheimer.feature.diagnosis.Dto.AiReqDto;
-import capstone.Antiheimer.exception.duplicate.DuplicateHealthDataException;
-import capstone.Antiheimer.exception.invalid.InvalidDataTypeException;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.health_data.service.HealthDataService;
 import capstone.Antiheimer.feature.health_data.dto.*;
@@ -11,7 +9,8 @@ import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
@@ -30,123 +29,126 @@ public class HealthDataController {
     @Autowired
     private final AesService aesService;
 
-    @Value("${auth.key}")
-    private String authKey;
-
     /**
      * 활동 데이터 저장
-     * @param request
+     *
+     * @param reqDto
      * @return NormalResDto
      */
     @PostMapping("/save/active")
-    public NormalResDto saveActive(@RequestBody SaveActiveReqDto request) {
+    public ResponseEntity<NormalResDto> saveActive(@RequestBody SaveActiveReqDto reqDto) {
 
-        log.info("Active 데이터 저장 시작");
-        healthDataService.insertActive(request);
+        log.info("[Controller] 활동 데이터 저장 시작");
+        healthDataService.insertActive(reqDto);
 
-        return new NormalResDto("200", "활동 데이터 저장 성공");
-
+        log.info("[Controller] 활동 데이터 저장 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "활동 데이터 저장 성공"), HttpStatus.OK);
     }
 
     /**
      * 움직인 거리 데이터 저장
-     * @param request
+     *
+     * @param reqDto
      * @return NormalResDto
      */
     @PostMapping("/save/move")
-    public NormalResDto saveMove(@RequestBody SaveMoveReqDto request) {
+    public ResponseEntity<NormalResDto> saveMove(@RequestBody SaveMoveReqDto reqDto) {
 
-        log.info("Move 데이터 저장 시작");
-        healthDataService.insertMove(request);
+        log.info("[Controller] 움직인 거리 데이터 저장 시작");
+        healthDataService.insertMove(reqDto);
 
-        return new NormalResDto("200", "움직인 거리 데이터 저장 성공");
-
+        log.info("[Controller] 움직인 거리 데이터 저장 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "움직인 거리 데이터 저장 성공"), HttpStatus.OK);
     }
 
     /**
      * 걸음수 데이터 저장
-     * @param request
+     *
+     * @param reqDto
      * @return NormalResDto
      */
     @PostMapping("/save/walk")
-    public NormalResDto saveWalk(@RequestBody SaveWalkReqDto request) {
+    public ResponseEntity<NormalResDto> saveWalk(@RequestBody SaveWalkReqDto reqDto) {
 
-        log.info("Walk 데이터 저장 시작");
-        healthDataService.insertWalk(request);
+        log.info("[Controller] 걸음수 데이터 저장 시작");
+        healthDataService.insertWalk(reqDto);
 
-        return new NormalResDto("200", "걸음수 데이터 저장 성공");
+        log.info("[Controller] 걸음수 데이터 저장 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "걸음수 데이터 저장 성공"), HttpStatus.OK);
     }
 
     /**
      * 몸무게 저장
-     * @param request
+     *
+     * @param reqDto
      * @return NormalResDto
      */
     @PostMapping("/save/weight")
-    public NormalResDto saveWeight(@RequestBody SaveWeightReqDto request) {
+    public ResponseEntity<NormalResDto> saveWeight(@RequestBody SaveWeightReqDto reqDto) {
 
-        log.info("Weight 저장 시작");
-        healthDataService.insertWeight(request);
+        log.info("[Controller] 몸무게 데이터 저장 시작");
+        healthDataService.insertWeight(reqDto);
 
-        return new NormalResDto("200", "몸무게 저장 성공");
+        log.info("[Controller] 몸무게 데이터 저장 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "몸무게 데이터 저장 성공"), HttpStatus.OK);
     }
 
     /**
      * 수면데이터 저장
-     * @param request
+     *
+     * @param reqDto
      * @return NormalResDto
      */
     @PostMapping("/save/sleep")
-    public NormalResDto saveSleep(@RequestBody SaveSleepReqDto request) {
+    public ResponseEntity<NormalResDto> saveSleep(@RequestBody SaveSleepReqDto reqDto) {
 
-        log.info("수면 데이터 저장 시작");
-        healthDataService.insertSleep(request);
+        log.info("[Controller] 수면 데이터 저장 시작");
+        healthDataService.insertSleep(reqDto);
 
-        return new NormalResDto("200", "수면 데이터 저장 성공");
+        log.info("[Controller] 수면 데이터 저장 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "수면 데이터 저장 성공"), HttpStatus.OK);
     }
 
     /**
      * 건강 데이터 최근 저장 날짜 조회
-     * @param uuid
+     *
+     * @param memberUuid
      * @return
      */
     @GetMapping("/recent")
-    public RecentDateRes recentData(@RequestParam("data") String data,
-                                    @RequestParam("uuid") String uuid) throws UnsupportedEncodingException {
+    public ResponseEntity<RecentDateRes> recentData(@RequestParam("data") String data,
+                                                    @RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
 
-        log.info("최근 건강 데이터 날짜 조회 시작");
-
+        log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
-        String decodedUuid = URLDecoder.decode(uuid, StandardCharsets.UTF_8.name());
-
+        String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
         // 공백을 +로 변환
         String plusEncodedString = decodedUuid.replace(" ", "+");
-
-        // AES 복호화
+        // uuid 복호화
         String decryptedUuid = aesService.decryptAES(plusEncodedString);
 
+        log.info("[Controller] 최근 건강 데이터 날짜 조회 시작");
         LocalDate date = healthDataService.recentDateOfHealthData(decryptedUuid, data);
 
-        return new RecentDateRes("200", "최근 건강 데이터 날짜 조회 성공", date);
-
+        log.info("[Controller] 최근 건강 데이터 날짜 조회 성공");
+        return new ResponseEntity<>(new RecentDateRes("200", "최근 건강 데이터 날짜 조회 성공", date), HttpStatus.OK);
     }
 
     @PostMapping("/find/health-data")
-    public FindHealthDataResDto findHealthData(@RequestBody FindHealthDataReqDto request) {
+    public ResponseEntity<FindHealthDataResDto> findHealthData(@RequestBody FindHealthDataReqDto reqDto) {
 
-        log.info("건강 데이터 조회 시작");
+        log.info("[Controller] 건강 데이터 조회 시작");
+        List<HealthData> healthDataList = healthDataService.findHealthDataByMemberUuid(reqDto);
 
-        List<HealthData> healthDataList = healthDataService.findHealthDataByMemberUuid(request);
-
-        log.info("건강 데이터 조회 성공");
-        return new FindHealthDataResDto("200", "건강 데이터 조회 성공", healthDataList);
+        log.info("[Controller] 건강 데이터 조회 성공");
+        return new ResponseEntity<>(new FindHealthDataResDto("200", "건강 데이터 조회 성공", healthDataList), HttpStatus.OK);
     }
 
     @PostMapping("/ai/send/data")
-    public HealthDataResDto aiData(@RequestHeader String auth,
-                                   @RequestBody AiReqDto request) {
+    public ResponseEntity<HealthDataResDto> aiData(@RequestHeader String auth,
+                                   @RequestBody AiReqDto reqDto) {
 
-        log.info("권한 확인");
+        log.info("[Controller] 권한 확인");
 
         return null;
 //        if (!auth.equals(authKey)) {
@@ -155,12 +157,12 @@ public class HealthDataController {
 //            return new HealthDataResDto("400", "권한 없음", null, null, null, null, null);
 //        }
 //
-//        log.info("AI서버에 데이터 전송");
+//        log.info("[Controller] AI서버에 데이터 전송");
 //        try {
-//            DiagnosisDto diagnosis = healthDataService.sendDataToAi(request);
+//            DiagnosisDto diagnosis = healthDataService.sendDataToAi(reqDto);
 //            System.out.println("diagnosis = " + diagnosis);
 //            // DB에 진단결과 저장
-//            log.info("DB에 진단결과 저장");
+//            log.info("[Controller] DB에 진단결과 저장");
 //            diagnosisService.saveDiagnosis(diagnosis);
 //
 //        } catch (Exception e) {
@@ -175,7 +177,7 @@ public class HealthDataController {
 //                                       @PathVariable("date") LocalDate date) {
 //
 //        try {
-//            log.info("Active 데이터 조회 시작");
+//            log.info("[Controller] Active 데이터 조회 시작");
 //
 //            List<Active> activeList = healthDataService.findActiveList(uuid, date);
 //
@@ -194,7 +196,7 @@ public class HealthDataController {
 //                                   @PathVariable("date") LocalDate date) {
 //
 //        try {
-//            log.info("Move 데이터 조회 시작");
+//            log.info("[Controller] Move 데이터 조회 시작");
 //
 //            List<Move> moveList = healthDataService.findMoveList(uuid, date);
 //
@@ -213,7 +215,7 @@ public class HealthDataController {
 //                                   @PathVariable("date") LocalDate date) {
 //
 //        try {
-//            log.info("Walk 데이터 조회 시작");
+//            log.info("[Controller] Walk 데이터 조회 시작");
 //
 //            List<Walk> walkList = healthDataService.findWalkList(uuid, date);
 //
