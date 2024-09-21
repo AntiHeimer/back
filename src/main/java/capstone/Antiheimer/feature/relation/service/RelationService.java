@@ -2,7 +2,7 @@ package capstone.Antiheimer.feature.relation.service;
 
 import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
-import capstone.Antiheimer.feature.member.service.CheckService;
+import capstone.Antiheimer.util.CheckService;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoWardDto;
