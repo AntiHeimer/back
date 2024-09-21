@@ -1,13 +1,24 @@
 package capstone.Antiheimer.feature.diagnosis.controller;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
+import capstone.Antiheimer.feature.diagnosis.Dto.StartDiagnosisResDto;
 import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
 import capstone.Antiheimer.feature.diagnosis.Dto.DSRandomWordDto;
 import capstone.Antiheimer.feature.diagnosis.Dto.DiagnosisSheetResDto;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
+import capstone.Antiheimer.feature.location.dto.LocationReqDto;
+import capstone.Antiheimer.util.dto.NormalResDto;
+import capstone.Antiheimer.util.encrypt.AesService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +31,12 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DiagnosisController {
 
-    private final DiagnosisService diagnosisSheetService;
+    @Autowired
+    private final DiagnosisService diagnosisService;
+    @Autowired
+    private final AesService aesService;
+    @Autowired
+    private final ObjectMapper objectMapper;
 
     /**
      * 진단지 반환
@@ -33,7 +49,7 @@ public class DiagnosisController {
         try {
             log.info("[Controller] 진단문제 반환 시작");
 
-            DiagnosisSheet diagnosisSheet = diagnosisSheetService.returnDiagnosisSheet(num);
+            DiagnosisSheet diagnosisSheet = diagnosisService.returnDiagnosisSheet(num);
 
             return new DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet);
         } catch (IncorrectNumException e){
@@ -61,5 +77,24 @@ public class DiagnosisController {
 
         return new DSRandomWordDto("200", "세단어 반환 성공", random);
     }
+
+    @PostMapping("/diagnosis/start")
+    public ResponseEntity<StartDiagnosisResDto> diagnosisStart(@RequestParam("uuid") String uuid) throws JsonProcessingException {
+
+        log.info("[Controller] AES 복호화");
+        String decryptedRequest = aesService.decryptAES(uuid);
+
+        log.info("[Controller] 진단 uuid 생성 시작");
+        String diagnosisUuid = diagnosisService.generateDiagnosis(decryptedRequest);
+
+        log.info("[Controller] 진단 uuid 생성 성공");
+        return new ResponseEntity<>(new StartDiagnosisResDto("200", "진단 uuid 생성 성공", diagnosisUuid), HttpStatus.OK);
+    }
+
+//    @PostMapping("/diagnosis/score")
+//    public ResponseEntity<NormalResDto> diagnosisScore(@RequestParam("num") int num, @RequestParam("score") int score) {
+//
+//    }
+
 
 }
