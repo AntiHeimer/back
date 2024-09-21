@@ -2,6 +2,7 @@ package capstone.Antiheimer.feature.diagnosis.controller;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordDto;
+import capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordResDto;
 import capstone.Antiheimer.feature.diagnosis.dto.DiagnosisSheetResDto;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
@@ -47,7 +48,7 @@ public class DiagnosisController {
      * @return
      */
     @GetMapping("/diagnosisSheet/word")
-    public DSRandomWordDto randomWords() {
+    public DSRandomWordResDto randomWords() {
 
         List<String> words = List.of("연필", "시계", "핸드폰", "아파트", "수건", "냉장고", "가방", "신발", "우산", "세탁기");
 
@@ -59,7 +60,7 @@ public class DiagnosisController {
                 .collect(Collectors.toList());  // 추출된 단어들을 리스트로 수집
 
 
-        return new DSRandomWordDto("200", "세단어 반환 성공", random);
+        return new DSRandomWordResDto("200", "세단어 반환 성공", random);
     }
 
 }
