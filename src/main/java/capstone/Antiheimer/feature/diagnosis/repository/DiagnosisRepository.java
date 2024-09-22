@@ -2,6 +2,7 @@ package capstone.Antiheimer.feature.diagnosis.repository;
 
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
+import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.location.entity.Location;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -54,13 +56,34 @@ public class DiagnosisRepository {
         return diagnosisUuid;
     }
 
+    /**
+     * 점수 추가
+     * @param diagnosis
+     */
     public void saveDiagnosis(Diagnosis diagnosis) {
 
         em.persist(diagnosis);
     }
 
+    /**
+     * 진단uuid로 진단 찾기
+     * @param diagnosisUuid
+     * @return
+     */
     public Diagnosis findOneByUuid(String diagnosisUuid) {
 
         return em.find(Diagnosis.class, diagnosisUuid);
+    }
+
+    /**
+     * 멤버uuid로 진단 찾기
+     * @param memberUuid
+     * @return
+     */
+    public List<Diagnosis> findByMemberUuid(String memberUuid) {
+
+        return em.createQuery("SELECT d FROM Diagnosis d WHERE d.member.uuid = :memberUuid ", Diagnosis.class)
+                .setParameter("memberUuid", memberUuid)
+                .getResultList();
     }
 }

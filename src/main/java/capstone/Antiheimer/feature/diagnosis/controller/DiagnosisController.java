@@ -2,6 +2,7 @@ package capstone.Antiheimer.feature.diagnosis.controller;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.feature.diagnosis.Dto.*;
+import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import capstone.Antiheimer.feature.location.dto.LocationReqDto;
@@ -74,6 +75,12 @@ public class DiagnosisController {
         return new ResponseEntity<>(new DSRandomWordDto("200", "세단어 반환 성공", random), HttpStatus.OK);
     }
 
+    /**
+     * 진단 uuid 생성
+     * @param uuid
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @PostMapping("/diagnosis/start")
     public ResponseEntity<StartDiagnosisResDto> Startdiagnosis(@RequestParam("uuid") String uuid) throws UnsupportedEncodingException {
 
@@ -91,6 +98,13 @@ public class DiagnosisController {
         return new ResponseEntity<>(new StartDiagnosisResDto("200", "진단 uuid 생성 성공", diagnosisUuid), HttpStatus.OK);
     }
 
+    /**
+     * 점수 계산
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws JsonProcessingException
+     */
     @PostMapping("/diagnosis/score")
     public ResponseEntity<NormalResDto> diagnosisScore(@RequestBody ScoreReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
 
@@ -105,17 +119,47 @@ public class DiagnosisController {
         return new ResponseEntity<>(new NormalResDto("200", "점수 저장 성공"), HttpStatus.OK);
     }
 
+    /**
+     * 정답 확인 및 점수 계산
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws JsonProcessingException
+     */
     @PostMapping("/diagnosis/answer")
-    public ResponseEntity<NormalResDto> diagnosisAnswer(@RequestBody AnswerReqDto request) throws UnsupportedEncodingException, JsonProcessingException{
+    public ResponseEntity<NormalResDto> diagnosisAnswer(@RequestBody AnswerReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
 
         log.info("[Controller] 진단uuid AES 복호화");
         String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
         AnswerReqDto reqDto = objectMapper.readValue(decryptedRequest, AnswerReqDto.class);
 
-        log.info("[Controller]정답 확인 시작");
+        log.info("[Controller] 정답 확인 시작");
         diagnosisService.markAnswer(reqDto);
 
-        log.info("[Controller]정답 확인 성공");
+        log.info("[Controller] 정답 확인 성공");
         return new ResponseEntity<>(new NormalResDto("200", "정답 확인 성공"), HttpStatus.OK);
+    }
+
+    /**
+     * 진단 결과 조회
+     * @param memeberUuid
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @GetMapping("/diagnosis/result")
+    public ResponseEntity<DiagnosisResDto> diagnosisResult(@RequestParam String memeberUuid) throws UnsupportedEncodingException{
+
+        log.info("[Controller] 디코딩 및 AES 복호화");
+        // URL 디코딩
+        String decodedUuid = URLDecoder.decode(memeberUuid, StandardCharsets.UTF_8.name());
+        // 공백을 +로 변환
+        String plusEncodedString = decodedUuid.replace(" ", "+");
+        String uuid = aesService.decryptAES(plusEncodedString);
+
+        log.info("[Controller] 진단 결과 조회 시작");
+        List<Diagnosis> diagnosisList = diagnosisService.returnDiagnosis(uuid);
+
+        log.info("[Controller] 진단 결과 조회 성공");
+        return new ResponseEntity<>(new DiagnosisResDto("200", "진단 결과 조회 성공", diagnosisList), HttpStatus.OK);
     }
 }

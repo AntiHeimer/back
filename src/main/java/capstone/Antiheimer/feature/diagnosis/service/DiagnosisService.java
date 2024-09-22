@@ -86,6 +86,20 @@ public class DiagnosisService {
     }
 
     /**
+     * 진단 결과 조회
+     * @param memberUuid
+     * @return
+     */
+    public List<Diagnosis> returnDiagnosis(String memberUuid) {
+
+        memberExistCheck(memberUuid);
+
+        List<Diagnosis> diagnosisList = diagnosisRepository.findByMemberUuid(memberUuid);
+
+        return diagnosisList;
+    }
+
+    /**
      * 진단지 문제 번호 확인
      * @param num
      */
@@ -158,6 +172,10 @@ public class DiagnosisService {
         }
     }
 
+    /**
+     * 정답 확인
+     * @param reqDto
+     */
     private void checkAnswer(AnswerReqDto reqDto) {
 
         int score = 0;
