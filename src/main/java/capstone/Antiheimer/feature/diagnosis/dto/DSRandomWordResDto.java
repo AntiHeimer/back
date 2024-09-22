@@ -9,10 +9,16 @@ import java.util.List;
 
 @Getter
 @Builder
-@AllArgsConstructor
+@NoArgsConstructor
 public class DSRandomWordResDto {
 
     private String statusCode;
     private String message;
     private List<String> randomWords;
+
+    public DSRandomWordResDto(String statusCode, String message, List<String> randomWords) {
+        this.statusCode = statusCode;
+        this.message = message;
+        this.randomWords = randomWords;
+    }
 }
