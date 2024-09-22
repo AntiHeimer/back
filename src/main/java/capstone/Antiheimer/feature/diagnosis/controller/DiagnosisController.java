@@ -36,13 +36,13 @@ public class DiagnosisController {
      * @return
      */
     @GetMapping("/diagnosisSheet")
-    public ResponseEntity<capstone.Antiheimer.feature.diagnosis.dto.DiagnosisSheetResDto> returnDiagnosisSheet(@RequestParam("num") int num) {
+    public ResponseEntity<DiagnosisSheetResDto> returnDiagnosisSheet(@RequestParam("num") int num) {
 
         log.info("[Controller] 진단 문제 반환 시작");
         DiagnosisSheet diagnosisSheet = diagnosisService.returnDiagnosisSheet(num);
 
         log.info("[Controller] 진단 문제 반환 성공");
-        return new ResponseEntity<>(new capstone.Antiheimer.feature.diagnosis.dto.DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet), HttpStatus.OK);
+        return new ResponseEntity<>(new DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet), HttpStatus.OK);
     }
 
     /**
@@ -50,7 +50,7 @@ public class DiagnosisController {
      * @return
      */
     @GetMapping("/diagnosisSheet/word")
-    public ResponseEntity<capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordResDto> randomWords() {
+    public ResponseEntity<DSRandomWordResDto> randomWords() {
 
         List<String> words = List.of("연필", "시계", "핸드폰", "아파트", "수건", "냉장고", "가방", "신발", "우산", "세탁기");
 
@@ -63,7 +63,7 @@ public class DiagnosisController {
                 .collect(Collectors.toList());  // 추출된 단어들을 리스트로 수집
 
         log.info("[Controller] 랜덤 세 단어 추출 성공");
-        return new ResponseEntity<>(new capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordResDto("200", "세 단어 반환 성공", random), HttpStatus.OK);
+        return new ResponseEntity<>(new DSRandomWordResDto("200", "세 단어 반환 성공", random), HttpStatus.OK);
     }
 
     /**
@@ -73,7 +73,7 @@ public class DiagnosisController {
      * @throws UnsupportedEncodingException
      */
     @PostMapping("/diagnosis/start")
-    public ResponseEntity<StartDiagnosisResDto> Startdiagnosis(@RequestParam("uuid") String uuid) throws UnsupportedEncodingException {
+    public ResponseEntity<StartDiagnosisResDto> startDiagnosis(@RequestParam("uuid") String uuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
