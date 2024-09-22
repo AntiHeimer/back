@@ -1,7 +1,7 @@
 package capstone.Antiheimer.feature.diagnosis.controller;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
-import capstone.Antiheimer.feature.diagnosis.Dto.*;
+import capstone.Antiheimer.feature.diagnosis.dto.*;
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
