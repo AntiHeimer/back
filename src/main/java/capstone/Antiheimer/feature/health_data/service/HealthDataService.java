@@ -1,10 +1,7 @@
 package capstone.Antiheimer.feature.health_data.service;
 
 import capstone.Antiheimer.feature.health_data.dto.*;
-import capstone.Antiheimer.feature.health_data.entity.Active;
-import capstone.Antiheimer.feature.health_data.entity.HealthData;
-import capstone.Antiheimer.feature.health_data.entity.Move;
-import capstone.Antiheimer.feature.health_data.entity.Walk;
+import capstone.Antiheimer.feature.health_data.entity.*;
 import capstone.Antiheimer.feature.health_data.repository.HealthDataRepository;
 import capstone.Antiheimer.util.CheckService;
 import lombok.RequiredArgsConstructor;
@@ -198,5 +195,14 @@ public class HealthDataService {
 
         log.info("[Controller] 걸음수 데이터 조회");
         return healthDataRepository.findWalk(memberUuid, date);
+    }
+
+    public List<Sleep> findSleepList(String memberUuid, LocalDate date) {
+
+        log.info("[Service] 회원 존재 확인");
+        checkService.checkIdExists(memberUuid);
+
+        log.info("[Controller] 수면 데이터 조회");
+        return healthDataRepository.findSleep(memberUuid, date);
     }
 }

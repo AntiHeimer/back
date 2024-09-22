@@ -302,7 +302,58 @@ exist(408)
 
 
 ## findActive
-#### /find/active/{memberUuid}/{date}
+#### /find/active
+
+**Header**
+- String auth
+
+**Body**
+- String memberUuid
+- LocalDate date
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
+## findMove
+#### /find/move
+
+**Header**
+- String auth
+
+**Body**
+- String memberUuid
+- LocalDate date
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
+## findWalk
+#### /find/walk
+
+**Header**
+- String auth
+
+**Body**
+- String memberUuid
+- LocalDate date
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(408)
+- NotExistException: 존재하지 않는 회원
+
+
+## findSleep
+#### /find/sleep
 
 **Header**
 - String auth

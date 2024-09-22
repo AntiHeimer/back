@@ -1,10 +1,7 @@
 package capstone.Antiheimer.feature.health_data.controller;
 
 import capstone.Antiheimer.feature.diagnosis.dto.AiReqDto;
-import capstone.Antiheimer.feature.health_data.entity.Active;
-import capstone.Antiheimer.feature.health_data.entity.HealthData;
-import capstone.Antiheimer.feature.health_data.entity.Move;
-import capstone.Antiheimer.feature.health_data.entity.Walk;
+import capstone.Antiheimer.feature.health_data.entity.*;
 import capstone.Antiheimer.feature.health_data.service.HealthDataService;
 import capstone.Antiheimer.feature.health_data.dto.*;
 import capstone.Antiheimer.util.encrypt.AesService;
@@ -145,16 +142,14 @@ public class HealthDataController {
 
     /**
      * 활동 데이터 조회
-     * @param memberUuid
-     * @param date
+     * @param reqDto
      * @return
      */
-    @GetMapping("/find/active/{memberUuid}/{date}")
-    public ResponseEntity<FindActiveResDto> findActive(@PathVariable("memberUuid") String memberUuid,
-                                                       @PathVariable("date") LocalDate date) {
+    @GetMapping("/find/active")
+    public ResponseEntity<FindActiveResDto> findActive(@RequestBody FindActiveReqDto reqDto) {
 
         log.info("[Controller] 활동 데이터 조회 시작");
-        List<Active> activeList = healthDataService.findActiveList(memberUuid, date);
+        List<Active> activeList = healthDataService.findActiveList(reqDto.getMemberUuid(), reqDto.getDate());
 
         log.info("[Controller] 활동 데이터 조회 성공");
         return new ResponseEntity<>(new FindActiveResDto("200", "걸음수 데이터 조회 완료", activeList), HttpStatus.OK);
@@ -162,16 +157,14 @@ public class HealthDataController {
 
     /**
      * 움직인 거리 데이터 조회
-     * @param memberUuid
-     * @param date
+     * @param reqDto
      * @return
      */
-    @GetMapping("/find/move/{uuid}/{memberUuid}")
-    public ResponseEntity<FindMoveResDto> findMove(@PathVariable("memberUuid") String memberUuid,
-                                                   @PathVariable("date") LocalDate date) {
+    @GetMapping("/find/move")
+    public ResponseEntity<FindMoveResDto> findMove(@RequestBody FindMoveReqDto reqDto) {
 
         log.info("[Controller] 움직인 거리 데이터 조회 시작");
-        List<Move> moveList = healthDataService.findMoveList(memberUuid, date);
+        List<Move> moveList = healthDataService.findMoveList(reqDto.getMemberUuid(), reqDto.getDate());
 
         log.info("[Controller] 움직인 거리 데이터 조회 성공");
         return new ResponseEntity<>(new FindMoveResDto("200", "움직인 거리 데이터 조회 완료", moveList), HttpStatus.OK);
@@ -179,19 +172,32 @@ public class HealthDataController {
 
     /**
      * 걸음수 데이터 조회
-     * @param memberUuid
-     * @param date
+     * @param reqDto
      * @return
      */
-    @GetMapping("/find/walk/{memberUuid}/{date}")
-    public ResponseEntity<FindWalkResDto> findWalk(@PathVariable("memberUuid") String memberUuid,
-                                                   @PathVariable("date") LocalDate date) {
+    @GetMapping("/find/walk")
+    public ResponseEntity<FindWalkResDto> findWalk(@RequestBody FindWalkReqDto reqDto) {
 
         log.info("[Controller] 걸음수 데이터 조회 시작");
-        List<Walk> walkList = healthDataService.findWalkList(memberUuid, date);
+        List<Walk> walkList = healthDataService.findWalkList(reqDto.getMemberUuid(), reqDto.getDate());
 
         log.info("[Controller] 걸음수 데이터 조회 성공");
         return new ResponseEntity<>(new FindWalkResDto("200", "걸음수 데이터 조회 완료", walkList), HttpStatus.OK);
+    }
+
+    /**
+     * 수면 데이터 조회
+     * @param reqDto
+     * @return
+     */
+    @GetMapping("/find/sleep")
+    public ResponseEntity<FindSleepResDto> findSleep(@RequestBody FindSleepReqDto reqDto) {
+
+        log.info("[Controller] 수면 데이터 조회 시작");
+        List<Sleep> sleepList = healthDataService.findSleepList(reqDto.getMemberUuid(), reqDto.getDate());
+
+        log.info("[Controller] 수면 데이터 조회 성공");
+        return new ResponseEntity<>(new FindSleepResDto("200", "걸음수 데이터 조회 완료", sleepList), HttpStatus.OK);
     }
 
     /**

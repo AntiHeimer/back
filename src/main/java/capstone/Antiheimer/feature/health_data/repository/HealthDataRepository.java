@@ -353,6 +353,15 @@ public class HealthDataRepository {
                 .getResultList();
     }
 
+    public List<Sleep> findSleep(String memberUuid, LocalDate date) {
+
+        LocalDate startDate = date.minusDays(7);
+
+        return em.createQuery("SELECT s FROM Sleep s WHERE s.healthData.member.uuid = :memberUuid AND s.date >= :startDate AND s.date <= :date ORDER BY s.date DESC", Sleep.class)
+                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate)
+                .getResultList();
+    }
+
     /**
      * 활동 데이터 존재 확인
      * @param reqDto
