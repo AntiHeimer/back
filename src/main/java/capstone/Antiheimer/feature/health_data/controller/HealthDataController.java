@@ -145,7 +145,7 @@ public class HealthDataController {
      * @param reqDto
      * @return
      */
-    @GetMapping("/find/active")
+    @PostMapping("/find/active")
     public ResponseEntity<FindActiveResDto> findActive(@RequestBody FindActiveReqDto reqDto) {
 
         log.info("[Controller] 활동 데이터 조회 시작");
@@ -160,7 +160,7 @@ public class HealthDataController {
      * @param reqDto
      * @return
      */
-    @GetMapping("/find/move")
+    @PostMapping("/find/move")
     public ResponseEntity<FindMoveResDto> findMove(@RequestBody FindMoveReqDto reqDto) {
 
         log.info("[Controller] 움직인 거리 데이터 조회 시작");
@@ -175,7 +175,7 @@ public class HealthDataController {
      * @param reqDto
      * @return
      */
-    @GetMapping("/find/walk")
+    @PostMapping("/find/walk")
     public ResponseEntity<FindWalkResDto> findWalk(@RequestBody FindWalkReqDto reqDto) {
 
         log.info("[Controller] 걸음수 데이터 조회 시작");
@@ -190,7 +190,7 @@ public class HealthDataController {
      * @param reqDto
      * @return
      */
-    @GetMapping("/find/sleep")
+    @PostMapping("/find/sleep")
     public ResponseEntity<FindSleepResDto> findSleep(@RequestBody FindSleepReqDto reqDto) {
 
         log.info("[Controller] 수면 데이터 조회 시작");
