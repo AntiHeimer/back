@@ -59,8 +59,6 @@ public class GlobalExceptionHandler {
 
     /**
      * 42X: INVALID Exception
-     * @param e
-     * @return
      */
     @ExceptionHandler(InvalidUuidException.class)
     public ResponseEntity<NormalResDto> handleInvalidUuidException(InvalidUuidException e) {

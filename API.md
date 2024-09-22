@@ -277,8 +277,8 @@ auth(401): 권한 없음(토큰)
 invalid(406)
 - InvalidDataTypeException: 유효하지 않은 데이터 타입
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 decoding(410)
 - UnsupportedEncodingException: 디코딩 오류
@@ -297,8 +297,8 @@ decoding(410)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## findActive
@@ -314,8 +314,8 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## findMove
@@ -331,8 +331,8 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## findWalk
@@ -348,8 +348,8 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## findSleep
@@ -365,8 +365,8 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 # Location
@@ -429,7 +429,7 @@ Incorrect(409)
 - IncorrectNumException: 올바르지 않은 번호
 
 
-## RandomWords
+## randomWords
 ### /diagnosisSheet/word: GET
 
 **Header**
@@ -439,8 +439,7 @@ Incorrect(409)
 auth(401): 권한 없음(토큰)
 
 
-
-## StartDiagnosis
+## startDiagnosis
 ### /diagnosis/start: POST
 
 **Header**
@@ -453,8 +452,7 @@ exist(408)
 - NotExistException: 존재하지 않는 회원
 
 
-
-## DiagnosisScore
+## diagnosisScore
 ### /diagnosis/score: POST
 
 **Header**
@@ -470,7 +468,7 @@ Invalid(406)
 - InvalidScoreException: 유효하지 않은 점수
 
 
-## DiagnosisAnswer
+## diagnosisAnswer
 ### /diagnosis/answer: POST
 
 **Header**
@@ -481,7 +479,6 @@ auth(401): 권한 없음(토큰)
 
 Invalid(406)
 - InvalidScoreException: 유효하지 않은 점수
-
 
 
 ## diagnosisResult
