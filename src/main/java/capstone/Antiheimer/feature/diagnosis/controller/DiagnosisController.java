@@ -10,7 +10,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,16 +26,12 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DiagnosisController {
 
-    @Autowired
     private final DiagnosisService diagnosisService;
-    @Autowired
     private final AesService aesService;
-    @Autowired
     private final ObjectMapper objectMapper;
 
     /**
      * 진단지 반환
-     *
      * @param num
      * @return
      */
@@ -52,7 +47,6 @@ public class DiagnosisController {
 
     /**
      * 진단지 1번 무작위 세단어 반환
-     *
      * @return
      */
     @GetMapping("/diagnosisSheet/word")
@@ -88,11 +82,11 @@ public class DiagnosisController {
         String plusEncodedString = decodedUuid.replace(" ", "+");
         String memberUuid = aesService.decryptAES(plusEncodedString);
 
-        log.info("[Controller] 진단 uuid 생성 시작");
+        log.info("[Controller] 진단 UUID 생성 시작");
         String diagnosisUuid = diagnosisService.generateDiagnosis(memberUuid);
 
-        log.info("[Controller] 진단 uuid 생성 성공");
-        return new ResponseEntity<>(new StartDiagnosisResDto("200", "진단 uuid 생성 성공", diagnosisUuid), HttpStatus.OK);
+        log.info("[Controller] 진단 UUID 생성 성공");
+        return new ResponseEntity<>(new StartDiagnosisResDto("200", "진단 UUID 생성 성공", diagnosisUuid), HttpStatus.OK);
     }
 
     /**
@@ -105,7 +99,7 @@ public class DiagnosisController {
     @PostMapping("/diagnosis/score")
     public ResponseEntity<NormalResDto> diagnosisScore(@RequestBody ScoreReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
 
-        log.info("[Controller] 진단uuid AES 복호화");
+        log.info("[Controller] 진단 UUID AES 복호화");
         String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
         ScoreReqDto reqDto = objectMapper.readValue(decryptedRequest, ScoreReqDto.class);
 
@@ -126,7 +120,7 @@ public class DiagnosisController {
     @PostMapping("/diagnosis/answer")
     public ResponseEntity<NormalResDto> diagnosisAnswer(@RequestBody AnswerReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
 
-        log.info("[Controller] 진단uuid AES 복호화");
+        log.info("[Controller] 진단 UUID AES 복호화");
         String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
         AnswerReqDto reqDto = objectMapper.readValue(decryptedRequest, AnswerReqDto.class);
 
@@ -139,18 +133,19 @@ public class DiagnosisController {
 
     /**
      * 진단 결과 조회
-     * @param memeberUuid
+     * @param memberUuid
      * @return
      * @throws UnsupportedEncodingException
      */
     @GetMapping("/diagnosis/result")
-    public ResponseEntity<DiagnosisResDto> diagnosisResult(@RequestParam String memeberUuid) throws UnsupportedEncodingException{
+    public ResponseEntity<DiagnosisResDto> diagnosisResult(@RequestParam String memberUuid) throws UnsupportedEncodingException{
 
         log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
-        String decodedUuid = URLDecoder.decode(memeberUuid, StandardCharsets.UTF_8.name());
+        String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
         // 공백을 +로 변환
         String plusEncodedString = decodedUuid.replace(" ", "+");
+        // uuid 복호화
         String uuid = aesService.decryptAES(plusEncodedString);
 
         log.info("[Controller] 진단 결과 조회 시작");

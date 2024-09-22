@@ -18,21 +18,9 @@ public class MemberRepository {
 
     /**
      * 회원 저장
-     * @param memberDto
+     * @param member
      */
-    public void save(SignupReqDto memberDto) {
-
-        Member member = new Member();
-        BcryptService bcryptService = new BcryptService();
-
-        member.setUuid(UUID.randomUUID().toString());
-        member.setId(memberDto.getId());
-        member.setName(memberDto.getName());
-        member.setBirth(memberDto.getBirth());
-        member.setGender(memberDto.getGender());
-
-        String pw = memberDto.getPw();
-        member.setPw(bcryptService.encode(pw)); // bcrypt 암호화
+    public void save(Member member) {
 
         em.persist(member);
     }
