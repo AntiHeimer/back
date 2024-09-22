@@ -1,11 +1,13 @@
 package capstone.Antiheimer.feature.diagnosis.Dto;
 
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@Builder
 public class StartDiagnosisResDto {
 
     private String statusCode;
