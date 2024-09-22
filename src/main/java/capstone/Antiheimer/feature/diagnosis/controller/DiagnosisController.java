@@ -115,5 +115,7 @@ public class DiagnosisController {
         log.info("[Controller]정답 확인 시작");
         diagnosisService.markAnswer(reqDto);
 
+        log.info("[Controller]정답 확인 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "정답 확인 성공"), HttpStatus.OK);
     }
 }

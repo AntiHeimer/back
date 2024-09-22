@@ -72,14 +72,17 @@ public class DiagnosisService {
         diagnosisRepository.saveDiagnosis(diagnosis);
     }
 
+
+    /**
+     * 답안 점수 계산
+     * @param reqDto
+     */
     @Transactional
     public void markAnswer(AnswerReqDto reqDto) {
 
         checkAnswerNum(reqDto.getNum());
 
-        if(reqDto.getNum() == 2) {
-
-        }
+        checkAnswer(reqDto);
     }
 
     /**
@@ -158,14 +161,15 @@ public class DiagnosisService {
     private void checkAnswer(AnswerReqDto reqDto) {
 
         int score = 0;
+
+        List<String> answer = reqDto.getAnswer();
+
         if (reqDto.getNum() == 2) {
 
             LocalDate now = LocalDate.now();
 
-            List<String> answer = reqDto.getAnswer();
-
             int month = Integer.valueOf(answer.get(1));
-            int season;
+            int season = 0;
             if( month>=3 || month <=5) {
                 season = 1;
             }
@@ -194,8 +198,42 @@ public class DiagnosisService {
 
                 score += 1;
             }
-            if(Integer.valueOf(answer.get(4)) == )
+            if(Integer.valueOf(answer.get(4)) == season){
+
+                score += 1;
+            }
         }
+
+        if(reqDto.getNum() == 4){
+
+            if (Integer.valueOf(answer.get(0)) == 93) {
+
+                score += 1;
+            }
+            if (Integer.valueOf(answer.get(1)) == Integer.valueOf(answer.get(0)) - 7) {
+
+                score += 1;
+            }
+            if (Integer.valueOf(answer.get(2)) == Integer.valueOf(answer.get(1)) - 7) {
+
+                score += 1;
+            }
+            if (Integer.valueOf(answer.get(3)) == Integer.valueOf(answer.get(2)) - 7) {
+
+                score += 1;
+            }
+            if (Integer.valueOf(answer.get(4)) == Integer.valueOf(answer.get(3)) - 7) {
+
+                score += 1;
+            }
+        }
+
+        Diagnosis diagnosis = diagnosisRepository.findOneByUuid(reqDto.getDiagnosisUuid());
+
+        int currentScore = diagnosis.getScore();
+        int newScore = currentScore + score;
+        diagnosis.setScore(newScore);
+        diagnosisRepository.saveDiagnosis(diagnosis);
     }
 
 }
