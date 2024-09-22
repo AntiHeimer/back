@@ -38,15 +38,15 @@ public class DiagnosisController {
     @GetMapping("/diagnosisSheet")
     public ResponseEntity<capstone.Antiheimer.feature.diagnosis.dto.DiagnosisSheetResDto> returnDiagnosisSheet(@RequestParam("num") int num) {
 
-        log.info("[Controller] 진단문제 반환 시작");
+        log.info("[Controller] 진단 문제 반환 시작");
         DiagnosisSheet diagnosisSheet = diagnosisService.returnDiagnosisSheet(num);
 
-        log.info("[Controller] 진단문제 반환 성공");
+        log.info("[Controller] 진단 문제 반환 성공");
         return new ResponseEntity<>(new capstone.Antiheimer.feature.diagnosis.dto.DiagnosisSheetResDto("200", "진단지 문제 반환 성공", diagnosisSheet), HttpStatus.OK);
     }
 
     /**
-     * 진단지 1번 무작위 세단어 반환
+     * 진단지 1번 무작위 세 단어 반환
      * @return
      */
     @GetMapping("/diagnosisSheet/word")
@@ -54,7 +54,7 @@ public class DiagnosisController {
 
         List<String> words = List.of("연필", "시계", "핸드폰", "아파트", "수건", "냉장고", "가방", "신발", "우산", "세탁기");
 
-        log.info("[Controller] 랜덤 세단어 추출 시작");
+        log.info("[Controller] 랜덤 세 단어 추출 시작");
         // Stream을 이용하여 랜덤으로 3개의 단어를 추출
         List<String> random = new Random().ints(0, words.size()) // 0부터 words.size() 사이의 랜덤 인덱스 생성
                 .distinct()              // 중복을 제거
@@ -62,8 +62,8 @@ public class DiagnosisController {
                 .mapToObj(words::get)    // 랜덤으로 생성된 숫자를 사용하여 단어 리스트에서 단어를 가져옴
                 .collect(Collectors.toList());  // 추출된 단어들을 리스트로 수집
 
-        log.info("[Controller] 랜덤 세단어 추출 성공");
-        return new ResponseEntity<>(new capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordResDto("200", "세단어 반환 성공", random), HttpStatus.OK);
+        log.info("[Controller] 랜덤 세 단어 추출 성공");
+        return new ResponseEntity<>(new capstone.Antiheimer.feature.diagnosis.dto.DSRandomWordResDto("200", "세 단어 반환 성공", random), HttpStatus.OK);
     }
 
     /**
