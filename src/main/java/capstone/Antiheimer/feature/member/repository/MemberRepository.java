@@ -39,7 +39,7 @@ public class MemberRepository {
 
     /**
      * uuid로 회원 찾기
-     * @param uuid
+     * @param memberUuid
      * @return
      */
     public Member findOneByUuid(String memberUuid) {

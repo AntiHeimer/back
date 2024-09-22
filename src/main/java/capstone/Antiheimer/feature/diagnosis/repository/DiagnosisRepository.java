@@ -47,9 +47,20 @@ public class DiagnosisRepository {
         diagnosis.setMember(findMember);
         LocalDate date = LocalDate.now();
         diagnosis.setDiagnosisDate(date);
+        diagnosis.setScore(0);
 
         em.persist(diagnosis);
 
         return diagnosisUuid;
+    }
+
+    public void saveDiagnosis(Diagnosis diagnosis) {
+
+        em.persist(diagnosis);
+    }
+
+    public Diagnosis findOneByUuid(String diagnosisUuid) {
+
+        return em.find(Diagnosis.class, diagnosisUuid);
     }
 }

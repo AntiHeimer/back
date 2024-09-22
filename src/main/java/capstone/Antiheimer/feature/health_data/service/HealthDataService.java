@@ -101,7 +101,7 @@ public class HealthDataService {
     /**
      * 건강 데이터 최근 저장 날짜 조회
      *
-     * @param uuid
+     * @param memberUuid
      * @param data
      * @return
      */
@@ -171,7 +171,7 @@ public class HealthDataService {
 
     /**
      * 회원 존재 확인
-     * @param uuid
+     * @param memberUuid
      */
     private void memberExistCheck(String memberUuid) {
 

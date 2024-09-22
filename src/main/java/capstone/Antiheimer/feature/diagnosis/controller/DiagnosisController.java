@@ -1,10 +1,8 @@
 package capstone.Antiheimer.feature.diagnosis.controller;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
-import capstone.Antiheimer.feature.diagnosis.Dto.StartDiagnosisResDto;
+import capstone.Antiheimer.feature.diagnosis.Dto.*;
 import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
-import capstone.Antiheimer.feature.diagnosis.Dto.DSRandomWordDto;
-import capstone.Antiheimer.feature.diagnosis.Dto.DiagnosisSheetResDto;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import capstone.Antiheimer.feature.location.dto.LocationReqDto;
 import capstone.Antiheimer.util.dto.NormalResDto;
@@ -17,11 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -40,6 +38,7 @@ public class DiagnosisController {
 
     /**
      * 진단지 반환
+     *
      * @param num
      * @return
      */
@@ -55,6 +54,7 @@ public class DiagnosisController {
 
     /**
      * 진단지 1번 무작위 세단어 반환
+     *
      * @return
      */
     @GetMapping("/diagnosisSheet/word")
@@ -75,22 +75,45 @@ public class DiagnosisController {
     }
 
     @PostMapping("/diagnosis/start")
-    public ResponseEntity<StartDiagnosisResDto> Startdiagnosis(@RequestParam("uuid") String uuid) throws JsonProcessingException {
+    public ResponseEntity<StartDiagnosisResDto> Startdiagnosis(@RequestParam("uuid") String uuid) throws UnsupportedEncodingException {
 
-        log.info("[Controller] AES 복호화");
-        String decryptedRequest = aesService.decryptAES(uuid);
+        log.info("[Controller] 디코딩 및 AES 복호화");
+        // URL 디코딩
+        String decodedUuid = URLDecoder.decode(uuid, StandardCharsets.UTF_8.name());
+        // 공백을 +로 변환
+        String plusEncodedString = decodedUuid.replace(" ", "+");
+        String memberUuid = aesService.decryptAES(plusEncodedString);
 
         log.info("[Controller] 진단 uuid 생성 시작");
-        String diagnosisUuid = diagnosisService.generateDiagnosis(decryptedRequest);
+        String diagnosisUuid = diagnosisService.generateDiagnosis(memberUuid);
 
         log.info("[Controller] 진단 uuid 생성 성공");
         return new ResponseEntity<>(new StartDiagnosisResDto("200", "진단 uuid 생성 성공", diagnosisUuid), HttpStatus.OK);
     }
 
-//    @PostMapping("/diagnosis/score")
-//    public ResponseEntity<NormalResDto> diagnosisScore(@RequestParam("num") int num, @RequestParam("score") int score) {
-//
-//    }
+    @PostMapping("/diagnosis/score")
+    public ResponseEntity<NormalResDto> diagnosisScore(@RequestBody ScoreReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
 
+        log.info("[Controller] 진단uuid AES 복호화");
+        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
+        ScoreReqDto reqDto = objectMapper.readValue(decryptedRequest, ScoreReqDto.class);
 
+        log.info("[Controller] 점수 저장 시작");
+        diagnosisService.insertScore(reqDto);
+
+        log.info("[Controller] 점수 저장 성공");
+        return new ResponseEntity<>(new NormalResDto("200", "점수 저장 성공"), HttpStatus.OK);
+    }
+
+    @PostMapping("/diagnosis/answer")
+    public ResponseEntity<NormalResDto> diagnosisAnswer(@RequestBody AnswerReqDto request) throws UnsupportedEncodingException, JsonProcessingException{
+
+        log.info("[Controller] 진단uuid AES 복호화");
+        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
+        AnswerReqDto reqDto = objectMapper.readValue(decryptedRequest, AnswerReqDto.class);
+
+        log.info("[Controller]정답 확인 시작");
+        diagnosisService.markAnswer(reqDto);
+
+    }
 }
