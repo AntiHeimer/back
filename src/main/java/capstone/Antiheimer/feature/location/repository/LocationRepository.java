@@ -33,7 +33,7 @@ public class LocationRepository {
      */
     public boolean isExistLocation(String request, LocationReqDto reqDto) {
 
-        List<Location> findLocation = em.createQuery("select l from Location l where l.encryptedLocation = :location and l.member.uuid = :memberUuid", Location.class)
+        List<Location> findLocation = em.createQuery("SELECT l FROM Location l WHERE l.encryptedLocation = :location and l.member.uuid = :memberUuid", Location.class)
                 .setParameter("location", request).setParameter("memberUuid", reqDto.getMemberUuid())
                 .getResultList();
 
@@ -47,7 +47,7 @@ public class LocationRepository {
      */
     public Location findRecentLocation(String memberUuid) {
 
-        return em.createQuery("select l from Location l where l.member.uuid = :uuid and l.date = (SELECT MAX(l.date) FROM Location l WHERE l.member.uuid = :memberUuid)", Location.class)
+        return em.createQuery("SELECT l FROM Location l WHERE l.member.uuid = :uuid and l.date = (SELECT MAX(l.date) FROM Location l WHERE l.member.uuid = :memberUuid)", Location.class)
                 .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
@@ -59,7 +59,7 @@ public class LocationRepository {
      */
     public List<Location> findLocation(String memberUuid) {
 
-        return em.createQuery("select l from Location l where l.member.uuid = :uuid", Location.class)
+        return em.createQuery("SELECT l FROM Location l WHERE l.member.uuid = :uuid", Location.class)
                 .setParameter("uuid", memberUuid)
                 .getResultList();
     }

@@ -2,8 +2,6 @@ package capstone.Antiheimer.feature.diagnosis.repository;
 
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
-import capstone.Antiheimer.feature.health_data.entity.HealthData;
-import capstone.Antiheimer.feature.location.entity.Location;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import jakarta.persistence.EntityManager;
@@ -28,13 +26,13 @@ public class DiagnosisRepository {
      */
     public DiagnosisSheet findQuestion(int num) {
 
-        return em.createQuery("select d from DiagnosisSheet d where d.number = :num ", DiagnosisSheet.class)
+        return em.createQuery("SELECT d FROM DiagnosisSheet d WHERE d.number = :num ", DiagnosisSheet.class)
                 .setParameter("num", num)
                 .getSingleResult();
     }
 
     /**
-     * 진단 uuid 생성하기
+     * 진단 UUID 생성하기
      * @param uuid
      * @return
      */
@@ -66,7 +64,7 @@ public class DiagnosisRepository {
     }
 
     /**
-     * 진단uuid로 진단 찾기
+     * 진단 UUID로 진단 찾기
      * @param diagnosisUuid
      * @return
      */
@@ -76,7 +74,7 @@ public class DiagnosisRepository {
     }
 
     /**
-     * 멤버uuid로 진단 찾기
+     * 멤버 UUID로 진단 찾기
      * @param memberUuid
      * @return
      */

@@ -238,7 +238,7 @@ public class HealthDataRepository {
     public HealthData findHealthDataByMemberAndDate(String memberUuid, LocalDate date) {
 
         try {
-            return em.createQuery("select h from HealthData h where h.date = :date and h.member.uuid = :memberUuid", HealthData.class)
+            return em.createQuery("SELECT h FROM HealthData h WHERE h.date = :date and h.member.uuid = :memberUuid", HealthData.class)
                     .setParameter("memberUuid", memberUuid).setParameter("date", date)
                     .getSingleResult();
         } catch (NoResultException e) {
@@ -252,7 +252,7 @@ public class HealthDataRepository {
      */
     public LocalDate findLastSentDateOfActive(String memberUuid) {
 
-        return em.createQuery("select max(a.date) as last_date from Active a where a.healthData.member.uuid =:memberUuid", LocalDate.class)
+        return em.createQuery("SELECT max(a.date) as last_date FROM Active a WHERE a.healthData.member.uuid =:memberUuid", LocalDate.class)
                 .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
@@ -264,7 +264,7 @@ public class HealthDataRepository {
      */
     public LocalDate findLastSentDateOfMove(String memberUuid) {
 
-        return em.createQuery("select max(m.date) as last_date from Move m where m.healthData.member.uuid = :memberUuid", LocalDate.class)
+        return em.createQuery("SELECT max(m.date) as last_date FROM Move m WHERE m.healthData.member.uuid = :memberUuid", LocalDate.class)
                 .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
@@ -276,7 +276,7 @@ public class HealthDataRepository {
      */
     public LocalDate findLastSentDateOfWalk(String memberUuid) {
 
-        return em.createQuery("select max(w.date) as last_date from Walk w where w.healthData.member.uuid = :memberUuid", LocalDate.class)
+        return em.createQuery("SELECT max(w.date) as last_date FROM Walk w WHERE w.healthData.member.uuid = :memberUuid", LocalDate.class)
                 .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
@@ -288,7 +288,7 @@ public class HealthDataRepository {
      */
     public LocalDate findLastSentDateOfSleep(String memberUuid) {
 
-        return em.createQuery("select max(s.date) as last_date from Sleep s where s.healthData.member.uuid = :memberUuid", LocalDate.class)
+        return em.createQuery("SELECT max(s.date) as last_date FROM Sleep s WHERE s.healthData.member.uuid = :memberUuid", LocalDate.class)
                 .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
@@ -360,7 +360,7 @@ public class HealthDataRepository {
      */
     public boolean isExistActive(SaveActiveReqDto reqDto) {
 
-        List<Active> activeList = em.createQuery("select a from Active a where a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
+        List<Active> activeList = em.createQuery("SELECT a FROM Active a WHERE a.healthData.member.uuid = :uuid and a.date = :date", Active.class)
                 .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
                 .getResultList();
 
@@ -374,7 +374,7 @@ public class HealthDataRepository {
      */
     public boolean isExistMove(SaveMoveReqDto reqDto) {
 
-        List<Move> moveList = em.createQuery("select m from Move m where m.healthData.member.uuid = :uuid and m.date = :date", Move.class)
+        List<Move> moveList = em.createQuery("SELECT m FROM Move m WHERE m.healthData.member.uuid = :uuid and m.date = :date", Move.class)
                 .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
                 .getResultList();
 
@@ -388,7 +388,7 @@ public class HealthDataRepository {
      */
     public boolean isExistWalk(SaveWalkReqDto reqDto) {
 
-        List<Walk> walkList = em.createQuery("select w from Walk w where w.healthData.member.uuid = :uuid and w.date = :date", Walk.class)
+        List<Walk> walkList = em.createQuery("SELECT w FROM Walk w WHERE w.healthData.member.uuid = :uuid and w.date = :date", Walk.class)
                 .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
                 .getResultList();
 
@@ -402,7 +402,7 @@ public class HealthDataRepository {
      */
     public boolean isExistSleep(SaveSleepReqDto reqDto) {
 
-        List<Sleep> sleepList = em.createQuery("select s from Sleep s where s.healthData.member.uuid = :uuid and s.date = :date", Sleep.class)
+        List<Sleep> sleepList = em.createQuery("SELECT s FROM Sleep s WHERE s.healthData.member.uuid = :uuid and s.date = :date", Sleep.class)
                 .setParameter("uuid", reqDto.getMemberUuid()).setParameter("date", reqDto.getDate())
                 .getResultList();
 
@@ -416,7 +416,7 @@ public class HealthDataRepository {
      */
     public List<HealthData> findDataByMember(String memberUuid) {
 
-        return em.createQuery("select h from HealthData h where h.member.uuid = :memberUuid", HealthData.class)
+        return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid", HealthData.class)
                 .setParameter("memberUuid", memberUuid)
                 .getResultList();
     }

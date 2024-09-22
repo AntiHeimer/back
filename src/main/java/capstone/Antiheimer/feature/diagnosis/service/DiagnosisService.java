@@ -2,14 +2,12 @@ package capstone.Antiheimer.feature.diagnosis.service;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.exception.invalid.InvalidScoreException;
-import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.diagnosis.dto.AnswerReqDto;
 import capstone.Antiheimer.feature.diagnosis.dto.ScoreReqDto;
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import capstone.Antiheimer.feature.diagnosis.repository.DiagnosisRepository;
-import capstone.Antiheimer.feature.member.entity.Member;
-import capstone.Antiheimer.feature.member.repository.MemberRepository;
+import capstone.Antiheimer.util.CheckService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,7 +24,7 @@ import java.util.List;
 public class DiagnosisService {
 
     private final DiagnosisRepository diagnosisRepository;
-    private final MemberRepository memberRepository;
+    private final CheckService checkService;
 
     /**
      * 진단지 문제 반환
@@ -43,15 +41,15 @@ public class DiagnosisService {
 
     /**
      * 진단 결과 생성
-     * @param uuid
+     * @param memberUuid
      * @return
      */
     @Transactional
-    public String generateDiagnosis(String uuid) {
+    public String generateDiagnosis(String memberUuid) {
 
-        memberExistCheck(uuid); // 회원 존재 확인
+        checkService.checkMemberExists(memberUuid); // 회원 존재 확인
 
-        return diagnosisRepository.generateDiagnosis(uuid);
+        return diagnosisRepository.generateDiagnosis(memberUuid);
     }
 
     /**
@@ -69,6 +67,7 @@ public class DiagnosisService {
         int currentScore = diagnosis.getScore();
         int newScore = currentScore + reqDto.getScore();
         diagnosis.setScore(newScore);
+
         diagnosisRepository.saveDiagnosis(diagnosis);
     }
 
@@ -92,7 +91,7 @@ public class DiagnosisService {
      */
     public List<Diagnosis> returnDiagnosis(String memberUuid) {
 
-        memberExistCheck(memberUuid);
+        checkService.checkMemberExists(memberUuid);
 
         List<Diagnosis> diagnosisList = diagnosisRepository.findByMemberUuid(memberUuid);
 
@@ -154,21 +153,6 @@ public class DiagnosisService {
                 if (score < 0 || score > 1) {
                     throw new InvalidScoreException();
                 }
-        }
-    }
-
-    /**
-     * 회원 존재 확인
-     * @param memberUuid
-     */
-    private void memberExistCheck(String memberUuid) {
-
-        Member findMember = memberRepository.findOneByUuid(memberUuid);
-
-        if (findMember == null) {
-
-            log.warn("존재하지 않는 회원입니다");
-            throw new NotExistMemberException();
         }
     }
 

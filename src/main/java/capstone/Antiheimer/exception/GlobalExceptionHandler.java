@@ -63,38 +63,44 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(InvalidUuidException.class)
-    public ResponseEntity<NormalResDto> handleNullUuidException(InvalidUuidException e) {
+    public ResponseEntity<NormalResDto> handleInvalidUuidException(InvalidUuidException e) {
         NormalResDto resDto = new NormalResDto("420", e.getMessage());
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = InvalidIdException.class)
-    public ResponseEntity<NormalResDto> handleNullIdException(InvalidIdException e) {
+    public ResponseEntity<NormalResDto> handleInvalidIdException(InvalidIdException e) {
         NormalResDto resDto = new NormalResDto("421", e.getMessage());
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidPwException.class)
-    public ResponseEntity<NormalResDto> handleNullPwException(InvalidPwException e) {
+    public ResponseEntity<NormalResDto> handleInvalidPwException(InvalidPwException e) {
         NormalResDto resDto = new NormalResDto("422", e.getMessage());
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidNameException.class)
-    public ResponseEntity<NormalResDto> handleNullNameException(InvalidNameException e) {
+    public ResponseEntity<NormalResDto> handleInvalidNameException(InvalidNameException e) {
         NormalResDto resDto = new NormalResDto("423", e.getMessage());
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidGenderException.class)
-    public ResponseEntity<NormalResDto> handleNullGenderException(InvalidGenderException e) {
+    public ResponseEntity<NormalResDto> handleInvalidGenderException(InvalidGenderException e) {
         NormalResDto resDto = new NormalResDto("424", e.getMessage());
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidDataTypeException.class)
-    public ResponseEntity<NormalResDto> handleNullDataTypeException(InvalidDataTypeException e) {
+    public ResponseEntity<NormalResDto> handleInvalidDataTypeException(InvalidDataTypeException e) {
         NormalResDto resDto = new NormalResDto("425", e.getMessage());
+        return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidScoreException.class)
+    public ResponseEntity<NormalResDto> handleInvalidScoreException(InvalidScoreException e) {
+        NormalResDto resDto = new NormalResDto("426", e.getMessage());
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
 

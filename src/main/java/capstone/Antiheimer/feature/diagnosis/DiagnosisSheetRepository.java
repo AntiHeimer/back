@@ -18,7 +18,7 @@ public class DiagnosisSheetRepository {
      */
     public DiagnosisSheet findQuestion(int num) {
 
-        return em.createQuery("select d from DiagnosisSheet d where d.number = :num ", DiagnosisSheet.class)
+        return em.createQuery("SELECT d FROM DiagnosisSheet d WHERE d.number = :num ", DiagnosisSheet.class)
                 .setParameter("num", num)
                 .getSingleResult();
     }
