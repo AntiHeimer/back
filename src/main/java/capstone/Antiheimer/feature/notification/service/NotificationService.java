@@ -1,15 +1,13 @@
 package capstone.Antiheimer.feature.notification.service;
 
-import capstone.Antiheimer.exception.notexist.NotExistMemberException;
-import capstone.Antiheimer.exception.notexist.NotExistNotificationException;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
-import capstone.Antiheimer.feature.notification.dto.NotificationDto;
 import capstone.Antiheimer.feature.notification.entity.Notification;
 import capstone.Antiheimer.feature.notification.repository.NotificationRepository;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.save.SaveGuardianReqDto;
 import capstone.Antiheimer.feature.relation.dto.save.SaveWardReqDto;
+import capstone.Antiheimer.util.CheckService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,102 +21,132 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NotificationService {
 
-    private final NotificationRepository notificationRepository;
     private final MemberRepository memberRepository;
+    private final NotificationRepository notificationRepository;
+    private final CheckService checkService;
 
+    /**
+     * 요청 알림 저장
+     * @param reqDto
+     */
     @Transactional
     public void saveRequestNotification(RequestRelationReqDto reqDto) {
 
+        log.info("[Service] 아이디 존재 확인");
+        checkService.checkIdExists(reqDto.getToMemberId());
         Member toMember = memberRepository.findOneById(reqDto.getToMemberId());
 
-        if (isExist(reqDto.getFromMemberUuid()) && toMember != null) {
+        log.info("[Service] 회원 존재 확인");
+        checkService.checkMemberExists(reqDto.getFromMemberUuid());
+        checkService.checkMemberExists(toMember.getUuid());
 
-            Notification notification = convertToEntity(reqDto, toMember.getUuid());
+        Notification notification = convertToEntity(reqDto, toMember.getUuid());
 
-            log.info("[Controller] 알림 저장");
-            notificationRepository.saveNotification(notification);
-        } else {
-
-            throw new NotExistMemberException();
-        }
+        log.info("[Service] 알림 저장");
+        notificationRepository.saveNotification(notification);
     }
 
+    /**
+     * 보호자 요청 알림 저장
+     * @param reqDto
+     */
     @Transactional
     public void saveGuardianNotification(SaveGuardianReqDto reqDto) {
 
+        log.info("[Service] 회원 존재 확인");
+        checkService.checkMemberExists(reqDto.getGuardianUuid());
+        checkService.checkMemberExists(reqDto.getWardUuid());
+
         Member guardian = memberRepository.findOneByUuid(reqDto.getGuardianUuid());
 
-        if (isExist(reqDto.getWardUuid()) && guardian != null) {
+        Notification notification = new Notification();
 
-            Notification notification = new Notification();
+        notification.setUuid();
+        notification.setMemberUuid(reqDto.getWardUuid());
+        notification.setFromMemberUuid(guardian.getUuid());
+        notification.setFromMemberName(guardian.getName());
+        notification.setType("resultGuardian");
 
-            notification.setUuid();
-            notification.setMemberUuid(reqDto.getWardUuid());
-            notification.setFromMemberUuid(guardian.getUuid());
-            notification.setFromMemberName(guardian.getName());
-            notification.setType("resultGuardian");
-
-            notificationRepository.saveNotification(notification);
-        }
+        log.info("[Service] 보호자 저장");
+        notificationRepository.saveNotification(notification);
     }
 
+    /**
+     * 피보호자 요청 알림 저장
+     * @param reqDto
+     */
     @Transactional
     public void saveWardNotification(SaveWardReqDto reqDto) {
 
+        log.info("[Service] 회원 존재 확인");
+        checkService.checkMemberExists(reqDto.getGuardianUuid());
+        checkService.checkMemberExists(reqDto.getWardUuid());
+
         Member ward = memberRepository.findOneByUuid(reqDto.getWardUuid());
 
-        if (isExist(reqDto.getGuardianUuid()) && ward != null) {
+        Notification notification = new Notification();
 
-            Notification notification = new Notification();
+        notification.setUuid();
+        notification.setMemberUuid(reqDto.getGuardianUuid());
+        notification.setFromMemberUuid(ward.getUuid());
+        notification.setFromMemberName(ward.getName());
+        notification.setType("resultWard");
 
-            notification.setUuid();
-            notification.setMemberUuid(reqDto.getGuardianUuid());
-            notification.setFromMemberUuid(ward.getUuid());
-            notification.setFromMemberName(ward.getName());
-            notification.setType("resultWard");
-
-            notificationRepository.saveNotification(notification);
-        }
+        log.info("[Service] 피보호자 저장");
+        notificationRepository.saveNotification(notification);
     }
 
+    /**
+     * 알림 삭제
+     * @param notificationUuid
+     */
     @Transactional
     public void deleteNotification(String notificationUuid) {
 
         Notification notification = notificationRepository.findNotificationByUuid(notificationUuid);
 
-        if (notification != null) {
-
-            notificationRepository.deleteNotification(notification);
-        } else {
-
-            log.warn("알림이 존재하지 않습니다");
-            throw new NotExistNotificationException();
-        }
+        log.info("[Service] 알림 존재 확인");
+        checkService.checkNotificationExists(notification);
+        notificationRepository.deleteNotification(notification);
     }
 
-    public List<NotificationDto> findNotificationByUuid(String memberUuid) {
+    /**
+     * 알림 리스트 조회
+     * @param memberUuid
+     * @return
+     */
+    public List<Notification> findNotificationByUuid(String memberUuid) {
 
-        if (isExist(memberUuid)) {
+        log.info("[Service] 회원 존재 확인");
+        checkService.checkMemberExists(memberUuid);
 
-            return notificationRepository.findNotificationListByUuid(memberUuid);
-        } else {
-
-            log.warn("회원이 존재하지 않습니다");
-            throw new NotExistMemberException();
-        }
+        log.info("[Service] 알림 리스트 조회");
+        return notificationRepository.findNotificationListByUuid(memberUuid);
     }
 
+    /**
+     * 알림 읽음 여부 변경
+     * @param notificationList
+     */
     @Transactional
-    public void changeIsReadNotification(List<NotificationDto> notificationDtoList) {
+    public void changeIsReadNotification(List<Notification> notificationList) {
 
-        if (notificationDtoList.isEmpty()) {
+        log.info("[Service] 알림 존재 확인");
+        for (Notification notification: notificationList) {
 
-            log.warn("알림이 존재하지 않습니다");
-        } else {
-            notificationRepository.changeIsReadNotification(notificationDtoList);
+            checkService.checkNotificationExists(notification);
         }
+
+        log.info("[Service] 알림 읽음 여부 변경");
+        notificationRepository.changeIsReadNotification(notificationList);
     }
 
+    /**
+     * Dto -> Entity 변환
+     * @param reqDto
+     * @param toMemberUuid
+     * @return
+     */
     public Notification convertToEntity(RequestRelationReqDto reqDto, String toMemberUuid) {
 
         Notification notification = new Notification();
@@ -132,18 +160,5 @@ public class NotificationService {
         notification.setType(reqDto.getRequestType());
 
         return notification;
-    }
-
-    public boolean isExist(String memberUuid) {
-
-        Member findMember = memberRepository.findOneByUuid(memberUuid);
-
-        if (findMember == null) {
-
-            log.warn("회원이 존재하지 않습니다");
-            throw new NotExistMemberException();
-        } else {
-            return true;
-        }
     }
 }

@@ -1,17 +1,13 @@
 package capstone.Antiheimer.feature.location.repository;
 
 import capstone.Antiheimer.feature.location.entity.Location;
-import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.location.dto.LocationReqDto;
-import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @Repository
@@ -19,49 +15,52 @@ import java.util.UUID;
 public class LocationRepository {
 
     private final EntityManager em;
-    private final MemberRepository memberRepository;
 
     /**
      * 위치 저장
-     * @param reqDto
+     * @param location
      */
-    public void saveLocation(String request, LocationReqDto reqDto) {
-
-        Location location = new Location();
-
-        location.setUuid(UUID.randomUUID().toString());
-        Member findMember = memberRepository.findOneByUuid(reqDto.getMemberUuid());
-        location.setMember(findMember);
-        location.setDate(reqDto.getFormattedDate());
-        location.setEncryptedLocation(request);
+    public void saveLocation(Location location) {
 
         em.persist(location);
     }
 
-    public boolean existLocation(String request, LocationReqDto reqDto) {
+    /**
+     * 위치 존재 확인
+     * @param request
+     * @param reqDto
+     * @return
+     */
+    public boolean isExistLocation(String request, LocationReqDto reqDto) {
 
-        try {
-            em.createQuery("select l from Location l where l.encryptedLocation = :location and l.member.uuid = :uuid", Location.class)
-                    .setParameter("location", reqDto).setParameter("uuid", reqDto.getMemberUuid())
-                    .getSingleResult();
-            return true;
-        } catch (NoResultException e) {
-            return false;
-        }
+        List<Location> findLocation = em.createQuery("select l from Location l where l.encryptedLocation = :location and l.member.uuid = :memberUuid", Location.class)
+                .setParameter("location", request).setParameter("memberUuid", reqDto.getMemberUuid())
+                .getResultList();
+
+        return !findLocation.isEmpty();
     }
 
-    public Location findLastLocation(String memberUuid) {
+    /**
+     * 최근 위치 정보 조회 조회
+     * @param memberUuid
+     * @return
+     */
+    public Location findRecentLocation(String memberUuid) {
 
         return em.createQuery("select l from Location l where l.member.uuid = :uuid and l.date = (SELECT MAX(l.date) FROM Location l WHERE l.member.uuid = :memberUuid)", Location.class)
                 .setParameter("memberUuid", memberUuid)
                 .getSingleResult();
     }
 
-    public boolean findLocation(String memberUuid) {
+    /**
+     * 위치 정보 리스트 조회
+     * @param memberUuid
+     * @return
+     */
+    public List<Location> findLocation(String memberUuid) {
 
-        List<Location> locationList = em.createQuery("select l from Location l where l.member.uuid = :uuid", Location.class)
+        return em.createQuery("select l from Location l where l.member.uuid = :uuid", Location.class)
                 .setParameter("uuid", memberUuid)
                 .getResultList();
-        return !locationList.isEmpty();
     }
 }

@@ -1,14 +1,16 @@
 package capstone.Antiheimer.feature.health_data.controller;
 
-import capstone.Antiheimer.feature.diagnosis.Dto.AiReqDto;
+import capstone.Antiheimer.feature.diagnosis.dto.AiReqDto;
+import capstone.Antiheimer.feature.health_data.entity.Active;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;
+import capstone.Antiheimer.feature.health_data.entity.Move;
+import capstone.Antiheimer.feature.health_data.entity.Walk;
 import capstone.Antiheimer.feature.health_data.service.HealthDataService;
 import capstone.Antiheimer.feature.health_data.dto.*;
 import capstone.Antiheimer.util.encrypt.AesService;
 import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,19 +21,16 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.List;
 
-@RestController
-@RequiredArgsConstructor
 @Slf4j
+@RestController()
+@RequiredArgsConstructor
 public class HealthDataController {
 
-    @Autowired
     private final HealthDataService healthDataService;
-    @Autowired
     private final AesService aesService;
 
     /**
      * 활동 데이터 저장
-     *
      * @param reqDto
      * @return NormalResDto
      */
@@ -47,7 +46,6 @@ public class HealthDataController {
 
     /**
      * 움직인 거리 데이터 저장
-     *
      * @param reqDto
      * @return NormalResDto
      */
@@ -63,7 +61,6 @@ public class HealthDataController {
 
     /**
      * 걸음수 데이터 저장
-     *
      * @param reqDto
      * @return NormalResDto
      */
@@ -79,7 +76,6 @@ public class HealthDataController {
 
     /**
      * 몸무게 저장
-     *
      * @param reqDto
      * @return NormalResDto
      */
@@ -95,7 +91,6 @@ public class HealthDataController {
 
     /**
      * 수면데이터 저장
-     *
      * @param reqDto
      * @return NormalResDto
      */
@@ -111,7 +106,6 @@ public class HealthDataController {
 
     /**
      * 건강 데이터 최근 저장 날짜 조회
-     *
      * @param memberUuid
      * @return
      */
@@ -134,6 +128,11 @@ public class HealthDataController {
         return new ResponseEntity<>(new RecentDateRes("200", "최근 건강 데이터 날짜 조회 성공", date), HttpStatus.OK);
     }
 
+    /**
+     * 건강 데이터 조회
+     * @param reqDto
+     * @return
+     */
     @PostMapping("/find/health-data")
     public ResponseEntity<FindHealthDataResDto> findHealthData(@RequestBody FindHealthDataReqDto reqDto) {
 
@@ -144,9 +143,66 @@ public class HealthDataController {
         return new ResponseEntity<>(new FindHealthDataResDto("200", "건강 데이터 조회 성공", healthDataList), HttpStatus.OK);
     }
 
+    /**
+     * 활동 데이터 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
+    @GetMapping("/find/active/{memberUuid}/{date}")
+    public ResponseEntity<FindActiveResDto> findActive(@PathVariable("memberUuid") String memberUuid,
+                                                       @PathVariable("date") LocalDate date) {
+
+        log.info("[Controller] 활동 데이터 조회 시작");
+        List<Active> activeList = healthDataService.findActiveList(memberUuid, date);
+
+        log.info("[Controller] 활동 데이터 조회 성공");
+        return new ResponseEntity<>(new FindActiveResDto("200", "걸음수 데이터 조회 완료", activeList), HttpStatus.OK);
+    }
+
+    /**
+     * 움직인 거리 데이터 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
+    @GetMapping("/find/move/{uuid}/{memberUuid}")
+    public ResponseEntity<FindMoveResDto> findMove(@PathVariable("memberUuid") String memberUuid,
+                                                   @PathVariable("date") LocalDate date) {
+
+        log.info("[Controller] 움직인 거리 데이터 조회 시작");
+        List<Move> moveList = healthDataService.findMoveList(memberUuid, date);
+
+        log.info("[Controller] 움직인 거리 데이터 조회 성공");
+        return new ResponseEntity<>(new FindMoveResDto("200", "움직인 거리 데이터 조회 완료", moveList), HttpStatus.OK);
+    }
+
+    /**
+     * 걸음수 데이터 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
+    @GetMapping("/find/walk/{memberUuid}/{date}")
+    public ResponseEntity<FindWalkResDto> findWalk(@PathVariable("memberUuid") String memberUuid,
+                                                   @PathVariable("date") LocalDate date) {
+
+        log.info("[Controller] 걸음수 데이터 조회 시작");
+        List<Walk> walkList = healthDataService.findWalkList(memberUuid, date);
+
+        log.info("[Controller] 걸음수 데이터 조회 성공");
+        return new ResponseEntity<>(new FindWalkResDto("200", "걸음수 데이터 조회 완료", walkList), HttpStatus.OK);
+    }
+
+    /**
+     * AI 진단 결과
+     * @param auth
+     * @param reqDto
+     * @return
+     */
     @PostMapping("/ai/send/data")
     public ResponseEntity<HealthDataResDto> aiData(@RequestHeader String auth,
-                                   @RequestBody AiReqDto reqDto) {
+                                                   @RequestBody AiReqDto reqDto) {
 
         log.info("[Controller] 권한 확인");
 
@@ -170,62 +226,4 @@ public class HealthDataController {
 //        }
 
     }
-
-//
-//    @GetMapping("/find/active/{uuid}/{date}")
-//    public FindActiveResDto findActive(@PathVariable("uuid") String uuid,
-//                                       @PathVariable("date") LocalDate date) {
-//
-//        try {
-//            log.info("[Controller] Active 데이터 조회 시작");
-//
-//            List<Active> activeList = healthDataService.findActiveList(uuid, date);
-//
-//            return new FindActiveResDto("200", "걸음수 데이터 조회 완료", activeList);
-//        } catch (NotExistException e) {
-//
-//            return new FindActiveResDto("408", "존재하지 않는 회원", null);
-//        } catch (NotExistHealthDataException e) {
-//
-//            return new FindActiveResDto("408", "존재하지 않는 걸음수 데이터", null);
-//        }
-//    }
-//
-//    @GetMapping("/find/move/{uuid}/{date}")
-//    public FindMoveResDto findMove(@PathVariable("uuid") String uuid,
-//                                   @PathVariable("date") LocalDate date) {
-//
-//        try {
-//            log.info("[Controller] Move 데이터 조회 시작");
-//
-//            List<Move> moveList = healthDataService.findMoveList(uuid, date);
-//
-//            return new FindMoveResDto("200", "움직인 거리 데이터 조회 완료", moveList);
-//        } catch (NotExistException e) {
-//
-//            return new FindMoveResDto("408", "존재하지 않는 회원", null);
-//        } catch (NotExistHealthDataException e) {
-//
-//            return new FindMoveResDto("408", "존재하지 않는 움직인 거리 데이터", null);
-//        }
-//    }
-//
-//    @GetMapping("/find/walk/{uuid}/{date}")
-//    public FindWalkResDto findWalk(@PathVariable("uuid") String uuid,
-//                                   @PathVariable("date") LocalDate date) {
-//
-//        try {
-//            log.info("[Controller] Walk 데이터 조회 시작");
-//
-//            List<Walk> walkList = healthDataService.findWalkList(uuid, date);
-//
-//            return new FindWalkResDto("200", "걸음수 데이터 조회 완료", walkList);
-//        } catch (NotExistException e) {
-//
-//            return new FindWalkResDto("408", "존재하지 않는 회원", null);
-//        } catch (NotExistHealthDataException e) {
-//
-//            return new FindWalkResDto("408", "존재하지 않는 걸음수 데이터", null);
-//        }
-//    }
 }

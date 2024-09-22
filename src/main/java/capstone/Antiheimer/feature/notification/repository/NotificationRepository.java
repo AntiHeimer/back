@@ -1,6 +1,5 @@
 package capstone.Antiheimer.feature.notification.repository;
 
-import capstone.Antiheimer.feature.notification.dto.NotificationDto;
 import capstone.Antiheimer.feature.notification.entity.Notification;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -14,35 +13,55 @@ public class NotificationRepository {
 
     private final EntityManager em;
 
+    /**
+     * 알림 저장
+     * @param notification
+     */
     public void saveNotification(Notification notification) {
 
         em.persist(notification);
     }
 
+    /**
+     * 알림 삭제
+     * @param notification
+     */
     public void deleteNotification(Notification notification) {
 
         em.remove(notification);
     }
 
+    /**
+     * 알림 조회
+     * @param notificationUuid
+     * @return
+     */
     public Notification findNotificationByUuid(String notificationUuid) {
 
         return em.find(Notification.class, notificationUuid);
     }
 
-    public List<NotificationDto> findNotificationListByUuid(String memberUuid) {
+    /**
+     * 알림 리스트 조회
+     * @param memberUuid
+     * @return
+     */
+    public List<Notification> findNotificationListByUuid(String memberUuid) {
 
-        return em.createQuery("SELECT new capstone.Antiheimer.feature.notification.dto.NotificationDto(n.uuid, n.fromMemberUuid, n.fromMemberName, n.isRead, n.type) FROM Notification n WHERE n.memberUuid = :memberUuid", NotificationDto.class)
+        return em.createQuery("SELECT n FROM Notification n WHERE n.memberUuid = :memberUuid", Notification.class)
                 .setParameter("memberUuid", memberUuid)
                 .getResultList();
     }
 
-    public void changeIsReadNotification(List<NotificationDto> notificationDtoList) {
+    /**
+     * 알림 읽음 여부 변경
+     * @param notificationList
+     */
+    public void changeIsReadNotification(List<Notification> notificationList) {
 
-        for (NotificationDto notificationDto : notificationDtoList) {
+        for (Notification notification : notificationList) {
 
-            Notification notification = findNotificationByUuid(notificationDto.getNotificationUuid());
-
-            notification.setRead(true);
+            findNotificationByUuid(notification.getUuid()).setRead(true);
             em.persist(notification);
         }
     }

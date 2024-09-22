@@ -2,7 +2,7 @@ package capstone.Antiheimer.feature.relation.service;
 
 import capstone.Antiheimer.exception.notexist.NotExistMemberException;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
-import capstone.Antiheimer.feature.member.service.CheckService;
+import capstone.Antiheimer.util.CheckService;
 import capstone.Antiheimer.feature.relation.dto.RequestRelationReqDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoGuardianDto;
 import capstone.Antiheimer.feature.relation.dto.info.InfoWardDto;
@@ -30,7 +30,6 @@ public class RelationService {
 
     /**
      * 관계 임시 등록(active false 상태)
-     *
      * @param reqDto
      */
     @Transactional
@@ -73,7 +72,6 @@ public class RelationService {
 
     /**
      * 보호자 등록(active true 변경)
-     *
      * @param reqDto
      */
     @Transactional
@@ -81,14 +79,14 @@ public class RelationService {
 
         String guardianUuid = memberRepository.findOneByUuid(reqDto.getGuardianUuid()).getUuid();
         String wardUuid = reqDto.getWardUuid();
-
         Relation relation = relationRepository.findRelation(guardianUuid, wardUuid);
+
+        log.info("[Service] 보호자 등록");
         relationRepository.saveGuardian(relation);
     }
 
     /**
      * 피보호자 등록(active true 변경)
-     *
      * @param reqDto
      */
     @Transactional
@@ -96,40 +94,42 @@ public class RelationService {
 
         String wardUuid = memberRepository.findOneByUuid(reqDto.getWardUuid()).getUuid();
         String guardianUuid = reqDto.getGuardianUuid();
-
         Relation relation = relationRepository.findRelation(guardianUuid, wardUuid);
+
+        log.info("[Service] 피보호자 등록");
         relationRepository.saveWard(relation);
     }
 
     /**
      * 보호자 조회
-     *
      * @param memberUuid
      * @return
      */
     public List<InfoGuardianDto> infoGuardian(String memberUuid) {
 
+        log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
+        log.info("[Service] 보호자 조회");
         return relationRepository.infoGuardian(memberUuid);
     }
 
     /**
      * 피보호자 조회
-     *
      * @param memberUuid
      * @return
      */
     public List<InfoWardDto> infoWard(String memberUuid) {
 
+        log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
+        log.info("[Service] 피보호자 조회");
         return relationRepository.infoWard(memberUuid);
     }
 
     /**
      * Dto -> Entity 변환
-     *
      * @param wardUuid
      * @param guardianUuid
      * @return

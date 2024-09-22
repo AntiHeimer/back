@@ -1,19 +1,18 @@
-package capstone.Antiheimer.feature.notification.dto;
+package capstone.Antiheimer.feature.diagnosis.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
 @Getter
-@Setter
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
-public class NotificationResDto {
+public class DSRandomWordResDto {
 
     private String statusCode;
     private String message;
-    private List<NotificationDto> notificationDtoList;
+    private List<String> randomWords;
 }

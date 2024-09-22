@@ -20,9 +20,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 public class LocationController {
 
     @Autowired
@@ -37,7 +37,6 @@ public class LocationController {
 
     /**
      * 위치 정보 저장
-     *
      * @param auth
      * @param request
      * @return
@@ -58,7 +57,7 @@ public class LocationController {
         LocationReqDto reqDto = objectMapper.readValue(decryptedRequest, LocationReqDto.class);
 
         log.info("[Controller] 위치 데이터 저장 시작");
-        locationService.insertLocation(request, reqDto);
+        locationService.saveLocation(request, reqDto);
 
         log.info("[Controller] 위치 데이터 저장 성공");
         return new ResponseEntity<>(new NormalResDto("200", "위치 데이터 저장 성공"), HttpStatus.OK);
@@ -66,7 +65,6 @@ public class LocationController {
 
     /**
      * 최근 위치 정보 조회
-     *
      * @param request
      * @return
      */

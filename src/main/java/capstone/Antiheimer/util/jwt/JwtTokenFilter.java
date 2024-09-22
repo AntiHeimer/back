@@ -52,7 +52,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             Member member = memberRepository.findOneByUuid(memberUuid);
 
             if (member == null) {
-                throw new IllegalArgumentException("유효하지 않은 uuid");
+                throw new IllegalArgumentException("유효하지 않은 UUID");
             }
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(member.getUuid(), null, null);
