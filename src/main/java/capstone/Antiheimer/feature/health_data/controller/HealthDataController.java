@@ -152,7 +152,7 @@ public class HealthDataController {
         List<Active> activeList = healthDataService.findActiveList(reqDto.getMemberUuid(), reqDto.getDate());
 
         log.info("[Controller] 활동 데이터 조회 성공");
-        return new ResponseEntity<>(new FindActiveResDto("200", "걸음수 데이터 조회 완료", activeList), HttpStatus.OK);
+        return new ResponseEntity<>(new FindActiveResDto("200", "활동 데이터 조회 완료", activeList), HttpStatus.OK);
     }
 
     /**
@@ -197,7 +197,7 @@ public class HealthDataController {
         List<Sleep> sleepList = healthDataService.findSleepList(reqDto.getMemberUuid(), reqDto.getDate());
 
         log.info("[Controller] 수면 데이터 조회 성공");
-        return new ResponseEntity<>(new FindSleepResDto("200", "걸음수 데이터 조회 완료", sleepList), HttpStatus.OK);
+        return new ResponseEntity<>(new FindSleepResDto("200", "수면 데이터 조회 완료", sleepList), HttpStatus.OK);
     }
 
     /**

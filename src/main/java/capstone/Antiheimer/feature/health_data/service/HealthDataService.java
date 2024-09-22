@@ -163,7 +163,7 @@ public class HealthDataService {
         log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
-        log.info("[Controller] 활동 데이터 조회");
+        log.info("[Service] 활동 데이터 조회");
         return healthDataRepository.findActive(memberUuid, date);
     }
 
@@ -178,7 +178,7 @@ public class HealthDataService {
         log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
-        log.info("[Controller] 움직인 거리 데이터 조회");
+        log.info("[Service] 움직인 거리 데이터 조회");
         return healthDataRepository.findMove(memberUuid, date);
     }
 
@@ -193,16 +193,16 @@ public class HealthDataService {
         log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
-        log.info("[Controller] 걸음수 데이터 조회");
+        log.info("[Service] 걸음수 데이터 조회");
         return healthDataRepository.findWalk(memberUuid, date);
     }
 
     public List<Sleep> findSleepList(String memberUuid, LocalDate date) {
 
         log.info("[Service] 회원 존재 확인");
-        checkService.checkIdExists(memberUuid);
+        checkService.checkMemberExists(memberUuid);
 
-        log.info("[Controller] 수면 데이터 조회");
+        log.info("[Service] 수면 데이터 조회");
         return healthDataRepository.findSleep(memberUuid, date);
     }
 }

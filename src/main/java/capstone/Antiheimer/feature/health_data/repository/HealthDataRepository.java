@@ -319,7 +319,7 @@ public class HealthDataRepository {
         LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT a FROM Active a WHERE a.healthData.member.uuid = :memberUuid AND a.date >= :startDate AND a.date <= :date ORDER BY a.date DESC", Active.class)
-                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate)
+                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate).setParameter("date", date)
                 .getResultList();
     }
 
@@ -334,7 +334,7 @@ public class HealthDataRepository {
         LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT m FROM Move m WHERE m.healthData.member.uuid = :memberUuid AND m.date >= :startDate AND m.date <= :date ORDER BY m.date DESC", Move.class)
-                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate)
+                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate).setParameter("date", date)
                 .getResultList();
     }
 
@@ -349,16 +349,22 @@ public class HealthDataRepository {
         LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT w FROM Walk w WHERE w.healthData.member.uuid = :memberUuid AND w.date >= :startDate AND w.date <= :date ORDER BY w.date DESC", Walk.class)
-                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate)
+                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate).setParameter("date", date)
                 .getResultList();
     }
 
+    /**
+     * 수면 데이터 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
     public List<Sleep> findSleep(String memberUuid, LocalDate date) {
 
         LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT s FROM Sleep s WHERE s.healthData.member.uuid = :memberUuid AND s.date >= :startDate AND s.date <= :date ORDER BY s.date DESC", Sleep.class)
-                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate)
+                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate).setParameter("date", date)
                 .getResultList();
     }
 
