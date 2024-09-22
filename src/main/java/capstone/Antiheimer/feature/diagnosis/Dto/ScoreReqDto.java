@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.diagnosis.Dto;
+package capstone.Antiheimer.feature.diagnosis.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

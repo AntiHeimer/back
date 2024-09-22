@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class InfoGuardianDto {
 
-    private String memberUuid;
+    private String uuid;
     private String id;
     private String name;
 }

@@ -1,11 +1,9 @@
 package capstone.Antiheimer.feature.diagnosis.controller;
 
-import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.feature.diagnosis.dto.*;
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
-import capstone.Antiheimer.feature.location.dto.LocationReqDto;
 import capstone.Antiheimer.util.dto.NormalResDto;
 import capstone.Antiheimer.util.encrypt.AesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -14,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
