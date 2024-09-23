@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.dimentia_center.entity;
+package capstone.Antiheimer.feature.dementia_center.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class DimentiaCenter {
+public class DementiaCenter {
 
     @Id
     @Column(name = "center_id")

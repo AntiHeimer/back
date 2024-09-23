@@ -1,7 +1,7 @@
-package capstone.Antiheimer.feature.dimentia_center.service;
+package capstone.Antiheimer.feature.dementia_center.service;
 
-import capstone.Antiheimer.feature.dimentia_center.entity.DimentiaCenter;
-import capstone.Antiheimer.feature.dimentia_center.repository.DimentiaCenterRepository;
+import capstone.Antiheimer.feature.dementia_center.entity.DementiaCenter;
+import capstone.Antiheimer.feature.dementia_center.repository.DementiaCenterRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +11,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
-@Slf4j
 @Transactional(readOnly = true)
-public class DimentiaCenterService {
+public class DementiaCenterService {
 
     @Autowired
-    private DimentiaCenterRepository dimentiaCenterRepository;
+    private DementiaCenterRepository dementiaCenterRepository;
 
-    public Page<DimentiaCenter> getCenterByPage(int page, int pageSize) {
+    public Page<DementiaCenter> getCenterByPage(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
 
-        return dimentiaCenterRepository.findAll(pageable);
+        return dementiaCenterRepository.findAll(pageable);
     }
 }

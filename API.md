@@ -618,7 +618,7 @@ exist(43x)
 
 # DementiaCenter
 ## getDementiaCenter
-#### /dementiaCenter?page={page}
+#### /dementiaCenter?page={page}: GET
 
 **Header**
 - String Authorization

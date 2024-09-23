@@ -1,0 +1,24 @@
+package capstone.Antiheimer.feature.dementia_center.controller;
+
+import capstone.Antiheimer.feature.dementia_center.entity.DementiaCenter;
+import capstone.Antiheimer.feature.dementia_center.service.DementiaCenterService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+@Slf4j
+public class DementiaCenterController {
+
+    private final DementiaCenterService dementiaCenterService;
+
+    @GetMapping("/dementia_center")
+    public Page<DementiaCenter> getDementiaCenter(@RequestParam("page") int page) {
+        int pageSize = 5;
+        return dementiaCenterService.getCenterByPage(page, pageSize);
+    }
+}
