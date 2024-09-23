@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.dimentia_center;
+package capstone.Antiheimer.feature.dimentia_center.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

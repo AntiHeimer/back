@@ -614,3 +614,15 @@ auth(401): 권한 없음(토큰)
 
 exist(408)
 - NotExistException: 존재하지 않는 알림
+
+
+# DimentiaCenter
+## getDimentiaCenter
+#### /dimentiaCenter?page={page}
+
+**Header**
+- String Authorization
+
+### possible error
+
+auth(401): 권한 없음(토큰)
