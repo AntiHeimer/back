@@ -40,21 +40,21 @@ ex) /login/{uuid}
 ### possible error
 auth(401): 권한 없음
 
-null(405)
-- NullIdException(): 입력되지 않은 아이디
-- NullNameException(): 입력되지 않은 이름
-- NullPwException():  입력되지 않은 비밀번호
-- NullGenderException(): 입력되지 않은 성별
-- NullBirthException(): 입력되지 않은 생일
+null(41x)
+- NullIdException(411): 입력되지 않은 아이디
+- NullPwException(412):  입력되지 않은 비밀번호
+- NullNameException(413): 입력되지 않은 이름
+- NullGenderException(414): 입력되지 않은 성별
+- NullBirthException(415): 입력되지 않은 생일
 
-invalid(406)
-- InvalidIdException(): 유효하지 않은 아이디
-- InvalidPwException(): 유효하지 않은 비밀번호
-- InvalidNameException(): 유효하지 않은 이름
-- InvalidGenderException(): 유효하지 않은 성별
+invalid(42x)
+- InvalidIdException(421): 유효하지 않은 아이디
+- InvalidPwException(422): 유효하지 않은 비밀번호
+- InvalidNameException(423): 유효하지 않은 이름
+- InvalidGenderException(424): 유효하지 않은 성별
 
-duplicate(407)
-- DuplicateIdException(): 중복된 아이디, 회원
+duplicate(45x)
+- DuplicateIdException(450): 중복된 아이디, 회원
 
 
 ## login
@@ -71,15 +71,15 @@ duplicate(407)
 ### possible error
 auth(401): 권한 없음
 
-null(405)
-- NullIdException: 입력되지 않은 아아디
-- NullPwException: 입력되지 않은 비밀번호
+null(41x)
+- NullIdException(411): 입력되지 않은 아아디
+- NullPwException(412): 입력되지 않은 비밀번호
 
-exist(408)
-- NotExistException: 존재하지 않는 아이디
+exist(43x)
+- NotExistIDException(430): 존재하지 않는 아이디
 
-incorrect(409)
-- IncorrectPwException: 일치하지 않는 비밀번호
+incorrect(44x)
+- IncorrectPwException(440): 일치하지 않는 비밀번호
 
 
 ## logout
@@ -92,14 +92,14 @@ uuid AES 암호화
 ### possible error
 auth(401): 권한 없음(토큰)
 
-null(405)
-- NullUuidException: 입력되지 않은 uuid
+null(41x)
+- NullIdException(410): 입력되지 않은 uuid
 
-invalid(406)
-- InvalidUuidException: 유효하지 않은 uuid
+invalid(42x)
+- InvalidUuidException(420): 유효하지 않은 uuid
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## memberInfo
@@ -137,7 +137,7 @@ auth(401): 권한 없음(토큰)
 [//]: # ()
 [//]: # (exist&#40;408&#41;)
 
-[//]: # (- NotExistException: 존재하지 않는 회원)
+[//]: # (- NotExistMemberException(431): 존재하지 않는 회원)
 
 
 # HealthData
@@ -162,11 +162,11 @@ auth(401): 권한 없음(토큰)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-duplicate(407)
-- DuplicateHealthDataException: 중복된 활동 데이터
+duplicate(45x)
+- DuplicateHealthDataException(452): 중복된 활동 데이터
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## saveMove
@@ -186,11 +186,11 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-duplicate(407)
-- DuplicateHealthDataException: 중복된 움직인 거리 데이터
+duplicate(45x)
+- DuplicateHealthDataException(452): 중복된 움직인 거리 데이터
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## saveWalk
@@ -210,11 +210,11 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-duplicate(407)
-- DuplicateHealthDataException: 중복된 걸음수 데이터
+duplicate(45x)
+- DuplicateHealthDataException(452): 중복된 걸음수 데이터
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## saveWeight
@@ -230,8 +230,8 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## saveSleep
@@ -254,11 +254,11 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-duplicate(407)
-- DuplicateHealthDataException: 중복된 수면 데이터
+duplicate(45x)
+- DuplicateHealthDataException(452): 중복된 수면 데이터
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## recentData
@@ -274,14 +274,14 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-invalid(406)
-- InvalidDataTypeException: 유효하지 않은 데이터 타입
+invalid(42x)
+- InvalidDataTypeException(425): 유효하지 않은 데이터 타입
 
 exist(43x)
 - NotExistMemberException(431): 존재하지 않는 회원
 
-decoding(410)
-- UnsupportedEncodingException: 디코딩 오류
+decoding(46x)
+- UnsupportedEncodingException(460): 디코딩 오류
 
 
 ## findHealthData
@@ -388,11 +388,11 @@ exist(43x)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-duplicate(407)
-- DuplicateLocationException: 중복된 위치 정보
+duplicate(45x)
+- DuplicateLocationException(451): 중복된 위치 정보
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## recentLocation
@@ -407,8 +407,8 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 - NotExistLocationException: 존재하지 않는 위치 정보
 
 
@@ -425,8 +425,8 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-Incorrect(409)
-- IncorrectNumException: 올바르지 않은 번호
+incorrect(44x)
+- IncorrectNumException(441): 올바르지 않은 번호
 
 
 ## randomWords
@@ -448,8 +448,8 @@ auth(401): 권한 없음(토큰)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## diagnosisScore
@@ -461,11 +461,11 @@ exist(408)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-Incorrect(409)
-- IncorrectNumException: 올바르지 않은 번호
+invalid(42x)
+- InvalidScoreException(426): 유효하지 않은 점수
 
-Invalid(406)
-- InvalidScoreException: 유효하지 않은 점수
+incorrect(44x)
+- IncorrectNumException(441): 올바르지 않은 번호
 
 
 ## diagnosisAnswer
@@ -477,8 +477,8 @@ Invalid(406)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-Invalid(406)
-- InvalidScoreException: 유효하지 않은 점수
+invalid(42x)
+- InvalidScoreException(426): 유효하지 않은 점수
 
 
 ## diagnosisResult
@@ -490,8 +490,8 @@ Invalid(406)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 
@@ -510,11 +510,11 @@ exist(408)
 ## possible error
 auth(401): 권한 없음(토큰)
 
-duplicate(407)
-- Duplicate: 이미 존재하는 관계
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+duplicate(45x)
+- DuplicateRelationException(453): 이미 존재하는 관계
 
 
 ## saveGuardian
@@ -532,8 +532,8 @@ exist(408)
 
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## saveWard
@@ -551,8 +551,8 @@ exist(408)
 
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## infoGuardian
@@ -566,8 +566,8 @@ memberUuid AES 암호화 + 인코딩
 
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## infoWard
@@ -581,8 +581,8 @@ memberUuid AES 암호화 + 인코딩
 
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 # Notification
@@ -597,8 +597,8 @@ memberUuid AES 암호화 + 인코딩
 
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 회원
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 ## deleteNotification
@@ -612,13 +612,13 @@ notificationUuid AES 암호화 + 인코딩
 
 auth(401): 권한 없음(토큰)
 
-exist(408)
-- NotExistException: 존재하지 않는 알림
+exist(43x)
+- NotExistNotificationException(433): 존재하지 않는 알림
 
 
-# DimentiaCenter
-## getDimentiaCenter
-#### /dimentiaCenter?page={page}
+# DementiaCenter
+## getDementiaCenter
+#### /dementiaCenter?page={page}
 
 **Header**
 - String Authorization
