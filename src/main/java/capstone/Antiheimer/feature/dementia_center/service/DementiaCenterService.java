@@ -22,6 +22,7 @@ public class DementiaCenterService {
     public Page<DementiaCenter> getCenterByPage(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
 
+        log.info("[Service] 치매센터 페이지 반환");
         return dementiaCenterRepository.findAll(pageable);
     }
 }

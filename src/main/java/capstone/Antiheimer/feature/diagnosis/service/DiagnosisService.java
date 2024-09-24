@@ -36,6 +36,7 @@ public class DiagnosisService {
         log.info("[Service] 올바른 범위의 문제 번호인지 확인");
         checkNum(num);
 
+        log.info("[Serivce] 진단지 문제 반환");
         return diagnosisRepository.findQuestion(num);
     }
 
@@ -51,6 +52,7 @@ public class DiagnosisService {
         log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
+        log.info("[Service] 진단 결과 UUID 생성");
         return diagnosisRepository.generateDiagnosis(memberUuid);
     }
 
@@ -62,8 +64,9 @@ public class DiagnosisService {
     public void insertScore(ScoreReqDto reqDto) {
 
         log.info("[Service] 올바른 범위의 문제 번호인지 확인");
-        checkScoreNum(reqDto.getNum()); // 문제 범위의 번호인지 확인
-        checkScore(reqDto.getNum(), reqDto.getScore()); // 문제의 점수가 유효한지 확인
+        checkScoreNum(reqDto.getNum());
+        log.info("[Service] 문제의 점수가 유요한지 확인");
+        checkScore(reqDto.getNum(), reqDto.getScore());
 
         Diagnosis diagnosis = diagnosisRepository.findOneByUuid(reqDto.getDiagnosisUuid());
 
@@ -71,6 +74,7 @@ public class DiagnosisService {
         int newScore = currentScore + reqDto.getScore();
         diagnosis.setScore(newScore);
 
+        log.info("[Service] 진단 결과 점수 갱신");
         diagnosisRepository.updateDiagnosis(diagnosis);
     }
 
@@ -82,8 +86,10 @@ public class DiagnosisService {
     @Transactional
     public void markAnswer(AnswerReqDto reqDto) {
 
+        log.info("[Service] 정답 확인 문제인지 확인");
         checkAnswerNum(reqDto.getNum());
 
+        log.info("[Service] 정답 확인");
         checkAnswer(reqDto);
     }
 
@@ -94,10 +100,13 @@ public class DiagnosisService {
      */
     public List<Diagnosis> returnDiagnosis(String memberUuid) {
 
+        log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
+        log.info("[Service] 회원 UUID로 진단결과리스트 반환");
         List<Diagnosis> diagnosisList = diagnosisRepository.findByMemberUuid(memberUuid);
 
+        log.info("[Service] 진단결과리스트 반환");
         return diagnosisList;
     }
 

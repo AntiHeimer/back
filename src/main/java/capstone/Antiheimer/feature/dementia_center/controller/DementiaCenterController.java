@@ -19,6 +19,8 @@ public class DementiaCenterController {
     @GetMapping("/dementia_center")
     public Page<DementiaCenter> getDementiaCenter(@RequestParam("page") int page) {
         int pageSize = 5;
+
+        log.info("[Controller] 치매센터 페이지 별 반환 시작");
         return dementiaCenterService.getCenterByPage(page, pageSize);
     }
 }
