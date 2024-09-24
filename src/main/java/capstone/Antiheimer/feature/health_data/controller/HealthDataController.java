@@ -225,7 +225,7 @@ public class HealthDataController {
 //            System.out.println("diagnosis = " + diagnosis);
 //            // DB에 진단결과 저장
 //            log.info("[Controller] DB에 진단결과 저장");
-//            diagnosisService.saveDiagnosis(diagnosis);
+//            diagnosisService.updateDiagnosis(diagnosis);
 //
 //        } catch (Exception e) {
 //

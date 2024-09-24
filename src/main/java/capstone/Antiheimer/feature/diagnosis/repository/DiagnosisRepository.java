@@ -58,7 +58,7 @@ public class DiagnosisRepository {
      * 점수 추가
      * @param diagnosis
      */
-    public void saveDiagnosis(Diagnosis diagnosis) {
+    public void updateDiagnosis(Diagnosis diagnosis) {
 
         em.persist(diagnosis);
     }

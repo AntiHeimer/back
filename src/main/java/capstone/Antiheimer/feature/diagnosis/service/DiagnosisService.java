@@ -68,7 +68,7 @@ public class DiagnosisService {
         int newScore = currentScore + reqDto.getScore();
         diagnosis.setScore(newScore);
 
-        diagnosisRepository.saveDiagnosis(diagnosis);
+        diagnosisRepository.updateDiagnosis(diagnosis);
     }
 
 
@@ -172,16 +172,16 @@ public class DiagnosisService {
 
             int month = Integer.valueOf(answer.get(1));
             int season = 0;
-            if( month>=3 || month <=5) {
-                season = 1;
+            if ( month >= 3 && month <= 5) {
+                season = 1;  //봄
             }
-            if( month>=6 || month <=8) {
-                season = 2;
+            if ( month >=6 && month <= 8) {
+                season = 2; //여름
             }
-            if( month>=9 || month <=11) {
-                season = 3;
+            if ( month >=9 && month <= 11) {
+                season = 3; //가을
             }
-            if( month==12 || month ==1 || month ==2){
+            if ( month == 12 || month == 1 || month == 2){
                 season = 4;
             }
             if (Integer.valueOf(answer.get(0)) == now.getYear()) { //년도 비교
@@ -200,7 +200,7 @@ public class DiagnosisService {
 
                 score += 1;
             }
-            if(Integer.valueOf(answer.get(4)) == season){
+            if (Integer.valueOf(answer.get(4)) == season){
 
                 score += 1;
             }
@@ -235,7 +235,7 @@ public class DiagnosisService {
         int currentScore = diagnosis.getScore();
         int newScore = currentScore + score;
         diagnosis.setScore(newScore);
-        diagnosisRepository.saveDiagnosis(diagnosis);
+        diagnosisRepository.updateDiagnosis(diagnosis);
     }
 
 }

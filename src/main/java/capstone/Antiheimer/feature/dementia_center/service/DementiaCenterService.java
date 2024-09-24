@@ -14,11 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class DementiaCenterService {
 
-    @Autowired
-    private DementiaCenterRepository dementiaCenterRepository;
+
+    private final DementiaCenterRepository dementiaCenterRepository;
 
     public Page<DementiaCenter> getCenterByPage(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
