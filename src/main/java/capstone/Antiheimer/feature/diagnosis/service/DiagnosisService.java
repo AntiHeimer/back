@@ -33,7 +33,8 @@ public class DiagnosisService {
      */
     public DiagnosisSheet returnDiagnosisSheet(int num) {
 
-        checkNum(num); //문제 범위의 번호인지 확인
+        log.info("[Service] 올바른 범위의 문제 번호인지 확인");
+        checkNum(num);
 
         return diagnosisRepository.findQuestion(num);
     }
@@ -47,7 +48,8 @@ public class DiagnosisService {
     @Transactional
     public String generateDiagnosis(String memberUuid) {
 
-        checkService.checkMemberExists(memberUuid); // 회원 존재 확인
+        log.info("[Service] 회원 존재 확인");
+        checkService.checkMemberExists(memberUuid);
 
         return diagnosisRepository.generateDiagnosis(memberUuid);
     }
@@ -59,6 +61,7 @@ public class DiagnosisService {
     @Transactional
     public void insertScore(ScoreReqDto reqDto) {
 
+        log.info("[Service] 올바른 범위의 문제 번호인지 확인");
         checkScoreNum(reqDto.getNum()); // 문제 범위의 번호인지 확인
         checkScore(reqDto.getNum(), reqDto.getScore()); // 문제의 점수가 유효한지 확인
 

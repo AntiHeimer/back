@@ -138,7 +138,7 @@ public class DiagnosisController {
      * @throws UnsupportedEncodingException
      */
     @GetMapping("/diagnosis/result")
-    public ResponseEntity<DiagnosisResDto> diagnosisResult(@RequestParam String memberUuid) throws UnsupportedEncodingException{
+    public ResponseEntity<DiagnosisResDto> diagnosisResultList(@RequestParam String memberUuid) throws UnsupportedEncodingException{
 
         log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩

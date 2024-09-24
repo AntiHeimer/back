@@ -1,6 +1,5 @@
 package capstone.Antiheimer.feature.diagnosis.dto;
 
-import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
