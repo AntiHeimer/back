@@ -25,6 +25,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/relation")
 public class RelationController {
 
     private final RelationService relationService;

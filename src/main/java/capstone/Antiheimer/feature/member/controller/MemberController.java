@@ -45,7 +45,7 @@ public class MemberController {
      */
     @PostMapping("/signup")
     public ResponseEntity<NormalResDto> signup(@RequestHeader("auth") String auth,
-                                              @RequestBody String request) throws JsonProcessingException {
+                                               @RequestBody String request) throws JsonProcessingException {
 
         log.info("[Controller] 권한 확인");
         if (!auth.equals(authKey)) {

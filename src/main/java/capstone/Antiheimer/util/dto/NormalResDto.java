@@ -1,17 +1,13 @@
 package capstone.Antiheimer.util.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
 public class NormalResDto {
 
     private String statusCode;
     private String message;
-
-    public NormalResDto(String statusCode, String message) {
-        this.statusCode = statusCode;
-        this.message = message;
-    }
 }
