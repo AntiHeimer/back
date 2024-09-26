@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.dementia_result;
+package capstone.Antiheimer.feature.dementia_result.entity;
 
 import capstone.Antiheimer.feature.member.entity.Member;
 import jakarta.persistence.*;

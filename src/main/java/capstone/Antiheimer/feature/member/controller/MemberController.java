@@ -25,6 +25,7 @@ import java.nio.charset.StandardCharsets;
 
 @Slf4j
 @RestController
+@RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
 
