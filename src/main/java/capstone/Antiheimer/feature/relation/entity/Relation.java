@@ -1,6 +1,5 @@
 package capstone.Antiheimer.feature.relation.entity;
 
-import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
