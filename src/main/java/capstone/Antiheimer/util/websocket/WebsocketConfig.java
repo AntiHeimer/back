@@ -11,11 +11,13 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @RequiredArgsConstructor
 public class WebsocketConfig implements WebSocketConfigurer {
 
-    private final WebsocketHandler websocketHandler;
+    private final ProtectorHandler protectorHandler;
+    private final WardHandler wardHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 
-        registry.addHandler(websocketHandler, "/wss").setAllowedOrigins("*");
+        registry.addHandler(protectorHandler, "/protector-request").setAllowedOrigins("antiheimer.com");
+        registry.addHandler(wardHandler, "/ward-request").setAllowedOrigins("antiheimer.com");
     }
 }
