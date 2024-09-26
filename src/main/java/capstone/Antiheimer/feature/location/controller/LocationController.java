@@ -22,6 +22,7 @@ import java.nio.charset.StandardCharsets;
 
 @Slf4j
 @RestController
+@RequestMapping("/location")
 @RequiredArgsConstructor
 public class LocationController {
 
@@ -41,7 +42,7 @@ public class LocationController {
      * @param request
      * @return
      */
-    @PostMapping("/save/location")
+    @PostMapping("/save")
     public ResponseEntity<NormalResDto> saveLocation(@RequestHeader("auth") String auth,
                                                     @RequestBody String request) throws JsonProcessingException {
 
@@ -68,7 +69,7 @@ public class LocationController {
      * @param request
      * @return
      */
-    @GetMapping("/recent/location")
+    @GetMapping("/recent")
     public ResponseEntity<RecentLocationResDto> recentLocation(@RequestParam("memberUuid") String request) throws UnsupportedEncodingException, JsonProcessingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");

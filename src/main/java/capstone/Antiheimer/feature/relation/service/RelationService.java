@@ -79,7 +79,7 @@ public class RelationService {
 
         String guardianUuid = memberRepository.findOneByUuid(reqDto.getGuardianUuid()).getUuid();
         String wardUuid = reqDto.getWardUuid();
-        Relation relation = relationRepository.findRelation(guardianUuid, wardUuid);
+        Relation relation = relationRepository.findRelationList(guardianUuid, wardUuid);
 
         log.info("[Service] 보호자 등록");
         relationRepository.saveGuardian(relation);
@@ -94,7 +94,7 @@ public class RelationService {
 
         String wardUuid = memberRepository.findOneByUuid(reqDto.getWardUuid()).getUuid();
         String guardianUuid = reqDto.getGuardianUuid();
-        Relation relation = relationRepository.findRelation(guardianUuid, wardUuid);
+        Relation relation = relationRepository.findRelationList(guardianUuid, wardUuid);
 
         log.info("[Service] 피보호자 등록");
         relationRepository.saveWard(relation);

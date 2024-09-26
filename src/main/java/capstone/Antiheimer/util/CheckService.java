@@ -172,7 +172,7 @@ public class CheckService {
      */
     public void checkLocationExits(String memberUuid) {
 
-        if (locationRepository.findLocation(memberUuid).isEmpty()) {
+        if (locationRepository.findLocationList(memberUuid).isEmpty()) {
 
             log.warn("존재하지 않는 위치 정보입니다");
             throw new NotExistLocationException();
@@ -185,7 +185,7 @@ public class CheckService {
      */
     public void checkHealthDataExists(FindHealthDataReqDto reqDto) {
 
-        List<HealthData> healthDataList = healthDataRepository.findHealthDataByMemberUuid(reqDto.getMemberUuid(), reqDto.getDate());
+        List<HealthData> healthDataList = healthDataRepository.findHealthDataList(reqDto.getMemberUuid(), reqDto.getDate());
 
         if (healthDataList.isEmpty()) {
 

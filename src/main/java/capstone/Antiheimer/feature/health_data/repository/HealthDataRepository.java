@@ -299,7 +299,7 @@ public class HealthDataRepository {
      * @param date
      * @return
      */
-    public List<HealthData> findHealthDataByMemberUuid(String memberUuid, LocalDate date) {
+    public List<HealthData> findHealthDataList(String memberUuid, LocalDate date) {
 
         LocalDate startDate = date.minusDays(7);
 
@@ -314,7 +314,7 @@ public class HealthDataRepository {
      * @param date
      * @return
      */
-    public List<Active> findActive(String memberUuid, LocalDate date) {
+    public List<Active> findActiveList(String memberUuid, LocalDate date) {
 
         LocalDate startDate = date.minusDays(7);
 
@@ -329,7 +329,7 @@ public class HealthDataRepository {
      * @param date
      * @return
      */
-    public List<Move> findMove(String memberUuid, LocalDate date) {
+    public List<Move> findMoveList(String memberUuid, LocalDate date) {
 
         LocalDate startDate = date.minusDays(7);
 
@@ -344,7 +344,7 @@ public class HealthDataRepository {
      * @param date
      * @return
      */
-    public List<Walk> findWalk(String memberUuid, LocalDate date) {
+    public List<Walk> findWalkList(String memberUuid, LocalDate date) {
 
         LocalDate startDate = date.minusDays(7);
 
@@ -359,7 +359,7 @@ public class HealthDataRepository {
      * @param date
      * @return
      */
-    public List<Sleep> findSleep(String memberUuid, LocalDate date) {
+    public List<Sleep> findSleepList(String memberUuid, LocalDate date) {
 
         LocalDate startDate = date.minusDays(7);
 

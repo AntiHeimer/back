@@ -1,6 +1,5 @@
 package capstone.Antiheimer.feature.health_data.controller;
 
-import capstone.Antiheimer.feature.diagnosis.dto.AiReqDto;
 import capstone.Antiheimer.feature.health_data.entity.*;
 import capstone.Antiheimer.feature.health_data.service.HealthDataService;
 import capstone.Antiheimer.feature.health_data.dto.*;
@@ -20,6 +19,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RequestMapping("/health-data")
 @RequiredArgsConstructor
 public class HealthDataController {
 
@@ -130,11 +130,11 @@ public class HealthDataController {
      * @param reqDto
      * @return
      */
-    @PostMapping("/find/health-data")
+    @PostMapping("/find/all")
     public ResponseEntity<FindHealthDataResDto> findHealthData(@RequestBody FindHealthDataReqDto reqDto) {
 
         log.info("[Controller] 건강 데이터 조회 시작");
-        List<HealthData> healthDataList = healthDataService.findHealthDataByMemberUuid(reqDto);
+        List<HealthData> healthDataList = healthDataService.findHealthDataList(reqDto);
 
         log.info("[Controller] 건강 데이터 조회 성공");
         return new ResponseEntity<>(new FindHealthDataResDto("200", "건강 데이터 조회 성공", healthDataList), HttpStatus.OK);
@@ -198,38 +198,5 @@ public class HealthDataController {
 
         log.info("[Controller] 수면 데이터 조회 성공");
         return new ResponseEntity<>(new FindSleepResDto("200", "수면 데이터 조회 완료", sleepList), HttpStatus.OK);
-    }
-
-    /**
-     * AI 진단 결과
-     * @param auth
-     * @param reqDto
-     * @return
-     */
-    @PostMapping("/ai/send/data")
-    public ResponseEntity<HealthDataResDto> aiData(@RequestHeader String auth,
-                                                   @RequestBody AiReqDto reqDto) {
-
-        log.info("[Controller] 권한 확인");
-
-        return null;
-//        if (!auth.equals(authKey)) {
-//
-//            log.warn("권한이 없습니다");
-//            return new HealthDataResDto("400", "권한 없음", null, null, null, null, null);
-//        }
-//
-//        log.info("[Controller] AI서버에 데이터 전송");
-//        try {
-//            DiagnosisDto diagnosis = healthDataService.sendDataToAi(reqDto);
-//            System.out.println("diagnosis = " + diagnosis);
-//            // DB에 진단결과 저장
-//            log.info("[Controller] DB에 진단결과 저장");
-//            diagnosisService.updateDiagnosis(diagnosis);
-//
-//        } catch (Exception e) {
-//
-//        }
-
     }
 }

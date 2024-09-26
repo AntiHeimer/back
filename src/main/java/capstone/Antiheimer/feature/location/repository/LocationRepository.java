@@ -57,7 +57,7 @@ public class LocationRepository {
      * @param memberUuid
      * @return
      */
-    public List<Location> findLocation(String memberUuid) {
+    public List<Location> findLocationList(String memberUuid) {
 
         return em.createQuery("SELECT l FROM Location l WHERE l.member.uuid = :uuid", Location.class)
                 .setParameter("uuid", memberUuid)

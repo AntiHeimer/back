@@ -68,7 +68,7 @@ public class DiagnosisService {
         log.info("[Service] 문제의 점수가 유요한지 확인");
         checkScore(reqDto.getNum(), reqDto.getScore());
 
-        Diagnosis diagnosis = diagnosisRepository.findOneByUuid(reqDto.getDiagnosisUuid());
+        Diagnosis diagnosis = diagnosisRepository.findDiagnosis(reqDto.getDiagnosisUuid());
 
         int currentScore = diagnosis.getScore();
         int newScore = currentScore + reqDto.getScore();
@@ -94,7 +94,7 @@ public class DiagnosisService {
     }
 
     /**
-     * 진단 결과 조회
+     * 진단 결과 리스트 조회
      * @param memberUuid
      * @return
      */
@@ -103,7 +103,7 @@ public class DiagnosisService {
         log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
-        log.info("[Service] 회원 UUID로 진단결과리스트 반환");
+        log.info("[Service] 회원 UUID로 진단 결과 리스트 반환");
         List<Diagnosis> diagnosisList = diagnosisRepository.findByMemberUuid(memberUuid);
 
         log.info("[Service] 진단결과리스트 반환");
@@ -184,16 +184,16 @@ public class DiagnosisService {
 
             int month = Integer.valueOf(answer.get(1));
             int season = 0;
-            if ( month >= 3 && month <= 5) {
+            if (month >= 3 && month <= 5) {
                 season = 1;  //봄
             }
-            if ( month >=6 && month <= 8) {
+            if (month >=6 && month <= 8) {
                 season = 2; //여름
             }
-            if ( month >=9 && month <= 11) {
+            if (month >=9 && month <= 11) {
                 season = 3; //가을
             }
-            if ( month == 12 || month == 1 || month == 2){
+            if (month == 12 || month == 1 || month == 2){
                 season = 4;
             }
             if (Integer.valueOf(answer.get(0)) == now.getYear()) { //년도 비교
@@ -242,12 +242,11 @@ public class DiagnosisService {
             }
         }
 
-        Diagnosis diagnosis = diagnosisRepository.findOneByUuid(reqDto.getDiagnosisUuid());
+        Diagnosis diagnosis = diagnosisRepository.findDiagnosis(reqDto.getDiagnosisUuid());
 
         int currentScore = diagnosis.getScore();
         int newScore = currentScore + score;
         diagnosis.setScore(newScore);
         diagnosisRepository.updateDiagnosis(diagnosis);
     }
-
 }

@@ -23,7 +23,7 @@
 //    @Transactional
 //    public void updateDeviceToken(TokenReqDto tokenReqDto) {
 //
-//        Member findMember = memberRepository.findOneByUuid(tokenReqDto.getMemberUuid());
+//        Member findMember = memberRepository.findDiagnosis(tokenReqDto.getMemberUuid());
 //
 //        if (findMember == null) {
 //

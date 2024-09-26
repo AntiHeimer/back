@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Builder
 @AllArgsConstructor
-public class DSRandomWordResDto {
+public class DSRandomWordsResDto {
 
     private String statusCode;
     private String message;

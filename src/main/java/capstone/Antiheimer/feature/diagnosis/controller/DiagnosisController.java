@@ -21,9 +21,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-@RestController
-@RequiredArgsConstructor
 @Slf4j
+@RestController
+@RequestMapping("/diagnosis")
+@RequiredArgsConstructor
 public class DiagnosisController {
 
     private final DiagnosisService diagnosisService;
@@ -35,7 +36,7 @@ public class DiagnosisController {
      * @param num
      * @return
      */
-    @GetMapping("/diagnosisSheet")
+    @GetMapping("/sheet")
     public ResponseEntity<DiagnosisSheetResDto> returnDiagnosisSheet(@RequestParam("num") int num) {
 
         log.info("[Controller] 진단 문제 반환 시작");
@@ -49,8 +50,8 @@ public class DiagnosisController {
      * 진단지 1번 무작위 세 단어 반환
      * @return
      */
-    @GetMapping("/diagnosisSheet/word")
-    public ResponseEntity<DSRandomWordResDto> randomWords() {
+    @GetMapping("/random-words")
+    public ResponseEntity<DSRandomWordsResDto> randomWords() {
 
         List<String> words = List.of("연필", "시계", "핸드폰", "아파트", "수건", "냉장고", "가방", "신발", "우산", "세탁기");
 
@@ -63,7 +64,7 @@ public class DiagnosisController {
                 .collect(Collectors.toList());  // 추출된 단어들을 리스트로 수집
 
         log.info("[Controller] 랜덤 세 단어 추출 성공");
-        return new ResponseEntity<>(new DSRandomWordResDto("200", "세 단어 반환 성공", random), HttpStatus.OK);
+        return new ResponseEntity<>(new DSRandomWordsResDto("200", "세 단어 반환 성공", random), HttpStatus.OK);
     }
 
     /**
@@ -72,7 +73,7 @@ public class DiagnosisController {
      * @return
      * @throws UnsupportedEncodingException
      */
-    @PostMapping("/diagnosis/start")
+    @PostMapping("/start")
     public ResponseEntity<StartDiagnosisResDto> startDiagnosis(@RequestParam("uuid") String uuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
@@ -96,7 +97,7 @@ public class DiagnosisController {
      * @throws UnsupportedEncodingException
      * @throws JsonProcessingException
      */
-    @PostMapping("/diagnosis/score")
+    @PostMapping("/score")
     public ResponseEntity<NormalResDto> diagnosisScore(@RequestBody ScoreReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
 
         log.info("[Controller] 진단 UUID AES 복호화");
@@ -117,7 +118,7 @@ public class DiagnosisController {
      * @throws UnsupportedEncodingException
      * @throws JsonProcessingException
      */
-    @PostMapping("/diagnosis/answer")
+    @PostMapping("/answer")
     public ResponseEntity<NormalResDto> diagnosisAnswer(@RequestBody AnswerReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
 
         log.info("[Controller] 진단 UUID AES 복호화");
@@ -137,7 +138,7 @@ public class DiagnosisController {
      * @return
      * @throws UnsupportedEncodingException
      */
-    @GetMapping("/diagnosis/result")
+    @GetMapping("/result")
     public ResponseEntity<DiagnosisResDto> diagnosisResultList(@RequestParam String memberUuid) throws UnsupportedEncodingException{
 
         log.info("[Controller] 디코딩 및 AES 복호화");

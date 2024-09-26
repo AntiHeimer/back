@@ -136,11 +136,11 @@ public class HealthDataService {
     }
 
     /**
-     * 건강 데이터 조회
+     * 건강 데이터 리스트 조회
      * @param reqDto
      * @return
      */
-    public List<HealthData> findHealthDataByMemberUuid(FindHealthDataReqDto reqDto) {
+    public List<HealthData> findHealthDataList(FindHealthDataReqDto reqDto) {
 
         log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(reqDto.getMemberUuid());
@@ -149,11 +149,11 @@ public class HealthDataService {
         checkService.checkHealthDataExists(reqDto);
 
         log.info("[Service] 건강 데이터 조회");
-        return healthDataRepository.findHealthDataByMemberUuid(reqDto.getMemberUuid(), reqDto.getDate());
+        return healthDataRepository.findHealthDataList(reqDto.getMemberUuid(), reqDto.getDate());
     }
 
     /**
-     * 활동 데이터 조회
+     * 활동 데이터 리스트 조회
      * @param memberUuid
      * @param date
      * @return
@@ -164,11 +164,11 @@ public class HealthDataService {
         checkService.checkMemberExists(memberUuid);
 
         log.info("[Service] 활동 데이터 조회");
-        return healthDataRepository.findActive(memberUuid, date);
+        return healthDataRepository.findActiveList(memberUuid, date);
     }
 
     /**
-     * 움직인 거리 데이터 조회
+     * 움직인 거리 데이터 리스트 조회
      * @param memberUuid
      * @param date
      * @return
@@ -179,11 +179,11 @@ public class HealthDataService {
         checkService.checkMemberExists(memberUuid);
 
         log.info("[Service] 움직인 거리 데이터 조회");
-        return healthDataRepository.findMove(memberUuid, date);
+        return healthDataRepository.findMoveList(memberUuid, date);
     }
 
     /**
-     * 걸음수 데이터 조회
+     * 걸음수 데이터 리스트 조회
      * @param memberUuid
      * @param date
      * @return
@@ -194,15 +194,21 @@ public class HealthDataService {
         checkService.checkMemberExists(memberUuid);
 
         log.info("[Service] 걸음수 데이터 조회");
-        return healthDataRepository.findWalk(memberUuid, date);
+        return healthDataRepository.findWalkList(memberUuid, date);
     }
 
+    /**
+     * 수면 데이터 리스트 조회
+     * @param memberUuid
+     * @param date
+     * @return
+     */
     public List<Sleep> findSleepList(String memberUuid, LocalDate date) {
 
         log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
         log.info("[Service] 수면 데이터 조회");
-        return healthDataRepository.findSleep(memberUuid, date);
+        return healthDataRepository.findSleepList(memberUuid, date);
     }
 }
