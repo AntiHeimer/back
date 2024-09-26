@@ -1,6 +1,7 @@
 package capstone.Antiheimer.feature.dementia_result.entity;
 
 import capstone.Antiheimer.feature.member.entity.Member;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class Result {
     private String uuid;
 
     @NotNull
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memeber_id")
     private Member member;

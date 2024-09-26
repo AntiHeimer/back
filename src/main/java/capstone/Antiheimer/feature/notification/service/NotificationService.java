@@ -103,7 +103,7 @@ public class NotificationService {
     @Transactional
     public void deleteNotification(String notificationUuid) {
 
-        Notification notification = notificationRepository.findNotificationByUuid(notificationUuid);
+        Notification notification = notificationRepository.findNotification(notificationUuid);
 
         log.info("[Service] 알림 존재 확인");
         checkService.checkNotificationExists(notification);
@@ -115,13 +115,13 @@ public class NotificationService {
      * @param memberUuid
      * @return
      */
-    public List<Notification> findNotificationByUuid(String memberUuid) {
+    public List<Notification> findNotification(String memberUuid) {
 
         log.info("[Service] 회원 존재 확인");
         checkService.checkMemberExists(memberUuid);
 
         log.info("[Service] 알림 리스트 조회");
-        return notificationRepository.findNotificationListByUuid(memberUuid);
+        return notificationRepository.findNotificationList(memberUuid);
     }
 
     /**

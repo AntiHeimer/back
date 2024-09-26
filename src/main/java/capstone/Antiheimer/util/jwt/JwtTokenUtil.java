@@ -37,10 +37,10 @@ public class JwtTokenUtil {
                 .compact();
     }
 
-    public String getUuid(String token) {
+    public String getMemberUuid(String token) {
 
         return parseClaims(token)
-                .get("uuid")
+                .get("memberUuid")
                 .toString();
     }
 

@@ -68,7 +68,7 @@ public class DiagnosisRepository {
      * @param diagnosisUuid
      * @return
      */
-    public Diagnosis findOneByUuid(String diagnosisUuid) {
+    public Diagnosis findDiagnosis(String diagnosisUuid) {
 
         return em.find(Diagnosis.class, diagnosisUuid);
     }

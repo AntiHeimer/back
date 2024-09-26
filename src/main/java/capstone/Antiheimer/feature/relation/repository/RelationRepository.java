@@ -5,7 +5,6 @@ import capstone.Antiheimer.feature.relation.dto.info.InfoWardDto;
 import capstone.Antiheimer.feature.relation.entity.Relation;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -51,7 +50,7 @@ public class RelationRepository {
      * @param wardUuid
      * @return
      */
-    public Relation findRelation(String guardianUuid, String wardUuid) {
+    public Relation findRelationList(String guardianUuid, String wardUuid) {
 
         List<Relation> findRelation = em.createQuery("SELECT r FROM Relation r WHERE (r.guardianUuid = :guardianUuid AND r.wardUuid = :wardUuid)", Relation.class)
                 .setParameter("guardianUuid", guardianUuid).setParameter("wardUuid", wardUuid)

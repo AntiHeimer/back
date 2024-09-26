@@ -68,7 +68,7 @@ public class DiagnosisService {
         log.info("[Service] 문제의 점수가 유요한지 확인");
         checkScore(reqDto.getNum(), reqDto.getScore());
 
-        Diagnosis diagnosis = diagnosisRepository.findOneByUuid(reqDto.getDiagnosisUuid());
+        Diagnosis diagnosis = diagnosisRepository.findDiagnosis(reqDto.getDiagnosisUuid());
 
         int currentScore = diagnosis.getScore();
         int newScore = currentScore + reqDto.getScore();
@@ -242,7 +242,7 @@ public class DiagnosisService {
             }
         }
 
-        Diagnosis diagnosis = diagnosisRepository.findOneByUuid(reqDto.getDiagnosisUuid());
+        Diagnosis diagnosis = diagnosisRepository.findDiagnosis(reqDto.getDiagnosisUuid());
 
         int currentScore = diagnosis.getScore();
         int newScore = currentScore + score;

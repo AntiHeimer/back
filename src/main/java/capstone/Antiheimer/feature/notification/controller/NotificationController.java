@@ -1,6 +1,6 @@
 package capstone.Antiheimer.feature.notification.controller;
 
-import capstone.Antiheimer.feature.notification.dto.NotificationListResDto;
+import capstone.Antiheimer.feature.notification.dto.NotificationResDto;
 import capstone.Antiheimer.feature.notification.entity.Notification;
 import capstone.Antiheimer.feature.notification.service.NotificationService;
 import capstone.Antiheimer.util.dto.NormalResDto;
@@ -31,7 +31,7 @@ public class NotificationController {
      * @throws UnsupportedEncodingException
      */
     @GetMapping("/find-notification")
-    public ResponseEntity<NotificationListResDto> findNotification(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
+    public ResponseEntity<NotificationResDto> findNotification(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
@@ -42,12 +42,12 @@ public class NotificationController {
         String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
         log.info("[Controller] 알림 리스트 조회 시작");
-        List<Notification> notificationList = notificationService.findNotificationByUuid(decryptedMemberUuid);
+        List<Notification> notificationList = notificationService.findNotification(decryptedMemberUuid);
         // 알림 isRead 변경
         notificationService.changeIsReadNotification(notificationList);
 
         log.info("[Controller] 알림 리스트 조회 성공");
-        return new ResponseEntity<>(new NotificationListResDto("200", "알림 리스트 조회 성공", notificationList), HttpStatus.OK);
+        return new ResponseEntity<>(new NotificationResDto("200", "알림 리스트 조회 성공", notificationList), HttpStatus.OK);
     }
 
     /**

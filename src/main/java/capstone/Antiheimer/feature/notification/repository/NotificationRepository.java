@@ -36,7 +36,7 @@ public class NotificationRepository {
      * @param notificationUuid
      * @return
      */
-    public Notification findNotificationByUuid(String notificationUuid) {
+    public Notification findNotification(String notificationUuid) {
 
         return em.find(Notification.class, notificationUuid);
     }
@@ -46,7 +46,7 @@ public class NotificationRepository {
      * @param memberUuid
      * @return
      */
-    public List<Notification> findNotificationListByUuid(String memberUuid) {
+    public List<Notification> findNotificationList(String memberUuid) {
 
         return em.createQuery("SELECT n FROM Notification n WHERE n.memberUuid = :memberUuid", Notification.class)
                 .setParameter("memberUuid", memberUuid)
@@ -61,7 +61,7 @@ public class NotificationRepository {
 
         for (Notification notification : notificationList) {
 
-            findNotificationByUuid(notification.getUuid()).setRead(true);
+            findNotification(notification.getUuid()).setRead(true);
             em.persist(notification);
         }
     }

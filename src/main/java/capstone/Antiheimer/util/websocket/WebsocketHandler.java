@@ -43,8 +43,8 @@ public class WebsocketHandler extends TextWebSocketHandler {
 //        System.out.println("reqDto = " + reqDto);
 //
 //        String toMemberId = reqDto.getToMemberUuid();
-//        String toMemberUuid = memberRepository.findOneById(toMemberId).getUuid();
-//        String fromMemberName = memberRepository.findOneByUuid(reqDto.getFromMemberUuid()).getName();
+//        String toMemberUuid = memberRepository.findOneById(toMemberId).getMemberUuid();
+//        String fromMemberName = memberRepository.findDiagnosis(reqDto.getFromMemberUuid()).getName();
 //        System.out.println("toMemberUuid = " + toMemberUuid);
 //
 //        // 사용자 ID를 세션과 매핑
@@ -55,7 +55,7 @@ public class WebsocketHandler extends TextWebSocketHandler {
 //        System.out.println("recipientSession = " + recipientSession);
 //
 //        if (recipientSession != null && recipientSession.isOpen()) {
-//            NotificationListResDto resDto = new NotificationListResDto(reqDto.getFromMemberUuid(), fromMemberName, toMemberUuid, reqDto.getRequestType());
+//            NotificationResDto resDto = new NotificationResDto(reqDto.getFromMemberUuid(), fromMemberName, toMemberUuid, reqDto.getRequestType());
 //            String jsonResponse = objectMapper.writeValueAsString(resDto);
 //            recipientSession.sendMessage(new TextMessage(jsonResponse));
 //        }

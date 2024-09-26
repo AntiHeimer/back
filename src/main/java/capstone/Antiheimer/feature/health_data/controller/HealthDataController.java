@@ -1,6 +1,5 @@
 package capstone.Antiheimer.feature.health_data.controller;
 
-import capstone.Antiheimer.feature.diagnosis.dto.AiReqDto;
 import capstone.Antiheimer.feature.health_data.entity.*;
 import capstone.Antiheimer.feature.health_data.service.HealthDataService;
 import capstone.Antiheimer.feature.health_data.dto.*;
@@ -135,7 +134,7 @@ public class HealthDataController {
     public ResponseEntity<FindHealthDataResDto> findHealthData(@RequestBody FindHealthDataReqDto reqDto) {
 
         log.info("[Controller] 건강 데이터 조회 시작");
-        List<HealthData> healthDataList = healthDataService.findHealthDataByMemberUuid(reqDto);
+        List<HealthData> healthDataList = healthDataService.findHealthDataList(reqDto);
 
         log.info("[Controller] 건강 데이터 조회 성공");
         return new ResponseEntity<>(new FindHealthDataResDto("200", "건강 데이터 조회 성공", healthDataList), HttpStatus.OK);
