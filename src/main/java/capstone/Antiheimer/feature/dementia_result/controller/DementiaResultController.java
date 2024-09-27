@@ -2,7 +2,7 @@ package capstone.Antiheimer.feature.dementia_result.controller;
 
 import capstone.Antiheimer.feature.dementia_result.dto.ResultResDto;
 import capstone.Antiheimer.feature.dementia_result.entity.Result;
-import capstone.Antiheimer.feature.dementia_result.service.ResultService;
+import capstone.Antiheimer.feature.dementia_result.service.DementiaResultService;
 import capstone.Antiheimer.feature.diagnosis.dto.AiReqDto;
 import capstone.Antiheimer.feature.health_data.dto.HealthDataResDto;
 import capstone.Antiheimer.util.encrypt.AesService;
@@ -21,9 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/result")
 @RequiredArgsConstructor
-public class ResultController {
+public class DementiaResultController {
 
-    private final ResultService resultService;
+    private final DementiaResultService dementiaResultService;
     private final AesService aesService;
 
     /**
@@ -43,7 +43,7 @@ public class ResultController {
         String decryptedMemberUuid = aesService.decryptAES(plusEncodedString);
 
         log.info("[Controller] 진단 결과 리스트 조회 시작");
-        List<Result> resultList = resultService.findResultList(decryptedMemberUuid);
+        List<Result> resultList = dementiaResultService.findResultList(decryptedMemberUuid);
 
         log.info("[Controller] 진단 결과 리스트 조회 성공");
         return new ResponseEntity<>(new ResultResDto("200", "진단 결과 리스트 조회 성공", resultList), HttpStatus.OK);

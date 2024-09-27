@@ -1,7 +1,7 @@
 package capstone.Antiheimer.feature.dementia_result.service;
 
 import capstone.Antiheimer.feature.dementia_result.entity.Result;
-import capstone.Antiheimer.feature.dementia_result.repository.ResultRepository;
+import capstone.Antiheimer.feature.dementia_result.repository.DementiaResultRepository;
 import capstone.Antiheimer.util.CheckService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,9 +14,9 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class ResultService {
+public class DementiaResultService {
 
-    private final ResultRepository resultRepository;
+    private final DementiaResultRepository dementiaResultRepository;
     private final CheckService checkService;
 
     /**
@@ -30,6 +30,6 @@ public class ResultService {
         checkService.checkMemberExists(memberUuid);
 
         log.info("[Service] 진단 결과 리스트 조회");
-        return resultRepository.findResultList(memberUuid);
+        return dementiaResultRepository.findResultList(memberUuid);
     }
 }

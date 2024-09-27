@@ -18,7 +18,9 @@ auth(401)
 ## 기타
 path에 variable이 있는 경우 AES 암호화 필요
 
-ex) /login/{uuid}
+ex) /login/{memberUuid}
+
+
 
 
 # Member
@@ -84,8 +86,8 @@ incorrect(44x)
 
 
 ## logout
-#### /logout/{uuid}: GET
-uuid AES 암호화
+#### /logout/{memberUuid}: GET
+memberUuid AES 암호화
 
 **Header**
 - String Authorization
@@ -104,11 +106,13 @@ exist(43x)
 
 
 ## memberInfo
-#### /info?memberUuid={memberUuid}: GET
-memberUuid AES 암호화 + URL 인코딩
+#### /info?memberUuid={memberUuid}: GET- URL 인코딩
 
 **Header**
 - String Authorization
+
+**Param**
+- String memberUuid: AES 암호화
 
 ### possible error
 auth(401): 권한 없음(토큰)
@@ -139,6 +143,8 @@ auth(401): 권한 없음(토큰)
 [//]: # (exist&#40;408&#41;)
 
 [//]: # (- NotExistMemberException(431): 존재하지 않는 회원)
+
+
 
 
 # HealthData
@@ -264,13 +270,13 @@ exist(43x)
 
 
 ## recentData
-#### /recent?uuid={uuid}&data={data}: GET - url 인코딩
+#### /recent?memberUuid={memberUuid}&data={data}: GET - URL 인코딩
 
 **Header**
 - String Authorization
 
 **Param**
-- String uuid: uuid AES 암호화
+- String memberUuid: AES 암호화
 - String data
 
 ### possible error
@@ -399,7 +405,7 @@ exist(43x)
 
 
 ## recentLocation
-#### /recent?memberUuid={memberUuid}: GET - url 인코딩
+#### /recent?memberUuid={memberUuid}: GET - URL 인코딩
 
 **Header**
 - String Authorization
@@ -413,6 +419,8 @@ auth(401): 권한 없음(토큰)
 exist(43x)
 - NotExistMemberException(431): 존재하지 않는 회원
 - NotExistLocationException: 존재하지 않는 위치 정보
+
+
 
 
 # Diagnosis
@@ -536,7 +544,6 @@ duplicate(45x)
 - String wardUuid
 
 ### possible error
-
 auth(401): 권한 없음(토큰)
 
 exist(43x)
@@ -555,7 +562,6 @@ exist(43x)
 - String wardId
 
 ### possible error
-
 auth(401): 권한 없음(토큰)
 
 exist(43x)
@@ -563,14 +569,15 @@ exist(43x)
 
 
 ## infoGuardian
-#### /info/guardian?memberUuid={memberUuid}: GET
-memberUuid AES 암호화 + 인코딩
+#### /info/guardian?memberUuid={memberUuid}: GET - URL 인코딩
 
 **Header**
 - String Authorization
 
-### possible error
+**Param**
+- String memberUuid: AES 암호화
 
+### possible error
 auth(401): 권한 없음(토큰)
 
 exist(43x)
@@ -578,30 +585,36 @@ exist(43x)
 
 
 ## infoWard
-#### /info/ward?memberUuid={memberUuid}: GET
-memberUuid AES 암호화 + 인코딩
+#### /info/ward?memberUuid={memberUuid}: GET - URL 인코딩
 
 **Header**
 - String Authorization
 
-### possible error
+**Param**
+- String memberUuid: AES 암호화
 
+### possible error
 auth(401): 권한 없음(토큰)
 
 exist(43x)
 - NotExistMemberException(431): 존재하지 않는 회원
 
 
+
+
 # Notification
+## notification
+
 ## findNotification
-#### /find?memberUuid={memberUuid}: GET
-memberUuid AES 암호화 + 인코딩
+#### /find?memberUuid={memberUuid}: GET - URL 인코딩
 
 **Header**
 - String Authorization
 
-### possible error
+**Param**
+- String memberUuid: AES 암호화
 
+### possible error
 auth(401): 권한 없음(토큰)
 
 exist(43x)
@@ -609,18 +622,21 @@ exist(43x)
 
 
 ## deleteNotification
-#### /delete?notificationUuid={notificationUuid}: DELETE
-notificationUuid AES 암호화 + 인코딩
+#### /delete?notificationUuid={notificationUuid}: DELETE - URL 인코딩
 
 **Header**
 - String Authorization
 
-### possible error
+**Param**
+- String notificationUuid: AES 암호화
 
+### possible error
 auth(401): 권한 없음(토큰)
 
 exist(43x)
 - NotExistNotificationException(433): 존재하지 않는 알림
+
+
 
 
 # DementiaCenter
@@ -633,5 +649,25 @@ exist(43x)
 - String Authorization
 
 ### possible error
-
 auth(401): 권한 없음(토큰)
+
+
+
+
+# DementiaResult
+## /dementia-result
+
+## findResult
+#### /find?memberUuid={memberUuid}: GET - URL 인코딩
+
+**Header**
+- String Authorization
+
+**Param**
+- String memberUuid: AES 암호화
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
