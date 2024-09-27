@@ -36,6 +36,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
             // 회원가입 경로에 대해서는 필터링을 건너뜁니다.
             if ("/".equals(requestURI) || "/favicon.ico".equals(requestURI) || "/member/signup".equals(requestURI) || "/member/login".equals(requestURI) || "/location/save".equals(requestURI)) {
+                log.info("[JWT] jwt 필터링 패스");
                 filterChain.doFilter(request, response);
                 return;
             }
