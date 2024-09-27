@@ -55,7 +55,7 @@ public class ResultController {
      * @param reqDto
      * @return
      */
-    @PostMapping("/ai/send/data") // 지영아 이거 엔드포인트 바꿔도 될듯!
+    @PostMapping("/save") // 지영아 이거 엔드포인트 바꿔도 될듯!
     public ResponseEntity<HealthDataResDto> aiData(@RequestHeader String auth,
                                                    @RequestBody AiReqDto reqDto) {
 

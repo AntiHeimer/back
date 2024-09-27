@@ -1,21 +1,16 @@
 package capstone.Antiheimer.feature.member.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 
 @Getter
-@Builder
-@AllArgsConstructor
-public class InfoResDto {
+public class InfoResDto extends NormalResDto {
 
-    private String statusCode;
-    private String message;
-    private String id;
-    private String name;
-    private String gender;
-    private LocalDate birth;
+    private final MemberInfoDto memberInfoDto;
+
+    public InfoResDto(String statusCode, String message, MemberInfoDto memberInfoDto) {
+        super(statusCode, message);
+        this.memberInfoDto = memberInfoDto;
+    }
 }

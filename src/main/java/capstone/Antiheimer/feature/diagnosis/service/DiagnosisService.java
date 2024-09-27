@@ -65,7 +65,7 @@ public class DiagnosisService {
 
         log.info("[Service] 올바른 범위의 문제 번호인지 확인");
         checkScoreNum(reqDto.getNum());
-        log.info("[Service] 문제의 점수가 유요한지 확인");
+        log.info("[Service] 문제의 점수가 유효한지 확인");
         checkScore(reqDto.getNum(), reqDto.getScore());
 
         Diagnosis diagnosis = diagnosisRepository.findDiagnosis(reqDto.getDiagnosisUuid());

@@ -1,9 +1,6 @@
 package capstone.Antiheimer.feature.member.controller;
 
-import capstone.Antiheimer.feature.member.dto.InfoResDto;
-import capstone.Antiheimer.feature.member.dto.LoginReqDto;
-import capstone.Antiheimer.feature.member.dto.LoginResDto;
-import capstone.Antiheimer.feature.member.dto.SignupReqDto;
+import capstone.Antiheimer.feature.member.dto.*;
 import capstone.Antiheimer.feature.member.entity.Member;
 import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.feature.member.service.MemberService;
@@ -133,7 +130,15 @@ public class MemberController {
         log.info("[Controller] 회원 조회 시작");
         Member member = memberRepository.findOneByUuid(decryptedUuid);
 
+        MemberInfoDto memberInfoDto = MemberInfoDto.builder()
+                .id(member.getId())
+                .name(member.getName())
+                .gender(member.getGender())
+                .birth(member.getBirth())
+                .weight(member.getWeight())
+                .build();
+
         log.info("[Controller] 회원 조회 성공");
-        return new ResponseEntity<>(new InfoResDto("200", "회원 조회 성공", member.getId(), member.getName(), member.getGender(), member.getBirth()), HttpStatus.OK);
+        return new ResponseEntity<>(new InfoResDto("200", "회원 조회 성공", memberInfoDto), HttpStatus.OK);
     }
 }

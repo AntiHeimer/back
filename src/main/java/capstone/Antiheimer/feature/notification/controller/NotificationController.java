@@ -19,6 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("notification")
 public class NotificationController {
 
     private final NotificationService notificationService;
@@ -30,7 +31,7 @@ public class NotificationController {
      * @return
      * @throws UnsupportedEncodingException
      */
-    @GetMapping("/find-notification")
+    @GetMapping("/find")
     public ResponseEntity<NotificationResDto> findNotification(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
@@ -56,7 +57,7 @@ public class NotificationController {
      * @return
      * @throws UnsupportedEncodingException
      */
-    @DeleteMapping("/delete-notification")
+    @DeleteMapping("/delete")
     public ResponseEntity<NormalResDto> deleteNotification(@RequestParam("notificationUuid") String notificationUuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");

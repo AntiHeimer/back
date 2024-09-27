@@ -4,6 +4,7 @@ import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.dementia_result.entity.Result;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.location.entity.Location;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -26,8 +27,10 @@ public class Member {
     private String uuid;
 
     @NotNull
+    @JsonIgnore
     private String id;
     @NotNull
+    @JsonIgnore
     private String pw;
     @NotNull
     private String name;
@@ -38,15 +41,19 @@ public class Member {
 
     private double weight;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Diagnosis> diagnosisList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Location> locationList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<HealthData> healthDataList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Result> resultList = new ArrayList<>();
 }

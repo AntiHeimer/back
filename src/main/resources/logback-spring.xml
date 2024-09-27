@@ -1,124 +1,228 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--&lt;!&ndash; 60초마다 설정 파일의 변경을 확인 하여 변경시 갱신 &ndash;&gt;-->
-<!--<configuration scan="true" scanPeriod="60 seconds">-->
-<!--    &lt;!&ndash;springProfile 태그를 사용하면 logback 설정파일에서 복수개의 프로파일을 설정할 수 있다.&ndash;&gt;-->
-<!--    <springProfile name="local">-->
-<!--        <property resource="logback-local.properties"/>-->
-<!--    </springProfile>-->
-<!--    <springProfile name="dev">-->
-<!--        <property resource="logback-dev.properties"/>-->
-<!--    </springProfile>-->
-<!--    &lt;!&ndash;Environment 내의 프로퍼티들을 개별적으로 설정할 수도 있다.&ndash;&gt;-->
-<!--    <springProperty scope="context" name="LOG_LEVEL" source="logging.level.root"/>-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 60초마다 설정 파일의 변경을 확인 하여 변경시 갱신 -->
+<configuration scan="true" scanPeriod="60 seconds">
+    <springProperty scope="context" name="LOG_LEVEL" source="logging.level.root"/>
 
-<!--    &lt;!&ndash; log file path &ndash;&gt;-->
-<!--    <property name="LOG_PATH" value="${log.config.path}"/>-->
-<!--    &lt;!&ndash; log file name &ndash;&gt;-->
-<!--    <property name="LOG_FILE_NAME" value="${log.config.filename}"/>-->
-<!--    &lt;!&ndash; err log file name &ndash;&gt;-->
-<!--    <property name="ERR_LOG_FILE_NAME" value="err_log"/>-->
-<!--    &lt;!&ndash; pattern &ndash;&gt;-->
-<!--    <property name="LOG_PATTERN" value="%d{yy-MM-dd HH:mm:ss} %-5level [%thread] [%logger{0}:%line] - %msg%n"/>-->
+    <!-- 로그 패턴에 색상 적용 %clr(pattern){color} -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
 
-<!--    &lt;!&ndash; Console Appender &ndash;&gt;-->
-<!--    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
-<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-<!--            <pattern>${LOG_PATTERN}</pattern>-->
-<!--        </encoder>-->
-<!--    </appender>-->
+    <!-- log file path -->
+    <property name="LOG_PATH" value="logs"/>
+    <!-- pattern -->
+    <property name="LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}]  %clr(%-5level) %clr(${PID:-}){magenta} %clr(---){faint} %clr([%15.15thread]){faint} %clr(%-40.40logger{36}){cyan} %clr(:){faint} %msg%n"/>
 
-<!--    &lt;!&ndash; File Appender &ndash;&gt;-->
-<!--    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
-<!--        &lt;!&ndash; 파일경로 설정 &ndash;&gt;-->
-<!--        <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>-->
+    <!-- Console Appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>info</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
 
-<!--        &lt;!&ndash; 출력패턴 설정&ndash;&gt;-->
-<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-<!--            <pattern>${LOG_PATTERN}</pattern>-->
-<!--        </encoder>-->
+    <!-- File Appender -->
+    <!-- DEFAULT -->
+    <appender name="DEFAULT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일경로 설정 -->
+        <file>${LOG_PATH}/default/current.log</file>
 
-<!--        &lt;!&ndash; Rolling 정책 &ndash;&gt;-->
-<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
-<!--            &lt;!&ndash; .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 &ndash;&gt;-->
-<!--            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>-->
-<!--            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
-<!--                &lt;!&ndash; 파일당 최고 용량 kb, mb, gb &ndash;&gt;-->
-<!--                <maxFileSize>10MB</maxFileSize>-->
-<!--            </timeBasedFileNamingAndTriggeringPolicy>-->
-<!--            &lt;!&ndash; 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거&ndash;&gt;-->
-<!--            <maxHistory>30</maxHistory>-->
-<!--            &lt;!&ndash;<MinIndex>1</MinIndex>-->
-<!--            <MaxIndex>10</MaxIndex>&ndash;&gt;-->
-<!--        </rollingPolicy>-->
-<!--    </appender>-->
+        <!-- 출력패턴 설정-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
 
-<!--    &lt;!&ndash; health_data 패키지 로그 파일 Appender &ndash;&gt;-->
-<!--    <appender name="HEALTH_DATA_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
-<!--        <file>${LOG_PATH}/health_data.log</file>-->
-<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-<!--            <pattern>${LOG_PATTERN}</pattern>-->
-<!--        </encoder>-->
-<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
-<!--            <fileNamePattern>${LOG_PATH}/health_data.%d{yyyy-MM-dd}_%i.log</fileNamePattern>-->
-<!--            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
-<!--                <maxFileSize>10MB</maxFileSize>-->
-<!--            </timeBasedFileNamingAndTriggeringPolicy>-->
-<!--            <maxHistory>30</maxHistory>-->
-<!--        </rollingPolicy>-->
-<!--    </appender>-->
+        <!-- Rolling 정책 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
+            <fileNamePattern>${LOG_PATH}/default/default.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 kb, mb, gb -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+            <!--<MinIndex>1</MinIndex>
+            <MaxIndex>10</MaxIndex>-->
+        </rollingPolicy>
+    </appender>
 
-<!--    &lt;!&ndash; health_data 패키지 전용 로거 &ndash;&gt;-->
-<!--    <logger name="capstone.Antiheimer.feature.health_data" level="WARN" additivity="false">-->
-<!--        <appender-ref ref="HEALTH_DATA_FILE"/>-->
-<!--    </logger>-->
+    <!-- MEMBER -->
+    <appender name="MEMBER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/member/current.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/member/member.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
 
-<!--    &lt;!&ndash; 에러의 경우 파일에 로그 처리 &ndash;&gt;-->
-<!--    <appender name="Error" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
-<!--        <filter class="ch.qos.logback.classic.filter.LevelFilter">-->
-<!--            <level>error</level>-->
-<!--            <onMatch>ACCEPT</onMatch>-->
-<!--            <onMismatch>DENY</onMismatch>-->
-<!--        </filter>-->
-<!--        <file>${LOG_PATH}/${ERR_LOG_FILE_NAME}.log</file>-->
-<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-<!--            <pattern>${LOG_PATTERN}</pattern>-->
-<!--        </encoder>-->
-<!--        &lt;!&ndash; Rolling 정책 &ndash;&gt;-->
-<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
-<!--            &lt;!&ndash; .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 &ndash;&gt;-->
-<!--            <fileNamePattern>${LOG_PATH}/${ERR_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log</fileNamePattern>-->
-<!--            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
-<!--                &lt;!&ndash; 파일당 최고 용량 kb, mb, gb &ndash;&gt;-->
-<!--                <maxFileSize>10MB</maxFileSize>-->
-<!--            </timeBasedFileNamingAndTriggeringPolicy>-->
-<!--            &lt;!&ndash; 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거&ndash;&gt;-->
-<!--            <maxHistory>60</maxHistory>-->
-<!--        </rollingPolicy>-->
-<!--    </appender>-->
+    <!-- HEALTH_DATA -->
+    <appender name="HEALTH_DATA_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/health_data/current.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/health_data/health_data.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
 
-<!--    &lt;!&ndash; root레벨 설정 &ndash;&gt;-->
-<!--    <root level="${LOG_LEVEL}">-->
-<!--        <appender-ref ref="CONSOLE"/>-->
-<!--        <appender-ref ref="FILE"/>-->
-<!--        <appender-ref ref="Error"/>-->
-<!--    </root>-->
+    <!-- NOTIFICATION -->
+    <appender name="NOTIFICATION_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/notification/current.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/notification/notification.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
 
-<!--    &lt;!&ndash; 특정패키지 로깅레벨 설정 &ndash;&gt;-->
-<!--    <logger name="capstone.Antiheimer.feature.dementia_center" level="WARN" additivity="false">-->
-<!--        <appender-ref ref="CONSOLE"/>-->
-<!--        <appender-ref ref="FILE"/>-->
-<!--        <appender-ref ref="Error"/>-->
-<!--    </logger>-->
+    <!-- LOCATION -->
+    <appender name="LOCATION_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/location/current.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/location/location.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
 
-<!--    <logger name="capstone.Antiheimer.feature.diagnosis" level="ERROR" additivity="false">-->
-<!--        <appender-ref ref="CONSOLE"/>-->
-<!--        <appender-ref ref="FILE"/>-->
-<!--        <appender-ref ref="Error"/>-->
-<!--    </logger>-->
+    <!-- RELATION -->
+    <appender name="RELATION_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/relation/current.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/relation/relation.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
 
-<!--    <logger name="capstone.Antiheimer.feature.health_data" level="ERROR" additivity="false">-->
-<!--        <appender-ref ref="CONSOLE"/>-->
-<!--        <appender-ref ref="FILE"/>-->
-<!--        <appender-ref ref="Error"/>-->
-<!--    </logger>-->
-<!--</configuration>-->
+    <!-- DEMENTIA_RESULT -->
+    <appender name="DEMENTIA_RESULT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/dementia_result/current.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/dementia_result/dementia_result.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- DEMENTIA_CENTER -->
+    <appender name="DEMENTIA_CENTER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/dementia_center/current.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/dementia_center/dementia_center.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!-- 에러의 경우 파일에 로그 처리 -->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${LOG_PATH}/error/current.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/error/error.%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>60</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
+
+    <!-- root레벨 설정 -->
+    <root level="LOG_LEVEL">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DEFAULT_FILE"/>
+        <appender-ref ref="ERROR"/>
+    </root>
+
+    <!-- 특정패키지 로깅레벨 설정 -->
+    <logger name="capstone.Antiheimer.feature.member" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="MEMBER_FILE"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <logger name="capstone.Antiheimer.feature.health_data" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="HEALTH_DATA_FILE"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <logger name="capstone.Antiheimer.feature.notification" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="NOTIFICATION_FILE"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <logger name="capstone.Antiheimer.feature.location" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="LOCATION_FILE"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <logger name="capstone.Antiheimer.feature.relation" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="RELATION_FILE"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <logger name="capstone.Antiheimer.feature.dementia_result" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DEMENTIA_RESULT_FILE"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+
+    <logger name="capstone.Antiheimer.feature.dementia_center" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DEMENTIA_CENTER_FILE"/>
+        <appender-ref ref="ERROR"/>
+    </logger>
+</configuration>
