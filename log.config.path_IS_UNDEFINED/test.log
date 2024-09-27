@@ -1,7 +1,0 @@
-24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:30] - [JWT] jwt filter 시작
-24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:39] - [JWT] jwt 필터링 패스
-24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [TestController:18] - INFO LEVEL 테스트
-24-09-27 17:59:14 WARN  [http-nio-0.0.0.0-8080-exec-1] [TestController:19] - WARN LEVEL 테스트
-24-09-27 17:59:14 ERROR [http-nio-0.0.0.0-8080-exec-1] [TestController:20] - ERROR LEVEL 테스트
-24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-2] [JwtTokenFilter:30] - [JWT] jwt filter 시작
-24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-2] [JwtTokenFilter:39] - [JWT] jwt 필터링 패스
