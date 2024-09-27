@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class ResultRepository {
+public class DementiaResultRepository {
 
     private final EntityManager em;
 
