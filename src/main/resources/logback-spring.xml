@@ -177,7 +177,7 @@
 
 
     <!-- root레벨 설정 -->
-    <root level="INFO">
+    <root level="LOG_LEVEL">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="DEFAULT_FILE"/>
         <appender-ref ref="ERROR"/>
