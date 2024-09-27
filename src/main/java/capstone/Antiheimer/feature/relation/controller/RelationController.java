@@ -37,7 +37,7 @@ public class RelationController {
      * @param reqDto
      * @return
      */
-    @PostMapping("/request-relation")
+    @PostMapping("/request")
     public ResponseEntity<NormalResDto> requestRelation(@RequestBody RequestRelationReqDto reqDto) {
 
         // 관계 저장(비활성화)
@@ -55,7 +55,7 @@ public class RelationController {
      * @param reqDto
      * @return
      */
-    @PostMapping("/save-relation/guardian")
+    @PostMapping("/save/guardian")
     public ResponseEntity<NormalResDto> saveGuardian(@RequestBody SaveGuardianReqDto reqDto) {
 
         log.info("[Controller] 보호자 등록 시작");
@@ -75,7 +75,7 @@ public class RelationController {
      * @param reqDto
      * @return
      */
-    @PostMapping("/save-relation/ward")
+    @PostMapping("/save/ward")
     public ResponseEntity<NormalResDto> saveWard(@RequestBody SaveWardReqDto reqDto) {
 
         log.info("[Controller] 피보호자 등록 시작");
@@ -95,7 +95,7 @@ public class RelationController {
      * @param memberUuid
      * @return
      */
-    @GetMapping("/info-relation/ward")
+    @GetMapping("/info/ward")
     public ResponseEntity<InfoWardResDto> infoWard(@RequestParam String memberUuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
@@ -118,7 +118,7 @@ public class RelationController {
      * @param memberUuid
      * @return
      */
-    @GetMapping("/info-relation/guardian")
+    @GetMapping("/info/guardian")
     public ResponseEntity<InfoGuardianResDto> infoGuardian(@RequestParam String memberUuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
