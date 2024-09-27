@@ -1,0 +1,2 @@
+24-09-27 18:03:11 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 18:03:11 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.

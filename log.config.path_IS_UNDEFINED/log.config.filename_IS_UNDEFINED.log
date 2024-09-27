@@ -37,3 +37,788 @@ This generated password is for development use only. Your security configuration
 24-09-27 17:24:09 INFO  [main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
 24-09-27 17:24:09 INFO  [main] [TomcatWebServer:243] - Tomcat started on port 8080 (http) with context path '/'
 24-09-27 17:24:09 INFO  [main] [AntiheimerApplication:56] - Started AntiheimerApplication in 3.962 seconds (process running for 5.021)
+24-09-27 17:25:07 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:25:07 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+24-09-27 17:25:37 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:25:37 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+24-09-27 17:26:07 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:26:07 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+24-09-27 17:26:37 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:26:37 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+24-09-27 17:27:07 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:27:07 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [ApplicationAvailabilityBean:77] - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [AnnotationConfigServletWebServerApplicationContext:1134] - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@63cd604c, started on Fri Sep 27 17:24:06 KST 2024
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:478] - Stopping beans in phase 2147483647
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:350] - Bean 'applicationTaskExecutor' completed its stop procedure
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:478] - Stopping beans in phase 2147482623
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:350] - Bean 'webServerGracefulShutdown' completed its stop procedure
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:478] - Stopping beans in phase 2147481599
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:350] - Bean 'webServerStartStop' completed its stop procedure
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:478] - Stopping beans in phase -2147483647
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:350] - Bean 'springBootLoggingLifecycle' completed its stop procedure
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [AnnotationMBeanExporter:468] - Unregistering JMX-exposed beans on shutdown
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [AnnotationMBeanExporter:186] - Unregistering JMX-exposed beans
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [ThreadPoolTaskExecutor:328] - Shutting down ExecutorService 'applicationTaskExecutor'
+24-09-27 17:27:19 INFO  [SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [SessionFactoryImpl:921] - HHH000031: Closing
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [TypeConfiguration$Scope:575] - Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@6e7919d] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@28de14ac]
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [AbstractServiceRegistryImpl:414] - Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [BootstrapServiceRegistryImpl:298] - Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries
+24-09-27 17:27:19 INFO  [SpringApplicationShutdownHook] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [HikariPool:405] - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@4e26987b: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@5c23e5b3: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@16086793: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@1a9c8818: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@4eabdf9: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@4727ceaa: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@12461d22: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@6ce49b3a: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@3db0f62a: (connection evicted)
+24-09-27 17:27:19 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@441b2da8: (connection evicted)
+24-09-27 17:27:19 DEBUG [SpringApplicationShutdownHook] [HikariPool:405] - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+24-09-27 17:27:19 INFO  [SpringApplicationShutdownHook] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+24-09-27 17:29:45 INFO  [background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+24-09-27 17:29:45 INFO  [main] [AntiheimerApplication:50] - Starting AntiheimerApplication using Java 21.0.2 with PID 24083 (/Users/yezi.ce/Documents/Antiheimer/build/classes/java/main started by yezi.ce in /Users/yezi.ce/Documents/Antiheimer)
+24-09-27 17:29:45 INFO  [main] [AntiheimerApplication:654] - No active profile set, falling back to 1 default profile: "default"
+24-09-27 17:29:45 INFO  [main] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-09-27 17:29:46 INFO  [main] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 37 ms. Found 1 JPA repository interface.
+24-09-27 17:29:46 INFO  [main] [TomcatWebServer:111] - Tomcat initialized with port 8080 (http)
+24-09-27 17:29:46 INFO  [main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:29:46 INFO  [main] [StandardService:173] - Starting service [Tomcat]
+24-09-27 17:29:46 INFO  [main] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.26]
+24-09-27 17:29:46 INFO  [main] [[/]:173] - Initializing Spring embedded WebApplicationContext
+24-09-27 17:29:46 INFO  [main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1042 ms
+24-09-27 17:29:46 INFO  [main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+24-09-27 17:29:46 INFO  [main] [Version:44] - HHH000412: Hibernate ORM core version 6.5.2.Final
+24-09-27 17:29:46 INFO  [main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+24-09-27 17:29:46 INFO  [main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+24-09-27 17:29:46 INFO  [main] [HikariDataSource:109] - HikariPool-1 - Starting...
+24-09-27 17:29:46 INFO  [main] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1ac3a6f
+24-09-27 17:29:46 INFO  [main] [HikariDataSource:122] - HikariPool-1 - Start completed.
+24-09-27 17:29:47 INFO  [main] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-09-27 17:29:47 INFO  [main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:29:48 WARN  [main] [JpaBaseConfiguration$JpaWebConfiguration:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-09-27 17:29:48 WARN  [main] [UserDetailsServiceAutoConfiguration:86] - 
+
+Using generated security password: 4306ba72-8df9-4a0e-88b9-d851d969938e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+24-09-27 17:29:48 INFO  [main] [InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+24-09-27 17:29:48 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/'], Ant [pattern='/']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:29:48 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/favicon.ico'], Ant [pattern='/favicon.ico']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:29:48 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/signup'], Ant [pattern='/signup']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:29:48 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/login'], Ant [pattern='/login']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:29:48 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:29:48 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/save/location'], Ant [pattern='/save/location']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:29:48 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/wss'], Ant [pattern='/wss']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:29:48 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/ws'], Ant [pattern='/ws']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:29:48 INFO  [main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:29:48 INFO  [main] [TomcatWebServer:243] - Tomcat started on port 8080 (http) with context path '/'
+24-09-27 17:29:48 INFO  [main] [AntiheimerApplication:56] - Started AntiheimerApplication in 3.816 seconds (process running for 4.973)
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:554] - Completed initialization in 1 ms
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:43] - [JWT] Header, Bearer 확인
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenUtil:70] - [JWT] 헤더 유효성 확인
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:47] - [JWT] 토큰 확인
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenUtil:50] - [JWT] 토큰 유효성 확인
+24-09-27 17:29:57 DEBUG [http-nio-0.0.0.0-8080-exec-1] [SQL:135] - 
+    select
+        m1_0.member_id,
+        m1_0.birth,
+        m1_0.gender,
+        m1_0.id,
+        m1_0.name,
+        m1_0.pw,
+        m1_0.weight 
+    from
+        member m1_0 
+    where
+        m1_0.member_id=?
+24-09-27 17:29:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:68] - [JWT] Jwt 토큰 오류: 유효하지 않은 UUID
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [JwtTokenFilter:43] - [JWT] Header, Bearer 확인
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [JwtTokenUtil:70] - [JWT] 헤더 유효성 확인
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [JwtTokenFilter:47] - [JWT] 토큰 확인
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [JwtTokenUtil:50] - [JWT] 토큰 유효성 확인
+24-09-27 17:30:12 DEBUG [http-nio-0.0.0.0-8080-exec-3] [SQL:135] - 
+    select
+        m1_0.member_id,
+        m1_0.birth,
+        m1_0.gender,
+        m1_0.id,
+        m1_0.name,
+        m1_0.pw,
+        m1_0.weight 
+    from
+        member m1_0 
+    where
+        m1_0.member_id=?
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [JwtTokenFilter:63] - [JWT] 토큰 검증 완료
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [ResultController:37] - [Controller] 디코딩 및 AES 복호화
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [ResultController:45] - [Controller] 진단 결과 리스트 조회 시작
+24-09-27 17:30:12 INFO  [http-nio-0.0.0.0-8080-exec-3] [ResultService:29] - [Service] 회원 존재 확인
+24-09-27 17:30:12 DEBUG [http-nio-0.0.0.0-8080-exec-3] [SQL:135] - 
+    select
+        m1_0.member_id,
+        m1_0.birth,
+        m1_0.gender,
+        m1_0.id,
+        m1_0.name,
+        m1_0.pw,
+        m1_0.weight 
+    from
+        member m1_0 
+    where
+        m1_0.member_id=?
+24-09-27 17:30:12 WARN  [http-nio-0.0.0.0-8080-exec-3] [CheckService:151] - 존재하지 않는 회원입니다
+24-09-27 17:30:19 INFO  [http-nio-0.0.0.0-8080-exec-5] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:30:19 INFO  [http-nio-0.0.0.0-8080-exec-5] [JwtTokenFilter:43] - [JWT] Header, Bearer 확인
+24-09-27 17:30:19 INFO  [http-nio-0.0.0.0-8080-exec-5] [JwtTokenUtil:70] - [JWT] 헤더 유효성 확인
+24-09-27 17:30:19 INFO  [http-nio-0.0.0.0-8080-exec-5] [JwtTokenFilter:47] - [JWT] 토큰 확인
+24-09-27 17:30:19 INFO  [http-nio-0.0.0.0-8080-exec-5] [JwtTokenUtil:50] - [JWT] 토큰 유효성 확인
+24-09-27 17:30:19 INFO  [http-nio-0.0.0.0-8080-exec-5] [JwtTokenUtil:54] - [JWT] Invalid JWT signature, 유효하지 않는 JWT 서명 입니다
+24-09-27 17:30:19 INFO  [http-nio-0.0.0.0-8080-exec-5] [JwtTokenFilter:68] - [JWT] Jwt 토큰 오류: 유효하지 않는 JWT 서명
+24-09-27 17:30:32 INFO  [http-nio-0.0.0.0-8080-exec-6] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:30:32 INFO  [http-nio-0.0.0.0-8080-exec-6] [JwtTokenFilter:43] - [JWT] Header, Bearer 확인
+24-09-27 17:30:32 INFO  [http-nio-0.0.0.0-8080-exec-6] [JwtTokenUtil:70] - [JWT] 헤더 유효성 확인
+24-09-27 17:30:32 INFO  [http-nio-0.0.0.0-8080-exec-6] [JwtTokenFilter:47] - [JWT] 토큰 확인
+24-09-27 17:30:32 INFO  [http-nio-0.0.0.0-8080-exec-6] [JwtTokenUtil:50] - [JWT] 토큰 유효성 확인
+24-09-27 17:30:32 DEBUG [http-nio-0.0.0.0-8080-exec-6] [SQL:135] - 
+    select
+        m1_0.member_id,
+        m1_0.birth,
+        m1_0.gender,
+        m1_0.id,
+        m1_0.name,
+        m1_0.pw,
+        m1_0.weight 
+    from
+        member m1_0 
+    where
+        m1_0.member_id=?
+24-09-27 17:30:32 INFO  [http-nio-0.0.0.0-8080-exec-6] [JwtTokenFilter:63] - [JWT] 토큰 검증 완료
+24-09-27 17:31:23 INFO  [http-nio-0.0.0.0-8080-exec-7] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:31:23 INFO  [http-nio-0.0.0.0-8080-exec-7] [JwtTokenFilter:43] - [JWT] Header, Bearer 확인
+24-09-27 17:31:23 INFO  [http-nio-0.0.0.0-8080-exec-7] [JwtTokenUtil:70] - [JWT] 헤더 유효성 확인
+24-09-27 17:31:23 INFO  [http-nio-0.0.0.0-8080-exec-7] [JwtTokenFilter:47] - [JWT] 토큰 확인
+24-09-27 17:31:23 INFO  [http-nio-0.0.0.0-8080-exec-7] [JwtTokenUtil:50] - [JWT] 토큰 유효성 확인
+24-09-27 17:31:23 DEBUG [http-nio-0.0.0.0-8080-exec-7] [SQL:135] - 
+    select
+        m1_0.member_id,
+        m1_0.birth,
+        m1_0.gender,
+        m1_0.id,
+        m1_0.name,
+        m1_0.pw,
+        m1_0.weight 
+    from
+        member m1_0 
+    where
+        m1_0.member_id=?
+24-09-27 17:31:23 INFO  [http-nio-0.0.0.0-8080-exec-7] [JwtTokenFilter:63] - [JWT] 토큰 검증 완료
+24-09-27 17:32:12 INFO  [http-nio-0.0.0.0-8080-exec-8] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:32:12 INFO  [http-nio-0.0.0.0-8080-exec-8] [JwtTokenFilter:43] - [JWT] Header, Bearer 확인
+24-09-27 17:32:12 INFO  [http-nio-0.0.0.0-8080-exec-8] [JwtTokenUtil:70] - [JWT] 헤더 유효성 확인
+24-09-27 17:32:12 INFO  [http-nio-0.0.0.0-8080-exec-8] [JwtTokenFilter:47] - [JWT] 토큰 확인
+24-09-27 17:32:12 INFO  [http-nio-0.0.0.0-8080-exec-8] [JwtTokenUtil:50] - [JWT] 토큰 유효성 확인
+24-09-27 17:32:12 DEBUG [http-nio-0.0.0.0-8080-exec-8] [SQL:135] - 
+    select
+        m1_0.member_id,
+        m1_0.birth,
+        m1_0.gender,
+        m1_0.id,
+        m1_0.name,
+        m1_0.pw,
+        m1_0.weight 
+    from
+        member m1_0 
+    where
+        m1_0.member_id=?
+24-09-27 17:32:12 INFO  [http-nio-0.0.0.0-8080-exec-8] [JwtTokenFilter:63] - [JWT] 토큰 검증 완료
+24-09-27 17:32:12 DEBUG [http-nio-0.0.0.0-8080-exec-8] [SQL:135] - 
+    select
+        ds1_0.number,
+        ds1_0.answer,
+        ds1_0.direction,
+        ds1_0.point,
+        ds1_0.question 
+    from
+        diagnosis_sheet ds1_0 
+    where
+        ds1_0.number=?
+24-09-27 17:32:12 ERROR [http-nio-0.0.0.0-8080-exec-8] [[dispatcherServlet]:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.EmptyResultDataAccessException: No result found for query [SELECT d FROM DiagnosisSheet d WHERE d.number = :num ]] with root cause
+jakarta.persistence.NoResultException: No result found for query [SELECT d FROM DiagnosisSheet d WHERE d.number = :num ]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:558)
+	at capstone.Antiheimer.feature.diagnosis.repository.DiagnosisRepository.findQuestion(DiagnosisRepository.java:31)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
+	at capstone.Antiheimer.feature.diagnosis.repository.DiagnosisRepository$$SpringCGLIB$$0.findQuestion(<generated>)
+	at capstone.Antiheimer.feature.diagnosis.service.DiagnosisService.returnDiagnosisSheet(DiagnosisService.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
+	at capstone.Antiheimer.feature.diagnosis.service.DiagnosisService$$SpringCGLIB$$0.returnDiagnosisSheet(<generated>)
+	at capstone.Antiheimer.feature.diagnosis.controller.DiagnosisController.returnDiagnosisSheet(DiagnosisController.java:43)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at capstone.Antiheimer.util.jwt.JwtTokenFilter.doFilterInternal(JwtTokenFilter.java:64)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24-09-27 17:32:30 INFO  [http-nio-0.0.0.0-8080-exec-9] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:32:30 INFO  [http-nio-0.0.0.0-8080-exec-9] [JwtTokenFilter:43] - [JWT] Header, Bearer 확인
+24-09-27 17:32:30 INFO  [http-nio-0.0.0.0-8080-exec-9] [JwtTokenUtil:70] - [JWT] 헤더 유효성 확인
+24-09-27 17:32:30 INFO  [http-nio-0.0.0.0-8080-exec-9] [JwtTokenFilter:47] - [JWT] 토큰 확인
+24-09-27 17:32:30 INFO  [http-nio-0.0.0.0-8080-exec-9] [JwtTokenUtil:50] - [JWT] 토큰 유효성 확인
+24-09-27 17:32:30 DEBUG [http-nio-0.0.0.0-8080-exec-9] [SQL:135] - 
+    select
+        m1_0.member_id,
+        m1_0.birth,
+        m1_0.gender,
+        m1_0.id,
+        m1_0.name,
+        m1_0.pw,
+        m1_0.weight 
+    from
+        member m1_0 
+    where
+        m1_0.member_id=?
+24-09-27 17:32:30 INFO  [http-nio-0.0.0.0-8080-exec-9] [JwtTokenFilter:63] - [JWT] 토큰 검증 완료
+24-09-27 17:32:30 DEBUG [http-nio-0.0.0.0-8080-exec-9] [SQL:135] - 
+    select
+        ds1_0.number,
+        ds1_0.answer,
+        ds1_0.direction,
+        ds1_0.point,
+        ds1_0.question 
+    from
+        diagnosis_sheet ds1_0 
+    where
+        ds1_0.number=?
+24-09-27 17:32:30 ERROR [http-nio-0.0.0.0-8080-exec-9] [[dispatcherServlet]:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.EmptyResultDataAccessException: No result found for query [SELECT d FROM DiagnosisSheet d WHERE d.number = :num ]] with root cause
+jakarta.persistence.NoResultException: No result found for query [SELECT d FROM DiagnosisSheet d WHERE d.number = :num ]
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:558)
+	at capstone.Antiheimer.feature.diagnosis.repository.DiagnosisRepository.findQuestion(DiagnosisRepository.java:31)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
+	at capstone.Antiheimer.feature.diagnosis.repository.DiagnosisRepository$$SpringCGLIB$$0.findQuestion(<generated>)
+	at capstone.Antiheimer.feature.diagnosis.service.DiagnosisService.returnDiagnosisSheet(DiagnosisService.java:40)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:354)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720)
+	at capstone.Antiheimer.feature.diagnosis.service.DiagnosisService$$SpringCGLIB$$0.returnDiagnosisSheet(<generated>)
+	at capstone.Antiheimer.feature.diagnosis.controller.DiagnosisController.returnDiagnosisSheet(DiagnosisController.java:43)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at capstone.Antiheimer.util.jwt.JwtTokenFilter.doFilterInternal(JwtTokenFilter.java:64)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+24-09-27 17:35:10 INFO  [SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:35:10 INFO  [SpringApplicationShutdownHook] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+24-09-27 17:35:10 INFO  [SpringApplicationShutdownHook] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+24-09-27 17:50:13 INFO  [background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+24-09-27 17:50:13 INFO  [main] [AntiheimerApplication:50] - Starting AntiheimerApplication using Java 21.0.2 with PID 24334 (/Users/yezi.ce/Documents/Antiheimer/build/classes/java/main started by yezi.ce in /Users/yezi.ce/Documents/Antiheimer)
+24-09-27 17:50:13 INFO  [main] [AntiheimerApplication:654] - No active profile set, falling back to 1 default profile: "default"
+24-09-27 17:50:14 INFO  [main] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-09-27 17:50:14 INFO  [main] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+24-09-27 17:50:14 INFO  [main] [TomcatWebServer:111] - Tomcat initialized with port 8080 (http)
+24-09-27 17:50:14 INFO  [main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:50:14 INFO  [main] [StandardService:173] - Starting service [Tomcat]
+24-09-27 17:50:14 INFO  [main] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.26]
+24-09-27 17:50:14 INFO  [main] [[/]:173] - Initializing Spring embedded WebApplicationContext
+24-09-27 17:50:14 INFO  [main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 866 ms
+24-09-27 17:50:14 INFO  [main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+24-09-27 17:50:14 INFO  [main] [Version:44] - HHH000412: Hibernate ORM core version 6.5.2.Final
+24-09-27 17:50:14 INFO  [main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+24-09-27 17:50:15 INFO  [main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+24-09-27 17:50:15 INFO  [main] [HikariDataSource:109] - HikariPool-1 - Starting...
+24-09-27 17:50:15 INFO  [main] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@14ad42
+24-09-27 17:50:15 INFO  [main] [HikariDataSource:122] - HikariPool-1 - Start completed.
+24-09-27 17:50:16 INFO  [main] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-09-27 17:50:16 INFO  [main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:50:16 WARN  [main] [JpaBaseConfiguration$JpaWebConfiguration:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-09-27 17:50:16 WARN  [main] [UserDetailsServiceAutoConfiguration:86] - 
+
+Using generated security password: d172a078-e7ff-48a3-ae41-3b6b3cec2c6b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+24-09-27 17:50:16 INFO  [main] [InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+24-09-27 17:50:16 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/'], Ant [pattern='/']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:50:16 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/favicon.ico'], Ant [pattern='/favicon.ico']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:50:16 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/signup'], Ant [pattern='/signup']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:50:16 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/login'], Ant [pattern='/login']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:50:16 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:50:16 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/save/location'], Ant [pattern='/save/location']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:50:16 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/wss'], Ant [pattern='/wss']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:50:16 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/ws'], Ant [pattern='/ws']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:50:16 INFO  [main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:50:16 INFO  [main] [TomcatWebServer:243] - Tomcat started on port 8080 (http) with context path '/'
+24-09-27 17:50:16 INFO  [main] [AntiheimerApplication:56] - Started AntiheimerApplication in 3.453 seconds (process running for 4.046)
+24-09-27 17:53:48 INFO  [SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:53:48 INFO  [SpringApplicationShutdownHook] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+24-09-27 17:53:48 INFO  [SpringApplicationShutdownHook] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+24-09-27 17:53:53 INFO  [background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+24-09-27 17:53:53 INFO  [main] [AntiheimerApplication:50] - Starting AntiheimerApplication using Java 21.0.2 with PID 24391 (/Users/yezi.ce/Documents/Antiheimer/build/classes/java/main started by yezi.ce in /Users/yezi.ce/Documents/Antiheimer)
+24-09-27 17:53:53 INFO  [main] [AntiheimerApplication:654] - No active profile set, falling back to 1 default profile: "default"
+24-09-27 17:53:54 INFO  [main] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-09-27 17:53:54 INFO  [main] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 42 ms. Found 1 JPA repository interface.
+24-09-27 17:53:55 INFO  [main] [TomcatWebServer:111] - Tomcat initialized with port 8080 (http)
+24-09-27 17:53:55 INFO  [main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:53:55 INFO  [main] [StandardService:173] - Starting service [Tomcat]
+24-09-27 17:53:55 INFO  [main] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.26]
+24-09-27 17:53:55 INFO  [main] [[/]:173] - Initializing Spring embedded WebApplicationContext
+24-09-27 17:53:55 INFO  [main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 1306 ms
+24-09-27 17:53:55 INFO  [main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+24-09-27 17:53:55 INFO  [main] [Version:44] - HHH000412: Hibernate ORM core version 6.5.2.Final
+24-09-27 17:53:55 INFO  [main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+24-09-27 17:53:55 INFO  [main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+24-09-27 17:53:55 INFO  [main] [HikariDataSource:109] - HikariPool-1 - Starting...
+24-09-27 17:53:55 INFO  [main] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5f9a8ddc
+24-09-27 17:53:55 INFO  [main] [HikariDataSource:122] - HikariPool-1 - Start completed.
+24-09-27 17:53:56 INFO  [main] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-09-27 17:53:56 INFO  [main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:53:57 WARN  [main] [JpaBaseConfiguration$JpaWebConfiguration:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-09-27 17:53:57 WARN  [main] [UserDetailsServiceAutoConfiguration:86] - 
+
+Using generated security password: 34417286-3dd6-47e8-9ca5-37e5a51f4b5b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+24-09-27 17:53:57 INFO  [main] [InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+24-09-27 17:53:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/'], Ant [pattern='/']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:53:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/favicon.ico'], Ant [pattern='/favicon.ico']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:53:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/signup'], Ant [pattern='/signup']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:53:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/login'], Ant [pattern='/login']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:53:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:53:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/save/location'], Ant [pattern='/save/location']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:53:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/wss'], Ant [pattern='/wss']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:53:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/ws'], Ant [pattern='/ws']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:53:57 INFO  [main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:53:57 INFO  [main] [TomcatWebServer:243] - Tomcat started on port 8080 (http) with context path '/'
+24-09-27 17:53:57 INFO  [main] [AntiheimerApplication:56] - Started AntiheimerApplication in 5.129 seconds (process running for 5.766)
+24-09-27 17:53:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-09-27 17:53:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+24-09-27 17:53:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:554] - Completed initialization in 1 ms
+24-09-27 17:53:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:53:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [TestController:18] - INFO LEVEL 테스트
+24-09-27 17:53:58 WARN  [http-nio-0.0.0.0-8080-exec-1] [TestController:19] - WARN LEVEL 테스트
+24-09-27 17:53:58 ERROR [http-nio-0.0.0.0-8080-exec-1] [TestController:20] - ERROR LEVEL 테스트
+24-09-27 17:53:58 INFO  [http-nio-0.0.0.0-8080-exec-2] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:54:52 INFO  [SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:54:52 INFO  [SpringApplicationShutdownHook] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+24-09-27 17:54:52 INFO  [SpringApplicationShutdownHook] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+24-09-27 17:54:54 INFO  [background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+24-09-27 17:54:54 INFO  [main] [AntiheimerApplication:50] - Starting AntiheimerApplication using Java 21.0.2 with PID 24439 (/Users/yezi.ce/Documents/Antiheimer/build/classes/java/main started by yezi.ce in /Users/yezi.ce/Documents/Antiheimer)
+24-09-27 17:54:54 INFO  [main] [AntiheimerApplication:654] - No active profile set, falling back to 1 default profile: "default"
+24-09-27 17:54:54 INFO  [main] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-09-27 17:54:54 INFO  [main] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 35 ms. Found 1 JPA repository interface.
+24-09-27 17:54:55 INFO  [main] [TomcatWebServer:111] - Tomcat initialized with port 8080 (http)
+24-09-27 17:54:55 INFO  [main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:54:55 INFO  [main] [StandardService:173] - Starting service [Tomcat]
+24-09-27 17:54:55 INFO  [main] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.26]
+24-09-27 17:54:55 INFO  [main] [[/]:173] - Initializing Spring embedded WebApplicationContext
+24-09-27 17:54:55 INFO  [main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 973 ms
+24-09-27 17:54:55 INFO  [main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+24-09-27 17:54:55 INFO  [main] [Version:44] - HHH000412: Hibernate ORM core version 6.5.2.Final
+24-09-27 17:54:55 INFO  [main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+24-09-27 17:54:55 INFO  [main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+24-09-27 17:54:55 INFO  [main] [HikariDataSource:109] - HikariPool-1 - Starting...
+24-09-27 17:54:55 INFO  [main] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7109b603
+24-09-27 17:54:55 INFO  [main] [HikariDataSource:122] - HikariPool-1 - Start completed.
+24-09-27 17:54:56 INFO  [main] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-09-27 17:54:56 INFO  [main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:54:56 WARN  [main] [JpaBaseConfiguration$JpaWebConfiguration:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-09-27 17:54:56 WARN  [main] [UserDetailsServiceAutoConfiguration:86] - 
+
+Using generated security password: 4a8b0936-85aa-47a8-8945-c2a97f39ef1d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+24-09-27 17:54:56 INFO  [main] [InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+24-09-27 17:54:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/'], Ant [pattern='/']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:54:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/favicon.ico'], Ant [pattern='/favicon.ico']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:54:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/signup'], Ant [pattern='/signup']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:54:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/login'], Ant [pattern='/login']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:54:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:54:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/save/location'], Ant [pattern='/save/location']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:54:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/wss'], Ant [pattern='/wss']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:54:57 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/ws'], Ant [pattern='/ws']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:54:57 INFO  [main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:54:57 INFO  [main] [TomcatWebServer:243] - Tomcat started on port 8080 (http) with context path '/'
+24-09-27 17:54:57 INFO  [main] [AntiheimerApplication:56] - Started AntiheimerApplication in 3.353 seconds (process running for 3.708)
+24-09-27 17:54:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-09-27 17:54:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+24-09-27 17:54:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:554] - Completed initialization in 2 ms
+24-09-27 17:54:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:54:58 INFO  [http-nio-0.0.0.0-8080-exec-1] [TestController:18] - INFO LEVEL 테스트
+24-09-27 17:54:58 WARN  [http-nio-0.0.0.0-8080-exec-1] [TestController:19] - WARN LEVEL 테스트
+24-09-27 17:54:58 ERROR [http-nio-0.0.0.0-8080-exec-1] [TestController:20] - ERROR LEVEL 테스트
+24-09-27 17:54:58 INFO  [http-nio-0.0.0.0-8080-exec-2] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:55:50 INFO  [SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:55:50 INFO  [SpringApplicationShutdownHook] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+24-09-27 17:55:50 INFO  [SpringApplicationShutdownHook] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+24-09-27 17:55:53 INFO  [background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+24-09-27 17:55:53 INFO  [main] [AntiheimerApplication:50] - Starting AntiheimerApplication using Java 21.0.2 with PID 24469 (/Users/yezi.ce/Documents/Antiheimer/build/classes/java/main started by yezi.ce in /Users/yezi.ce/Documents/Antiheimer)
+24-09-27 17:55:53 INFO  [main] [AntiheimerApplication:654] - No active profile set, falling back to 1 default profile: "default"
+24-09-27 17:55:54 INFO  [main] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-09-27 17:55:54 INFO  [main] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 31 ms. Found 1 JPA repository interface.
+24-09-27 17:55:54 INFO  [main] [TomcatWebServer:111] - Tomcat initialized with port 8080 (http)
+24-09-27 17:55:54 INFO  [main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:55:54 INFO  [main] [StandardService:173] - Starting service [Tomcat]
+24-09-27 17:55:54 INFO  [main] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.26]
+24-09-27 17:55:54 INFO  [main] [[/]:173] - Initializing Spring embedded WebApplicationContext
+24-09-27 17:55:54 INFO  [main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 888 ms
+24-09-27 17:55:54 INFO  [main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+24-09-27 17:55:54 INFO  [main] [Version:44] - HHH000412: Hibernate ORM core version 6.5.2.Final
+24-09-27 17:55:54 INFO  [main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+24-09-27 17:55:55 INFO  [main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+24-09-27 17:55:55 INFO  [main] [HikariDataSource:109] - HikariPool-1 - Starting...
+24-09-27 17:55:55 INFO  [main] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4f7ae05
+24-09-27 17:55:55 INFO  [main] [HikariDataSource:122] - HikariPool-1 - Start completed.
+24-09-27 17:55:56 INFO  [main] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-09-27 17:55:56 INFO  [main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:55:56 WARN  [main] [JpaBaseConfiguration$JpaWebConfiguration:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-09-27 17:55:56 WARN  [main] [UserDetailsServiceAutoConfiguration:86] - 
+
+Using generated security password: 3ec6b78f-d5d9-4bd7-86c3-13ae40900655
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+24-09-27 17:55:56 INFO  [main] [InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+24-09-27 17:55:56 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/'], Ant [pattern='/']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:55:56 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/favicon.ico'], Ant [pattern='/favicon.ico']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:55:56 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/signup'], Ant [pattern='/signup']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:55:56 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/login'], Ant [pattern='/login']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:55:56 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:55:56 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/save/location'], Ant [pattern='/save/location']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:55:56 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/wss'], Ant [pattern='/wss']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:55:56 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/ws'], Ant [pattern='/ws']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:55:56 INFO  [main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:55:56 INFO  [main] [TomcatWebServer:243] - Tomcat started on port 8080 (http) with context path '/'
+24-09-27 17:55:56 INFO  [main] [AntiheimerApplication:56] - Started AntiheimerApplication in 3.413 seconds (process running for 3.851)
+24-09-27 17:55:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-09-27 17:55:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+24-09-27 17:55:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:554] - Completed initialization in 1 ms
+24-09-27 17:55:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:55:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:39] - [JWT] jwt 필터링 패스
+24-09-27 17:55:57 INFO  [http-nio-0.0.0.0-8080-exec-1] [TestController:18] - INFO LEVEL 테스트
+24-09-27 17:55:57 WARN  [http-nio-0.0.0.0-8080-exec-1] [TestController:19] - WARN LEVEL 테스트
+24-09-27 17:55:57 ERROR [http-nio-0.0.0.0-8080-exec-1] [TestController:20] - ERROR LEVEL 테스트
+24-09-27 17:55:57 INFO  [http-nio-0.0.0.0-8080-exec-2] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:55:57 INFO  [http-nio-0.0.0.0-8080-exec-2] [JwtTokenFilter:39] - [JWT] jwt 필터링 패스
+24-09-27 17:57:55 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:57:55 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+24-09-27 17:58:25 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:58:25 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+24-09-27 17:58:55 DEBUG [HikariPool-1 housekeeper] [HikariPool:405] - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:58:55 DEBUG [HikariPool-1 housekeeper] [HikariPool:510] - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [ApplicationAvailabilityBean:77] - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [AnnotationConfigServletWebServerApplicationContext:1134] - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@61078690, started on Fri Sep 27 17:55:53 KST 2024
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:478] - Stopping beans in phase 2147483647
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:350] - Bean 'applicationTaskExecutor' completed its stop procedure
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:478] - Stopping beans in phase 2147482623
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:350] - Bean 'webServerGracefulShutdown' completed its stop procedure
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:478] - Stopping beans in phase 2147481599
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:350] - Bean 'webServerStartStop' completed its stop procedure
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:478] - Stopping beans in phase -2147483647
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [DefaultLifecycleProcessor:350] - Bean 'springBootLoggingLifecycle' completed its stop procedure
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [AnnotationMBeanExporter:468] - Unregistering JMX-exposed beans on shutdown
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [AnnotationMBeanExporter:186] - Unregistering JMX-exposed beans
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [ThreadPoolTaskExecutor:328] - Shutting down ExecutorService 'applicationTaskExecutor'
+24-09-27 17:59:08 INFO  [SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [SessionFactoryImpl:921] - HHH000031: Closing
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [TypeConfiguration$Scope:575] - Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@5c4d0d50] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@11fef74e]
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [AbstractServiceRegistryImpl:414] - Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [BootstrapServiceRegistryImpl:298] - Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries
+24-09-27 17:59:08 INFO  [SpringApplicationShutdownHook] [HikariDataSource:349] - HikariPool-1 - Shutdown initiated...
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [HikariPool:405] - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@4f7ae05: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@4af6c06b: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@5b65ba3e: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@276cdca1: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@73d873f7: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@29e96eab: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@5f2b85e2: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@1e63c372: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@2e944c82: (connection evicted)
+24-09-27 17:59:08 DEBUG [HikariPool-1 connection closer] [PoolBase:133] - HikariPool-1 - Closing connection com.mysql.cj.jdbc.ConnectionImpl@4ceaf3cd: (connection evicted)
+24-09-27 17:59:08 DEBUG [SpringApplicationShutdownHook] [HikariPool:405] - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+24-09-27 17:59:08 INFO  [SpringApplicationShutdownHook] [HikariDataSource:351] - HikariPool-1 - Shutdown completed.
+24-09-27 17:59:10 INFO  [background-preinit] [Version:21] - HV000001: Hibernate Validator 8.0.1.Final
+24-09-27 17:59:10 INFO  [main] [AntiheimerApplication:50] - Starting AntiheimerApplication using Java 21.0.2 with PID 24551 (/Users/yezi.ce/Documents/Antiheimer/build/classes/java/main started by yezi.ce in /Users/yezi.ce/Documents/Antiheimer)
+24-09-27 17:59:10 INFO  [main] [AntiheimerApplication:654] - No active profile set, falling back to 1 default profile: "default"
+24-09-27 17:59:10 INFO  [main] [RepositoryConfigurationDelegate:143] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+24-09-27 17:59:10 INFO  [main] [RepositoryConfigurationDelegate:211] - Finished Spring Data repository scanning in 41 ms. Found 1 JPA repository interface.
+24-09-27 17:59:10 INFO  [main] [TomcatWebServer:111] - Tomcat initialized with port 8080 (http)
+24-09-27 17:59:10 INFO  [main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:59:10 INFO  [main] [StandardService:173] - Starting service [Tomcat]
+24-09-27 17:59:10 INFO  [main] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.26]
+24-09-27 17:59:11 INFO  [main] [[/]:173] - Initializing Spring embedded WebApplicationContext
+24-09-27 17:59:11 INFO  [main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 901 ms
+24-09-27 17:59:11 INFO  [main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+24-09-27 17:59:11 INFO  [main] [Version:44] - HHH000412: Hibernate ORM core version 6.5.2.Final
+24-09-27 17:59:11 INFO  [main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+24-09-27 17:59:11 INFO  [main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+24-09-27 17:59:11 INFO  [main] [HikariDataSource:109] - HikariPool-1 - Starting...
+24-09-27 17:59:11 INFO  [main] [HikariPool:554] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@42066f0d
+24-09-27 17:59:11 INFO  [main] [HikariDataSource:122] - HikariPool-1 - Start completed.
+24-09-27 17:59:12 INFO  [main] [JtaPlatformInitiator:59] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+24-09-27 17:59:12 INFO  [main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+24-09-27 17:59:13 WARN  [main] [JpaBaseConfiguration$JpaWebConfiguration:236] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+24-09-27 17:59:13 WARN  [main] [UserDetailsServiceAutoConfiguration:86] - 
+
+Using generated security password: 317e4d83-aef3-4801-a379-3d9588970a5e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+24-09-27 17:59:13 INFO  [main] [InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer:113] - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+24-09-27 17:59:13 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/'], Ant [pattern='/']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:59:13 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/favicon.ico'], Ant [pattern='/favicon.ico']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:59:13 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/signup'], Ant [pattern='/signup']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:59:13 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/login'], Ant [pattern='/login']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:59:13 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/swagger-ui/**'], Ant [pattern='/swagger-ui/**']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:59:13 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/save/location'], Ant [pattern='/save/location']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:59:13 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/wss'], Ant [pattern='/wss']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:59:13 WARN  [main] [WebSecurity:292] - You are asking Spring Security to ignore Deferred [Mvc [pattern='/ws'], Ant [pattern='/ws']]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+24-09-27 17:59:13 INFO  [main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+24-09-27 17:59:13 INFO  [main] [TomcatWebServer:243] - Tomcat started on port 8080 (http) with context path '/'
+24-09-27 17:59:13 INFO  [main] [AntiheimerApplication:56] - Started AntiheimerApplication in 3.902 seconds (process running for 4.341)
+24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [DispatcherServlet:554] - Completed initialization in 1 ms
+24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [JwtTokenFilter:39] - [JWT] jwt 필터링 패스
+24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-1] [TestController:18] - INFO LEVEL 테스트
+24-09-27 17:59:14 WARN  [http-nio-0.0.0.0-8080-exec-1] [TestController:19] - WARN LEVEL 테스트
+24-09-27 17:59:14 ERROR [http-nio-0.0.0.0-8080-exec-1] [TestController:20] - ERROR LEVEL 테스트
+24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-2] [JwtTokenFilter:30] - [JWT] jwt filter 시작
+24-09-27 17:59:14 INFO  [http-nio-0.0.0.0-8080-exec-2] [JwtTokenFilter:39] - [JWT] jwt 필터링 패스
