@@ -304,10 +304,10 @@ exist(43x)
 
 
 ## findActive
-#### /find/active
+#### /find/active: POST
 
 **Header**
-- String auth
+- String Authorization
 
 **Body**
 - String memberUuid
@@ -321,10 +321,10 @@ exist(43x)
 
 
 ## findMove
-#### /find/move
+#### /find/move: POST
 
 **Header**
-- String auth
+- String Authorization
 
 **Body**
 - String memberUuid
@@ -338,10 +338,10 @@ exist(43x)
 
 
 ## findWalk
-#### /find/walk
+#### /find/walk: POST
 
 **Header**
-- String auth
+- String Authorization
 
 **Body**
 - String memberUuid
@@ -355,10 +355,10 @@ exist(43x)
 
 
 ## findSleep
-#### /find/sleep
+#### /find/sleep: POST
 
 **Header**
-- String auth
+- String Authorization
 
 **Body**
 - String memberUuid
@@ -378,7 +378,7 @@ exist(43x)
 #### /save: POST
 
 **Header**
-- String auth
+- String Authorization
 
 **Body**
 - String reqDto: AES 암호화
