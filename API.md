@@ -22,6 +22,7 @@ ex) /login/{uuid}
 
 
 # Member
+## /member
 
 ## signup
 #### /signup: POST
@@ -141,6 +142,7 @@ auth(401): 권한 없음(토큰)
 
 
 # HealthData
+## /health-data
 
 ## saveActive
 #### /save/active: POST
@@ -285,7 +287,7 @@ decoding(46x)
 
 
 ## findHealthData
-#### /find/health-data
+#### /find/all
 
 **Header**
 - String auth
@@ -370,9 +372,10 @@ exist(43x)
 
 
 # Location
+## /location
 
 ## saveLocation
-#### /save/location: POST
+#### /save: POST
 
 **Header**
 - String auth
@@ -396,7 +399,7 @@ exist(43x)
 
 
 ## recentLocation
-#### /recent/location?memberUuid={memberUuid}: GET - url 인코딩
+#### /recent?memberUuid={memberUuid}: GET - url 인코딩
 
 **Header**
 - String Authorization
@@ -413,8 +416,10 @@ exist(43x)
 
 
 # Diagnosis
+## /diagnosis
+
 ## returnDiagnosisSheet
-#### /diagnosisSheet?num={num}: GET
+#### /sheet?num={num}: GET
 
 **Header**
 -String Authorization
@@ -430,7 +435,7 @@ incorrect(44x)
 
 
 ## randomWords
-### /diagnosisSheet/word: GET
+### /random-words: GET
 
 **Header**
 -String Authorization
@@ -440,7 +445,7 @@ auth(401): 권한 없음(토큰)
 
 
 ## startDiagnosis
-### /diagnosis/start: POST
+### /start: POST
 
 **Header**
 - String Authorization
@@ -453,7 +458,7 @@ exist(43x)
 
 
 ## diagnosisScore
-### /diagnosis/score: POST
+### /score: POST
 
 **Header**
 - String Authorization
@@ -469,7 +474,7 @@ incorrect(44x)
 
 
 ## diagnosisAnswer
-### /diagnosis/answer: POST
+### /answer: POST
 
 **Header**
 - String Authorization
@@ -482,7 +487,7 @@ invalid(42x)
 
 
 ## diagnosisResult
-### /diagnosis/result: GET
+### /result: GET
 
 **Header**
 - String Authorization
@@ -496,8 +501,10 @@ exist(43x)
 
 
 # Relation
+## /relation
+
 ## requestRelation
-#### /request-relation: POST
+#### /request: POST
 
 **Header**
 - String Authorization
@@ -518,7 +525,7 @@ duplicate(45x)
 
 
 ## saveGuardian
-#### /save-relation/guardian: POST
+#### /save/guardian: POST
 
 **Header**
 - String Authorization
@@ -537,7 +544,7 @@ exist(43x)
 
 
 ## saveWard
-#### /save-relation/ward: POST
+#### /save/ward: POST
 
 **Header**
 - String Authorization
@@ -556,7 +563,7 @@ exist(43x)
 
 
 ## infoGuardian
-#### /info-relation/guardian?memberUuid={memberUuid}: GET
+#### /info/guardian?memberUuid={memberUuid}: GET
 memberUuid AES 암호화 + 인코딩
 
 **Header**
@@ -571,7 +578,7 @@ exist(43x)
 
 
 ## infoWard
-#### /info-relation/ward?memberUuid={memberUuid}: GET
+#### /info/ward?memberUuid={memberUuid}: GET
 memberUuid AES 암호화 + 인코딩
 
 **Header**
@@ -587,7 +594,7 @@ exist(43x)
 
 # Notification
 ## findNotification
-#### /find-notification?memberUuid={memberUuid}: GET
+#### /find?memberUuid={memberUuid}: GET
 memberUuid AES 암호화 + 인코딩
 
 **Header**
@@ -602,7 +609,7 @@ exist(43x)
 
 
 ## deleteNotification
-#### /delete-notification?notificationUuid={notificationUuid}: DELETE
+#### /delete?notificationUuid={notificationUuid}: DELETE
 notificationUuid AES 암호화 + 인코딩
 
 **Header**
@@ -617,8 +624,10 @@ exist(43x)
 
 
 # DementiaCenter
+## /dementia-center
+
 ## getDementiaCenter
-#### /dementiaCenter?page={page}: GET
+#### ?page={page}: GET
 
 **Header**
 - String Authorization
