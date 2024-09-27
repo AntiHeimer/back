@@ -6,10 +6,12 @@
     <!-- 로그 패턴에 색상 적용 %clr(pattern){color} -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
 
+
     <!-- log file path -->
     <property name="LOG_PATH" value="logs"/>
     <!-- pattern -->
     <property name="LOG_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss}]  %clr(%-5level) %clr(${PID:-}){magenta} %clr(---){faint} %clr([%15.15thread]){faint} %clr(%-40.40logger{36}){cyan} %clr(:){faint} %msg%n"/>
+
 
     <!-- Console Appender -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -22,6 +24,7 @@
             <pattern>${LOG_PATTERN}</pattern>
         </encoder>
     </appender>
+
 
     <!-- File Appender -->
     <!-- DEFAULT -->
