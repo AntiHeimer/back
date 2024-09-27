@@ -5,8 +5,6 @@ import capstone.Antiheimer.feature.dementia_result.entity.Result;
 import capstone.Antiheimer.feature.dementia_result.service.ResultService;
 import capstone.Antiheimer.feature.diagnosis.dto.AiReqDto;
 import capstone.Antiheimer.feature.health_data.dto.HealthDataResDto;
-import capstone.Antiheimer.feature.notification.dto.NotificationResDto;
-import capstone.Antiheimer.feature.notification.entity.Notification;
 import capstone.Antiheimer.util.encrypt.AesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
