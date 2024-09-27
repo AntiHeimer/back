@@ -134,6 +134,6 @@ public class MemberController {
         Member member = memberRepository.findOneByUuid(decryptedUuid);
 
         log.info("[Controller] 회원 조회 성공");
-        return new ResponseEntity<>(new InfoResDto("200", "회원 조회 성공", member.getId(), member.getName(), member.getGender(), member.getBirth()), HttpStatus.OK);
+        return new ResponseEntity<>(new InfoResDto("200", "회원 조회 성공", member), HttpStatus.OK);
     }
 }
