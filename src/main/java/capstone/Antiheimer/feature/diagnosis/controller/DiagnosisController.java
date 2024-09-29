@@ -132,15 +132,19 @@ public class DiagnosisController {
 //        return new ResponseEntity<>(new NormalResDto("200", "정답 확인 성공"), HttpStatus.OK);
 //    }
 
-//    @PostMapping("/finish")
-//    public ResponseEntity<NormalResDto> diagnosisResult(@RequestBody DiagnosisResultReqDto request) throws UnsupportedEncodingException, JsonProcessingException{
-//
-//        log.info("[Controller] 진단 UUID AES 복호화");
-//        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
-//        DiagnosisResultReqDto reqDto = objectMapper.readValue(decryptedRequest, DiagnosisResultReqDto.class);
-//
-//        log.info(("[Controller] 답안 채점 및 점수 계산 시작"));
-//    }
+    @PostMapping("/finish")
+    public ResponseEntity<NormalResDto> diagnosisResult(@RequestBody DiagnosisResultReqDto request) throws UnsupportedEncodingException, JsonProcessingException{
+
+        log.info("[Controller] 진단 UUID AES 복호화");
+        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
+        DiagnosisResultReqDto reqDto = objectMapper.readValue(decryptedRequest, DiagnosisResultReqDto.class);
+
+        log.info(("[Controller] 답안 채점 및 점수 계산 시작"));
+        diagnosisService.getDiagnosisResult(reqDto);
+
+        log.info(("[Controller] 답안 채점 및 점수 계산 성공"));
+        return new ResponseEntity<>(new NormalResDto("200", "채점 및 점수 저장 성공"), HttpStatus.OK);
+    }
 
     /**
      * 진단 결과 조회
