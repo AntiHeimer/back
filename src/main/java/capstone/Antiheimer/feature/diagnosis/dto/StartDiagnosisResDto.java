@@ -1,21 +1,15 @@
 package capstone.Antiheimer.feature.diagnosis.dto;
 
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
-@Builder
-public class StartDiagnosisResDto {
+public class StartDiagnosisResDto extends NormalResDto {
 
-    private String statusCode;
-    private String message;
-    private String diagnosisUuid;
+    private final String diagnosisUuid;
 
     public StartDiagnosisResDto(String statusCode, String message, String diagnosisUuid) {
-        this.statusCode = statusCode;
-        this.message = message;
+        super(statusCode, message);
         this.diagnosisUuid = diagnosisUuid;
     }
 }

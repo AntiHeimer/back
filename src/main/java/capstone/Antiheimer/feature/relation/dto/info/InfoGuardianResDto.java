@@ -1,17 +1,17 @@
 package capstone.Antiheimer.feature.relation.dto.info;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-@Builder
-@AllArgsConstructor
-public class InfoGuardianResDto {
+public class InfoGuardianResDto extends NormalResDto {
 
-    private String statusCode;
-    private String message;
-    private List<InfoGuardianDto> infoGuardianDtoList;
+    private final List<InfoGuardianDto> infoGuardianDtoList;
+
+    public InfoGuardianResDto(String statusCode, String message, List<InfoGuardianDto> infoGuardianDtoList) {
+        super(statusCode, message);
+        this.infoGuardianDtoList = infoGuardianDtoList;
+    }
 }

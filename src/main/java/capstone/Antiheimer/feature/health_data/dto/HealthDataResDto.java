@@ -1,14 +1,15 @@
 package capstone.Antiheimer.feature.health_data.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@Builder
-@AllArgsConstructor
-public class HealthDataResDto {
+public class HealthDataResDto extends NormalResDto {
 
-    private String memberUuid;
+    private final String memberUuid;
+
+    public HealthDataResDto(String statusCode, String message, String memberUuid) {
+        super(statusCode, message);
+        this.memberUuid = memberUuid;
+    }
 }

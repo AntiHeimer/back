@@ -1,17 +1,17 @@
 package capstone.Antiheimer.feature.diagnosis.dto;
 
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
 
 import java.util.List;
 @Getter
-@Builder
-@AllArgsConstructor
-public class DiagnosisResDto {
+public class DiagnosisResDto extends NormalResDto {
 
-    private String statusCode;
-    private String message;
-    private List<Diagnosis> diagnoisList;
+    private final List<Diagnosis> diagnoisList;
+
+    public DiagnosisResDto(String statusCode, String message, List<Diagnosis> diagnoisList) {
+        super(statusCode, message);
+        this.diagnoisList = diagnoisList;
+    }
 }

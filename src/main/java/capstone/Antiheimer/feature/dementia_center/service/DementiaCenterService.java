@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class DementiaCenterService {
-
-
+    
     private final DementiaCenterRepository dementiaCenterRepository;
 
     public Page<DementiaCenter> getCenterByPage(int page, int pageSize) {

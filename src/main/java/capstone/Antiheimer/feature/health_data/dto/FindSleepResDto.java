@@ -1,18 +1,18 @@
 package capstone.Antiheimer.feature.health_data.dto;
 
 import capstone.Antiheimer.feature.health_data.entity.Sleep;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-@Builder
-@AllArgsConstructor
-public class FindSleepResDto {
+public class FindSleepResDto extends NormalResDto {
 
-    private String statusCode;
-    private String message;
-    private List<Sleep> sleepList;
+    private final List<Sleep> sleepList;
+
+    public FindSleepResDto(String statusCode, String message, List<Sleep> sleepList) {
+        super(statusCode, message);
+        this.sleepList = sleepList;
+    }
 }

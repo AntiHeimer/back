@@ -1,18 +1,18 @@
 package capstone.Antiheimer.feature.health_data.dto;
 
 import capstone.Antiheimer.feature.health_data.entity.Walk;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-@Builder
-@AllArgsConstructor
-public class FindWalkResDto {
+public class FindWalkResDto extends NormalResDto {
 
-    private String statusCode;
-    private String message;
-    private List<Walk> walkList;
+    private final List<Walk> walkList;
+
+    public FindWalkResDto(String statusCode, String message, List<Walk> walkList) {
+        super(statusCode, message);
+        this.walkList = walkList;
+    }
 }

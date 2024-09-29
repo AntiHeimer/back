@@ -1,17 +1,17 @@
 package capstone.Antiheimer.feature.health_data.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
 
 import java.time.LocalDate;
 
 @Getter
-@Builder
-@AllArgsConstructor
-public class RecentDateRes {
+public class RecentDateRes extends NormalResDto {
 
-    private String statusCode;
-    private String message;
-    private LocalDate date;
+    private final LocalDate date;
+
+    public RecentDateRes(String statusCode, String message, LocalDate date) {
+        super(statusCode, message);
+        this.date = date;
+    }
 }

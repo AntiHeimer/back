@@ -3,7 +3,6 @@ package capstone.Antiheimer.feature.member.dto;
 import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
 
-
 @Getter
 public class InfoResDto extends NormalResDto {
 

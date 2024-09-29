@@ -1,18 +1,17 @@
 package capstone.Antiheimer.feature.diagnosis.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-@Builder
-@AllArgsConstructor
-public class DSRandomWordsResDto {
+public class DSRandomWordsResDto extends NormalResDto {
 
-    private String statusCode;
-    private String message;
-    private List<String> randomWords;
+    private final List<String> randomWords;
 
+    public DSRandomWordsResDto(String statusCode, String message, List<String> randomWords) {
+        super(statusCode, message);
+        this.randomWords = randomWords;
+    }
 }

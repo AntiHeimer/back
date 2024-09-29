@@ -1,16 +1,16 @@
 package capstone.Antiheimer.feature.diagnosis.dto;
 
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import capstone.Antiheimer.util.dto.NormalResDto;
 import lombok.Getter;
 
 @Getter
-@Builder
-@AllArgsConstructor
-public class DiagnosisSheetResDto {
+public class DiagnosisSheetResDto extends NormalResDto {
 
-    private String statusCode;
-    private String message;
     private DiagnosisSheet diagnosisSheet;
+
+    public DiagnosisSheetResDto(String statusCode, String message, DiagnosisSheet diagnosisSheet) {
+        super(statusCode, message);
+        this.diagnosisSheet = diagnosisSheet;
+    }
 }
