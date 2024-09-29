@@ -90,47 +90,57 @@ public class DiagnosisController {
         return new ResponseEntity<>(new StartDiagnosisResDto("200", "진단 UUID 생성 성공", diagnosisUuid), HttpStatus.OK);
     }
 
-    /**
-     * 점수 계산
-     * @param request
-     * @return
-     * @throws UnsupportedEncodingException
-     * @throws JsonProcessingException
-     */
-    @PostMapping("/score")
-    public ResponseEntity<NormalResDto> diagnosisScore(@RequestBody ScoreReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
+//    /**
+//     * 점수 계산
+//     * @param request
+//     * @return
+//     * @throws UnsupportedEncodingException
+//     * @throws JsonProcessingException
+//     */
+//    @PostMapping("/score")
+//    public ResponseEntity<NormalResDto> diagnosisScore(@RequestBody ScoreReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
+//
+//        log.info("[Controller] 진단 UUID AES 복호화");
+//        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
+//        ScoreReqDto reqDto = objectMapper.readValue(decryptedRequest, ScoreReqDto.class);
+//
+//        log.info("[Controller] 점수 저장 시작");
+//        diagnosisService.insertScore(reqDto);
+//
+//        log.info("[Controller] 점수 저장 성공");
+//        return new ResponseEntity<>(new NormalResDto("200", "점수 저장 성공"), HttpStatus.OK);
+//    }
+//
+//    /**
+//     * 정답 확인 및 점수 계산
+//     * @param request
+//     * @return
+//     * @throws UnsupportedEncodingException
+//     * @throws JsonProcessingException
+//     */
+//    @PostMapping("/answer")
+//    public ResponseEntity<NormalResDto> diagnosisAnswer(@RequestBody AnswerReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
+//
+//        log.info("[Controller] 진단 UUID AES 복호화");
+//        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
+//        AnswerReqDto reqDto = objectMapper.readValue(decryptedRequest, AnswerReqDto.class);
+//
+//        log.info("[Controller] 정답 확인 시작");
+//        diagnosisService.markAnswer(reqDto);
+//
+//        log.info("[Controller] 정답 확인 성공");
+//        return new ResponseEntity<>(new NormalResDto("200", "정답 확인 성공"), HttpStatus.OK);
+//    }
 
-        log.info("[Controller] 진단 UUID AES 복호화");
-        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
-        ScoreReqDto reqDto = objectMapper.readValue(decryptedRequest, ScoreReqDto.class);
-
-        log.info("[Controller] 점수 저장 시작");
-        diagnosisService.insertScore(reqDto);
-
-        log.info("[Controller] 점수 저장 성공");
-        return new ResponseEntity<>(new NormalResDto("200", "점수 저장 성공"), HttpStatus.OK);
-    }
-
-    /**
-     * 정답 확인 및 점수 계산
-     * @param request
-     * @return
-     * @throws UnsupportedEncodingException
-     * @throws JsonProcessingException
-     */
-    @PostMapping("/answer")
-    public ResponseEntity<NormalResDto> diagnosisAnswer(@RequestBody AnswerReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
-
-        log.info("[Controller] 진단 UUID AES 복호화");
-        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
-        AnswerReqDto reqDto = objectMapper.readValue(decryptedRequest, AnswerReqDto.class);
-
-        log.info("[Controller] 정답 확인 시작");
-        diagnosisService.markAnswer(reqDto);
-
-        log.info("[Controller] 정답 확인 성공");
-        return new ResponseEntity<>(new NormalResDto("200", "정답 확인 성공"), HttpStatus.OK);
-    }
+//    @PostMapping("/finish")
+//    public ResponseEntity<NormalResDto> diagnosisResult(@RequestBody DiagnosisResultReqDto request) throws UnsupportedEncodingException, JsonProcessingException{
+//
+//        log.info("[Controller] 진단 UUID AES 복호화");
+//        String decryptedRequest = URLDecoder.decode(request.getDiagnosisUuid(), StandardCharsets.UTF_8.name());
+//        DiagnosisResultReqDto reqDto = objectMapper.readValue(decryptedRequest, DiagnosisResultReqDto.class);
+//
+//        log.info(("[Controller] 답안 채점 및 점수 계산 시작"));
+//    }
 
     /**
      * 진단 결과 조회

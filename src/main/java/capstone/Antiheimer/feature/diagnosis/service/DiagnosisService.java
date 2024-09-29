@@ -3,6 +3,7 @@ package capstone.Antiheimer.feature.diagnosis.service;
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.exception.invalid.InvalidScoreException;
 import capstone.Antiheimer.feature.diagnosis.dto.AnswerReqDto;
+import capstone.Antiheimer.feature.diagnosis.dto.DiagnosisResultReqDto;
 import capstone.Antiheimer.feature.diagnosis.dto.ScoreReqDto;
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
@@ -54,6 +55,16 @@ public class DiagnosisService {
 
         log.info("[Service] 진단 결과 UUID 생성");
         return diagnosisRepository.generateDiagnosis(memberUuid);
+    }
+
+    @Transactional
+    public void getDiagnosisResult(DiagnosisResultReqDto result) {
+
+        log.info("[Service] 진단 존재 확인");
+        checkService.checkDiagnosisExist(result.getDiagnosisUuid());
+
+        log.info("[Service] 답안 채점 및 점수 계산 시작");
+
     }
 
     /**

@@ -130,12 +130,19 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(NotExistDiagnosisException.class)
+    public ResponseEntity<NormalResDto> handleNotExistDiagnosisException(NotExistDiagnosisException e) {
+        NormalResDto resDto = new NormalResDto("434", e.getMessage());
+        return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
+    }
+
 
     /**
      * 44X: INCORRECT Exception
      */
     @ExceptionHandler(IncorrectPwException.class)
     public ResponseEntity<NormalResDto> handleIncorrectPwException(IncorrectPwException e) {
+
         NormalResDto resDto = new NormalResDto("440", e.getMessage());
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
