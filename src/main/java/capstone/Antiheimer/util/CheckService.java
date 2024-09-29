@@ -8,6 +8,7 @@ import capstone.Antiheimer.exception.incorrect.IncorrectPwException;
 import capstone.Antiheimer.exception.invalid.*;
 import capstone.Antiheimer.exception.notexist.*;
 import capstone.Antiheimer.exception.nullE.*;
+import capstone.Antiheimer.feature.diagnosis.repository.DiagnosisRepository;
 import capstone.Antiheimer.feature.health_data.dto.*;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.health_data.repository.HealthDataRepository;
@@ -39,6 +40,7 @@ public class CheckService {
     private final HealthDataRepository healthDataRepository;
     private final RelationRepository relationRepository;
     private final BcryptService bcryptService;
+    private final DiagnosisRepository diagnosisRepository;
 
     /**
      * uuid 공백 확인
@@ -311,6 +313,18 @@ public class CheckService {
 
             log.warn("이미 존재하는 관계입니다");
             throw new DuplicateRelationException();
+        }
+    }
+
+    /**
+     * 진단 UUID 존재 확인
+     */
+    public void checkDiagnosisExist(String diagnosisUuid) {
+
+        if (diagnosisRepository.findDiagnosis(diagnosisUuid) == null) {
+
+            log.warn("해당 진단이 존재하지 않습니다");
+            throw new NotExistDiagnosisException();
         }
     }
 }

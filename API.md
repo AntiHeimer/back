@@ -300,7 +300,7 @@ decoding(46x)
 
 **Body**
 - String memberUuid
-- LocalDate date
+- LocalDate date(dd-MM-yyyy)
 
 ### possible error
 auth(401): 권한 없음(토큰)
@@ -317,7 +317,7 @@ exist(43x)
 
 **Body**
 - String memberUuid
-- LocalDate date
+- LocalDate date(dd-MM-yyyy)
 
 ### possible error
 auth(401): 권한 없음(토큰)
@@ -334,7 +334,7 @@ exist(43x)
 
 **Body**
 - String memberUuid
-- LocalDate date
+- LocalDate date(dd-MM-yyyy)
 
 ### possible error
 auth(401): 권한 없음(토큰)
@@ -351,7 +351,7 @@ exist(43x)
 
 **Body**
 - String memberUuid
-- LocalDate date
+- LocalDate date(dd-MM-yyyy)
 
 ### possible error
 auth(401): 권한 없음(토큰)
@@ -368,7 +368,7 @@ exist(43x)
 
 **Body**
 - String memberUuid
-- LocalDate date
+- LocalDate date(dd-MM-yyyy)
 
 ### possible error
 auth(401): 권한 없음(토큰)
@@ -389,7 +389,7 @@ exist(43x)
 **Body**
 - String reqDto: AES 암호화
   - String memberUuid;
-  - LocalDateTime date;
+  - LocalDateTime date(dd-MM-yyyyT00:00:00);
   - LocationDto location;
     - double latitude;
     - double longitude;
