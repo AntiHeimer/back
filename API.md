@@ -465,8 +465,8 @@ exist(43x)
 - NotExistMemberException(431): 존재하지 않는 회원
 
 
-## diagnosisScore
-### /score: POST
+## DiagnosisResult
+### /finish: POST
 
 **Header**
 - String Authorization
@@ -474,27 +474,13 @@ exist(43x)
 ### possible error
 auth(401): 권한 없음(토큰)
 
-invalid(42x)
-- InvalidScoreException(426): 유효하지 않은 점수
-
-incorrect(44x)
-- IncorrectNumException(441): 올바르지 않은 번호
-
-
-## diagnosisAnswer
-### /answer: POST
-
-**Header**
-- String Authorization
-
-### possible error
-auth(401): 권한 없음(토큰)
-
+exit(43x)
+- NotExistDiagnosisException(434): 존재하지 않는 진단 UUID
 invalid(42x)
 - InvalidScoreException(426): 유효하지 않은 점수
 
 
-## diagnosisResult
+## diagnosisResultList
 ### /result: GET
 
 **Header**
