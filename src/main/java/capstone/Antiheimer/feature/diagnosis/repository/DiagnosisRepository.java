@@ -84,4 +84,17 @@ public class DiagnosisRepository {
                 .setParameter("memberUuid", memberUuid)
                 .getResultList();
     }
+
+    /**
+     * 멤버 UUID로 최근 진단 찾기
+     * @param memberUuid
+     * @return
+     */
+    public Diagnosis findRecentOneByMemberUuid(String memberUuid) {
+
+        return em.createQuery("SELECT d FROM Diagnosis d WHERE d.member.uuid = :memberUuid ORDER BY d.diagnosisDate DESC", Diagnosis.class)
+                .setParameter("memberUuid", memberUuid)
+                .setMaxResults(1)
+                .getSingleResult();
+    }
 }

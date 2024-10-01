@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -25,7 +25,7 @@ public class Result {
     private Member member;
 
     @NotNull
-    private Date date;
+    private LocalDate date;
 
     @NotNull
     private int stage;

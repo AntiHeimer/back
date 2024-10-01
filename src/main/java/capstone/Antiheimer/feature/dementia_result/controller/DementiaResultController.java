@@ -1,11 +1,15 @@
 package capstone.Antiheimer.feature.dementia_result.controller;
 
+import capstone.Antiheimer.feature.dementia_result.dto.AiResDto;
 import capstone.Antiheimer.feature.dementia_result.dto.ResultResDto;
 import capstone.Antiheimer.feature.dementia_result.entity.Result;
 import capstone.Antiheimer.feature.dementia_result.service.DementiaResultService;
-import capstone.Antiheimer.feature.diagnosis.dto.AiReqDto;
+import capstone.Antiheimer.feature.dementia_result.dto.AiReqDto;
+import capstone.Antiheimer.feature.diagnosis.dto.DiagnosisResultReqDto;
 import capstone.Antiheimer.feature.health_data.dto.HealthDataResDto;
 import capstone.Antiheimer.util.encrypt.AesService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,6 +29,7 @@ public class DementiaResultController {
 
     private final DementiaResultService dementiaResultService;
     private final AesService aesService;
+    private final ObjectMapper objectMapper;
 
     /**
      * 진단 결과 리스트 조회
@@ -51,17 +56,22 @@ public class DementiaResultController {
 
     /**
      * AI 진단 결과
-     * @param auth
-     * @param reqDto
+     * @param request
      * @return
      */
     @PostMapping("/save") // 지영아 이거 엔드포인트 바꿔도 될듯!
-    public ResponseEntity<HealthDataResDto> aiData(@RequestHeader String auth,
-                                                   @RequestBody AiReqDto reqDto) {
+    public ResponseEntity<AiResDto> aiData(@RequestBody AiReqDto request) throws UnsupportedEncodingException, JsonProcessingException {
 
-        log.info("[Controller] 권한 확인");
+        log.info("[Controller] 멤버 UUID AES 복호화");
+        String decryptedRequest = URLDecoder.decode(request.getMemberUuid(), StandardCharsets.UTF_8.name());
+        AiReqDto reqDto = objectMapper.readValue(decryptedRequest, AiReqDto.class);
 
-        return null;
+        log.info("[Controller] AI 서버에 데이터 전송 및 결과 저장");
+        Result result = dementiaResultService.sendToAi(reqDto);
+
+        log.info("[Controller] AI 서버에 데이터 전송 및 결과 저장 성공");
+        return new ResponseEntity<>(new AiResDto("200", "AI서버 데이터 전송 및 결과 저장 성공", result), HttpStatus.OK);
+
 //        if (!auth.equals(authKey)) {
 //
 //            log.warn("권한이 없습니다");
