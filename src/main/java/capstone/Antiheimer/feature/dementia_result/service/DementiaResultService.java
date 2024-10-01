@@ -78,7 +78,7 @@ public class DementiaResultService {
         // 외부 API를 사용하기 위해
         RestTemplate restTemplate = new RestTemplate();
 
-        String aiServerUrl = "https://aiurl 필요해용";
+        String aiServerUrl = "https://aiurl 필요해용"; //희지한테 ai server url 받기
 
         // Header 설정
         HttpHeaders headers = new HttpHeaders();
