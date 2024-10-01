@@ -657,3 +657,20 @@ auth(401): 권한 없음(토큰)
 
 exist(43x)
 - NotExistMemberException(431): 존재하지 않는 회원
+
+## aiData
+#### /save: POST
+
+**Header**
+- String Authorization
+
+**Body**
+- AiReqDto: AES 암호화
+  - String memberUuid
+  - LocalDate date
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
