@@ -74,7 +74,7 @@ public class DementiaResultService {
         List<Move> moveList = healthDataRepository.findMoveList(request.getMemberUuid(), request.getDate());
         AiSendDto aiSendDto = new AiSendDto(request.getMemberUuid(), diagnosis.getScore(), activeList, sleepList, walkList, moveList);
 
-        log.info("=====Ai 데이터 전송 시작=====");
+        log.info("[Service] AI 데이터 전송 시작");
         // 외부 API를 사용하기 위해
         RestTemplate restTemplate = new RestTemplate();
 
@@ -105,12 +105,10 @@ public class DementiaResultService {
         int stage = jsonNode.get("stage").asInt();
         String explanation = jsonNode.get("explanation").asText();
 
-        log.info("=====AI 데이터 전송 완료=====");
+        log.info("[Service] AI 데이터 전송 완료");
         ResultDto resultDto = new ResultDto(memberUuid, date, stage, explanation);
 
-        log.info("[Service]AI 결과 저장");
-        Result result = dementiaResultRepository.saveResult(resultDto);
-
-        return result;
+        log.info("[Service] AI 결과 저장");
+        return dementiaResultRepository.saveResult(resultDto);
     }
 }
