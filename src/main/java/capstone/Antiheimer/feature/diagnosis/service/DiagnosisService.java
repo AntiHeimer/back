@@ -79,7 +79,7 @@ public class DiagnosisService {
      * @param result
      */
     @Transactional
-    public Diagnosis getDiagnosisResult(DiagnosisResultReqDto result) {
+    public AiResDto getDiagnosisResult(DiagnosisResultReqDto result) throws JsonProcessingException {
 
         int totalScore = 0;
         Map<String, Object> answers = result.getMap();
@@ -99,50 +99,49 @@ public class DiagnosisService {
         log.info("[Service] 진단 결과 저장");
         Diagnosis diagnosis = diagnosisRepository.saveDiagnosis(result.getMemberUuid(), totalScore);
 
-        return diagnosis;
-//        log.info("[Service] AI 전송 데이터 수집");
-//        List<Active> activeList = healthDataRepository.findActiveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
-//        List<Sleep> sleepList = healthDataRepository.findSleepList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
-//        List<Walk> walkList = healthDataRepository.findWalkList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
-//        List<Move> moveList = healthDataRepository.findMoveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
-//        AiSendDto aiSendDto = new AiSendDto(totalScore, activeList, sleepList, walkList, moveList);
-//
-//        log.info("[Service] AI 데이터 전송 시작");
-//        // 외부 API를 사용하기 위해
-//        RestTemplate restTemplate = new RestTemplate();
-//
-//        String aiServerUrl = "https://antiheimer.com/dementia_predict"; //희지한테 ai server url 받기
-//
-//        // Header 설정
-//        HttpHeaders headers = new HttpHeaders();
-//        // 파라미터로 들어온 dto를 JSON 객체로 변환
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        // Body 설정
-//        String body = objectMapper.writeValueAsString(aiSendDto);
-//
-//        // Request Message 설정
-//        HttpEntity<?> requestMessage = new HttpEntity<>(body, headers);
-//
-//        log.info("AI서버로 요청 전송");
-//        // AI서버로 요청 전송
-//        HttpEntity<String> response = restTemplate.postForEntity(aiServerUrl, requestMessage, String.class);
-//
-//        log.info("JSON에서 값 추출");
-//        // JSON에서 값 추출
-//        JsonNode jsonNode = objectMapper.readTree(response.getBody());
-//        System.out.println("response.getBody() = " + response.getBody());
-//
-//        int stage = jsonNode.get("stage").asInt();
-//        String explanation = jsonNode.get("explanation").asText();
-//
-//        log.info("[Service] AI 데이터 전송 완료");
-//        DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
-//
-//        log.info("[Service] AI 결과 저장");
-//        Result dementiaResult = diagnosisRepository.saveResult(resultDto);
-//
-//        return new AiResDto(diagnosis.getScore(), dementiaResult);
+        log.info("[Service] AI 전송 데이터 수집");
+        List<Active> activeList = healthDataRepository.findActiveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
+        List<Sleep> sleepList = healthDataRepository.findSleepList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
+        List<Walk> walkList = healthDataRepository.findWalkList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
+        List<Move> moveList = healthDataRepository.findMoveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
+        AiSendDto aiSendDto = new AiSendDto(totalScore, activeList, sleepList, walkList, moveList);
+
+        log.info("[Service] AI 데이터 전송 시작");
+        // 외부 API를 사용하기 위해
+        RestTemplate restTemplate = new RestTemplate();
+
+        String aiServerUrl = "https://antiheimer.com/dementia_predict"; //희지한테 ai server url 받기
+
+        // Header 설정
+        HttpHeaders headers = new HttpHeaders();
+        // 파라미터로 들어온 dto를 JSON 객체로 변환
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Body 설정
+        String body = objectMapper.writeValueAsString(aiSendDto);
+
+        // Request Message 설정
+        HttpEntity<?> requestMessage = new HttpEntity<>(body, headers);
+
+        log.info("AI서버로 요청 전송");
+        // AI서버로 요청 전송
+        HttpEntity<String> response = restTemplate.postForEntity(aiServerUrl, requestMessage, String.class);
+
+        log.info("JSON에서 값 추출");
+        // JSON에서 값 추출
+        JsonNode jsonNode = objectMapper.readTree(response.getBody());
+        System.out.println("response.getBody() = " + response.getBody());
+
+        int stage = jsonNode.get("stage").asInt();
+        String explanation = jsonNode.get("explanation").asText();
+
+        log.info("[Service] AI 데이터 전송 완료");
+        DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
+
+        log.info("[Service] AI 결과 저장");
+        Result dementiaResult = diagnosisRepository.saveResult(resultDto);
+
+        return new AiResDto(diagnosis.getScore(), dementiaResult);
     }
 
     /**
