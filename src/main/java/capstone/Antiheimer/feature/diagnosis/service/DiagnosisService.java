@@ -253,8 +253,8 @@ public class DiagnosisService {
         for (i = 1; i < 12; i++) {
             if(i==2 || i==4)
                 continue;
-            validateScores(i, Integer.parseInt((String) answers.get(i))); //번호에 따른 점수 유효성 검사
-            score += Integer.parseInt((String) answers.get(i));
+            validateScores(i, Integer.parseInt((String)answers.get(String.valueOf(i)))); //번호에 따른 점수 유효성 검사
+            score += Integer.parseInt((String) answers.get(String.valueOf(i)));
         }
 
         return score;
