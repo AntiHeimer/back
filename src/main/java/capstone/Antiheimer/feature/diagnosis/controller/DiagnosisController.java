@@ -137,7 +137,7 @@ public class DiagnosisController {
     @PostMapping("/finish")
     public ResponseEntity<TestResDto> diagnosisResult(@RequestBody DiagnosisResultReqDto request) throws UnsupportedEncodingException, JsonProcessingException{
 
-        log.info("[Controller] 진단 UUID AES 복호화");
+        log.info("[Controller] 멤버 UUID AES 복호화");
         String decryptedRequest = URLDecoder.decode(request.getMemberUuid(), StandardCharsets.UTF_8.name());
         DiagnosisResultReqDto reqDto = objectMapper.readValue(decryptedRequest, DiagnosisResultReqDto.class);
 
