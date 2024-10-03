@@ -79,7 +79,7 @@ public class DiagnosisService {
      * @param result
      */
     @Transactional
-    public Diagnosis getDiagnosisResult(DiagnosisResultReqDto result) throws JsonProcessingException {
+    public Diagnosis getDiagnosisResult(DiagnosisResultReqDto result) {
 
         int totalScore = 0;
         Map<String, Object> answers = result.getMap();
