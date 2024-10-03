@@ -1,7 +1,7 @@
 package capstone.Antiheimer.feature.member.entity;
 
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
-import capstone.Antiheimer.feature.dementia_result.entity.Result;
+import capstone.Antiheimer.feature.diagnosis.entity.Result;
 import capstone.Antiheimer.feature.health_data.entity.HealthData;
 import capstone.Antiheimer.feature.location.entity.Location;
 import com.fasterxml.jackson.annotation.JsonIgnore;

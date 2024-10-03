@@ -315,16 +315,4 @@ public class CheckService {
             throw new DuplicateRelationException();
         }
     }
-
-    /**
-     * 진단 UUID 존재 확인
-     */
-    public void checkDiagnosisExist(String diagnosisUuid) {
-
-        if (diagnosisRepository.findDiagnosis(diagnosisUuid) == null) {
-
-            log.warn("해당 진단이 존재하지 않습니다");
-            throw new NotExistDiagnosisException();
-        }
-    }
 }

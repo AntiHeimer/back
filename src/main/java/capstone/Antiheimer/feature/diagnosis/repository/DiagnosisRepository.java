@@ -1,5 +1,7 @@
 package capstone.Antiheimer.feature.diagnosis.repository;
 
+import capstone.Antiheimer.feature.diagnosis.dto.DementiaResultDto;
+import capstone.Antiheimer.feature.diagnosis.entity.Result;
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import capstone.Antiheimer.feature.member.entity.Member;
@@ -32,46 +34,40 @@ public class DiagnosisRepository {
     }
 
     /**
-     * 진단 UUID 생성하기
-     * @param uuid
+     * 진단 결과 저장하기
+     * @param memberUuid
+     * @param totalScore
      * @return
      */
-    public String generateDiagnosis(String uuid) {
+    public Diagnosis saveDiagnosis(String memberUuid, int totalScore){
 
         Diagnosis diagnosis = new Diagnosis();
 
-        String diagnosisUuid = UUID.randomUUID().toString();
+        String daignosisUuid = UUID.randomUUID().toString();
 
-        diagnosis.setUuid(diagnosisUuid);
-        Member findMember = memberRepository.findOneByUuid(uuid);
+        diagnosis.setUuid(daignosisUuid);
+        Member findMember = memberRepository.findOneByUuid(memberUuid);
         diagnosis.setMember(findMember);
         LocalDate date = LocalDate.now();
         diagnosis.setDiagnosisDate(date);
-        diagnosis.setScore(0);
+        diagnosis.setScore(totalScore);
 
         em.persist(diagnosis);
 
-        return diagnosisUuid;
+        return diagnosis;
     }
 
-    /**
-     * 점수 추가
-     * @param diagnosis
-     */
-    public void updateDiagnosis(Diagnosis diagnosis) {
 
-        em.persist(diagnosis);
-    }
-
-    /**
-     * 진단 UUID로 진단 찾기
-     * @param diagnosisUuid
-     * @return
-     */
-    public Diagnosis findDiagnosis(String diagnosisUuid) {
-
-        return em.find(Diagnosis.class, diagnosisUuid);
-    }
+//
+//    /**
+//     * 진단 UUID로 진단 찾기
+//     * @param diagnosisUuid
+//     * @return
+//     */
+//    public Diagnosis findDiagnosis(String diagnosisUuid) {
+//
+//        return em.find(Diagnosis.class, diagnosisUuid);
+//    }
 
     /**
      * 멤버 UUID로 진단 찾기
@@ -96,5 +92,41 @@ public class DiagnosisRepository {
                 .setParameter("memberUuid", memberUuid)
                 .setMaxResults(1)
                 .getSingleResult();
+    }
+
+    /**
+     * 결과 저장
+     * @param resultDto
+     * @return
+     */
+    public Result saveResult(DementiaResultDto resultDto) {
+
+        Result result = new Result();
+
+        String resultUuid = UUID.randomUUID().toString();
+
+        result.setUuid(resultUuid);
+        Member findMember = memberRepository.findOneByUuid(resultDto.getMemberUuid());
+        result.setMember(findMember);
+        result.setDate(resultDto.getDate());
+        result.setStage(result.getStage());
+        result.setExplanation(result.getExplanation());
+
+
+        em.persist(result);
+
+        return result;
+    }
+
+    /**
+     * 진단 결과 리스트 조회
+     * @param memberUuid
+     * @return
+     */
+    public List<Result> findResultList(String memberUuid) {
+
+        return em.createQuery("SELECT r FROM Result r WHERE r.member.uuid = :memberUuid", Result.class)
+                .setParameter("memberUuid", memberUuid)
+                .getResultList();
     }
 }

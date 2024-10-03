@@ -7,6 +7,6 @@ import java.util.Map;
 @Getter
 public class DiagnosisResultReqDto {
 
-    private String diagnosisUuid;
+    private String memberUuid;
     private Map<String, Object> map;
 }
