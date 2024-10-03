@@ -1,4 +1,4 @@
-package capstone.Antiheimer.feature.dementia_result.entity;
+package capstone.Antiheimer.feature.diagnosis.entity;
 
 import capstone.Antiheimer.feature.member.entity.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;

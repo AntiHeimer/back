@@ -2,15 +2,31 @@ package capstone.Antiheimer.feature.diagnosis.service;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.exception.invalid.InvalidScoreException;
+import capstone.Antiheimer.feature.diagnosis.dto.AiResDto;
+import capstone.Antiheimer.feature.diagnosis.dto.AiSendDto;
+import capstone.Antiheimer.feature.diagnosis.dto.DementiaResultDto;
+import capstone.Antiheimer.feature.diagnosis.entity.Result;
 import capstone.Antiheimer.feature.diagnosis.dto.DiagnosisResultReqDto;
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
 import capstone.Antiheimer.feature.diagnosis.repository.DiagnosisRepository;
+import capstone.Antiheimer.feature.health_data.entity.Active;
+import capstone.Antiheimer.feature.health_data.entity.Move;
+import capstone.Antiheimer.feature.health_data.entity.Sleep;
+import capstone.Antiheimer.feature.health_data.entity.Walk;
+import capstone.Antiheimer.feature.health_data.repository.HealthDataRepository;
 import capstone.Antiheimer.util.CheckService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,6 +41,8 @@ public class DiagnosisService {
 
     private final DiagnosisRepository diagnosisRepository;
     private final CheckService checkService;
+    private final ObjectMapper objectMapper;
+    private final HealthDataRepository healthDataRepository;
 
     /**
      * 진단지 문제 반환
@@ -41,33 +59,33 @@ public class DiagnosisService {
     }
 
 
-    /**
-     * 진단 결과 생성
-     * @param memberUuid
-     * @return
-     */
-    @Transactional
-    public String generateDiagnosis(String memberUuid) {
-
-        log.info("[Service] 회원 존재 확인");
-        checkService.checkMemberExists(memberUuid);
-
-        log.info("[Service] 진단 결과 UUID 생성");
-        return diagnosisRepository.generateDiagnosis(memberUuid);
-    }
+//    /**
+//     * 진단 결과 생성
+//     * @param memberUuid
+//     * @return
+//     */
+//    @Transactional
+//    public String generateDiagnosis(String memberUuid) {
+//
+//        log.info("[Service] 회원 존재 확인");
+//        checkService.checkMemberExists(memberUuid);
+//
+//        log.info("[Service] 진단 결과 UUID 생성");
+//        return diagnosisRepository.generateDiagnosis(memberUuid);
+//    }
 
     /**
      * 진단지 결과 저장
      * @param result
      */
     @Transactional
-    public void getDiagnosisResult(DiagnosisResultReqDto result) {
+    public AiResDto getDiagnosisResult(DiagnosisResultReqDto result) throws JsonProcessingException {
 
         int totalScore = 0;
         Map<String, Object> answers = result.getMap();
 
-        log.info("[Service] 진단 존재 확인");
-        checkService.checkDiagnosisExist(result.getDiagnosisUuid());
+        log.info("[Service] 멤버 존재 확인");
+        checkService.checkMemberExists(result.getMemberUuid());
 
         log.info("[Service] 답안 채점 및 점수 계산 시작");
         if (answers.containsKey("2")) {
@@ -78,10 +96,66 @@ public class DiagnosisService {
         }
         totalScore += getScore(answers);
 
-        log.info("[Service] 총 점수 입력");
-        Diagnosis diagnosis = diagnosisRepository.findDiagnosis(result.getDiagnosisUuid());
-        diagnosis.setScore(totalScore);
-        diagnosisRepository.updateDiagnosis(diagnosis);
+        log.info("[Service] 진단 결과 저장");
+        Diagnosis diagnosis = diagnosisRepository.saveDiagnosis(result.getMemberUuid(), totalScore);
+
+        log.info("[Service] AI 전송 데이터 수집");
+        List<Active> activeList = healthDataRepository.findActiveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
+        List<Sleep> sleepList = healthDataRepository.findSleepList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
+        List<Walk> walkList = healthDataRepository.findWalkList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
+        List<Move> moveList = healthDataRepository.findMoveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
+        AiSendDto aiSendDto = new AiSendDto(totalScore, activeList, sleepList, walkList, moveList);
+
+        log.info("[Service] AI 데이터 전송 시작");
+        // 외부 API를 사용하기 위해
+        RestTemplate restTemplate = new RestTemplate();
+
+        String aiServerUrl = "https://antiheimer.com/dementia_predict"; //희지한테 ai server url 받기
+
+        // Header 설정
+        HttpHeaders headers = new HttpHeaders();
+        // 파라미터로 들어온 dto를 JSON 객체로 변환
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Body 설정
+        String body = objectMapper.writeValueAsString(aiSendDto);
+
+        // Request Message 설정
+        HttpEntity<?> requestMessage = new HttpEntity<>(body, headers);
+
+        log.info("AI서버로 요청 전송");
+        // AI서버로 요청 전송
+        HttpEntity<String> response = restTemplate.postForEntity(aiServerUrl, requestMessage, String.class);
+
+        log.info("JSON에서 값 추출");
+        // JSON에서 값 추출
+        JsonNode jsonNode = objectMapper.readTree(response.getBody());
+        System.out.println("response.getBody() = " + response.getBody());
+
+        int stage = jsonNode.get("stage").asInt();
+        String explanation = jsonNode.get("explanation").asText();
+
+        log.info("[Service] AI 데이터 전송 완료");
+        DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
+
+        log.info("[Service] AI 결과 저장");
+        Result dementiaResult = diagnosisRepository.saveResult(resultDto);
+
+        return new AiResDto(diagnosis.getScore(), dementiaResult);
+    }
+
+    /**
+     * 진단 결과 리스트 조회
+     * @param memberUuid
+     * @return
+     */
+    public List<Result> findResultList(String memberUuid) {
+
+        log.info("[Service] 회원 존재 확인");
+        checkService.checkMemberExists(memberUuid);
+
+        log.info("[Service] 진단 결과 리스트 조회");
+        return diagnosisRepository.findResultList(memberUuid);
     }
 
     /**
