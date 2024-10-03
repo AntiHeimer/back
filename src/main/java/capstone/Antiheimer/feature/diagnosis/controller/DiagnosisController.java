@@ -134,15 +134,14 @@ public class DiagnosisController {
 //    }
 
     @PostMapping("/finish")
-    public ResponseEntity<TestResDto> diagnosisResult(@RequestBody DiagnosisResultReqDto request) throws UnsupportedEncodingException, JsonProcessingException{
+    public ResponseEntity<DiagnosisResultResDto> diagnosisResult(@RequestBody DiagnosisResultReqDto request) throws UnsupportedEncodingException, JsonProcessingException{
 
         log.info(("[Controller] 결과 저장 및 치매 진단 시작"));
-//        AiResDto aiResDto = diagnosisService.getDiagnosisResult(request);
-        Diagnosis diagnosis = diagnosisService.getDiagnosisResult(request);
+        AiResDto aiResDto = diagnosisService.getDiagnosisResult(request);
+
 
         log.info(("[Controller] 결과 저장 및 치매 진단 성공"));
-//        return new ResponseEntity<>(new DiagnosisResultResDto("200", "진단 결과 저장 및 치매진단 성공", aiResDto), HttpStatus.OK);
-        return new ResponseEntity<>(new TestResDto("200", "점수계산성공ㅇ", diagnosis), HttpStatus.OK);
+        return new ResponseEntity<>(new DiagnosisResultResDto("200", "진단 결과 저장 및 치매진단 성공", aiResDto), HttpStatus.OK);
     }
 
     /**
