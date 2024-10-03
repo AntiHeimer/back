@@ -6,7 +6,6 @@ import capstone.Antiheimer.feature.diagnosis.dto.*;
 import capstone.Antiheimer.feature.diagnosis.entity.Diagnosis;
 import capstone.Antiheimer.feature.diagnosis.service.DiagnosisService;
 import capstone.Antiheimer.feature.diagnosis.entity.DiagnosisSheet;
-import capstone.Antiheimer.util.dto.NormalResDto;
 import capstone.Antiheimer.util.encrypt.AesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
