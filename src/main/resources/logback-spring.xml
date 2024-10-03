@@ -217,7 +217,7 @@
         <appender-ref ref="ERROR"/>
     </logger>
 
-    <logger name="capstone.Antiheimer.feature.dementia_result" level="INFO" additivity="false">
+    <logger name="capstone.Antiheimer.feature.diagnosis" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="DEMENTIA_RESULT_FILE"/>
         <appender-ref ref="ERROR"/>
