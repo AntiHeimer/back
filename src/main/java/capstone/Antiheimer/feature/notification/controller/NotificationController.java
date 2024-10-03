@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("notification")
+@RequestMapping("/notification")
 public class NotificationController {
 
     private final NotificationService notificationService;
