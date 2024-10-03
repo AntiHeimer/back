@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("dementia-center")
+@RequestMapping("/dementia-center")
 public class DementiaCenterController {
 
     private final DementiaCenterService dementiaCenterService;
