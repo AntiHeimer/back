@@ -14,16 +14,23 @@ import java.util.List;
 public class AiSendDto {
 
     private int diagnosisScore;
-    private List<Active> activeList;
-    private List<Sleep> sleepList;
-    private List<Walk> walkList;
-    private List<Move> moveList;
+    private List<Integer> active_energy_burned;
+    private List<Double> move;
+    private List<Integer> walk;
+    private List<Integer> deep;
+    private List<Integer> rem;
+    private List<Integer> awake;
+    private List<Integer> sleep_time;
 
-    public AiSendDto(int diagnosisScore, List<Active> activeList, List<Sleep> sleepList, List<Walk> walkList, List<Move> moveList) {
+    public AiSendDto(int diagnosisScore, List<Double> move, List<Integer> walk, List<Integer> active_energy_burned,
+                     List<Integer> deep, List<Integer> rem, List<Integer> awake, List<Integer> sleep_time) {
         this.diagnosisScore = diagnosisScore;
-        this.activeList = activeList;
-        this.sleepList = sleepList;
-        this.walkList = walkList;
-        this.moveList = moveList;
+        this.active_energy_burned = active_energy_burned;
+        this.move = move;
+        this.walk = walk;
+        this.deep = deep;
+        this.rem = rem;
+        this.awake = awake;
+        this.sleep_time = sleep_time;
     }
 }

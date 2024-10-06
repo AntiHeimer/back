@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -104,7 +105,8 @@ public class DiagnosisService {
         List<Sleep> sleepList = healthDataRepository.findSleepList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
         List<Walk> walkList = healthDataRepository.findWalkList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
         List<Move> moveList = healthDataRepository.findMoveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
-        AiSendDto aiSendDto = new AiSendDto(totalScore, activeList, sleepList, walkList, moveList);
+
+        AiSendDto aiSendDto = setAiSendDto(totalScore, moveList, walkList, activeList, sleepList);
 
         log.info("[Service] AI 데이터 전송 시작");
         // 외부 API를 사용하기 위해
@@ -362,6 +364,38 @@ public class DiagnosisService {
                     throw new InvalidScoreException();
                 }
         }
+    }
+
+    /**
+     * AI 전송 데이터 수집
+     * @param score
+     * @param moveList
+     * @param walkList
+     * @param activeList
+     * @param sleepList
+     * @return
+     */
+    private AiSendDto setAiSendDto(int score, List<Move> moveList, List<Walk> walkList, List<Active> activeList, List<Sleep> sleepList) {
+
+        List<Double> move = new ArrayList<Double>();
+        List<Integer> walk = new ArrayList<Integer>();
+        List<Integer> active_energy_burned = new ArrayList<Integer>();
+        List<Integer> deep = new ArrayList<Integer>();
+        List<Integer> rem = new ArrayList<Integer>();
+        List<Integer> awake = new ArrayList<Integer>();
+        List<Integer> sleep_time = new ArrayList<Integer>();
+
+        for(int i=0;i<7;i++){
+            move.add(moveList.get(i).getValue());
+            walk.add(walkList.get(i).getValue());
+            active_energy_burned.add(activeList.get(i).getActiveEnergyBurned());
+            deep.add(sleepList.get(i).getDeep());
+            rem.add(sleepList.get(i).getRem());
+            awake.add(sleepList.get(i).getSleepTime() - sleepList.get(i).getDeep() - sleepList.get(i).getCore() - sleepList.get(i).getRem());
+            sleep_time.add(sleepList.get(i).getSleepTime());
+        }
+
+        return new AiSendDto(score, move, walk, active_energy_burned, deep, rem, awake, sleep_time);
     }
 
 //    /**
