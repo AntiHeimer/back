@@ -411,7 +411,7 @@ public class DiagnosisService {
         List<Integer> awake = new ArrayList<>();
 
         for(i=0;i<sleepSize;i++){
-            awake.add(sleep_time.get(i) - deep.get(i) - rem.get(i) - awake.get(i));
+            awake.add(sleep_time.get(i) - deep.get(i) - rem.get(i) - core.get(i));
         }
 
         log.info("=====정보 수집 성공=====");
