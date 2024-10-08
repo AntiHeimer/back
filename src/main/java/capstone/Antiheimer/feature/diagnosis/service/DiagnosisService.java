@@ -395,6 +395,8 @@ public class DiagnosisService {
             sleep_time.add(sleepList.get(i).getSleepTime());
         }
 
+        log.info("=====정보 수집 성공=====");
+
         return new AiSendDto(score, move, walk, active_energy_burned, deep, rem, awake, sleep_time);
     }
 
