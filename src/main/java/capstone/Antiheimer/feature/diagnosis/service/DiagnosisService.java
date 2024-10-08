@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.data.jdbc.JdbcDatabaseDialect;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -32,6 +33,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -377,22 +379,39 @@ public class DiagnosisService {
      */
     private AiSendDto setAiSendDto(int score, List<Move> moveList, List<Walk> walkList, List<Active> activeList, List<Sleep> sleepList) {
 
-        List<Double> move = new ArrayList<Double>();
-        List<Integer> walk = new ArrayList<Integer>();
-        List<Integer> active_energy_burned = new ArrayList<Integer>();
-        List<Integer> deep = new ArrayList<Integer>();
-        List<Integer> rem = new ArrayList<Integer>();
-        List<Integer> awake = new ArrayList<Integer>();
-        List<Integer> sleep_time = new ArrayList<Integer>();
+//        int i;
+//
+//        List<Double> move = new ArrayList<Double>();
+//        List<Integer> walk = new ArrayList<Integer>();
+//        List<Integer> active_energy_burned = new ArrayList<Integer>();
+//        List<Integer> deep = new ArrayList<Integer>();
+//        List<Integer> rem = new ArrayList<Integer>();
+//        List<Integer> awake = new ArrayList<Integer>();
+//        List<Integer> sleep_time = new ArrayList<Integer>();
+//
+//        for(i=0;i<7;i++){
+//            move.add(moveList.get(i).getValue());
+//            walk.add(walkList.get(i).getValue());
+//            active_energy_burned.add(activeList.get(i).getActiveEnergyBurned());
+//            deep.add(sleepList.get(i).getDeep());
+//            rem.add(sleepList.get(i).getRem());
+//            awake.add(sleepList.get(i).getSleepTime() - sleepList.get(i).getDeep() - sleepList.get(i).getCore() - sleepList.get(i).getRem());
+//            sleep_time.add(sleepList.get(i).getSleepTime());
+//        }
+        List<Double> move = moveList.stream().map(Move::getValue).collect(Collectors.toList());
+        List<Integer> walk = walkList.stream().map(Walk::getValue).collect(Collectors.toList());
+        List<Integer> active_energy_burned = activeList.stream().map(Active::getActiveEnergyBurned).collect(Collectors.toList());
+        List<Integer> deep = sleepList.stream().map(Sleep::getDeep).collect(Collectors.toList());
+        List<Integer> rem = sleepList.stream().map(Sleep::getRem).collect(Collectors.toList());
+        List<Integer> core = sleepList.stream().map(Sleep::getCore).collect(Collectors.toList());
+        List<Integer> sleep_time = sleepList.stream().map(Sleep::getSleepTime).collect(Collectors.toList());
 
-        for(int i=0;i<7;i++){
-            move.add(moveList.get(i).getValue());
-            walk.add(walkList.get(i).getValue());
-            active_energy_burned.add(activeList.get(i).getActiveEnergyBurned());
-            deep.add(sleepList.get(i).getDeep());
-            rem.add(sleepList.get(i).getRem());
-            awake.add(sleepList.get(i).getSleepTime() - sleepList.get(i).getDeep() - sleepList.get(i).getCore() - sleepList.get(i).getRem());
-            sleep_time.add(sleepList.get(i).getSleepTime());
+        int sleepSize = sleepList.size();
+        int i;
+        List<Integer> awake = new ArrayList<>();
+
+        for(i=0;i<sleepSize;i++){
+            awake.add(sleep_time.get(i) - deep.get(i) - rem.get(i) - awake.get(i));
         }
 
         log.info("=====정보 수집 성공=====");
