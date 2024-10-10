@@ -7,11 +7,12 @@ public class DiagnosisResultResDto {
 
     private String statusCode;
     private String message;
-    private AiResDto aiResDto;
+//    private AiResDto aiResDto;
+    private AiSendDto aiSendDto;
 
-    public DiagnosisResultResDto(String statusCode, String message, AiResDto aiResDto) {
+    public DiagnosisResultResDto(String statusCode, String message, AiSendDto aiSendDto) {
         this.statusCode=statusCode;
         this.message=message;
-        this.aiResDto=aiResDto;
+        this.aiSendDto=aiSendDto;
     }
 }
