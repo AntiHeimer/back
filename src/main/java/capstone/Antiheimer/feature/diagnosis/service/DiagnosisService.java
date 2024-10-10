@@ -385,7 +385,7 @@ public class DiagnosisService {
         List<Integer> active_energy_burned = activeList.stream().map(Active::getActiveEnergyBurned).collect(Collectors.toList());
         List<Integer> deep = sleepList.stream().map(Sleep::getDeep).collect(Collectors.toList());
         List<Integer> rem = sleepList.stream().map(Sleep::getRem).collect(Collectors.toList());
-        List<Integer> core = sleepList.stream().map(Sleep::getCore).collect(Collectors.toList());
+        List<Integer> core = sleepList.stream().map(Sleep::getCore).toList();
         List<Integer> sleep_time = sleepList.stream().map(Sleep::getSleepTime).collect(Collectors.toList());
 
         int sleepSize = sleepList.size();
