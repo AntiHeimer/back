@@ -102,6 +102,9 @@ public class DiagnosisService {
         log.info("[Service] 진단 결과 저장");
         Diagnosis diagnosis = diagnosisRepository.saveDiagnosis(result.getMemberUuid(), totalScore);
 
+        System.out.println("result.getMemberUuid() = " + result.getMemberUuid());
+        System.out.println("result = " + result.getMap());
+
         log.info("[Service] AI 전송 데이터 수집");
         List<Active> activeList = healthDataRepository.findActiveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
         List<Sleep> sleepList = healthDataRepository.findSleepList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
@@ -128,8 +131,11 @@ public class DiagnosisService {
         HttpEntity<?> requestMessage = new HttpEntity<>(body, headers);
 
         log.info("AI서버로 요청 전송");
+        System.out.println("requestMessage = " + requestMessage);
         // AI서버로 요청 전송
         HttpEntity<String> response = restTemplate.postForEntity(aiServerUrl, requestMessage, String.class);
+
+        System.out.println("response = " + response);
 
         log.info("JSON에서 값 추출");
         // JSON에서 값 추출
@@ -138,6 +144,9 @@ public class DiagnosisService {
 
         int stage = jsonNode.get("stage").asInt();
         String explanation = jsonNode.get("explanation").asText();
+        String result_t = jsonNode.get("result").asText();
+
+        System.out.println("result_t = " + result_t);
 
         log.info("[Service] AI 데이터 전송 완료");
         DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
@@ -177,10 +186,10 @@ public class DiagnosisService {
         if (month >= 3 && month <= 5) {
             season = 1;  //봄
         }
-        if (month >=6 && month <= 8) {
+        if (month >= 6 && month <= 8) {
             season = 2; //여름
         }
-        if (month >=9 && month <= 11) {
+        if (month >= 9 && month <= 11) {
             season = 3; //가을
         }
         if (month == 12 || month == 1 || month == 2){
@@ -254,7 +263,7 @@ public class DiagnosisService {
         int i;
 
         for (i = 1; i < 12; i++) {
-            if(i==2 || i==4)
+            if (i == 2 || i == 4)
                 continue;
             validateScores(i, Integer.parseInt((String)answers.get(String.valueOf(i)))); //번호에 따른 점수 유효성 검사
             score += Integer.parseInt((String) answers.get(String.valueOf(i)));
@@ -316,7 +325,7 @@ public class DiagnosisService {
      */
     private void checkNum(int num) {
 
-        if(num<0 || num>11){
+        if (num < 0 || num > 11){
             throw new IncorrectNumException();
         }
     }

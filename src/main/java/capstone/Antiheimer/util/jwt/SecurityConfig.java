@@ -30,7 +30,7 @@ public class SecurityConfig {
                 .sessionManagement((sessionManagement) ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorizeRequests) -> authorizeRequests
-                        .requestMatchers("/", "/favicon.ico", "/member/signup", "/member/login", "/location/save").permitAll()
+                        .requestMatchers("/", "/favicon.ico", "/member/signup", "/member/login", "/location/save", "/dementia_predict").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
 
@@ -41,7 +41,7 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> {
             web.ignoring()
-                    .requestMatchers("/", "/favicon.ico", "/signup", "/login", "/swagger-ui/**", "/save/location", "/wss", "/ws");
+                    .requestMatchers("/", "/favicon.ico", "/signup", "/login", "/swagger-ui/**", "/save/location", "/dementia_predict");
         };
     }
 

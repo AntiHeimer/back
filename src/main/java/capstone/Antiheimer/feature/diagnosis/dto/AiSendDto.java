@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 public class AiSendDto {
 
-    private int diagnosisScore;
+    private int score;
     private List<Integer> active_energy_burned;
     private List<Double> move;
     private List<Integer> walk;
@@ -24,7 +24,7 @@ public class AiSendDto {
 
     public AiSendDto(int diagnosisScore, List<Double> move, List<Integer> walk, List<Integer> active_energy_burned,
                      List<Integer> deep, List<Integer> rem, List<Integer> awake, List<Integer> sleep_time) {
-        this.diagnosisScore = diagnosisScore;
+        this.score = diagnosisScore;
         this.active_energy_burned = active_energy_burned;
         this.move = move;
         this.walk = walk;
