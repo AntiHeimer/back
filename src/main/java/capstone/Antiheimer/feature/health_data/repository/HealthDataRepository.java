@@ -303,7 +303,7 @@ public class HealthDataRepository {
 
 //        LocalDate startDate = date.minusDays(7);
 
-        return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid AND h.date >= :startDate AND h.date <= :date ORDER BY h.date DESC", HealthData.class)
+        return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid AND h.date <= :date ORDER BY h.date DESC", HealthData.class)
                 .setParameter("memberUuid", memberUuid).setParameter("date", date)
                 .setMaxResults(7)
                 .getResultList();
@@ -319,7 +319,7 @@ public class HealthDataRepository {
 
 //        LocalDate startDate = date.minusDays(7);
 
-        return em.createQuery("SELECT a FROM Active a WHERE a.healthData.member.uuid = :memberUuid AND a.date >= :startDate AND a.date <= :date ORDER BY a.date DESC", Active.class)
+        return em.createQuery("SELECT a FROM Active a WHERE a.healthData.member.uuid = :memberUuid AND a.date <= :date ORDER BY a.date DESC", Active.class)
                 .setParameter("memberUuid", memberUuid).setParameter("date", date)
                 .setMaxResults(7)
                 .getResultList();
@@ -335,7 +335,7 @@ public class HealthDataRepository {
 
 //        LocalDate startDate = date.minusDays(7);
 
-        return em.createQuery("SELECT m FROM Move m WHERE m.healthData.member.uuid = :memberUuid AND m.date >= :startDate AND m.date <= :date ORDER BY m.date DESC", Move.class)
+        return em.createQuery("SELECT m FROM Move m WHERE m.healthData.member.uuid = :memberUuid AND m.date <= :date ORDER BY m.date DESC", Move.class)
                 .setParameter("memberUuid", memberUuid).setParameter("date", date)
                 .setMaxResults(7)
                 .getResultList();
