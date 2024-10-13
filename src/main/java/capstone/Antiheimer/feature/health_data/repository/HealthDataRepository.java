@@ -301,10 +301,11 @@ public class HealthDataRepository {
      */
     public List<HealthData> findHealthDataList(String memberUuid, LocalDate date) {
 
-        LocalDate startDate = date.minusDays(7);
+//        LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT h FROM HealthData h WHERE h.member.uuid = :memberUuid AND h.date >= :startDate AND h.date <= :date ORDER BY h.date DESC", HealthData.class)
-                .setParameter("memberUuid", memberUuid).setParameter("date", date).setParameter("startDate", startDate)
+                .setParameter("memberUuid", memberUuid).setParameter("date", date)
+                .setMaxResults(7)
                 .getResultList();
     }
 
@@ -316,10 +317,11 @@ public class HealthDataRepository {
      */
     public List<Active> findActiveList(String memberUuid, LocalDate date) {
 
-        LocalDate startDate = date.minusDays(7);
+//        LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT a FROM Active a WHERE a.healthData.member.uuid = :memberUuid AND a.date >= :startDate AND a.date <= :date ORDER BY a.date DESC", Active.class)
-                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate).setParameter("date", date)
+                .setParameter("memberUuid", memberUuid).setParameter("date", date)
+                .setMaxResults(7)
                 .getResultList();
     }
 
@@ -331,10 +333,11 @@ public class HealthDataRepository {
      */
     public List<Move> findMoveList(String memberUuid, LocalDate date) {
 
-        LocalDate startDate = date.minusDays(7);
+//        LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT m FROM Move m WHERE m.healthData.member.uuid = :memberUuid AND m.date >= :startDate AND m.date <= :date ORDER BY m.date DESC", Move.class)
-                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate).setParameter("date", date)
+                .setParameter("memberUuid", memberUuid).setParameter("date", date)
+                .setMaxResults(7)
                 .getResultList();
     }
 
@@ -346,10 +349,11 @@ public class HealthDataRepository {
      */
     public List<Walk> findWalkList(String memberUuid, LocalDate date) {
 
-        LocalDate startDate = date.minusDays(7);
+//        LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT w FROM Walk w WHERE w.healthData.member.uuid = :memberUuid AND w.date >= :startDate AND w.date <= :date ORDER BY w.date DESC", Walk.class)
-                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate).setParameter("date", date)
+                .setParameter("memberUuid", memberUuid).setParameter("date", date)
+                .setMaxResults(7)
                 .getResultList();
     }
 
@@ -361,10 +365,11 @@ public class HealthDataRepository {
      */
     public List<Sleep> findSleepList(String memberUuid, LocalDate date) {
 
-        LocalDate startDate = date.minusDays(7);
+//        LocalDate startDate = date.minusDays(7);
 
         return em.createQuery("SELECT s FROM Sleep s WHERE s.healthData.member.uuid = :memberUuid AND s.date >= :startDate AND s.date <= :date ORDER BY s.date DESC", Sleep.class)
-                .setParameter("memberUuid", memberUuid).setParameter("startDate", startDate).setParameter("date", date)
+                .setParameter("memberUuid", memberUuid).setParameter("date", date)
+                .setMaxResults(7)
                 .getResultList();
     }
 
