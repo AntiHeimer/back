@@ -2,6 +2,7 @@ package capstone.Antiheimer.feature.diagnosis.service;
 
 import capstone.Antiheimer.exception.incorrect.IncorrectNumException;
 import capstone.Antiheimer.exception.invalid.InvalidScoreException;
+import capstone.Antiheimer.exception.nullE.NullResultException;
 import capstone.Antiheimer.feature.diagnosis.dto.AiResDto;
 import capstone.Antiheimer.feature.diagnosis.dto.AiSendDto;
 import capstone.Antiheimer.feature.diagnosis.dto.DementiaResultDto;
@@ -143,12 +144,10 @@ public class DiagnosisService {
         // JSON에서 값 추출
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
 
-        // 지영아 400 떴을 때 에러 처리 부탁해
-
-//        if (jsonNode.get("statusCode").asInt() == 400) {
-//             throw new Exception();
-//
-//        }
+        // AI에서 "400"결과가 나왔을 때 오류처리
+        if (jsonNode.get("statusCode").asInt() == 400) {
+             throw new NullResultException();
+        }
 
         String stage = jsonNode.get("message").get("stage").asText();
         String explanation = jsonNode.get("message").get("exp").asText();

@@ -5,6 +5,7 @@ import capstone.Antiheimer.exception.incorrect.*;
 import capstone.Antiheimer.exception.invalid.*;
 import capstone.Antiheimer.exception.notexist.*;
 import capstone.Antiheimer.exception.nullE.*;
+import capstone.Antiheimer.feature.diagnosis.dto.DiagnosisResultResDto;
 import capstone.Antiheimer.util.dto.NormalResDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.HttpStatus;
@@ -53,6 +54,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NullBirthException.class)
     public ResponseEntity<NormalResDto> handleNullBirthException(NullBirthException e) {
         NormalResDto resDto = new NormalResDto("415", e.getMessage());
+        return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NullResultException.class)
+    public ResponseEntity<DiagnosisResultResDto> handleNullResultException(NullResultException e) {
+        DiagnosisResultResDto resDto = new DiagnosisResultResDto("416", e.getMessage(), null);
         return new ResponseEntity<>(resDto, HttpStatus.BAD_REQUEST);
     }
 
