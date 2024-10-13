@@ -112,7 +112,6 @@ public class DiagnosisRepository {
         result.setStage(result.getStage());
         result.setExplanation(result.getExplanation());
 
-
         em.persist(result);
 
         return result;

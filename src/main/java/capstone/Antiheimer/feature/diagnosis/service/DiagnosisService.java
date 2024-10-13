@@ -82,9 +82,9 @@ public class DiagnosisService {
      * 진단지 결과 저장
      * @param result
      */
-    @SneakyThrows
+//    @SneakyThrows
     @Transactional
-    public AiResDto getDiagnosisResult(DiagnosisResultReqDto result) {
+    public AiResDto getDiagnosisResult(DiagnosisResultReqDto result) throws JsonProcessingException {
 
         int totalScore = 0;
         Map<String, Object> answers = result.getMap();
