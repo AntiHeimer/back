@@ -11,10 +11,10 @@ public class DementiaResultDto {
 
     private String memberUuid;
     private LocalDate date;
-    private int stage;
+    private String stage;
     private String explanation;
 
-    public DementiaResultDto(String memberUuid, LocalDate date, int stage, String explanation) {
+    public DementiaResultDto(String memberUuid, LocalDate date, String stage, String explanation) {
         this.memberUuid = memberUuid;
         this.date = date;
         this.stage = stage;

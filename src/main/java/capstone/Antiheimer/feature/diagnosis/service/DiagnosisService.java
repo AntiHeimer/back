@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.data.jdbc.JdbcDatabaseDialect;
 import org.springframework.http.HttpEntity;
@@ -81,8 +82,9 @@ public class DiagnosisService {
      * 진단지 결과 저장
      * @param result
      */
+    @SneakyThrows
     @Transactional
-    public AiResDto getDiagnosisResult(DiagnosisResultReqDto result) throws JsonProcessingException {
+    public AiResDto getDiagnosisResult(DiagnosisResultReqDto result) {
 
         int totalScore = 0;
         Map<String, Object> answers = result.getMap();
@@ -142,11 +144,15 @@ public class DiagnosisService {
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
         System.out.println("response.getBody() = " + response.getBody());
 
-        int stage = jsonNode.get("stage").asInt();
-        String explanation = jsonNode.get("explanation").asText();
-        String result_t = jsonNode.get("result").asText();
+        // 지영아 400 떴을 때 에러 처리 부탁해
 
-        System.out.println("result_t = " + result_t);
+//        if (jsonNode.get("statusCode").asInt() == 400) {
+//             throw new Exception();
+//
+//        }
+
+        String stage = jsonNode.get("message").get("stage").asText();
+        String explanation = jsonNode.get("message").get("exp").asText();
 
         log.info("[Service] AI 데이터 전송 완료");
         DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
