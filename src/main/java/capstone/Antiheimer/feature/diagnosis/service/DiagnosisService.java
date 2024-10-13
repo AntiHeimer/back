@@ -134,7 +134,7 @@ public class DiagnosisService {
 
         log.info("AI 서버로 요청 전송");
         System.out.println("request = " + requestMessage);
-        // AI서버로 요청 전송
+        // AI 서버로 요청 전송
         HttpEntity<String> response = restTemplate.postForEntity(aiServerUrl, requestMessage, String.class);
 
         System.out.println("response = " + response);
@@ -158,6 +158,8 @@ public class DiagnosisService {
         Result dementiaResult = diagnosisRepository.saveResult(resultDto);
 
         log.info("[Service] AI 진단 데이터 응답 완료");
+        System.out.println("diagnosis = " + diagnosis.getScore());
+        System.out.println("dementiaResult = " + dementiaResult);
         return new AiResDto(diagnosis.getScore(), dementiaResult);
     }
 
