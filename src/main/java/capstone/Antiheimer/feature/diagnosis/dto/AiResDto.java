@@ -12,7 +12,7 @@ public class AiResDto {
     private Result result;
 
     public AiResDto(int diagnosisScore, Result result) {
-        this.diagnosisScore=diagnosisScore;
+        this.diagnosisScore = diagnosisScore;
         this.result = result;
     }
 }

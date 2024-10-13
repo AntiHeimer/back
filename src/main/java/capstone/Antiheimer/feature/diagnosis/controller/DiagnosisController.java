@@ -141,7 +141,7 @@ public class DiagnosisController {
         try {
             aiResDto = diagnosisService.getDiagnosisResult(request);
         } catch (Exception e) {
-            return new ResponseEntity<>(new DiagnosisResultResDto("400", "진단 결과 저장 및 치매진단 실패", null), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new DiagnosisResultResDto("400", "진단 결과 저장 및 치매진단 실패", aiResDto), HttpStatus.BAD_REQUEST);
         }
 
         log.info(("[Controller] 결과 저장 및 치매 진단 성공"));

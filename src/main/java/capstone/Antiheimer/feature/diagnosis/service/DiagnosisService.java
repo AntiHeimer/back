@@ -153,6 +153,9 @@ public class DiagnosisService {
         String stage = jsonNode.get("message").get("stage").asText();
         String explanation = jsonNode.get("message").get("exp").asText();
 
+        System.out.println("explanation = " + explanation);
+        System.out.println("stage = " + stage);
+
         log.info("[Service] AI 진단 결과 저장");
         DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
         Result dementiaResult = diagnosisRepository.saveResult(resultDto);
