@@ -28,7 +28,7 @@ public class Result {
     private LocalDate date;
 
     @NotNull
-    private int stage;
+    private String stage;
 
     @NotNull
     private String explanation;

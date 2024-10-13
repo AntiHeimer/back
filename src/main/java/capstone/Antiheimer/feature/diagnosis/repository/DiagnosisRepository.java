@@ -109,8 +109,8 @@ public class DiagnosisRepository {
         Member findMember = memberRepository.findOneByUuid(resultDto.getMemberUuid());
         result.setMember(findMember);
         result.setDate(resultDto.getDate());
-        result.setStage(result.getStage());
-        result.setExplanation(result.getExplanation());
+        result.setStage(resultDto.getStage());
+        result.setExplanation(resultDto.getExplanation());
 
         em.persist(result);
 
