@@ -132,8 +132,8 @@ public class DiagnosisService {
         // Request Message 설정
         HttpEntity<?> requestMessage = new HttpEntity<>(body, headers);
 
-        log.info("AI서버로 요청 전송");
-        System.out.println("requestMessage = " + requestMessage);
+        log.info("AI 서버로 요청 전송");
+        System.out.println("request = " + requestMessage);
         // AI서버로 요청 전송
         HttpEntity<String> response = restTemplate.postForEntity(aiServerUrl, requestMessage, String.class);
 
@@ -142,7 +142,6 @@ public class DiagnosisService {
         log.info("JSON에서 값 추출");
         // JSON에서 값 추출
         JsonNode jsonNode = objectMapper.readTree(response.getBody());
-        System.out.println("response.getBody() = " + response.getBody());
 
         // 지영아 400 떴을 때 에러 처리 부탁해
 
@@ -154,12 +153,11 @@ public class DiagnosisService {
         String stage = jsonNode.get("message").get("stage").asText();
         String explanation = jsonNode.get("message").get("exp").asText();
 
-        log.info("[Service] AI 데이터 전송 완료");
+        log.info("[Service] AI 진단 결과 저장");
         DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
-
-        log.info("[Service] AI 결과 저장");
         Result dementiaResult = diagnosisRepository.saveResult(resultDto);
 
+        log.info("[Service] AI 진단 데이터 응답 완료");
         return new AiResDto(diagnosis.getScore(), dementiaResult);
     }
 
