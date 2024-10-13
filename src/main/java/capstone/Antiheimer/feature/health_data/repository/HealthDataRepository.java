@@ -351,7 +351,7 @@ public class HealthDataRepository {
 
 //        LocalDate startDate = date.minusDays(7);
 
-        return em.createQuery("SELECT w FROM Walk w WHERE w.healthData.member.uuid = :memberUuid AND w.date >= :startDate AND w.date <= :date ORDER BY w.date DESC", Walk.class)
+        return em.createQuery("SELECT w FROM Walk w WHERE w.healthData.member.uuid = :memberUuid AND w.date <= :date ORDER BY w.date DESC", Walk.class)
                 .setParameter("memberUuid", memberUuid).setParameter("date", date)
                 .setMaxResults(7)
                 .getResultList();
@@ -367,7 +367,7 @@ public class HealthDataRepository {
 
 //        LocalDate startDate = date.minusDays(7);
 
-        return em.createQuery("SELECT s FROM Sleep s WHERE s.healthData.member.uuid = :memberUuid AND s.date >= :startDate AND s.date <= :date ORDER BY s.date DESC", Sleep.class)
+        return em.createQuery("SELECT s FROM Sleep s WHERE s.healthData.member.uuid = :memberUuid AND s.date <= :date ORDER BY s.date DESC", Sleep.class)
                 .setParameter("memberUuid", memberUuid).setParameter("date", date)
                 .setMaxResults(7)
                 .getResultList();
