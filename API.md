@@ -665,12 +665,15 @@ exist(43x)
 - String Authorization
 
 **Body**
-- AiReqDto: AES 암호화
+- AiReqDto
   - String memberUuid
   - LocalDate date
 
 ### possible error
 auth(401): 권한 없음(토큰)
+
+null(41x)
+- NullResultException(416): aiResDto가 비어있음
 
 exist(43x)
 - NotExistMemberException(431): 존재하지 않는 회원
