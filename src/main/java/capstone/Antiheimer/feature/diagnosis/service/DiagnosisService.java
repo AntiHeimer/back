@@ -153,16 +153,16 @@ public class DiagnosisService {
         String stage = jsonNode.get("message").get("stage").asText();
         String explanation = jsonNode.get("message").get("exp").asText();
 
-        System.out.println("explanation = " + explanation);
-        System.out.println("stage = " + stage);
+//        System.out.println("explanation = " + explanation);
+//        System.out.println("stage = " + stage);
 
         log.info("[Service] AI 진단 결과 저장");
         DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
         Result dementiaResult = diagnosisRepository.saveResult(resultDto);
 
         log.info("[Service] AI 진단 데이터 응답 완료");
-        System.out.println("diagnosis = " + diagnosis.getScore());
-        System.out.println("dementiaResult = " + dementiaResult);
+//        System.out.println("diagnosis = " + diagnosis.getScore());
+//        System.out.println("dementiaResult = " + dementiaResult);
         return new AiResDto(diagnosis.getScore(), dementiaResult);
     }
 
