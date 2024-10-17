@@ -16,6 +16,8 @@ import capstone.Antiheimer.feature.health_data.entity.Move;
 import capstone.Antiheimer.feature.health_data.entity.Sleep;
 import capstone.Antiheimer.feature.health_data.entity.Walk;
 import capstone.Antiheimer.feature.health_data.repository.HealthDataRepository;
+import capstone.Antiheimer.feature.member.entity.Member;
+import capstone.Antiheimer.feature.member.repository.MemberRepository;
 import capstone.Antiheimer.util.CheckService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -48,6 +50,7 @@ public class DiagnosisService {
     private final CheckService checkService;
     private final ObjectMapper objectMapper;
     private final HealthDataRepository healthDataRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * 진단지 문제 반환
@@ -156,13 +159,14 @@ public class DiagnosisService {
 //        System.out.println("stage = " + stage);
 
         log.info("[Service] AI 진단 결과 저장");
+        Member member = memberRepository.findOneByUuid(result.getMemberUuid());
         DementiaResultDto resultDto = new DementiaResultDto(result.getMemberUuid(), diagnosis.getDiagnosisDate(), stage, explanation);
         Result dementiaResult = diagnosisRepository.saveResult(resultDto);
 
         log.info("[Service] AI 진단 데이터 응답 완료");
 //        System.out.println("diagnosis = " + diagnosis.getScore());
 //        System.out.println("dementiaResult = " + dementiaResult);
-        return new AiResDto(diagnosis.getScore(), dementiaResult);
+        return new AiResDto(member.getName(), diagnosis.getScore(), dementiaResult);
     }
 
     /**

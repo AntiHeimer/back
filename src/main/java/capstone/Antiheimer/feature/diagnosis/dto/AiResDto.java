@@ -8,10 +8,12 @@ import lombok.Setter;
 @Setter
 public class AiResDto {
 
+    private String memberName;
     private int diagnosisScore;
     private Result result;
 
-    public AiResDto(int diagnosisScore, Result result) {
+    public AiResDto(String memberName, int diagnosisScore, Result result) {
+        this.memberName=memberName;
         this.diagnosisScore = diagnosisScore;
         this.result = result;
     }
