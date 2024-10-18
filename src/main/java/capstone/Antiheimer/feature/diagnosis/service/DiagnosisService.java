@@ -394,18 +394,22 @@ public class DiagnosisService {
                 if (!(0 <= score && score <= 3)) {
                     throw new InvalidScoreException();
                 }
+                break;
             case 2: case 3: case 4:
                 if (!(0 <= score && score <= 5)) {
                     throw new InvalidScoreException();
                 }
+                break;
             case 5:
                 if (!(0 <= score && score <= 2)) {
                     throw new InvalidScoreException();
                 }
+                break;
             case 7: case 8: case 9: case 10:
                 if (!(0 <= score && score <= 1)) {
                     throw new InvalidScoreException();
                 }
+                break;
         }
         log.info("유효성 검사 완료");
     }
