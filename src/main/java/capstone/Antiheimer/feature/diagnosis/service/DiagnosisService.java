@@ -385,19 +385,19 @@ public class DiagnosisService {
 
         switch (num) {
             case 1: case 6: case 11:
-                if (score < 0 || score > 3) {
+                if (!(0 <= score && score <= 3)) {
                     throw new InvalidScoreException();
                 }
             case 2: case 3: case 4:
-                if (score < 0 || score > 5) {
+                if (!(0 <= score && score <= 5)) {
                     throw new InvalidScoreException();
                 }
             case 5:
-                if (score < 0 || score > 2) {
+                if (!(0 <= score && score <= 2)) {
                     throw new InvalidScoreException();
                 }
             case 7: case 8: case 9: case 10:
-                if (score < 0 || score > 1) {
+                if (!(0 <= score && score <= 1)) {
                     throw new InvalidScoreException();
                 }
         }
