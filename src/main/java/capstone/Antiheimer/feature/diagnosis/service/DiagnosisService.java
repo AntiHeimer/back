@@ -98,10 +98,12 @@ public class DiagnosisService {
 
         log.info("[Service] 답안 채점 및 점수 계산 시작");
         if (answers.containsKey("2")) {
+            log.info("2번 답안 채점");
             System.out.println((answers.get("2")).toString());
             totalScore += calculateNumTwo((List<String>) answers.get("2"));
         }
         if (answers.containsKey("4")) {
+            log.info("4번 답안 채점");
             System.out.println((answers.get("4")).toString());
             totalScore += calculateNumFour((List<String>) answers.get("4"));
         }
