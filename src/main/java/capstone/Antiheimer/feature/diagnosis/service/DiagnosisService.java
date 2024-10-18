@@ -285,15 +285,19 @@ public class DiagnosisService {
      */
     private int getScore(Map<String, Object> answers) {
 
+        log.info("점수 계산 시작");
         int score = 0;
         int i;
 
         for (i = 1; i < 12; i++) {
             if (i == 2 || i == 4)
                 continue;
+            log.info("유효성 검사");
             validateScores(i, Integer.parseInt((String)answers.get(String.valueOf(i)))); //번호에 따른 점수 유효성 검사
+            log.info("점수 집어넣기");
             score += Integer.parseInt((String) answers.get(String.valueOf(i)));
         }
+        log.info("점수 계산 완료"+ score);
 
         return score;
     }
@@ -383,6 +387,8 @@ public class DiagnosisService {
      */
     private void validateScores(int num, int score) {
 
+        log.info("점수 유효성 검사 함수 들어옴");
+
         switch (num) {
             case 1: case 6: case 11:
                 if (!(0 <= score && score <= 3)) {
@@ -401,6 +407,7 @@ public class DiagnosisService {
                     throw new InvalidScoreException();
                 }
         }
+        log.info("유효성 검사 완료");
     }
 
     /**
