@@ -443,7 +443,7 @@ incorrect(44x)
 
 
 ## randomWords
-### /random-words: GET
+#### /random-words: GET
 
 **Header**
 -String Authorization
@@ -453,7 +453,7 @@ auth(401): 권한 없음(토큰)
 
 
 ## startDiagnosis
-### /start: POST
+#### /start: POST
 
 **Header**
 - String Authorization
@@ -466,7 +466,7 @@ exist(43x)
 
 
 ## DiagnosisResult
-### /finish: POST
+#### /finish: POST
 
 **Header**
 - String Authorization
@@ -481,7 +481,7 @@ invalid(42x)
 
 
 ## diagnosisResultList
-### /result: GET
+#### /result: GET
 
 **Header**
 - String Authorization
@@ -492,6 +492,18 @@ auth(401): 권한 없음(토큰)
 exist(43x)
 - NotExistMemberException(431): 존재하지 않는 회원
 
+
+## findResultList
+#### /find/dementia/result: GET
+
+**Header**
+- String Authorization
+
+### possible error
+auth(401): 권한 없음(토큰)
+
+exist(43x)
+- NotExistMemberException(431): 존재하지 않는 회원
 
 
 # Relation

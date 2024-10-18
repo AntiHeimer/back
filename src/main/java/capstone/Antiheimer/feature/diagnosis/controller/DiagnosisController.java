@@ -134,12 +134,13 @@ public class DiagnosisController {
 //    }
 
     @PostMapping("/finish")
-    public ResponseEntity<DiagnosisResultResDto> diagnosisResult(@RequestBody DiagnosisResultReqDto request) {
+    public ResponseEntity<DiagnosisResultResDto> diagnosisResult(@RequestBody DiagnosisResultReqDto request) throws JsonProcessingException {
 
         log.info(("[Controller] 결과 저장 및 치매 진단 시작"));
         AiResDto aiResDto = null;
+        aiResDto = diagnosisService.getDiagnosisResult(request);
         try {
-            aiResDto = diagnosisService.getDiagnosisResult(request);
+
         } catch (Exception e) {
             return new ResponseEntity<>(new DiagnosisResultResDto("400", "진단 결과 저장 및 치매진단 실패", aiResDto), HttpStatus.BAD_REQUEST);
         }
@@ -177,8 +178,8 @@ public class DiagnosisController {
      * @param memberUuid
      * @return
      */
-    @GetMapping("/dementia/find")
-    public ResponseEntity<DementiaResultListResDto> findResult(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
+    @GetMapping("/find/result")
+    public ResponseEntity<DementiaResultListResDto> findResultList(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
         // URL 디코딩
