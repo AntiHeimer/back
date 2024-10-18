@@ -98,11 +98,11 @@ public class DiagnosisService {
 
         log.info("[Service] 답안 채점 및 점수 계산 시작");
         if (answers.containsKey("2")) {
-            log.error((answers.get("2")).toString());
+            log.info((answers.get("2")).toString());
             totalScore += calculateNumTwo((List<String>) answers.get("2"));
         }
         if (answers.containsKey("4")) {
-            log.error((answers.get("4")).toString());
+            log.info((answers.get("4")).toString());
             totalScore += calculateNumFour((List<String>) answers.get("4"));
         }
         totalScore += getScore(answers);
