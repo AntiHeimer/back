@@ -480,21 +480,8 @@ invalid(42x)
 - InvalidScoreException(426): 유효하지 않은 점수
 
 
-## diagnosisResultList
-#### /result: GET
-
-**Header**
-- String Authorization
-
-### possible error
-auth(401): 권한 없음(토큰)
-
-exist(43x)
-- NotExistMemberException(431): 존재하지 않는 회원
-
-
 ## findResultList
-#### /find/dementia/result: GET
+#### /result?memberUuid={memberUuid}: GET
 
 **Header**
 - String Authorization

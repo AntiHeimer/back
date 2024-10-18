@@ -149,36 +149,36 @@ public class DiagnosisController {
         return new ResponseEntity<>(new DiagnosisResultResDto("200", "진단 결과 저장 및 치매진단 성공", aiResDto), HttpStatus.OK);
     }
 
-    /**
-     * 진단 결과 조회
-     * @param memberUuid
-     * @return
-     * @throws UnsupportedEncodingException
-     */
-    @GetMapping("/result")
-    public ResponseEntity<DiagnosisResDto> diagnosisResultList(@RequestParam String memberUuid) throws UnsupportedEncodingException{
-
-        log.info("[Controller] 디코딩 및 AES 복호화");
-        // URL 디코딩
-        String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
-        // 공백을 +로 변환
-        String plusEncodedString = decodedUuid.replace(" ", "+");
-        // uuid 복호화
-        String uuid = aesService.decryptAES(plusEncodedString);
-
-        log.info("[Controller] 진단 결과 조회 시작");
-        List<Diagnosis> diagnosisList = diagnosisService.returnDiagnosis(uuid);
-
-        log.info("[Controller] 진단 결과 조회 성공");
-        return new ResponseEntity<>(new DiagnosisResDto("200", "진단 결과 조회 성공", diagnosisList), HttpStatus.OK);
-    }
+//    /**
+//     * 진단 결과 조회
+//     * @param memberUuid
+//     * @return
+//     * @throws UnsupportedEncodingException
+//     */
+//    @GetMapping("/result")
+//    public ResponseEntity<DiagnosisResDto> diagnosisResultList(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException{
+//
+//        log.info("[Controller] 디코딩 및 AES 복호화");
+//        // URL 디코딩
+//        String decodedUuid = URLDecoder.decode(memberUuid, StandardCharsets.UTF_8.name());
+//        // 공백을 +로 변환
+//        String plusEncodedString = decodedUuid.replace(" ", "+");
+//        // uuid 복호화
+//        String uuid = aesService.decryptAES(plusEncodedString);
+//
+//        log.info("[Controller] 진단 결과 조회 시작");
+//        List<Diagnosis> diagnosisList = diagnosisService.returnDiagnosis(uuid);
+//
+//        log.info("[Controller] 진단 결과 조회 성공");
+//        return new ResponseEntity<>(new DiagnosisResDto("200", "진단 결과 조회 성공", diagnosisList), HttpStatus.OK);
+//    }
 
     /**
      * 진단 결과 리스트 조회
      * @param memberUuid
      * @return
      */
-    @GetMapping("/find/result")
+    @GetMapping("/result")
     public ResponseEntity<DementiaResultListResDto> findResultList(@RequestParam("memberUuid") String memberUuid) throws UnsupportedEncodingException {
 
         log.info("[Controller] 디코딩 및 AES 복호화");
