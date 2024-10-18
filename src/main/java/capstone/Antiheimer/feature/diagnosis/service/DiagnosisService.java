@@ -95,31 +95,23 @@ public class DiagnosisService {
 
         log.info("[Service] 멤버 존재 확인");
         checkService.checkMemberExists(result.getMemberUuid());
-        log.info("권지영 바보");
-
-        log.info("answer 들어감???? "+ answers.toString());
-
 
         log.info("[Service] 답안 채점 및 점수 계산 시작");
         if (answers.containsKey("2")) {
-            log.info("2번 답안 채점");
-            System.out.println((answers.get("2")).toString());
+//            System.out.println((answers.get("2")).toString());
             totalScore += calculateNumTwo((List<String>) answers.get("2"));
         }
         if (answers.containsKey("4")) {
-            log.info("4번 답안 채점");
-            System.out.println((answers.get("4")).toString());
+//            System.out.println((answers.get("4")).toString());
             totalScore += calculateNumFour((List<String>) answers.get("4"));
-            log.info("4번 답안 채점 완료");
         }
         totalScore += getScore(answers);
-        log.info("총 점수 계산 완료");
 
         log.info("[Service] 진단 결과 저장");
         Diagnosis diagnosis = diagnosisRepository.saveDiagnosis(result.getMemberUuid(), totalScore);
 
-        System.out.println("result.getMemberUuid() = " + result.getMemberUuid());
-        System.out.println("result = " + result.getMap());
+//        System.out.println("result.getMemberUuid() = " + result.getMemberUuid());
+//        System.out.println("result = " + result.getMap());
 
         log.info("[Service] AI 전송 데이터 수집");
         List<Active> activeList = healthDataRepository.findActiveList(result.getMemberUuid(), diagnosis.getDiagnosisDate());
@@ -147,11 +139,11 @@ public class DiagnosisService {
         HttpEntity<?> requestMessage = new HttpEntity<>(body, headers);
 
         log.info("AI 서버로 요청 전송");
-        System.out.println("request = " + requestMessage);
+//        System.out.println("request = " + requestMessage);
         // AI 서버로 요청 전송
         HttpEntity<String> response = restTemplate.postForEntity(aiServerUrl, requestMessage, String.class);
 
-        System.out.println("response = " + response);
+//        System.out.println("response = " + response);
 
         log.info("JSON에서 값 추출");
         // JSON에서 값 추출
@@ -237,7 +229,7 @@ public class DiagnosisService {
 
             score += 1;
         }
-        System.out.println("Score:"+ score);
+//        System.out.println("Score:"+ score);
 
         return score;
     }
@@ -249,7 +241,6 @@ public class DiagnosisService {
      */
     private int calculateNumFour(List<String> answer) {
 
-        log.info("4번 점수계산 시작들어왔음");
         int score = 0;
 
 
@@ -273,7 +264,6 @@ public class DiagnosisService {
 
             score += 1;
         }
-        log.info("점수계산 끝났음");
 
         return score;
     }
@@ -285,19 +275,15 @@ public class DiagnosisService {
      */
     private int getScore(Map<String, Object> answers) {
 
-        log.info("점수 계산 시작");
         int score = 0;
         int i;
 
         for (i = 1; i < 12; i++) {
             if (i == 2 || i == 4)
                 continue;
-            log.info("유효성 검사");
             validateScores(i, Integer.parseInt((String)answers.get(String.valueOf(i)))); //번호에 따른 점수 유효성 검사
-            log.info("점수 집어넣기");
             score += Integer.parseInt((String) answers.get(String.valueOf(i)));
         }
-        log.info("점수 계산 완료"+ score);
 
         return score;
     }
@@ -387,8 +373,6 @@ public class DiagnosisService {
      */
     private void validateScores(int num, int score) {
 
-        log.info("점수 유효성 검사 함수 들어옴");
-
         switch (num) {
             case 1: case 6: case 11:
                 if (!(0 <= score && score <= 3)) {
@@ -411,7 +395,6 @@ public class DiagnosisService {
                 }
                 break;
         }
-        log.info("유효성 검사 완료");
     }
 
     /**
