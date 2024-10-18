@@ -237,6 +237,7 @@ public class DiagnosisService {
 
             score += 1;
         }
+        System.out.println("Score:"+ score);
 
         return score;
     }
