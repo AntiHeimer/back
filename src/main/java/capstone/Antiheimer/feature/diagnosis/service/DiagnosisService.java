@@ -110,8 +110,10 @@ public class DiagnosisService {
             log.info("4번 답안 채점");
             System.out.println((answers.get("4")).toString());
             totalScore += calculateNumFour((List<String>) answers.get("4"));
+            log.info("4번 답안 채점 완료");
         }
         totalScore += getScore(answers);
+        log.info("총 점수 계산 완료");
 
         log.info("[Service] 진단 결과 저장");
         Diagnosis diagnosis = diagnosisRepository.saveDiagnosis(result.getMemberUuid(), totalScore);
