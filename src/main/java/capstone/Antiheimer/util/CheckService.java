@@ -153,6 +153,7 @@ public class CheckService {
             log.warn("존재하지 않는 회원입니다");
             throw new NotExistMemberException();
         }
+        log.info("존재하는 회원입니다.");
     }
 
     /**
