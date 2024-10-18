@@ -95,8 +95,9 @@ public class DiagnosisService {
 
         log.info("[Service] 멤버 존재 확인");
         checkService.checkMemberExists(result.getMemberUuid());
+        log.info("권지영 바보");
 
-        System.out.println("answer 들어감???? "+ answers.toString());
+        log.info("answer 들어감???? "+ answers.toString());
 
 
         log.info("[Service] 답안 채점 및 점수 계산 시작");
