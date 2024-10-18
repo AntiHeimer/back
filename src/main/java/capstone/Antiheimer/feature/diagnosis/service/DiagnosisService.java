@@ -96,6 +96,9 @@ public class DiagnosisService {
         log.info("[Service] 멤버 존재 확인");
         checkService.checkMemberExists(result.getMemberUuid());
 
+        System.out.println("answer 들어감???? "+ answers.toString());
+
+
         log.info("[Service] 답안 채점 및 점수 계산 시작");
         if (answers.containsKey("2")) {
             log.info("2번 답안 채점");
