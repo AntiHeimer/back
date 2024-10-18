@@ -248,7 +248,9 @@ public class DiagnosisService {
      */
     private int calculateNumFour(List<String> answer) {
 
+        log.info("4번 점수계산 시작들어왔음");
         int score = 0;
+
 
         if (Integer.parseInt(answer.get(0)) == 93) {
 
@@ -270,6 +272,7 @@ public class DiagnosisService {
 
             score += 1;
         }
+        log.info("점수계산 끝났음");
 
         return score;
     }
