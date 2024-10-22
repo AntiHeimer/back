@@ -124,7 +124,7 @@ public class DiagnosisRepository {
      */
     public List<Result> findResultList(String memberUuid) {
 
-        return em.createQuery("SELECT r FROM Result r WHERE r.member.uuid = :memberUuid", Result.class)
+        return em.createQuery("SELECT r FROM Result r WHERE r.member.uuid = :memberUuid ORDER BY r.date DESC", Result.class)
                 .setParameter("memberUuid", memberUuid)
                 .setMaxResults(3)
                 .getResultList();
