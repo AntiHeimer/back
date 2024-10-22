@@ -126,6 +126,7 @@ public class DiagnosisRepository {
 
         return em.createQuery("SELECT r FROM Result r WHERE r.member.uuid = :memberUuid", Result.class)
                 .setParameter("memberUuid", memberUuid)
+                .setMaxResults(3)
                 .getResultList();
     }
 }
