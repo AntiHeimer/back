@@ -310,7 +310,7 @@ public class CheckService {
      */
     public void checkDuplicateRelation(Relation relation) {
 
-        if (!relationRepository.isRelationExist(relation)) {
+        if (relationRepository.isRelationExist(relation)) {
 
             log.warn("이미 존재하는 관계입니다");
             throw new DuplicateRelationException();
